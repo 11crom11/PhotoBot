@@ -75,7 +75,6 @@ public class PhotoBot extends TelegramLongPollingBot {
 	
 	private boolean guardarFotoEnServidor(List<PhotoSize> lFotos, Long idChat, Integer idUsuario, Integer fecha){
 		boolean ok = true;
-		int k = 2;
 		PhotoSize ps = lFotos.stream()
 				.sorted(Comparator.comparing(PhotoSize::getFileSize).reversed())
 				.findFirst()

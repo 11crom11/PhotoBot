@@ -58,5 +58,6 @@
 	<classpathentry kind="lib" path="telegram_jars/telegrambots-meta-3.6-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="telegram_jars/telegrambotsextensions-3.6-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="GATE/lib/gateLauncher.jar"/>
+	<classpathentry kind="lib" path="jade/lib/jade.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

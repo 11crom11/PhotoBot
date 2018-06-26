@@ -26,7 +26,6 @@ public class PhotoBot extends TelegramLongPollingBot {
 	@Override
 	public String getBotUsername() {
 		String nombreBot = "PhotosDASI_bot";
-		
 		return nombreBot;
 	}
 

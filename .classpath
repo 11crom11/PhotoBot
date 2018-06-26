@@ -59,5 +59,47 @@
 	<classpathentry kind="lib" path="telegram_jars/telegrambotsextensions-3.6-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="GATE/lib/gateLauncher.jar"/>
 	<classpathentry kind="lib" path="jade/lib/jade.jar"/>
+	<classpathentry kind="lib" path="DROOLS/antlr-runtime-3.5.2.jar"/>
+	<classpathentry kind="lib" path="DROOLS/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="DROOLS/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="DROOLS/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-compiler-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-core-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-decisiontables-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-persistence-api-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-persistence-jpa-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-templates-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/ecj-4.4.2.jar"/>
+	<classpathentry kind="lib" path="DROOLS/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jackson-annotations-2.8.9.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jackson-core-2.8.9.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jackson-databind-2.8.9.jar"/>
+	<classpathentry kind="lib" path="DROOLS/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jboss-jaxb-api_2.2_spec-1.0.4.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jbpm-audit-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jbpm-bpmn2-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jbpm-flow-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jbpm-flow-builder-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jbpm-query-jpa-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-api-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-dmn-api-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-internal-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-soup-commons-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-soup-maven-support-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-soup-project-datamodel-api-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/kie-soup-project-datamodel-commons-7.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/mvel2-2.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/poi-3.15.jar"/>
+	<classpathentry kind="lib" path="DROOLS/poi-ooxml-3.15.jar"/>
+	<classpathentry kind="lib" path="DROOLS/poi-ooxml-schemas-3.15.jar"/>
+	<classpathentry kind="lib" path="DROOLS/protobuf-java-2.6.0.jar"/>
+	<classpathentry kind="lib" path="DROOLS/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="DROOLS/stax-api-1.0-2.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xmlpull-1.1.3.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xstream-1.4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

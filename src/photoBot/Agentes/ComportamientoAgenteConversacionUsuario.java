@@ -1,19 +1,17 @@
 package photoBot.Agentes;
 
-import photoBot.PhotoBot;
 import jade.core.Agent;
+import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 
 public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 
 	private int estado;
-	private PhotoBot photoBot;
 	
-	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot photoBot) {
+	public ComportamientoAgenteConversacionUsuario(Agent a) {
 		super(a);
 		
-		this.photoBot = photoBot;
 		this.estado = 0;
 		
 		registerFirstState(new OneShotBehaviour() {
@@ -105,9 +103,12 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 		}, "ESTADO_3");
 		
 		registerDefaultTransition("ESTADO_0", "ESTADO_1");
-		registerTransition("ESTADO_1", "ESTADO_1", 1);
-		registerTransition("ESTADO_1", "ESTADO_2", 2);
-		registerTransition("ESTADO_2", "ESTADO_3", 3);
+		registerTransition("ESTADO_1", "ESTADO_1", 1); //SE QUEDA AQUI HASTA QUE RECIBA MENSAJE
+		registerTransition("ESTADO_1", "ESTADO_2", 2); //SI EL USUARIO QUIERE BUSCAR IMAGENES
+		registerTransition("ESTADO_1", "ESTADO_3", 3); //SI EL USUARIO QUIERE SUBIR IMAGENES
+		registerTransition("ESTADO_2", "ESTADO_1", 4); //VUELTA ESTADO INICIAL
+		registerTransition("ESTADO_3", "ESTADO_1", 5); //VUELTA ESTADO INICIAL
+		
 
 	}
 	
@@ -117,5 +118,8 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 		myAgent.doDelete();
 		return super.onEnd();
 	}
-
+	
+	public Behaviour getEstado() {
+		return getCurrent();
+	}
 }

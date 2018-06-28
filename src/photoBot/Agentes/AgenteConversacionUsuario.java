@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.drools.lang.dsl.DSLMapParser.value_chunk_return;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.GetFile;
@@ -38,7 +39,7 @@ public class AgenteConversacionUsuario extends Agent {
 
         this.apiTelegram = new TelegramBotsApi();
         this.photoBot = new PhotoBot();
-        this.comportamiento = new ComportamientoAgenteConversacionUsuario(this);
+        this.comportamiento = new ComportamientoAgenteConversacionUsuario(this, photoBot);
         
         try {
             this.apiTelegram.registerBot(this.photoBot);
@@ -56,29 +57,33 @@ public class AgenteConversacionUsuario extends Agent {
 	
 	public class PhotoBot extends TelegramLongPollingBot {
 
+		private Long chatID;
+		private Integer userID;
+		private Integer date;
+		private Update update;
+
+		public Integer getUserID(){
+			return userID;
+		}
+		
 		@Override
 		public String getBotUsername() {
 			String nombreBot = "PhotosDASI_bot";
 			return nombreBot;
 		}
 
+			
 		@Override
 		public void onUpdateReceived(Update update) {
-			Long chatID = update.getMessage().getChatId();
-			Integer userID = update.getMessage().getFrom().getId();
-			Integer date = update.getMessage().getDate();
+			this.update = update;
 			
+			this.chatID = update.getMessage().getChatId();
+			this.userID = update.getMessage().getFrom().getId();
+			this.date = update.getMessage().getDate();
 			Behaviour estado = comportamiento.getEstado();
 			String estadoActualString = estado.getBehaviourName();
 			
-			if(estadoActualString.equalsIgnoreCase("ESPERANDO_PETICION")){
-				if(update.getMessage().hasText() && update.getMessage().getText().equalsIgnoreCase("/dame")){
-					devolverTodasLasImagenesDelUsuario(userID, chatID);
-				}
-				else if(update.getMessage().hasText() && update.getMessage().getText().equalsIgnoreCase("/dame")){
-				
-				}
-			}
+
 			/**
 			if (update.hasMessage() && update.getMessage().hasText() && update.getMessage().getText().equalsIgnoreCase("/dame")) {
 				devolverTodasLasImagenesDelUsuario(userID, chatID);
@@ -122,7 +127,7 @@ public class AgenteConversacionUsuario extends Agent {
 		}
 		
 		
-		private boolean guardarFotoEnServidor(List<PhotoSize> lFotos, Long idChat, Integer idUsuario, Integer fecha){
+		public boolean guardarFotoEnServidor(List<PhotoSize> lFotos, Long idChat, Integer idUsuario, Integer fecha){
 			boolean ok = true;
 			PhotoSize ps = lFotos.stream()
 					.sorted(Comparator.comparing(PhotoSize::getFileSize).reversed())
@@ -156,7 +161,7 @@ public class AgenteConversacionUsuario extends Agent {
 		}
 		
 		
-		private void devolverTodasLasImagenesDelUsuario(Integer userID, Long chatID){
+		public void devolverTodasLasImagenesDelUsuario(){
 	        SendPhoto sendPhotoRequest = new SendPhoto();
 	        
 	        sendPhotoRequest.setChatId(chatID);
@@ -172,11 +177,11 @@ public class AgenteConversacionUsuario extends Agent {
 			        }
 			        
 				});
-				enviarMensajeTextoAlUsuario(userID, chatID, "Estas son todas las imágenes que tengo de ti :)");
+				enviarMensajeTextoAlUsuario("Estas son todas las imágenes que tengo de ti :)");
 
 			} catch (IOException e) {
 				e.printStackTrace();
-				enviarMensajeTextoAlUsuario(userID, chatID, "No tengo ninguna foto tuya :( ... Envíame una foto :)");
+				enviarMensajeTextoAlUsuario("No tengo ninguna foto tuya :( ... Envíame una foto :)");
 			}	
 		}
 		
@@ -187,7 +192,7 @@ public class AgenteConversacionUsuario extends Agent {
 		 * @param chatID Identificador de Chat
 		 * @param cadena Mensaje que se quiere transmitir del Bot al usuario
 		 */
-		private void enviarMensajeTextoAlUsuario(Integer userID, Long chatID, String cadena){
+		public void enviarMensajeTextoAlUsuario(String cadena){
 			SendMessage message = new SendMessage().setChatId(chatID);
 			
 			message.setText(cadena);
@@ -197,6 +202,22 @@ public class AgenteConversacionUsuario extends Agent {
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public String getMensaje(){
+			return this.update.getMessage().getText();
+		}
+		
+		public void mensajeLeido(){
+			this.update = null;
+		}
+		
+		public boolean hayMensaje(){
+			return this.update != null && this.update.getMessage().hasText();
+		}
+		
+		public boolean hayMensajeFoto(){
+			return this.update != null && this.update.getMessage().hasPhoto();
 		}
 	}
 

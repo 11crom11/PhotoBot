@@ -1,4 +1,4 @@
-package photoBot;
+package photoBot.Gate;
 
 import java.util.*;
 

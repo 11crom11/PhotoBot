@@ -3,6 +3,7 @@ package photoBot.Reglas
 import photoBot.Reglas.*;
  
 // Sumamos el importe total de los productos
+//init, actiom y result se podrian sustituir por -> sum( productPrice ) !!!!!!!!!
 rule "Initial rule"
 	salience 20
     when

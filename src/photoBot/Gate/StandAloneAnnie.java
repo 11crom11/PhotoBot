@@ -72,7 +72,7 @@ public class StandAloneAnnie {
 	
 		// Simulación de procesamiento de las frases que le lleguen al bot
 		Document d = new gate.corpora.DocumentImpl();
-		String str = "hola, quiero las fotos de ayer en Madrid";
+		String str = "hola, quiero las fotos de ayer en Madrid. Las necesito.";
 		DocumentContentImpl impl = new DocumentContentImpl(str);
 		d.setContent(impl);
 		corpus.add(d);

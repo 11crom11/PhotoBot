@@ -2,8 +2,10 @@ package photoBot.Gate;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import gate.Annotation;
@@ -38,11 +40,12 @@ public class ProcesadorLenguaje {
 		File annieGapp = new File(anniePlugin, "ANNIE_with_defaults.gapp");		
 		
 		this.annieController = (CorpusController) PersistenceManager.loadObjectFromFile(annieGapp);
+		this.annie = new StandAloneAnnie();
 		this.annie.initAnnie();
 		this.corpus = Factory.newCorpus("StandAloneAnnie corpus");	
 	}
 	
-	public Set<String> analizarTextoGate(String texto) throws GateException{
+	public List<String> analizarTextoGate(String texto) throws GateException{
 		
 		Document documento = new gate.corpora.DocumentImpl();
 		DocumentContentImpl impl = new DocumentContentImpl(texto);
@@ -51,12 +54,14 @@ public class ProcesadorLenguaje {
 
 		this.annie.setCorpus(corpus);
 		this.annie.execute();
+		//this.annieController.setCorpus(corpus);
+		//this.annieController.execute();
 		
 		return obtenerEtiquetas();
 	}
 	
-	private Set<String> obtenerEtiquetas(){
-		Set<String> etiquetas = new HashSet<String>();
+	private List<String> obtenerEtiquetas(){
+		List<String> etiquetas = new ArrayList<String>();
 		Iterator iter = this.corpus.iterator();
 		
 		while(iter.hasNext()){
@@ -73,9 +78,12 @@ public class ProcesadorLenguaje {
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		
 			for (Annotation s : etiquetasAnotacion) {
-			    etiquetas.add(s.toString());
+			    etiquetas.add(s.getType());
 			}
-		} 
+		}
+		
+		//Elimino el corpus para que en sucesivos analisis no aparezcan anotaciones de los anteriores
+		this.corpus.clear();
 		
 		return etiquetas;
 	}

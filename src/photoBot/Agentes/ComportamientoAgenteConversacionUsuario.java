@@ -1,5 +1,7 @@
 package photoBot.Agentes;
 
+import org.joda.time.DateTime;
+
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -28,7 +30,10 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			@Override
 			public void action() {
 				if(photoBot.getUserID() != null){ //Si hay usuario hablando al bot
-					photoBot.enviarMensajeTextoAlUsuario("Hola, ¿en qué puedo ayudarte?");
+					
+					String saludo = saludoRespectoHora();
+					
+					photoBot.enviarMensajeTextoAlUsuario(saludo + ", ¿en qué puedo ayudarte?");
 					this.estado = 4;
 				}
 				
@@ -171,5 +176,31 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 	
 	public Behaviour getEstado() {
 		return getCurrent();
+	}
+	
+	
+	/**
+	 * Esta funcion devuelve un saludo dependiendo de la hora recibida como parametro
+	 * @param hora El numero de la hora (0-23)
+	 * @return String con un saludo
+	 */
+	private String saludoRespectoHora(){
+		String ret = "";
+			
+		DateTime dt = new DateTime();
+		int hora = dt.getHourOfDay();
+		
+				
+		if(hora >= 21 || (hora >= 0 && hora < 7)){
+			ret = "Buenas noches";
+		}
+		else if(hora >= 7 && hora < 12){
+			ret = "Buenos días";
+		}
+		else if(hora >= 12 && hora < 21){
+			ret = "Buenas tardes";
+		}
+		
+		return ret;
 	}
 }

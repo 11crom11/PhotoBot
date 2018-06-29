@@ -3,6 +3,7 @@ package photoBot.Agentes;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -211,6 +212,16 @@ public class AgenteConversacionUsuario extends Agent {
 		
 		public boolean hayMensajeFoto(){
 			return this.update != null && this.update.getMessage().hasPhoto();
+		}
+		
+		public int getFecha(){
+			if(this.date != null){
+				return this.date;
+			}
+			else{
+				LocalTime now = LocalTime.now();
+				return now.getHour();
+			}
 		}
 	}
 

@@ -8,19 +8,27 @@ import jade.core.behaviours.OneShotBehaviour;
 
 public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	
-	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot photoBot) {
+	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot pB) {
 		super(a);
-		this.photoBot = photoBot;
+		this.photoBot = pB;
 		
 		registerFirstState(new OneShotBehaviour() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			private int estado = 0;
 
 			@Override
 			public void action() {
 				if(photoBot.getUserID() != null){ //Si hay usuario hablando al bot
-					photoBot.enviarMensajeTextoAlUsuario("Estoy en el Estado_Inicial");
+					photoBot.enviarMensajeTextoAlUsuario("Hola, ¿en qué puedo ayudarte?");
 					this.estado = 4;
 				}
 				
@@ -35,43 +43,26 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 		
 		
 		registerState(new OneShotBehaviour() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			private int estado = 1;
 
 			@Override
 			public void action() {
-				System.out.println("Entro en el estado " + String.valueOf(estado));
 				
-				
-				//SI QUIERO BUSCAR FOTOS
+				System.out.println("Entro en el estado ESPERANDO_PETICION con la variable estado igual a " + String.valueOf(estado));
+				this.estado = 1;
+						
+				//############SI QUIERO BUSCAR FOTOS
 				if(photoBot.hayMensaje() && photoBot.getMensaje().equalsIgnoreCase("/dame")){
-					photoBot.devolverTodasLasImagenesDelUsuario();
-					
-					photoBot.mensajeLeido();
 					this.estado = 5;
 				}
+				//############SI QUIERO CARGAR/SUBIR FOTOS
 				else if(photoBot.hayMensajeFoto()){
-					//SI QUIERO CARGAR/SUBIR FOTOS
-					boolean ok = false;
-					String msj = "";
-					List<PhotoSize> lFotos = update.getMessage().getPhoto();
-					
-					ok = this.guardarFotoEnServidor(lFotos);
-					
-					if(ok){
-						msj = "Ya he recibido y almacenado correctamente tus imágenes.";
-					}
-					else{
-						msj = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
-					}
-					
-					enviarMensajeTextoAlUsuario(msj);
-					
-					photoBot.mensajeLeido();
 					this.estado = 6;
-				}
-				
-
-			
+				}	
 			}
 			
 			@Override
@@ -82,17 +73,21 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 		}, "ESTADO_ESPERANDO_PETICICION");
 		
 		registerState(new OneShotBehaviour() {
+	
+			private static final long serialVersionUID = 1L;
 			private int estado = 2;
 	
 			
 			@Override
-			public void action() {
-				System.out.println("Entro en el estado " + String.valueOf(estado));
+			public void action() {			
+				System.out.println("Entro en el estado BUSCAR con la variable estado igual a " + String.valueOf(estado));
+				this.estado = 2;
 				
-				//SI HE FINALIZADO BUSQUEDA, VUELVO AL PRINCIPIO
+				photoBot.devolverTodasLasImagenesDelUsuario();
+				photoBot.mensajeLeido();
+				
+				//SI HE FINALIZADO BUSQUEDA, VUELVO AL ESTADO ESPERANDO_PETICION
 				this.estado = 7;
-
-				
 			}
 			
 			@Override
@@ -101,18 +96,55 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			}
 		}, "ESTADO_BUSCAR");
 		
-		registerLastState(new OneShotBehaviour() {
+		registerState(new OneShotBehaviour() {
+
+			private static final long serialVersionUID = 1L;
 			private int estado = 3;
 
 			@Override
 			public void action() {
-				System.out.println("Entro en el estado " + String.valueOf(estado));
+				System.out.println("Entro en el estado SUBIR_FOTO con la variable estado igual a " + String.valueOf(estado));
+				this.estado = 3;
+
+				boolean ok = false;
+				String msj = "";
+								
+				ok = photoBot.guardarFotoEnServidor();
+				
+				if(ok){
+					msj = "Ya he recibido y almacenado correctamente tus imágenes.";
+				}
+				else{
+					msj = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
+				}
+				
+				photoBot.enviarMensajeTextoAlUsuario(msj);
+
+				photoBot.mensajeLeido();
 				
 				//SI HE FINALIZADO SUBIR IMAGENES, VUELVO AL PRINCIPIO
 				this.estado = 8;
+				
+			}
+			
+			@Override
+			public int onEnd() {
+				return estado;
 			}
 			
 		}, "ESTADO_SUBIR");
+		
+		registerLastState(new OneShotBehaviour() {
+
+			private static final long serialVersionUID = 1L;
+			
+
+			@Override
+			public void action() {
+				//estado final				
+			}
+			
+		}, "ESTADO_FINAL");
 		
 		//registerDefaultTransition("ESTADO_INICIAL", "ESTADO_ESPERANDO_PETICICION");
 		registerTransition("ESTADO_INICIAL", "ESTADO_INICIAL", 0);

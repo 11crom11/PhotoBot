@@ -23,7 +23,7 @@ public class ProcesadorLenguaje {
 	
 	/** The Corpus Pipeline application to contain ANNIE */
 	private CorpusController annieController;
-	private StandAloneAnnie annie;
+	//private StandAloneAnnie annie;
 	private Corpus corpus;
 	
 	public ProcesadorLenguaje() throws GateException, IOException{
@@ -40,8 +40,8 @@ public class ProcesadorLenguaje {
 		File annieGapp = new File(anniePlugin, "ANNIE_with_defaults.gapp");		
 		
 		this.annieController = (CorpusController) PersistenceManager.loadObjectFromFile(annieGapp);
-		this.annie = new StandAloneAnnie();
-		this.annie.initAnnie();
+		//this.annie = new StandAloneAnnie();
+		//this.annie.initAnnie();
 		this.corpus = Factory.newCorpus("StandAloneAnnie corpus");	
 	}
 	
@@ -52,22 +52,22 @@ public class ProcesadorLenguaje {
 		documento.setContent(impl);
 		corpus.add(documento);
 
-		this.annie.setCorpus(corpus);
-		this.annie.execute();
-		//this.annieController.setCorpus(corpus);
-		//this.annieController.execute();
+		//this.annie.setCorpus(corpus);
+		//this.annie.execute();
+		this.annieController.setCorpus(corpus);
+		this.annieController.execute();
 		
 		return obtenerEtiquetas();
 	}
 	
 	private List<String> obtenerEtiquetas(){
 		List<String> etiquetas = new ArrayList<String>();
-		Iterator iter = this.corpus.iterator();
+		Iterator<Document> iter = this.corpus.iterator();
 		
 		while(iter.hasNext()){
 			Document doc = (Document) iter.next();
 			AnnotationSet defaultAnnotSet = doc.getAnnotations();
-			Set annotTypesRequired = new HashSet();
+			Set<String> annotTypesRequired = new HashSet<String>();
 			
 			//SE INDICA LOS TIPOS DE ETIQUETAS QUE QUEREMOS RECUPERAR
 			annotTypesRequired.add("Fecha");

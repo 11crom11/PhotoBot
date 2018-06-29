@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.drools.lang.dsl.DSLMapParser.value_chunk_return;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.GetFile;
@@ -22,10 +21,13 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
 
 public class AgenteConversacionUsuario extends Agent {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private TelegramBotsApi apiTelegram;
 	
@@ -80,14 +82,11 @@ public class AgenteConversacionUsuario extends Agent {
 			this.chatID = update.getMessage().getChatId();
 			this.userID = update.getMessage().getFrom().getId();
 			this.date = update.getMessage().getDate();
-			Behaviour estado = comportamiento.getEstado();
-			String estadoActualString = estado.getBehaviourName();
+			//Behaviour estado = comportamiento.getEstado();
+			//String estadoActualString = estado.getBehaviourName();
 			
 
-			/**
-			if (update.hasMessage() && update.getMessage().hasText() && update.getMessage().getText().equalsIgnoreCase("/dame")) {
-				devolverTodasLasImagenesDelUsuario(userID, chatID);
-		    }
+			/**		
 			else if (update.hasMessage() && update.getMessage().hasText()) {
 		        SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
 		                .setChatId(update.getMessage().getChatId())
@@ -98,23 +97,6 @@ public class AgenteConversacionUsuario extends Agent {
 		            e.printStackTrace();
 		        }
 		    }
-			else if (update.getMessage().hasPhoto()){//Si hemos recibido una foto...
-				boolean ok = false;
-				String msj = "";
-				List<PhotoSize> lFotos = update.getMessage().getPhoto();
-				
-				ok = this.guardarFotoEnServidor(lFotos, chatID, userID, date);
-				
-				if(ok){
-					msj = "Ya he recibido y almacenado correctamente tus imágenes.";
-				}
-				else{
-					msj = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
-				}
-				
-				enviarMensajeTextoAlUsuario(userID, chatID, msj);
-				
-			}
 			*/
 
 		}
@@ -127,8 +109,15 @@ public class AgenteConversacionUsuario extends Agent {
 		}
 		
 		
-		public boolean guardarFotoEnServidor(List<PhotoSize> lFotos, Long idChat, Integer idUsuario, Integer fecha){
+		/**
+		 * Esta funcion recoge la imagen recibido por el chat y la almacena en la carpeta 
+		 * del usuario correspondiente (su userID).
+		 * @return Devuelve True en caso de que la imagen haya sido almacenado correctamente
+		 */
+		public boolean guardarFotoEnServidor(){
 			boolean ok = true;
+			
+			List<PhotoSize> lFotos = update.getMessage().getPhoto();
 			PhotoSize ps = lFotos.stream()
 					.sorted(Comparator.comparing(PhotoSize::getFileSize).reversed())
 					.findFirst()
@@ -140,14 +129,12 @@ public class AgenteConversacionUsuario extends Agent {
 			try {
 				File file = execute(getFileMethod);
 				java.io.File fileJava = downloadFile(file.getFilePath());           
-				//https://github.com/rubenlagus/TelegramBots/wiki/FAQ
-				//https://www.mkyong.com/java/how-to-write-an-image-to-file-imageio/
 				
 				//bImg = ImageIO.read(fileJava);
 				
-				java.io.File dir = new java.io.File("./galeria/" + idUsuario);
+				java.io.File dir = new java.io.File("./galeria/" + this.userID);
 				dir.mkdirs();
-				ImageIO.write(ImageIO.read(fileJava), "jpeg", new java.io.File(dir.getPath() + "/" + fecha + ".jpeg"));
+				ImageIO.write(ImageIO.read(fileJava), "jpeg", new java.io.File(dir.getPath() + "/" + this.date + ".jpeg"));
 				
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
@@ -161,6 +148,10 @@ public class AgenteConversacionUsuario extends Agent {
 		}
 		
 		
+		/**
+		 * Esta función devuelve todas las imagenes contenidas en la carpeta de un usuario
+		 * concreto a partir del userID de la conversación concreta
+		 */
 		public void devolverTodasLasImagenesDelUsuario(){
 	        SendPhoto sendPhotoRequest = new SendPhoto();
 	        
@@ -203,6 +194,8 @@ public class AgenteConversacionUsuario extends Agent {
 				e.printStackTrace();
 			}
 		}
+		
+		
 		
 		public String getMensaje(){
 			return this.update.getMessage().getText();

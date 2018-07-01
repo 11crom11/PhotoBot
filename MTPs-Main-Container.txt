@@ -1,1 +1,1 @@
-http://PTO1223:7778/acc
+http://debianPORTATIL:7778/acc

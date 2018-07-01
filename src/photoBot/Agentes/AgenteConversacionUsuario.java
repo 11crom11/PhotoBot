@@ -22,6 +22,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import jade.core.Agent;
+import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
 
 public class AgenteConversacionUsuario extends Agent {
 	
@@ -150,35 +151,33 @@ public class AgenteConversacionUsuario extends Agent {
 		
 		
 		/**
-		 * Esta función devuelve todas las imagenes contenidas en la carpeta de un usuario
-		 * concreto a partir del userID de la conversación concreta
+		 * Esta funciï¿½n devuelve todas las imagenes contenidas en la carpeta de un usuario
+		 * concreto a partir del userID de la conversaciï¿½n concreta
 		 */
-		public void devolverTodasLasImagenesDelUsuario(){
+		public void devolverTodasLasImagenesDelUsuario(List<String> listaDeImagenes){
 	        SendPhoto sendPhotoRequest = new SendPhoto();
 	        
 	        sendPhotoRequest.setChatId(chatID);
 	        
-	        try {
-				Files.list(Paths.get("./galeria/" + userID)).forEach((imagen)->{
-					sendPhotoRequest.setNewPhoto(new java.io.File(imagen.toString()));
-			        try {
-			            // Execute the method
-			            sendPhoto(sendPhotoRequest);
-			        } catch (TelegramApiException e) {
-			            e.printStackTrace();
-			        }
-			        
-				});
-				enviarMensajeTextoAlUsuario("Estas son todas las imágenes que tengo de ti :)");
+	        	for (String imagen : listaDeImagenes) {
+					sendPhotoRequest.setNewPhoto(new java.io.File(imagen));
+		            try {
+						sendPhoto(sendPhotoRequest);
+					} catch (TelegramApiException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-			} catch (IOException e) {
-				e.printStackTrace();
-				enviarMensajeTextoAlUsuario("No tengo ninguna foto tuya :( ... Envíame una foto :)");
-			}	
+
+				}
+			       
+				enviarMensajeTextoAlUsuario("Estas son todas las imÃ¡genes que tengo de ti :)");
+
+
 		}
 		
 		/**
-		 * Esta función se encarga de mandar mensajes de texto a la conversación del
+		 * Esta funciï¿½n se encarga de mandar mensajes de texto a la conversaciï¿½n del
 		 * usuario
 		 * @param userID Identificador de Usuario
 		 * @param chatID Identificador de Chat

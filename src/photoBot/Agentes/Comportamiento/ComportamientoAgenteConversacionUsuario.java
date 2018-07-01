@@ -1,12 +1,19 @@
-package photoBot.Agentes;
+package photoBot.Agentes.Comportamiento;
+
+import java.util.List;
 
 import org.joda.time.DateTime;
+import org.telegram.telegrambots.api.methods.send.SendAudio;
 
+import photoBot.Agentes.AgenteConversacionUsuario;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.FSMBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.UnreadableException;
 
 public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 
@@ -15,10 +22,12 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 	 */
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
+	private Behaviour self;
 	
 	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot pB) {
 		super(a);
 		this.photoBot = pB;
+		this.self = this;
 		
 		registerFirstState(new OneShotBehaviour() {
 			/**
@@ -33,7 +42,7 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 					
 					String saludo = saludoRespectoHora();
 					
-					photoBot.enviarMensajeTextoAlUsuario(saludo + ", ¿en qué puedo ayudarte?");
+					photoBot.enviarMensajeTextoAlUsuario(saludo + ", Â¿en quÃ© puedo ayudarte?");
 					this.estado = 4;
 				}
 				
@@ -57,7 +66,7 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			@Override
 			public void action() {
 				
-				System.out.println("Entro en el estado ESPERANDO_PETICION con la variable estado igual a " + String.valueOf(estado));
+				//System.out.println("Entro en el estado ESPERANDO_PETICION con la variable estado igual a " + String.valueOf(estado));
 				this.estado = 1;
 						
 				//############SI QUIERO BUSCAR FOTOS
@@ -85,11 +94,35 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			
 			@Override
 			public void action() {			
-				System.out.println("Entro en el estado BUSCAR con la variable estado igual a " + String.valueOf(estado));
+				//System.out.println("Entro en el estado BUSCAR con la variable estado igual a " + String.valueOf(estado));
 				this.estado = 2;
 				
-				photoBot.devolverTodasLasImagenesDelUsuario();
-				photoBot.mensajeLeido();
+				ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+				msj.addReceiver(new AID("AgenteBuscarImagen", AID.ISLOCALNAME));
+				msj.setContent(photoBot.getUserID().toString());
+				//ID usuario
+				
+				self.getAgent().send(msj);
+				
+				ACLMessage respuesta = self.getAgent().receive();
+				
+				while(respuesta == null) {
+					respuesta = self.getAgent().receive();
+				}
+				
+				try {
+					List<String> list = (List<String>) respuesta.getContentObject();
+					
+					photoBot.devolverTodasLasImagenesDelUsuario(list);
+					photoBot.mensajeLeido();
+					
+				} catch (UnreadableException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+
 				
 				//SI HE FINALIZADO BUSQUEDA, VUELVO AL ESTADO ESPERANDO_PETICION
 				this.estado = 7;
@@ -108,7 +141,7 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 
 			@Override
 			public void action() {
-				System.out.println("Entro en el estado SUBIR_FOTO con la variable estado igual a " + String.valueOf(estado));
+				//System.out.println("Entro en el estado SUBIR_FOTO con la variable estado igual a " + String.valueOf(estado));
 				this.estado = 3;
 
 				boolean ok = false;
@@ -117,10 +150,10 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 				ok = photoBot.guardarFotoEnServidor();
 				
 				if(ok){
-					msj = "Ya he recibido y almacenado correctamente tus imágenes.";
+					msj = "Ya he recibido y almacenado correctamente tus imÃ¡genes.";
 				}
 				else{
-					msj = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
+					msj = "Ha ocurrido un error :( ... Â¿Puedes mandarme de nuevo las imÃ¡genes?";
 				}
 				
 				photoBot.enviarMensajeTextoAlUsuario(msj);
@@ -195,7 +228,7 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			ret = "Buenas noches";
 		}
 		else if(hora >= 7 && hora < 12){
-			ret = "Buenos días";
+			ret = "Buenos dÃ­as";
 		}
 		else if(hora >= 12 && hora < 21){
 			ret = "Buenas tardes";

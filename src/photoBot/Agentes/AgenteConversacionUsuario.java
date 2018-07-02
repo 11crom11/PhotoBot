@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -151,8 +152,8 @@ public class AgenteConversacionUsuario extends Agent {
 		
 		
 		/**
-		 * Esta funci�n devuelve todas las imagenes contenidas en la carpeta de un usuario
-		 * concreto a partir del userID de la conversaci�n concreta
+		 * Esta función devuelve todas las imagenes contenidas en la carpeta de un usuario
+		 * concreto a partir del userID de la conversación concreta
 		 */
 		public void devolverTodasLasImagenesDelUsuario(List<String> listaDeImagenes){
 	        SendPhoto sendPhotoRequest = new SendPhoto();
@@ -177,7 +178,7 @@ public class AgenteConversacionUsuario extends Agent {
 		}
 		
 		/**
-		 * Esta funci�n se encarga de mandar mensajes de texto a la conversaci�n del
+		 * Esta función se encarga de mandar mensajes de texto a la conversación del
 		 * usuario
 		 * @param userID Identificador de Usuario
 		 * @param chatID Identificador de Chat
@@ -193,6 +194,33 @@ public class AgenteConversacionUsuario extends Agent {
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public List<java.io.File> obtenerImagenesMensaje(){
+			List<java.io.File> lFotosRet = new ArrayList<java.io.File>();			
+			List<PhotoSize> lFotos = update.getMessage().getPhoto();
+			
+			for(int i = 0; i < lFotos.size(); i++){
+				
+			}
+			PhotoSize ps = lFotos.stream()
+					.sorted(Comparator.comparing(PhotoSize::getFileSize).reversed())
+					.findFirst()
+					.orElse(null);
+
+			GetFile getFileMethod = new GetFile();
+			getFileMethod.setFileId(ps.getFileId());
+
+			try {
+				File file = execute(getFileMethod);
+				java.io.File fileJava = downloadFile(file.getFilePath());				
+				lFotosRet.add(fileJava);
+				
+			} catch (TelegramApiException e) {
+				e.printStackTrace();
+			}
+			
+			return lFotosRet;
 		}
 		
 		

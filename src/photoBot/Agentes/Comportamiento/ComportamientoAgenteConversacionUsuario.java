@@ -1,5 +1,9 @@
 package photoBot.Agentes.Comportamiento;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -143,22 +147,45 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			public void action() {
 				//System.out.println("Entro en el estado SUBIR_FOTO con la variable estado igual a " + String.valueOf(estado));
 				this.estado = 3;
-
-				boolean ok = false;
-				String msj = "";
-								
-				ok = photoBot.guardarFotoEnServidor();
 				
-				if(ok){
-					msj = "Ya he recibido y almacenado correctamente tus imágenes.";
+				HashMap<String, Object> msjContent = new HashMap<String, Object>();
+				
+				List<File> lFotos = photoBot.obtenerImagenesMensaje();
+				String userID = photoBot.getUserID().toString();
+				
+				msjContent.put("ID", userID);
+				msjContent.put("LISTA", lFotos);
+								
+				ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+				msj.addReceiver(new AID("AgenteAlmacenarImagenes", AID.ISLOCALNAME));
+				
+				try {
+					msj.setContentObject((Serializable)msjContent);
+					getAgent().send(msj);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				ACLMessage respuesta = self.getAgent().receive();
+				
+				while(respuesta == null) {
+					respuesta = self.getAgent().receive();
+				}
+				
+				String ret = "";
+				
+				if(respuesta.getContent().equals("OK")){
+					ret = "Ya he recibido y almacenado correctamente tus imágenes.";
 				}
 				else{
-					msj = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
+					ret = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
 				}
 				
-				photoBot.enviarMensajeTextoAlUsuario(msj);
-
+				photoBot.enviarMensajeTextoAlUsuario(ret);
 				photoBot.mensajeLeido();
+				
+				
 				
 				//SI HE FINALIZADO SUBIR IMAGENES, VUELVO AL PRINCIPIO
 				this.estado = 8;

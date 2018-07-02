@@ -35,7 +35,7 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		
 		if(msj != null){
 			String userID = msj.getContent();
-			System.out.print("AgenteBUscarImagenes ha recibido el siguiente mensaje: " + userID);
+			System.out.print("AgenteBuscarImagenes ha recibido el siguiente mensaje: " + userID);
 			
 			try {
 				Files.list(Paths.get("./galeria/" + userID)).forEach((imagen)->{

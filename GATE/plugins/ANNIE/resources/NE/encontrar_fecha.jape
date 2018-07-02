@@ -15,10 +15,12 @@ Options: control = brill
 
 Rule: Buscar_fecha
 Priority: 100
-(	({Lookup.majorType == fechas_imagen }	
+(	
+	(
+		{Lookup.majorType == fechas_imagen }	
 	  
-)
+	)
  
 ):fecha_img
 -->
-:fecha_img.Fecha = {kind = "fecha", rule = "Buscar_fecha"}
+:fecha_img.Fecha = {kind = "fecha", rule = "Buscar_fecha" , texto="prueba"}

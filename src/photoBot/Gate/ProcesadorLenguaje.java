@@ -14,6 +14,7 @@ import gate.Corpus;
 import gate.CorpusController;
 import gate.Document;
 import gate.Factory;
+import gate.FeatureMap;
 import gate.Gate;
 import gate.corpora.DocumentContentImpl;
 import gate.util.GateException;
@@ -45,7 +46,7 @@ public class ProcesadorLenguaje {
 		this.corpus = Factory.newCorpus("StandAloneAnnie corpus");	
 	}
 	
-	public List<String> analizarTextoGate(String texto) throws GateException{
+	public List<Etiqueta> analizarTextoGate(String texto) throws GateException{
 		
 		Document documento = new gate.corpora.DocumentImpl();
 		DocumentContentImpl impl = new DocumentContentImpl(texto);
@@ -60,8 +61,8 @@ public class ProcesadorLenguaje {
 		return obtenerEtiquetas();
 	}
 	
-	private List<String> obtenerEtiquetas(){
-		List<String> etiquetas = new ArrayList<String>();
+	private List<Etiqueta> obtenerEtiquetas(){
+		List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
 		Iterator<Document> iter = this.corpus.iterator();
 		
 		while(iter.hasNext()){
@@ -77,8 +78,10 @@ public class ProcesadorLenguaje {
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		
-			for (Annotation s : etiquetasAnotacion) {
-			    etiquetas.add(s.getType());
+			for (Annotation s : etiquetasAnotacion) {		
+				//GETFEATURES ARREGLAR INVESTIGAR!!!!!!!!!!!!!
+				Etiqueta e = new Etiqueta(s.getType(), (String) s.getFeatures().get("texto"));
+				etiquetas.add(e);
 			}
 		}
 		

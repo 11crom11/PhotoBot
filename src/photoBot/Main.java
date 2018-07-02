@@ -19,8 +19,8 @@ public class Main {
 			agentController.start();
 			
 			//AGENTE SUBIR iMAGEN
-			//agentController = container.createNewAgent("AgenteSubirImagen", "photoBot.Agentes.AgenteAlmacenarImagenes", null);			
-			//agentController.start();
+			agentController = container.createNewAgent("AgenteAlmacenarImagenes", "photoBot.Agentes.AgenteAlmacenarImagenes", null);			
+			agentController.start();
 			
 			//AGENTE BUSCAR iMAGEN
 			agentController = container.createNewAgent("AgenteBuscarImagen", "photoBot.Agentes.AgenteBuscarImagen", null);			

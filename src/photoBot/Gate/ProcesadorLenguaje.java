@@ -27,12 +27,26 @@ public class ProcesadorLenguaje {
 	//private StandAloneAnnie annie;
 	private Corpus corpus;
 	
+	
+	/**
+	 * Con este constructor obtenemos un procesador de lenguaje coonfigurado y arrancado para
+	 * poder analizar texto en calquier momento.
+	 * @throws GateException
+	 * @throws IOException
+	 */
 	public ProcesadorLenguaje() throws GateException, IOException{
 		
 		Gate.init();
 		this.configurarGate();
 	}
 	
+	
+	/**
+	 * Este método se encarga de configurar los parámetros de GATE para poder 
+	 * funcionar en cualquier momento
+	 * @throws IOException
+	 * @throws GateException
+	 */
 	private void configurarGate() throws IOException, GateException{
 		
 		// load the ANNIE application from the saved state in plugins/ANNIE
@@ -46,6 +60,15 @@ public class ProcesadorLenguaje {
 		this.corpus = Factory.newCorpus("StandAloneAnnie corpus");	
 	}
 	
+	/**
+	 * Este método se encarga de configurar el documento que se va a analizar a partir del texto recibido.
+	 * Ejecuta ANNIE de GATE para analizar el texto, devolviendose una lista de Anotaciones que contienen
+	 * el texto (Cada anotacion está construido sobre un objeto Etiqueta que contiene el tipo de la 
+	 * anotación y el texto de la palabra cuya anotación hace referencia
+	 * @param texto String con el texto del cual se quieren obtener anotaciones
+	 * @return Lista de Anotaciones de tipo Etiqueta (contienen el tipo de la anotacion y el texto de la palabra que hace referencia
+	 * @throws GateException
+	 */
 	public List<Etiqueta> analizarTextoGate(String texto) throws GateException{
 		
 		Document documento = new gate.corpora.DocumentImpl();
@@ -61,6 +84,11 @@ public class ProcesadorLenguaje {
 		return obtenerEtiquetas();
 	}
 	
+	/**
+	 * Este método devuelve una lista de tipo Etiqueta, las cuales contienen el tipo de la etiqueta y el texto
+	 * de la palabra que hace referencia.
+	 * @return Lista de Etiquetas del texto analizado
+	 */
 	private List<Etiqueta> obtenerEtiquetas(){
 		List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
 		Iterator<Document> iter = this.corpus.iterator();
@@ -70,7 +98,14 @@ public class ProcesadorLenguaje {
 			AnnotationSet defaultAnnotSet = doc.getAnnotations();
 			Set<String> annotTypesRequired = new HashSet<String>();
 			
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
+			//ANOTACIONES TOKEN PARA OBTENER EL TEXTO DE LA PALABRA
+			annotTypesRequired.add("Token");
+			AnnotationSet etiquetasToken = defaultAnnotSet.get(annotTypesRequired);
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
 			//SE INDICA LOS TIPOS DE ETIQUETAS QUE QUEREMOS RECUPERAR
+			annotTypesRequired = new HashSet<String>();
 			annotTypesRequired.add("Fecha");
 			annotTypesRequired.add("Busqueda");
 			annotTypesRequired.add("Nombre_persona_imagen");
@@ -79,15 +114,37 @@ public class ProcesadorLenguaje {
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		
 			for (Annotation s : etiquetasAnotacion) {		
-				//GETFEATURES ARREGLAR INVESTIGAR!!!!!!!!!!!!!
-				Etiqueta e = new Etiqueta(s.getType(), (String) s.getFeatures().get("texto"));
+
+				Etiqueta e = new Etiqueta(s.getType(), obtenerNombrePalabra(s, etiquetasToken));
 				etiquetas.add(e);
 			}
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
 		}
 		
 		//Elimino el corpus para que en sucesivos analisis no aparezcan anotaciones de los anteriores
 		this.corpus.clear();
 		
 		return etiquetas;
+	}
+	
+	/**
+	 * Este método obtiene el texto de la palabra que hace referencia la Anotación recibida como parametro
+	 * localizado en un texto del cual se han obtenidos sus Anotaciones de tipo Token (los que contienen
+	 * sus textos a partir de sus atributos String)
+	 * @param a Anotacion de la cual se quiere obtener el texto de la palabra a la que hace referencia
+	 * @param tokens Conjuntos de anotacion de tipo Token obtenidos del análisis del texto
+	 * @return String con el texto de la palabra que hace referencia la etiqueta recibida
+	 */
+	private String obtenerNombrePalabra(Annotation a, AnnotationSet tokens) {
+		String nombre = "";
+		
+		AnnotationSet palabrasToken = tokens.get(a.getStartNode().getOffset(), a.getEndNode().getOffset());
+		Annotation palabraToken = palabrasToken.iterator().next();
+		
+		FeatureMap features = palabraToken.getFeatures();
+		nombre = (String) features.get("string");
+		
+		return nombre;
 	}
 }

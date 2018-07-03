@@ -137,6 +137,16 @@ public class ProcesadorLenguaje {
 	 * @return String con el texto de la palabra que hace referencia la etiqueta recibida
 	 */
 	private String obtenerNombrePalabra(Annotation a, AnnotationSet tokens) {
+		
+		/*se recupera las anotaciones de tipo Token para que, 
+		a partir de una anotación de un tipo específico, 
+		dados su StartNode y EndNode, y partir de aquí, el startOfsset y endOfsset, 
+		obtener la anotación Token correspondiente, y de esta anotación Token, 
+		sus Features, las cuales contienen una en concreto, que es "string", 
+		que contienen el texto de la palabra.
+		*/
+		
+		
 		String nombre = "";
 		
 		AnnotationSet palabrasToken = tokens.get(a.getStartNode().getOffset(), a.getEndNode().getOffset());

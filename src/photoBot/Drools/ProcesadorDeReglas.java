@@ -38,7 +38,7 @@ public class ProcesadorDeReglas {
 		
 		//ksession/////////////////////////////////////////////////////////////////////////////////////////
 		this.ksession = kbase.newStatefulKnowledgeSession();
-	
+
 	}
 	
 	public ConclusionReglas ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas){

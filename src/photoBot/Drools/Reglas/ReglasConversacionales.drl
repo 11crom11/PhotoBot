@@ -6,9 +6,9 @@ import photoBot.Gate.*;
 rule "Encontrar saludo"
 	salience 15
 	when
-        etiqueta : Etiqueta ();
-        conclusiones : ConclusionReglas ();
-        tipo : String ( tipo == "Saludo") from etiqueta; 
+        etiqueta : Etiqueta();
+        conclusiones : ConclusionReglas();
+        tipo_s : String (equals("Saludo") == true) from etiqueta.getTipo(); 
     then
-        conclusiones.addNuevaConclusion(tipo, etiqueta);
+        conclusiones.addNuevaConclusion(tipo_s, etiqueta);
 end

@@ -1,0 +1,14 @@
+package photoBot.Drools.Reglas
+ 
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+ 
+rule "Encontrar saludo"
+	salience 15
+	when
+        etiqueta : Etiqueta ();
+        conclusiones : ConclusionReglas ();
+        tipo : String ( tipo == "Saludo") from etiqueta; 
+    then
+        conclusiones.addNuevaConclusion(tipo, etiqueta);
+end

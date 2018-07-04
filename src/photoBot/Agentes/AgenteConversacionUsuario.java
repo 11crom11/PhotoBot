@@ -1,5 +1,7 @@
 package photoBot.Agentes;
 
+import gate.util.GateException;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,6 +26,8 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
+import photoBot.Drools.ProcesadorDeReglas;
+import photoBot.Gate.ProcesadorLenguaje;
 
 public class AgenteConversacionUsuario extends Agent {
 	
@@ -33,6 +37,8 @@ public class AgenteConversacionUsuario extends Agent {
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private TelegramBotsApi apiTelegram;
+	private ProcesadorDeReglas procReglas;
+	private ProcesadorLenguaje procLenguaje;
 	
 	private ComportamientoAgenteConversacionUsuario comportamiento;
 	
@@ -45,6 +51,14 @@ public class AgenteConversacionUsuario extends Agent {
         this.apiTelegram = new TelegramBotsApi();
         this.photoBot = new PhotoBot();
         this.comportamiento = new ComportamientoAgenteConversacionUsuario(this, photoBot);
+        
+        try {
+			this.procLenguaje = new ProcesadorLenguaje();
+		} catch (GateException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        this.procReglas = new ProcesadorDeReglas();
         
         try {
             this.apiTelegram.registerBot(this.photoBot);

@@ -1,6 +1,7 @@
-package photoBot.Reglas
+package photoBot.Drools.Reglas
  
-import photoBot.Reglas.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
  
 // Sumamos el importe total de los productos
 //init, actiom y result se podrian sustituir por -> sum( productPrice ) !!!!!!!!!
@@ -18,7 +19,7 @@ rule "Initial rule"
     	order.setTotalPrice(totalPrice);
 end
  
-// Comprobamos si el cliente es SILVER, si es así aplicamos un 5% de descuento
+// Comprobamos si el cliente es SILVER, si es asï¿½ aplicamos un 5% de descuento
 rule "SILVER customer rule"
 	salience 15
 	when
@@ -28,7 +29,7 @@ rule "SILVER customer rule"
         order.setTotalPrice(order.getTotalPrice() * (1 - (5 / 100d) ) );
 end
  
-// Comprobamos si el cliente es GOLD, si es así aplicamos un 10% de descuento
+// Comprobamos si el cliente es GOLD, si es asï¿½ aplicamos un 10% de descuento
 rule "GOLD customer rule"
 	salience 15
 	when
@@ -38,8 +39,8 @@ rule "GOLD customer rule"
     	order.setTotalPrice(order.getTotalPrice() * (1 - (10 / 100d) ) );
 end
  
-// Comprobamos si el pedido tiene 10 o más productos, si es así aplicamos un 15% de descuento
-// Esta regla solo será aplicada en Septiembre de 2012
+// Comprobamos si el pedido tiene 10 o mï¿½s productos, si es asï¿½ aplicamos un 15% de descuento
+// Esta regla solo ser aplicada en Septiembre de 2012
 rule "Number of products rule"	
 	salience 10	
 	date-effective "01-SEP-2012"

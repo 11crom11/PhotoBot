@@ -110,6 +110,7 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Busqueda");
 			annotTypesRequired.add("Nombre_persona_imagen");
 			annotTypesRequired.add("Fecha_busqueda");
+			annotTypesRequired.add("Saludo");
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		

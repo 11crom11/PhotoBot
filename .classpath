@@ -67,7 +67,7 @@
 	<classpathentry kind="lib" path="DROOLS/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="DROOLS/drools-clips-5.4.0.Final.jar"/>
 	<classpathentry kind="lib" path="DROOLS/drools-compiler-5.4.0.Final.jar"/>
-	<classpathentry kind="lib" path="DROOLS/drools-core-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-core-5.4.0.Final.jar" sourcepath="C:/Users/usuario_local/.m2/repository/org/drools/drools-core/5.4.0.Final/drools-core-5.4.0.Final-sources.jar"/>
 	<classpathentry kind="lib" path="DROOLS/drools-decisiontables-5.4.0.Final.jar"/>
 	<classpathentry kind="lib" path="DROOLS/drools-jsr94-5.4.0.Final.jar"/>
 	<classpathentry kind="lib" path="DROOLS/drools-persistence-jpa-5.4.0.Final.jar"/>

@@ -11,6 +11,7 @@ import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
+import photoBot.Drools.Reglas.ConclusionReglas;
 import photoBot.Gate.Etiqueta;
 
 public class ProcesadorDeReglas {
@@ -23,7 +24,7 @@ public class ProcesadorDeReglas {
 		
 		//kbuilder/////////////////////////////////////////////////////////////////////////////////////////
 		this.kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Raglas/ReglasConversacionales.drl"), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/ReglasConversacionales.drl"), ResourceType.DRL);
 		if (kbuilder.hasErrors()) {
 			for (KnowledgeBuilderError error : kbuilder.getErrors()) {
 				System.err.println(error);
@@ -40,12 +41,18 @@ public class ProcesadorDeReglas {
 	
 	}
 	
-	public void ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas){
+	public ConclusionReglas ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas){
+		
+		ConclusionReglas conclusiones = new ConclusionReglas();
+		
+		ksession.insert(conclusiones);
 		
 		for (Etiqueta e : lEtiquetas) {
 			ksession.insert(e);
 		}
 		
 		this.ksession.fireAllRules();
+		
+		return conclusiones;
 	}
 }

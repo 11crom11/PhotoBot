@@ -9,8 +9,13 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.telegram.telegrambots.api.methods.send.SendAudio;
 
+import gate.util.GateException;
 import photoBot.Agentes.AgenteConversacionUsuario;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
+import photoBot.Drools.ProcesadorDeReglas;
+import photoBot.Drools.Reglas.ConclusionReglas;
+import photoBot.Gate.Etiqueta;
+import photoBot.Gate.ProcesadorLenguaje;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -27,11 +32,21 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private Behaviour self;
+	private ProcesadorDeReglas procReglas;
+	private ProcesadorLenguaje procLenguaje;
 	
 	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot pB) {
 		super(a);
 		this.photoBot = pB;
 		this.self = this;
+		
+        try {
+			this.procLenguaje = new ProcesadorLenguaje();
+		} catch (GateException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        this.procReglas = new ProcesadorDeReglas();
 		
 		registerFirstState(new OneShotBehaviour() {
 			/**
@@ -44,9 +59,30 @@ public class ComportamientoAgenteConversacionUsuario extends FSMBehaviour {
 			public void action() {
 				if(photoBot.getUserID() != null){ //Si hay usuario hablando al bot
 					
-					String saludo = saludoRespectoHora();
+					/*String saludo = saludoRespectoHora();
 					
 					photoBot.enviarMensajeTextoAlUsuario(saludo + ", ¿en qué puedo ayudarte?");
+					*/
+					
+					ConclusionReglas c;
+					
+					try {
+						
+						List<Etiqueta> l = procLenguaje.analizarTextoGate(photoBot.getMensaje());
+						
+						c = procReglas.ejecutarReglasEtiquetas(l);
+						
+						if(c.existeTipo("Saludo")) {
+							String saludo = saludoRespectoHora();
+							photoBot.enviarMensajeTextoAlUsuario(saludo + ", ¿en qué puedo ayudarte?");
+						}
+					
+					
+					} catch (GateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 					this.estado = 4;
 				}
 				

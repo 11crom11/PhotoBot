@@ -40,7 +40,9 @@ loc_context
 university1
 encontrar_saludo
 encontrar_solicitud_busqueda
+encontrar_solicitud_subida
 encontrar_nombres_personas
 encontrar_fecha
 encontrar_fecha_busqueda
+usingJAVAinRHS
 clean

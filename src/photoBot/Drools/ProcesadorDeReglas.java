@@ -11,7 +11,9 @@ import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
-import photoBot.Drools.Reglas.ConclusionReglas;
+import jade.core.Agent;
+import jade.core.behaviours.Behaviour;
+import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 
 public class ProcesadorDeReglas {
@@ -41,11 +43,10 @@ public class ProcesadorDeReglas {
 
 	}
 	
-	public ConclusionReglas ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas){
-		
-		ConclusionReglas conclusiones = new ConclusionReglas();
-		
-		ksession.insert(conclusiones);
+	public Conversacion ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas, Conversacion conversacion, Behaviour comportamientoAgente){
+			
+		ksession.insert(conversacion);
+		ksession.insert(comportamientoAgente);
 		
 		for (Etiqueta e : lEtiquetas) {
 			ksession.insert(e);
@@ -53,6 +54,6 @@ public class ProcesadorDeReglas {
 		
 		this.ksession.fireAllRules();
 		
-		return conclusiones;
+		return conversacion;
 	}
 }

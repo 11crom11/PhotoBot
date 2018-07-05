@@ -2,13 +2,33 @@ package photoBot.Drools.Reglas
  
 import photoBot.Drools.*;
 import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
  
 rule "Encontrar saludo"
-	salience 15
+	salience 20
 	when
         etiqueta : Etiqueta();
-        conclusiones : ConclusionReglas();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
         tipo_s : String (equals("Saludo") == true) from etiqueta.getTipo(); 
     then
-        conclusiones.addNuevaConclusion(tipo_s, etiqueta);
+        comportamiento.bot_saludar();
+        conversacion.saludoRecibido();
 end
+
+rule "Solicitud de busqueda de todas las imagenes"
+	salience 15
+	when
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
+    then
+    	comportamiento.bot_buscarTodasImagenes();    
+end
+        

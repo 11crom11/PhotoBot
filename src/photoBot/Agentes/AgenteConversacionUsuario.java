@@ -172,13 +172,7 @@ public class AgenteConversacionUsuario extends Agent {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
-
 				}
-			       
-				enviarMensajeTextoAlUsuario("Estas son todas las imágenes que tengo de ti :)");
-
-
 		}
 		
 		/**
@@ -237,7 +231,11 @@ public class AgenteConversacionUsuario extends Agent {
 			this.update = null;
 		}
 		
-		public boolean hayMensaje(){
+		public boolean hayMensaje() {
+			return this.update != null;
+		}
+		
+		public boolean hayMensajeTexto(){
 			return this.update != null && this.update.getMessage().hasText();
 		}
 		
@@ -254,6 +252,10 @@ public class AgenteConversacionUsuario extends Agent {
 				return now.getHour();
 			}
 		}
+	}
+	
+	public ComportamientoAgenteConversacionUsuario getComportamiento() {
+		return this.comportamiento;
 	}
 
 }

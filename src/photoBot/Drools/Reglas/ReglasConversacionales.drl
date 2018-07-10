@@ -45,5 +45,15 @@ rule "Solicitud de subir imagen"
     	comportamiento.esperarFotoConversacion();
 end
 
-
+rule "Recibir texto posterior a solicitud de subir imagen"
+	salience 20
+	when
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
         
+        solicitudSubirFoto : Boolean( solicitudSubirFoto == true ) from conversacion.isSubirFoto();
+        fotosCargadas : Boolean( fotosCargadas == false) from conversacion.isFotosCargadasSubida();
+        
+    then
+    	comportamiento.bot_anularSubidaFotos();
+end        

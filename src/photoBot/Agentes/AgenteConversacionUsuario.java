@@ -191,10 +191,7 @@ public class AgenteConversacionUsuario extends Agent {
 		public List<java.io.File> obtenerImagenesMensaje(){
 			List<java.io.File> lFotosRet = new ArrayList<java.io.File>();			
 			List<PhotoSize> lFotos = update.getMessage().getPhoto();
-			
-			for(int i = 0; i < lFotos.size(); i++){
-				
-			}
+
 			PhotoSize ps = lFotos.stream()
 					.sorted(Comparator.comparing(PhotoSize::getFileSize).reversed())
 					.findFirst()

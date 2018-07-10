@@ -43,7 +43,7 @@ public class ProcesadorDeReglas {
 	}
 	
 	public Conversacion ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas, Conversacion conversacion, Behaviour comportamientoAgente){
-			
+		
 		ksession.insert(conversacion);
 		ksession.insert(comportamientoAgente);
 		
@@ -52,6 +52,7 @@ public class ProcesadorDeReglas {
 		}
 		
 		this.ksession.fireAllRules();
+		this.ksession = this.kbase.newStatefulKnowledgeSession();
 		
 		return conversacion;
 	}

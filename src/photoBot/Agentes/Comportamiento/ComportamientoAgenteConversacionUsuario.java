@@ -71,6 +71,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			//3- Ejecutar reglas que haran acciones sobre los agentes y bot
 					this.conversacion = procReglas.ejecutarReglasEtiquetas(lEtiquetas, this.conversacion, self);
 				}
+				else if(photoBot.hayMensajeFoto()) {
+					bot_subirImagenes();
+					
+				}
 				
 			
 			} catch (GateException e) {
@@ -114,10 +118,58 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
-	private void esperarFotoConversacion() {
+	public void esperarFotoConversacion() {
 		this.conversacion.solicitudSubirFotoRecibida();
+		
+		photoBot.enviarMensajeTextoAlUsuario("Muy bien, enviame la fotografía que quieres que almacene!");
+
 	}
 	
+	public void bot_anularSubidaFotos() {
+		this.conversacion.solicitudSubirFotoFinalizada();
+		
+		photoBot.enviarMensajeTextoAlUsuario("Parece ser que has cambiado de idea respecto a subir una nueva imagen. Lo dejaremos para más tarde.");
+	}
+	
+	public void bot_subirImagenes() {
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		
+		List<File> lFotos = photoBot.obtenerImagenesMensaje();
+		String userID = photoBot.getUserID().toString();
+		
+		msjContent.put("ID", userID);
+		msjContent.put("LISTA", lFotos);
+						
+		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+		msj.addReceiver(new AID("AgenteAlmacenarImagenes", AID.ISLOCALNAME));
+		
+		try {
+			msj.setContentObject((Serializable)msjContent);
+			getAgent().send(msj);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ACLMessage respuesta = self.getAgent().receive();
+		
+		while(respuesta == null) {
+			respuesta = self.getAgent().receive();
+		}
+		
+		String ret = "";
+		
+		if(respuesta.getContent().equals("OK")){
+			ret = "Ya he recibido y almacenado correctamente tus imágenes.";
+			this.conversacion.fotosCargadasCorrectamente();
+			this.conversacion.solicitudSubirFotoFinalizada();
+		}
+		else{
+			ret = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
+		}
+		
+		photoBot.enviarMensajeTextoAlUsuario(ret);	
+	}
 	
 	/**
 	 * Esta funcion devuelve un saludo dependiendo de la hora recibida como parametro

@@ -11,6 +11,7 @@ public class Conversacion {
 	private boolean saludo;
 	private boolean subirFoto;
 	private boolean buscarFoto;
+	private boolean fotosCargadasSubida;
 	private List<String> lEventos;
 	private List<Persona> lPersonas;
 	private Date fechaFoto;
@@ -22,6 +23,8 @@ public class Conversacion {
 		
 		this.lEventos = new ArrayList<String>();
 		this.lPersonas = new ArrayList<Persona>();
+		
+		this.fotosCargadasSubida = false;
 		
 		this.fechaFoto = null;
 	}
@@ -58,6 +61,8 @@ public class Conversacion {
 		this.lEventos = new ArrayList<String>();
 		this.lPersonas = new ArrayList<Persona>();
 		
+		this.fotosCargadasSubida = false;
+		
 		this.fechaFoto = null;
 	}
 
@@ -73,5 +78,15 @@ public class Conversacion {
 		return buscarFoto;
 	}
 	
+	public boolean isFotosCargadasSubida() {
+		return fotosCargadasSubida;
+	}
 	
+	public void solicitudSubirFotoFinalizada() {
+		this.subirFoto = false;
+	}
+	
+	public void fotosCargadasCorrectamente() {
+		this.fotosCargadasSubida = true;
+	}
 }

@@ -1,10 +1,6 @@
 package photoBot.Agentes;
 
-import gate.util.GateException;
-
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,8 +22,6 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
-import photoBot.Drools.ProcesadorDeReglas;
-import photoBot.Gate.ProcesadorLenguaje;
 
 public class AgenteConversacionUsuario extends Agent {
 	

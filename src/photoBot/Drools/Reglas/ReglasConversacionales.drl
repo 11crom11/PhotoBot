@@ -31,4 +31,19 @@ rule "Solicitud de busqueda de todas las imagenes"
     then
     	comportamiento.bot_buscarTodasImagenes();    
 end
+
+rule "Solicitud de subir imagen"
+	salience 15
+	when
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Cargar") == true) from etiqueta.getTipo();
+        
+    then
+    	comportamiento.esperarFotoConversacion();
+end
+
+
         

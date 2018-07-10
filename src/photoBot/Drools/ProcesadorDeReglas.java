@@ -11,7 +11,6 @@ import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
-import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;

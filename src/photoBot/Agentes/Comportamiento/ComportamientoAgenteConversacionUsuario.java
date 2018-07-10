@@ -61,13 +61,18 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			
 			//1- Recibir mensaje
 			String mensaje = photoBot.getMensaje();
-			
-			//2- Analizar el texto
+
 			try {
-				List<Etiqueta> lEtiquetas = procLenguaje.analizarTextoGate(mensaje);
 				
+			//2- Analizar el texto
+				if(photoBot.hayMensajeTexto()) {
+					List<Etiqueta> lEtiquetas = procLenguaje.analizarTextoGate(mensaje);
+					
 			//3- Ejecutar reglas que haran acciones sobre los agentes y bot
-				this.conversacion = procReglas.ejecutarReglasEtiquetas(lEtiquetas, this.conversacion, self);
+					this.conversacion = procReglas.ejecutarReglasEtiquetas(lEtiquetas, this.conversacion, self);
+				}
+				
+			
 			} catch (GateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -107,6 +112,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private void esperarFotoConversacion() {
+		this.conversacion.solicitudSubirFotoRecibida();
 	}
 	
 	

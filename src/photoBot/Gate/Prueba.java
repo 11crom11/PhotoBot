@@ -13,9 +13,9 @@ public class Prueba {
 			ProcesadorLenguaje pl = new ProcesadorLenguaje();
 			
 			
-			List<Etiqueta> etiquetas = pl.analizarTextoGate("cosa cosa ayer cosa cosa");
+			List<Etiqueta> etiquetas = pl.analizarTextoGate("hola, quiero subir esta foto!");
 		
-			System.out.println("Etiquetas encontradas:");
+			System.out.println("ETIQUETAS ENCONTRADAS:");
 			for(Etiqueta aux : etiquetas){		
 				System.out.println(aux.getTipo() + "--> " + aux.getNombre());
 			}
@@ -23,7 +23,7 @@ public class Prueba {
 			
 			etiquetas = pl.analizarTextoGate("quiero ayer, bot.");
 		
-			System.out.println("Etiquetas encontradas:");
+			System.out.println("ETIQUETAS ENCONTRADAS:");
 			for(Etiqueta aux : etiquetas){
 				System.out.println(aux.getTipo() + "--> " + aux.getNombre());
 			}

@@ -1,14 +1,24 @@
 package photoBot.OpenCV;
 
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
+import org.opencv.core.MatOfRect;
 
 public class PruebaOpenCV {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		detectarCaras();
 
+	}
+	
+	private static void detectarCaras() {
+		
+		String url = "C:/Users/d_dan/git/PhotoBot/galeria/573730609/1529661117.jpeg";
+		
+		GestorDeCaras gestorCaras = new GestorDeCaras();
+		
+		MatOfRect caras = gestorCaras.detectarCarasImagen(url);
+		
+		gestorCaras.generarImagenCarasRecuadradas(url, caras);
 	}
 
 }

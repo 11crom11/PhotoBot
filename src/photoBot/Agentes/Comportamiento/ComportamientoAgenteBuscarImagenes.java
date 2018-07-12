@@ -1,7 +1,5 @@
 package photoBot.Agentes.Comportamiento;
 
-import jade.core.behaviours.FSMBehaviour;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -9,12 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xhtmlrenderer.swing.ImageReplacedElement;
-
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 
 public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {

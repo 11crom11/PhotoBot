@@ -7,10 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.telegram.telegrambots.api.methods.send.SendAudio;
 
 import gate.util.GateException;
-import photoBot.Agentes.AgenteConversacionUsuario;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
 import photoBot.Drools.ProcesadorDeReglas;
 import photoBot.Drools.Reglas.Conversacion;
@@ -18,10 +16,7 @@ import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorLenguaje;
 import jade.core.AID;
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.FSMBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 

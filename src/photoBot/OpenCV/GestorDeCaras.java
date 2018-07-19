@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
+import org.opencv.face.FaceRecognizer;
 import org.opencv.face.LBPHFaceRecognizer;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -99,6 +101,30 @@ public class GestorDeCaras {
 	}
 	
 	
-	
+	public void entrenaClasificadorPersonalizado(String urlImagen, MatOfRect carasDetectadas) {
+		
+		Mat imagen = Imgcodecs.imread(urlImagen);
+		Imgproc.cvtColor(imagen, imagen, Imgproc.COLOR_BGR2GRAY);
+		
+		FaceRecognizer lbphRecognizer = LBPHFaceRecognizer.create();
+		
+		List<Mat> lMat = new java.util.ArrayList<Mat>();
+		Mat labels = new Mat(carasDetectadas.toArray().length, 1, CvType.CV_32SC1);
+		
+		
+		int i = 0;
+		for(Rect r: carasDetectadas.toArray()) {
+			lMat.add(new Mat(imagen, r));
+			labels.put(i, 1, i); //La segunda i es la clase (lo que viene a ser la persona)
+			i++;
+		}
+		
+		lbphRecognizer.train(lMat, labels);
+		
+		int[] personasPredichas = {-1};
+		double[] confidence = {0.80};
+		
+		lbphRecognizer.predict(imagen, personasPredichas, confidence);
+	}
 	
 }

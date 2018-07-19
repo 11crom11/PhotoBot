@@ -10,6 +10,7 @@ import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
+import org.opencv.face.LBPHFaceRecognizer;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
@@ -27,14 +28,12 @@ public class GestorDeCaras {
 
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		
-		String urlXml = "C:\\hlocal\\opencv\\sources\\data\\lbpcascades\\lbpcascade_frontalface.xml";
+		String urlXml = "C:\\hlocal\\opencv\\sources\\data\\lbpcascades\\lbpcascade_frontalface_improved.xml";
 		this.clasificador = new CascadeClassifier(urlXml);
 		
 		this.hColores = new HashMap<String, Scalar>();
 		this.lColores = new String[14];
 		this.rellenarColores();
-		
-		
 	}
 	
 	private void rellenarColores() {

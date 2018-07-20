@@ -1,6 +1,7 @@
 package photoBot.OpenCV;
 
 import java.awt.Color;
+import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.List;
 
@@ -110,21 +111,43 @@ public class GestorDeCaras {
 		
 		List<Mat> lMat = new java.util.ArrayList<Mat>();
 		Mat labels = new Mat(carasDetectadas.toArray().length, 1, CvType.CV_32SC1);
-		
-		
+
 		int i = 0;
 		for(Rect r: carasDetectadas.toArray()) {
 			lMat.add(new Mat(imagen, r));
-			labels.put(i, 1, i); //La segunda i es la clase (lo que viene a ser la persona)
-			i++;
+			//labels.put(i, i); //La segunda i es la clase (lo que viene a ser la persona)
+			//i++;
 		}
 		
+		labels.put(0, 0, 0); //Monica rojo
+		labels.put(1, 0, 1); //Monica naranja
+		labels.put(2, 0, 2); //Monica amarillo
+		labels.put(3, 0, 3); //Monica verde
+		labels.put(4, 0, 4); //Matias azul
+		labels.put(5, 0, 5); //Matias cian
+		labels.put(6, 0, 6); //Matias violeta
+		labels.put(7, 0, 7); //Monica magenta
+		labels.put(8, 0, 8); //Matias rosa
+		labels.put(9, 0, 9); //Matias marron
+		labels.put(10, 0, 10); //Matias negro
+			
 		lbphRecognizer.train(lMat, labels);
+		lbphRecognizer.save("MiModelo.xml");
 		
 		int[] personasPredichas = {-1};
-		double[] confidence = {0.80};
+		double[] confidence = {0.0};
 		
-		lbphRecognizer.predict(imagen, personasPredichas, confidence);
+		Mat cosa = Imgcodecs.imread("./galeria/test_monica.jpeg");
+		Imgproc.cvtColor(cosa, cosa, Imgproc.COLOR_BGR2GRAY);
+		
+		MatOfRect lili = new MatOfRect();
+		
+		clasificador.detectMultiScale(cosa, lili);
+				
+		System.out.println("Predicho: " + lbphRecognizer.predict_label(new Mat(cosa, lili.toArray()[0])));
+		int k = 0;
+		k = 5;
+		k = k+ 2;
 	}
 	
 }

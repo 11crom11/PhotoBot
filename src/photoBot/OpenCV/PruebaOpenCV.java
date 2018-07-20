@@ -12,13 +12,16 @@ public class PruebaOpenCV {
 	
 	private static void detectarCaras() {
 		
-		String url = "./galeria/573730609/1529661117.jpeg";
+		//String url = "./galeria/573730609/1529661117.jpeg";
+		String url = "./galeria/caras.jpeg";
 		
 		GestorDeCaras gestorCaras = new GestorDeCaras();
 		
 		MatOfRect caras = gestorCaras.detectarCarasImagen(url);
 		
 		gestorCaras.generarImagenCarasRecuadradas(url, caras);
+		
+		gestorCaras.entrenaClasificadorPersonalizado(url, caras);
 	}
 
 }

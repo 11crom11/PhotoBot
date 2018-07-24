@@ -13,15 +13,15 @@ import org.opencv.imgproc.Imgproc;
 
 public class CarasDetectadas {
 
-	private HashMap<String, String> lCaras;
+	private HashMap<String, Integer> lCaras;
 	private MatOfRect carasDetectadas;
 	
-	public CarasDetectadas(MatOfRect caras, List<String> personas) {
+	public CarasDetectadas(MatOfRect caras, List<Integer> personas) {
 		this.carasDetectadas = caras;
 		this.rellenarHashMapPersonas(personas);
 	}
 	
-	private void rellenarHashMapPersonas(List<String> personas) {
+	private void rellenarHashMapPersonas(List<Integer> personas) {
 		
 		int i = 0;
 		
@@ -53,7 +53,7 @@ public class CarasDetectadas {
 		int i = 0;
 		
 		for(Rect r : this.carasDetectadas.toArray()) {
-			labels.put(i, 0, 1); //CAMBIAR -> PENSAR COMO USAR LOS NUMEROS QUE CORRESPONDEN A PERSONAS
+			labels.put(i, 0, lCaras.); //CAMBIAR -> PENSAR COMO USAR LOS NUMEROS QUE CORRESPONDEN A PERSONAS
 		}
 		
 		return labels;

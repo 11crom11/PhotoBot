@@ -97,5 +97,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/hlocal/opencv/build/lib/Release"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/hlocal/opencv/build/bin/opencv-400.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -137,7 +137,7 @@ public class GestorDeCaras {
 		int[] personasPredichas = {-1};
 		double[] confidence = {0.0};
 		
-		Mat cosa = Imgcodecs.imread("./galeria/test_matias2.jpeg");
+		Mat cosa = Imgcodecs.imread("./galeria/test_monica.jpeg");
 		Imgproc.cvtColor(cosa, cosa, Imgproc.COLOR_BGR2GRAY);
 		
 		MatOfRect lili = new MatOfRect();
@@ -146,7 +146,6 @@ public class GestorDeCaras {
 				
 		
 		lbphRecognizer.predict(new Mat(cosa, lili.toArray()[0]), personasPredichas, confidence);
-		
 		//System.out.println("Predicho: " + lbphRecognizer.predict_label(new Mat(cosa, lili.toArray()[0])));
 		
 		int k = 0;

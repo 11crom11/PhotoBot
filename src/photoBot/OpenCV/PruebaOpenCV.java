@@ -21,7 +21,7 @@ public class PruebaOpenCV {
 		
 		gestorCaras.generarImagenCarasRecuadradas(url, caras);
 		
-		gestorCaras.entrenaClasificadorPersonalizado(url, caras);
+		gestorCaras.entrenaClasificadorr(url, caras);
 	}
 
 }

@@ -91,7 +91,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		msj.addReceiver(new AID("AgenteBuscarImagen", AID.ISLOCALNAME));
 		msj.setContent(photoBot.getUserID().toString());
 		//ID usuario
-		
 		self.getAgent().send(msj);
 		
 		ACLMessage respuesta = self.getAgent().receive();

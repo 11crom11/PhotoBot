@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -13,10 +14,9 @@ import org.opencv.imgproc.Imgproc;
 
 public class CarasDetectadas {
 
-	private HashMap<String, Integer> lCaras;
+	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;
 	private MatOfRect carasDetectadas;
 	private String urlImagen;
-	
 	/**
 	 * Este constructor se encarga de crear un objeto CarasDetectadas. El objetivo de este objeto
 	 * es almacer las caras detectadas en el detector de caras, así como el valor numérico que 
@@ -26,15 +26,15 @@ public class CarasDetectadas {
 	 * @param personas Lista numerica que indica el valor numerico que corresponde a cada persona.
 	 * @param url URL de la imagen que contiene las caras.
 	 */
-	public CarasDetectadas(MatOfRect caras, List<Integer> personas, String url) {
+	public CarasDetectadas(MatOfRect caras, List<Pair<Integer, Double>> personas, String url) {
 		this.carasDetectadas = caras;
 		this.rellenarHashMapPersonas(personas);
 		this.urlImagen = url;
 	}
 	
-	private void rellenarHashMapPersonas(List<Integer> personas) {
+	private void rellenarHashMapPersonas(List<Pair<Integer, Double>> personas) {
 		for (int i = 0; i < this.carasDetectadas.toArray().length; i++) {
-			lCaras.put(ColoresCaras.getColor(i), personas.get(i));
+			lCarasEtiquetadas.put(ColoresCaras.getColor(i), personas.get(i));
 		}
 	}
 		
@@ -46,7 +46,9 @@ public class CarasDetectadas {
 	 * @param persona Nuevo valor de etiqueta que se quiere establecer a una persona.
 	 */
 	public void actualizarPersonaHashMap(String color, int persona) {
-		this.lCaras.put(color, persona);
+
+		Pair<Integer, Double> p = Pair.of(persona, 100.0);
+		this.lCarasEtiquetadas.put(color, p);
 	}
 	
 	/**
@@ -77,7 +79,7 @@ public class CarasDetectadas {
 		Mat labels = new Mat(carasDetectadas.toArray().length, 1, CvType.CV_32SC1);
 				
 		for (int i = 0; i < this.carasDetectadas.toArray().length; i++) {
-			labels.put(i, 0, this.lCaras.get((ColoresCaras.getColor(i)))); //CAMBIAR -> PENSAR COMO USAR LOS NUMEROS QUE CORRESPONDEN A PERSONAS
+			labels.put(i, 0, this.lCarasEtiquetadas.get((ColoresCaras.getColor(i))).getLeft());
 		}		
 		
 		return labels;

@@ -1,8 +1,10 @@
 package photoBot.OpenCV;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -132,6 +134,50 @@ public class GestorDeCaras {
 		lbphClasificador.save("./clasificadores/" + idUsuario);
 	}
 	
+	private List<Pair<Integer, Double>> dameEtiquetasPorcentajes(MatOfRect carasDetectadas, String urlImagen, String idUsuario){
+		List<Pair<Integer, Double>> ret = new ArrayList<>();
+		
+		
+		Mat imagen = Imgcodecs.imread(urlImagen);
+		Imgproc.cvtColor(imagen, imagen, Imgproc.COLOR_BGR2GRAY);
+		
+		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
+		//1. Ver si existe el clasificador
+		
+		
+		File f = new File("./clasificadores/" + idUsuario);
+		//2. Si el clasificador existe
+		if(f.exists()){
+			lbphClasificador.read("./clasificadores/" + idUsuario);
+			
+			for(Rect rect : carasDetectadas.toArray()) {
+				Mat cara = new Mat(imagen, rect);
+				int[] personasPredichas = {-1};
+				double[] confidence = {0.0};
+				
+				//For dani :) --> probar a pasar al predict un mat que tenga todas las caras con .push_back()
+				lbphClasificador.predict(cara, personasPredichas, confidence);
+				ret.add(Pair.of(personasPredichas[0], confidence[0]));
+				
+			}			
+		}
+		//3. Si el clasificador no existe, no puede detectar personas, así que ponemos todo -1 y probabilidad 0
+		else{
+			for(int i = 0; i < carasDetectadas.toArray().length; i++) {
+				int[] personasPredichas = {-1};
+				double[] confidence = {0.0};
+				
+				ret.add(Pair.of(personasPredichas[0], confidence[0]));
+			}
+		}
+
+		
+
+		
+		
+		return ret; 
+	}
+	
 	/**
 	 * Este metodo se encarga de analizar una imagen para detectar las caras que aparecen en ella
 	 * para, posteriormente, clasificarlas y predecir el nombre de la persona a la que pertenece.
@@ -142,7 +188,7 @@ public class GestorDeCaras {
 	 * @return Objeto CarasDetectadas que almacena la caras detectadas en una imagen, y un numero
 	 * por persona, a la que corresponde la cara (este valor es unico por persona).
 	 */
-	public CarasDetectadas obtenerCarasImagen(String urlImagen) {
+	public CarasDetectadas obtenerCarasImagen(String urlImagen, String idUsuario) {
 		
 		CarasDetectadas ret = null;
 		
@@ -150,9 +196,8 @@ public class GestorDeCaras {
 		MatOfRect caras = detectarCarasImagen(urlImagen);
 		
 		//2- Identificar la persona a la que pertenece esa cara
-		List<Integer> personas = new ArrayList<Integer>();
-		// ...
-		
+		List<Pair<Integer, Double>> personas = dameEtiquetasPorcentajes(caras, urlImagen, idUsuario);
+				
 		//3- Construir el objeto que almacene la informacion anterior
 		ret = new CarasDetectadas(caras, personas, urlImagen);
 		

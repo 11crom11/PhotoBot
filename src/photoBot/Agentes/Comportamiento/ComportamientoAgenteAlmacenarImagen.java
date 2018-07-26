@@ -2,6 +2,7 @@ package photoBot.Agentes.Comportamiento;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -106,7 +107,30 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 					File imagen = lFotos.get(i);
 					
 					try {
-						ImageIO.write(ImageIO.read(imagen), "jpeg", new java.io.File(dir.getPath() + "/" + new Timestamp(System.currentTimeMillis()).getTime() + ".jpeg"));
+						
+						String url_img = dir.getPath() + "/" + new Timestamp(System.currentTimeMillis()).getTime() + ".jpeg";
+						
+						ImageIO.write(ImageIO.read(imagen), "jpeg", new java.io.File(url_img));
+						
+						HashMap<String, Object> msjContent = new HashMap<String, Object>();
+						
+						
+						msjContent.put("ID", userID);
+						msjContent.put("URL_IMAGEN", url_img);
+										
+						ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+						msj.addReceiver(new AID("AgenteGestionarCaras", AID.ISLOCALNAME));
+						
+						try {
+							msj.setContentObject((Serializable)msjContent);
+							getAgent().send(msj);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						
+						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -114,10 +138,10 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 
 				}	
 				
-				ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+				/*ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
 				msj.addReceiver(new AID("AgenteConversacional", AID.ISLOCALNAME));
 				msj.setContent("OK");
-				self.getAgent().send(msj);
+				self.getAgent().send(msj);*/
 				
 				this.estado = 4;
 			}

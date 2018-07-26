@@ -17,11 +17,11 @@ public class PruebaOpenCV {
 		
 		GestorDeCaras gestorCaras = new GestorDeCaras();
 		
-		MatOfRect caras = gestorCaras.detectarCarasImagen(url);
+		//MatOfRect caras = gestorCaras.detectarCarasImagen(url);
 		
-		gestorCaras.generarImagenCarasRecuadradas(url, caras);
+		//gestorCaras.generarImagenCarasRecuadradas(url, caras);
 		
-		gestorCaras.entrenaClasificadorr(url, caras);
+		//gestorCaras.entrenaClasificadorr(url, caras);
 	}
 
 }

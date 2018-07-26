@@ -1,9 +1,17 @@
 package photoBot.OpenCV;
 
-import java.util.Collections;
 import java.util.HashMap;
 import org.opencv.core.Scalar;
 
+/**
+ * El objetivo de esta clase estática es tener un listado de colores ordenados no modificable
+ * que facilite la tarea de procesamiento de imagenes, de tal modo que si se analiza las caras
+ * de una imagen y se recuadran, sabremos el orden en las que han sido recuadradas, y por lo tanto
+ * facilitará la tarea de etiquetado de personas. (ej, la cara ROJA es la primera cara detectada, por
+ * lo tanto, si etiqueto esta cara como valor "1", tengo que tener en cuenta que la cara se encuenta
+ * almacenada en la primera posicion de la lista de caras obtenidas.
+ *
+ */
 public final class ColoresCaras {
 	
 	private static String[] lColores;
@@ -57,14 +65,31 @@ public final class ColoresCaras {
 
 	}
 	
+	/**
+	 * Este metodo devuelve el nombre del color en la posicion i-esima de la lista de colores.
+	 * 
+	 * @param i Posicion del color que se desea obtener
+	 * @return String con el color en la posicion i-esima.
+	 */
 	public static String getColor(int i) {
 		return lColores[i % lColores.length];
 	}
 	
+	/** 
+	 * Este metodo devuelve un color en formato Scalar almacenado en la posicion i-esima de la lista de colores.
+	 * 
+	 * @param i Posicion del color que se desea obtener
+	 * @return Scalar del color en la posicion i-esima.
+	 */
 	public static Scalar getScalarColor(int i) {
 		return hColores.get(lColores[i % lColores.length]);
 	}
 	
+	/**
+	 * Este metodo devuelve el numero de colores que contiene esta clase
+	 * 
+	 * @return Valor numerico que indica en numero de colores.
+	 */
 	public static int getNumColores() {
 		return numColores;
 	}

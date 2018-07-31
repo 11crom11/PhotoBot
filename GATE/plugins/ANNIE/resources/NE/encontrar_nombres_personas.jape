@@ -1,24 +1,43 @@
-/*
-*  
-*
-* Copyright (c) 1998-2004, The University of Sheffield.
-*
-*  This file is part of GATE (see http://gate.ac.uk/), and is free
-*  software, licenced under the GNU Library General Public License,
-*  Version 2, June 1991 (in the distribution as file licence.html,
-*  and also available at http://gate.ac.uk/gate/licence.html).
-
-*/
-
 Phase:	Buscar_nombres_personas
-Options: control = brill
+Options: control = appelt
+
 
 Rule: Buscar_nombre_persona
 Priority: 100
-(	({Lookup.majorType == nombresPersonas_imagen }	
-	  
-)
+(	
+ 	(
+ 		{Lookup.majorType == nombresPersonas_imagen}
+ 	)
+  
+):persona_img
+-->
+:persona_img.Nombre_persona = {kind = "Nombre", rule = "Buscar_nombre_persona"}
+
+/*********************************/
+
+Rule: Buscar_nombre_persona_apellido1
+Priority: 110
+(	
+	{Lookup.majorType == nombresPersonas_imagen}
+	{SpaceToken}
+	{Lookup.majorType == apellidosPersonas_imagen }
+
  
 ):persona_img
 -->
-:persona_img.Nombre_persona_imagen = {kind = "Nombre", rule = "Buscar_nombre_persona"}
+:persona_img.Nombre_persona = {kind = "Nombre", rule = "Buscar_nombre_persona_apellido1"}
+
+/*********************************/
+
+Rule: Buscar_nombre_persona_apellido2
+Priority: 120
+(	
+	{Lookup.majorType == nombresPersonas_imagen}
+	{SpaceToken}
+	{Lookup.majorType == apellidosPersonas_imagen }
+	{SpaceToken}
+	{Lookup.majorType == apellidosPersonas_imagen }
+ 
+):persona_img
+-->
+:persona_img.Nombre_persona = {kind = "Nombre", rule = "Buscar_nombre_persona_apellido2"}

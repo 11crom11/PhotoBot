@@ -1,0 +1,14 @@
+Phase:	Buscar_color
+Options: control = appelt
+
+
+Rule: Buscar_nombre_persona_color
+Priority: 100
+(	
+ 	(
+		{Lookup.majorType == colores_imagen}
+ 	)
+  
+):color_img
+-->
+:color_img.Color = {kind = "Color", rule = "Encontrar_color"}

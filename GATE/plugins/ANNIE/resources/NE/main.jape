@@ -15,34 +15,11 @@
 
 MultiPhase:	TestTheGrammars
 Phases:
-numberletter 
-first
-hyphens
-firstname
-name
-name_post
-date_pre
-date
-reldate
-number
-number_clean
-address
-url_pre
-url
-email
-identifier
-jobtitle
-final
-unknown
-name_context
-org_context
-loc_context
-university1
 encontrar_saludo
 encontrar_solicitud_busqueda
 encontrar_solicitud_subida
 encontrar_nombres_personas
 encontrar_fecha
 encontrar_fecha_busqueda
-usingJAVAinRHS
-clean
+encontrar_nombre_persona_color
+encontrar_color

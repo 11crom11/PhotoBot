@@ -159,4 +159,8 @@ public class ProcesadorLenguaje {
 		
 		return nombre;
 	}
+	
+	private void obtenerParNombreColorPersona(Annotation a, AnnotationSet tokens) {
+		
+	}
 }

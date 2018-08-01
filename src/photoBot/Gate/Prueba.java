@@ -13,11 +13,17 @@ public class Prueba {
 			ProcesadorLenguaje pl = new ProcesadorLenguaje();
 			
 			
-			List<Etiqueta> etiquetas = pl.analizarTextoGate("hola, quiero subir esta foto!");
+			List<Etiqueta> etiquetas = pl.analizarTextoGate("Alejandro Pidal Gallego es el chico recuadrado de color verde, Verónica Morante Pindado es la de color cian y por último, en el recuadro de color negro se encuentra Antonio García Pérez.");
 		
 			System.out.println("ETIQUETAS ENCONTRADAS:");
 			for(Etiqueta aux : etiquetas){		
-				System.out.println(aux.getTipo() + "--> " + aux.getNombre());
+				if(aux.getTipo().equals("Nombre_persona_color")) {
+					System.out.println(aux.getTipo() + " --> " + aux.getNombre() + " - " + ((EtiquetaColor) aux).getColor());
+				}
+				else {
+					System.out.println(aux.getTipo() + " --> " + aux.getNombre());					
+				}
+
 			}
 			System.out.println("----------------------");
 			
@@ -25,7 +31,7 @@ public class Prueba {
 		
 			System.out.println("ETIQUETAS ENCONTRADAS:");
 			for(Etiqueta aux : etiquetas){
-				System.out.println(aux.getTipo() + "--> " + aux.getNombre());
+				System.out.println(aux.getTipo() + " --> " + aux.getNombre());
 			}
 			System.out.println("----------------------");
 		

@@ -3,6 +3,7 @@ package photoBot.Gate;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +17,7 @@ import gate.Document;
 import gate.Factory;
 import gate.FeatureMap;
 import gate.Gate;
+import gate.Node;
 import gate.corpora.DocumentContentImpl;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
@@ -112,13 +114,26 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Fecha_busqueda");
 			annotTypesRequired.add("Saludo");
 			annotTypesRequired.add("Cargar");
+			annotTypesRequired.add("Nombre_persona_color");
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		
 			for (Annotation s : etiquetasAnotacion) {		
 
-				Etiqueta e = new Etiqueta(s.getType(), obtenerNombrePalabra(s, etiquetasToken));
-				etiquetas.add(e);
+				if(s.getType().equals("Nombre_persona_color")) {
+					annotTypesRequired = new HashSet<String>();
+					annotTypesRequired.add("Color");
+					annotTypesRequired.add("Nombre_persona");
+					AnnotationSet colsNoms =defaultAnnotSet.get(annotTypesRequired);
+					
+					Etiqueta e = this.obtenerParNombreColorPersona(s, etiquetasToken, colsNoms);
+					etiquetas.add(e);
+				}
+				else {
+					Etiqueta e = new Etiqueta(s.getType(), obtenerNombrePalabra(s, etiquetasToken));
+					etiquetas.add(e);					
+				}
+
 			}
 			
 			//////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,19 +163,67 @@ public class ProcesadorLenguaje {
 		que contienen el texto de la palabra.
 		*/
 		
-		
 		String nombre = "";
 		
 		AnnotationSet palabrasToken = tokens.get(a.getStartNode().getOffset(), a.getEndNode().getOffset());
-		Annotation palabraToken = palabrasToken.iterator().next();
+		//Necesito ordenar los token para que en etiquetas cuyo texto este formado por varias palabras
+		//se devuelve de manera ordenada
+		List<Annotation> nombreOrdenado = new ArrayList<>(palabrasToken);
+		nombreOrdenado.sort(new Comparator<Annotation>() {
+
+			@Override
+			public int compare(Annotation o1, Annotation o2) {
+
+				if(o1.getStartNode().getOffset() < o2.getStartNode().getOffset()) {
+					return -1;
+				}
+				else if(o1.getStartNode().getOffset() > o2.getStartNode().getOffset())
+					return 1;
+
+				return 0;
+			}
+		});
 		
-		FeatureMap features = palabraToken.getFeatures();
-		nombre = (String) features.get("string");
+		for (Annotation annotation : nombreOrdenado) {
+			FeatureMap features = annotation.getFeatures();
+			
+			if(nombre.equals("")) {
+				nombre = (String) features.get("string");
+			}
+			else {
+				nombre += " " + (String) features.get("string");
+			}
+		}
 		
 		return nombre;
 	}
 	
-	private void obtenerParNombreColorPersona(Annotation a, AnnotationSet tokens) {
+	/**
+	 * Este metodo devuelve una etiqueta con el par Nombre de una persona y color a partir de le etiqueta original
+	 * (que contiene otras palabras sin uso)
+	 * @param a Etiqueta cuyo texto contiene, ademas del nombre de la persona y el color, otras palabras sin uso
+	 * @param tokens Conjunto de token que contienen el texto de las palabras
+	 * @param nombresYcolores Etiquetas con nombres y colores por separado
+	 * @return Devuelve una etiqueta que contiene el par Nombre de persona y color.
+	 */
+	private EtiquetaColor obtenerParNombreColorPersona(Annotation a, AnnotationSet tokens, AnnotationSet nombresYcolores) {
 		
+		String nombre = "", color = "";
+		
+		Node ini = a.getStartNode();
+		Node fin = a.getEndNode();
+		
+		AnnotationSet nyc = nombresYcolores.getContained(ini.getOffset(), fin.getOffset());
+		
+		for (Annotation an : nyc) {
+			if(an.getType().equals("Color")) {
+				color = obtenerNombrePalabra(an, tokens);
+			}
+			else if(an.getType().equals("Nombre_persona")) {
+				nombre = obtenerNombrePalabra(an, tokens);
+			}
+		}
+				
+		return new EtiquetaColor("Nombre_persona_color", nombre, color);
 	}
 }

@@ -1,10 +1,15 @@
 package photoBot.Agentes.Comportamiento;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Triple;
+
+import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -28,7 +33,6 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 	
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
 		ACLMessage msj = this.self.getAgent().receive();
 		List<String> list = new ArrayList<>();
 		
@@ -48,7 +52,25 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 					String urlImagen = (String) msjContent.get("URL_IMAGEN");
 					
 					CarasDetectadas carasDetectadas = this.gestorCaras.obtenerCarasImagen(urlImagen, idUsuario);
+					List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = carasDetectadas.getListOfColorTagProbability();
 					
+						
+					msj = new ACLMessage(ACLMessage.INFORM);
+					msj.addReceiver(new AID("AgenteConversacionUsuario", AID.ISLOCALNAME));
+					
+					try {
+						msj.setContentObject((Serializable) tripletaColorEtiquetaProbabilidad);
+						getAgent().send(msj);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					/**
+					 PENDIENTE PROCESAR POR SEPARADO
+					for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
+						
+					}**/
 					
 					
 					break;
@@ -57,6 +79,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 					
 					
 					break;
+					
 				default:
 					break;
 				}		

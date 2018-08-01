@@ -18,7 +18,7 @@ public class Prueba {
 			System.out.println("ETIQUETAS ENCONTRADAS:");
 			for(Etiqueta aux : etiquetas){		
 				if(aux.getTipo().equals("Nombre_persona_color")) {
-					System.out.println(aux.getTipo() + " --> " + aux.getNombre() + " - " + ((EtiquetaColor) aux).getColor());
+					System.out.println(aux.getTipo() + " --> " + aux.getNombre() + " - " + aux.getColor());
 				}
 				else {
 					System.out.println(aux.getTipo() + " --> " + aux.getNombre());					

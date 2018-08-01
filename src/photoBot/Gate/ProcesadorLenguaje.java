@@ -206,7 +206,7 @@ public class ProcesadorLenguaje {
 	 * @param nombresYcolores Etiquetas con nombres y colores por separado
 	 * @return Devuelve una etiqueta que contiene el par Nombre de persona y color.
 	 */
-	private EtiquetaColor obtenerParNombreColorPersona(Annotation a, AnnotationSet tokens, AnnotationSet nombresYcolores) {
+	private Etiqueta obtenerParNombreColorPersona(Annotation a, AnnotationSet tokens, AnnotationSet nombresYcolores) {
 		
 		String nombre = "", color = "";
 		
@@ -224,6 +224,6 @@ public class ProcesadorLenguaje {
 			}
 		}
 				
-		return new EtiquetaColor("Nombre_persona_color", nombre, color);
+		return new Etiqueta("Nombre_persona_color", nombre, color);
 	}
 }

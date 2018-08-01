@@ -3,8 +3,10 @@ package photoBot.OpenCV;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -15,8 +17,10 @@ import org.opencv.imgproc.Imgproc;
 public class CarasDetectadas {
 
 	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;
+	
 	private MatOfRect carasDetectadas;
 	private String urlImagen;
+	
 	/**
 	 * Este constructor se encarga de crear un objeto CarasDetectadas. El objetivo de este objeto
 	 * es almacer las caras detectadas en el detector de caras, así como el valor numérico que 
@@ -83,5 +87,23 @@ public class CarasDetectadas {
 		}		
 		
 		return labels;
+	}
+	
+	public List<Triple<String, Integer, Double>> getListOfColorTagProbability(){
+		List<Triple<String, Integer, Double>> ret = new ArrayList<>();
+		
+		/**
+		lCarasEtiquetadas.forEach(new BiConsumer<String, Pair<Integer, Double>>() {
+			@Override
+			public void accept(String t, Pair<Integer, Double> u) {
+				ret.add(Triple.of(t, u.getLeft(), u.getRight()));
+			}
+		});*/
+		
+		lCarasEtiquetadas.forEach((key, value) -> {
+			ret.add(Triple.of(key, value.getLeft(), value.getRight()));
+		});
+		
+		return ret;
 	}
 }

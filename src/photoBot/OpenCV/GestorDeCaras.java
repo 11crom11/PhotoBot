@@ -142,10 +142,10 @@ public class GestorDeCaras {
 		Imgproc.cvtColor(imagen, imagen, Imgproc.COLOR_BGR2GRAY);
 		
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
+		
 		//1. Ver si existe el clasificador
-		
-		
 		File f = new File("./clasificadores/" + idUsuario);
+		
 		//2. Si el clasificador existe
 		if(f.exists()){
 			lbphClasificador.read("./clasificadores/" + idUsuario);
@@ -171,10 +171,6 @@ public class GestorDeCaras {
 			}
 		}
 
-		
-
-		
-		
 		return ret; 
 	}
 	

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Triple;
 import org.joda.time.DateTime;
 
 import gate.util.GateException;
@@ -14,6 +15,7 @@ import photoBot.Drools.ProcesadorDeReglas;
 import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorLenguaje;
+import photoBot.OpenCV.CarasDetectadas;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -52,6 +54,60 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	@Override
 	public void action() {
 		// TODO Auto-generated method stub
+		
+		HashMap<String, Object> msjContent;
+
+		ACLMessage msj = this.self.getAgent().receive();
+		
+		if(msj != null){
+			try {
+				msjContent = (HashMap<String, Object>) msj.getContentObject();
+				
+				switch ((String) msjContent.get("COMANDO")) {
+				case "DETECTAR_CARAS":
+					
+					String idUsuario = (String) msjContent.get("ID");
+					String urlImagen = (String) msjContent.get("URL_IMAGEN");
+					
+					CarasDetectadas carasDetectadas = this.gestorCaras.obtenerCarasImagen(urlImagen, idUsuario);
+					List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = carasDetectadas.getListOfColorTagProbability();
+					
+						
+					msj = new ACLMessage(ACLMessage.INFORM);
+					msj.addReceiver(new AID("AgenteConversacionUsuario", AID.ISLOCALNAME));
+					
+					try {
+						msj.setContentObject((Serializable) tripletaColorEtiquetaProbabilidad);
+						getAgent().send(msj);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					/**
+					 PENDIENTE PROCESAR POR SEPARADO
+					for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
+						
+					}**/
+					
+					
+					break;
+				
+				case "...":
+					
+					
+					break;
+					
+				default:
+					break;
+				}	
+			} catch (UnreadableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		//Si hay un mensaje por parte de usuario                                                
 		if(photoBot.hayMensaje()) {
 			
 			//1- Recibir mensaje
@@ -80,6 +136,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			//4- Marcar mensaje como leido
 			photoBot.mensajeLeido();
 		}
+
+
+		
 	}
 	
 	public void bot_saludar() {

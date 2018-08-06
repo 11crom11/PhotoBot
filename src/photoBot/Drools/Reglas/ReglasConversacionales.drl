@@ -29,7 +29,7 @@ rule "Solicitud de busqueda de todas las imagenes"
         
         tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
     then
-    	comportamiento.bot_buscarTodasImagenes();    
+    	comportamiento.bot_solicitudBuscarTodasImagenes();    
 end
 
 rule "Solicitud de subir imagen"

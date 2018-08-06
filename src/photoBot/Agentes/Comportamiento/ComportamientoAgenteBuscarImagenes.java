@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import jade.core.Agent;
@@ -43,14 +44,12 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 				e.printStackTrace();
 			}
 			
+			HashMap<String, Object> msjContent = new HashMap<String, Object>();
+			
+			msjContent.put("COMANDO", ConstantesComportamiento.ENTREGAR_IMG_ENCONTRADAS);
+			msjContent.put("LISTA", list);
 			
 			ACLMessage reply = msj.createReply();
-			try {
-				reply.setContentObject((Serializable) list);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			getAgent().send(reply);
 				//sendPhotoRequest.setNewPhoto(new java.io.File(imagen.toString()));
 		}

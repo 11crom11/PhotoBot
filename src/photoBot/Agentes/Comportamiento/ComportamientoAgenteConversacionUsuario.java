@@ -16,6 +16,7 @@ import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorLenguaje;
 import photoBot.OpenCV.CarasDetectadas;
+import photoBot.OpenCV.GestorDeCaras;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -32,6 +33,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private ComportamientoAgenteConversacionUsuario self;
 	private ProcesadorDeReglas procReglas;
 	private ProcesadorLenguaje procLenguaje;
+	private GestorDeCaras gestorCaras;
 	
 	private Conversacion conversacion;
 	
@@ -48,6 +50,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
         this.procReglas = new ProcesadorDeReglas();
         
+        this.gestorCaras = new GestorDeCaras();
+        
         this.conversacion = new Conversacion();
 	}
 	
@@ -59,52 +63,28 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 		ACLMessage msj = this.self.getAgent().receive();
 		
+		
+		//Si hay un mensaje por parte de un agente
 		if(msj != null){
+			
 			try {
 				msjContent = (HashMap<String, Object>) msj.getContentObject();
 				
-				switch ((String) msjContent.get("COMANDO")) {
-				case "DETECTAR_CARAS":
-					
-					String idUsuario = (String) msjContent.get("ID");
-					String urlImagen = (String) msjContent.get("URL_IMAGEN");
-					
-					CarasDetectadas carasDetectadas = this.gestorCaras.obtenerCarasImagen(urlImagen, idUsuario);
-					List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = carasDetectadas.getListOfColorTagProbability();
-					
-						
-					msj = new ACLMessage(ACLMessage.INFORM);
-					msj.addReceiver(new AID("AgenteConversacionUsuario", AID.ISLOCALNAME));
-					
-					try {
-						msj.setContentObject((Serializable) tripletaColorEtiquetaProbabilidad);
-						getAgent().send(msj);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					/**
-					 PENDIENTE PROCESAR POR SEPARADO
-					for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
-						
-					}**/
-					
-					
-					break;
+				int comando = (int) msjContent.get("COMANDO");
 				
-				case "...":
-					
-					
-					break;
-					
-				default:
-					break;
-				}	
-			} catch (UnreadableException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				if(comando == ConstantesComportamiento.ENTREGAR_IMG_ENCONTRADAS) {
+					obtenerImagenesBusquedaAgente(msj, msjContent);
+				}
+				else if(comando ==  ConstantesComportamiento.RESPUESTA_SUBIDA_IMAGENES) {
+					recibirRespuestaSubidaImagenes(msj, msjContent);
+				}
+				else if(comando == -1) {
+					//........................
+				}
+				
+			} catch (UnreadableException e) {
+				e.printStackTrace();
+			}				
 		}
 		
 		//Si hay un mensaje por parte de usuario                                                
@@ -119,17 +99,17 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				if(photoBot.hayMensajeTexto()) {
 					List<Etiqueta> lEtiquetas = procLenguaje.analizarTextoGate(mensaje);
 					
-			//3- Ejecutar reglas que haran acciones sobre los agentes y bot
+			//3A- Ejecutar reglas que haran acciones sobre los agentes y bot
 					this.conversacion = procReglas.ejecutarReglasEtiquetas(lEtiquetas, this.conversacion, self);
 				}
+			//3B- Procesar imagen recibida	
 				else if(photoBot.hayMensajeFoto()) {
-					bot_subirImagenes();
+					bot_solicitudSubirImagenes();
 					
 				}
 				
 			
 			} catch (GateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -145,30 +125,21 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		photoBot.enviarMensajeTextoAlUsuario(saludoRespectoHora() + ", ¿qué tal va todo?");
 	}
 	
-	public void bot_buscarTodasImagenes() {
+	public void bot_solicitudBuscarTodasImagenes() {
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		
+		msjContent.put("COMANDO", ConstantesComportamiento.SOLICITAR_IMG_AGENTE);
+		msjContent.put("ID", photoBot.getUserID().toString());
+		
 		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
-		msj.addReceiver(new AID("AgenteBuscarImagen", AID.ISLOCALNAME));
-		msj.setContent(photoBot.getUserID().toString());
-		//ID usuario
 		self.getAgent().send(msj);
+	}
+	
+	private void obtenerImagenesBusquedaAgente(ACLMessage msj, HashMap<String, Object> contenido) {
+		List<String> list = (List<String>) contenido.get("LISTA");
 		
-		ACLMessage respuesta = self.getAgent().receive();
-		
-		while(respuesta == null) {
-			respuesta = self.getAgent().receive();
-		}
-		
-		try {
-			List<String> list = (List<String>) respuesta.getContentObject();
-			
-			photoBot.devolverTodasLasImagenesDelUsuario(list);
-			photoBot.enviarMensajeTextoAlUsuario("Estas son todas las imágenes que tengo de ti :)");
+		photoBot.devolverTodasLasImagenesDelUsuario(list);
 
-			
-		} catch (UnreadableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public void esperarFotoConversacion() {
@@ -184,12 +155,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		photoBot.enviarMensajeTextoAlUsuario("Parece ser que has cambiado de idea respecto a subir una nueva imagen. Lo dejaremos para más tarde.");
 	}
 	
-	public void bot_subirImagenes() {
+	public void bot_solicitudSubirImagenes() {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
 		List<File> lFotos = photoBot.obtenerImagenesMensaje();
 		String userID = photoBot.getUserID().toString();
 		
+		msjContent.put("COMANDO", ConstantesComportamiento.ENVIAR_IMG_AGENTE);
 		msjContent.put("ID", userID);
 		msjContent.put("LISTA", lFotos);
 						
@@ -204,6 +176,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			e.printStackTrace();
 		}
 		
+		/*
 		ACLMessage respuesta = self.getAgent().receive();
 		
 		while(respuesta == null) {
@@ -221,7 +194,12 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			ret = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
 		}
 		
-		photoBot.enviarMensajeTextoAlUsuario(ret);	
+		photoBot.enviarMensajeTextoAlUsuario(ret);
+		*/
+	}
+	
+	private void recibirRespuestaSubidaImagenes(ACLMessage msj, HashMap<String, Object> contenido) {
+		//if() DEPENDIENDO DE LA RESPUESTA (TODO OK, O FALTAN DATOS) HACER UNA COSA U OTRA
 	}
 	
 	/**

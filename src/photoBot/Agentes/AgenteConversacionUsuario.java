@@ -25,9 +25,6 @@ import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
 
 public class AgenteConversacionUsuario extends Agent {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private TelegramBotsApi apiTelegram;

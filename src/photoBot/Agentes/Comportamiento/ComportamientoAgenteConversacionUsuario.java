@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Triple;
@@ -25,9 +26,6 @@ import jade.lang.acl.UnreadableException;
 
 public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private ComportamientoAgenteConversacionUsuario self;
@@ -75,7 +73,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				if(comando == ConstantesComportamiento.ENTREGAR_IMG_ENCONTRADAS) {
 					obtenerImagenesBusquedaAgente(msj, msjContent);
 				}
-				else if(comando ==  ConstantesComportamiento.RESPUESTA_SUBIDA_IMAGENES) {
+				else if(comando ==  ConstantesComportamiento.RESULTADO_RECONOCIMIENTO_IMAGEN) {
 					recibirRespuestaSubidaImagenes(msj, msjContent);
 				}
 				else if(comando == -1) {
@@ -108,7 +106,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 					
 				}
 				
-			
 			} catch (GateException e) {
 				e.printStackTrace();
 			}
@@ -116,9 +113,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			//4- Marcar mensaje como leido
 			photoBot.mensajeLeido();
 		}
-
-
-		
 	}
 	
 	public void bot_saludar() {
@@ -166,7 +160,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		msjContent.put("LISTA", lFotos);
 						
 		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
-		msj.addReceiver(new AID("AgenteAlmacenarImagenes", AID.ISLOCALNAME));
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_ALMACENAR_IMAGEN, AID.ISLOCALNAME));
 		
 		try {
 			msj.setContentObject((Serializable)msjContent);
@@ -176,30 +170,15 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			e.printStackTrace();
 		}
 		
-		/*
-		ACLMessage respuesta = self.getAgent().receive();
-		
-		while(respuesta == null) {
-			respuesta = self.getAgent().receive();
-		}
-		
-		String ret = "";
-		
-		if(respuesta.getContent().equals("OK")){
-			ret = "Ya he recibido y almacenado correctamente tus imágenes.";
-			this.conversacion.fotosCargadasCorrectamente();
-			this.conversacion.solicitudSubirFotoFinalizada();
-		}
-		else{
-			ret = "Ha ocurrido un error :( ... ¿Puedes mandarme de nuevo las imágenes?";
-		}
-		
-		photoBot.enviarMensajeTextoAlUsuario(ret);
-		*/
 	}
 	
 	private void recibirRespuestaSubidaImagenes(ACLMessage msj, HashMap<String, Object> contenido) {
 		//if() DEPENDIENDO DE LA RESPUESTA (TODO OK, O FALTAN DATOS) HACER UNA COSA U OTRA
+		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
+		
+		for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
+			photoBot.enviarMensajeTextoAlUsuario("El de color: " + triple.getLeft() + " es: " + triple.getMiddle() + " con un porcentaje del: " + triple.getRight());
+		}
 	}
 	
 	/**

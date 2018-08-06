@@ -27,69 +27,66 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		super(a);
 		this.self = this;
 		this.gestorCaras = new GestorDeCaras();
-		
-		
+
+
 	}
-	
+
 	@Override
 	public void action() {
 		ACLMessage msj = this.self.getAgent().receive();
 		List<String> list = new ArrayList<>();
-		
+
 		if(msj != null){
-			
+
 			HashMap<String, Object> msjContent;
-			String comando;	
-			
+			int comando;	
+
+
 			try {
-				
 				msjContent = (HashMap<String, Object>) msj.getContentObject();
-								
-				switch ((String) msjContent.get("COMANDO")) {
-				case "DETECTAR_CARAS":
-					
-					String idUsuario = (String) msjContent.get("ID");
-					String urlImagen = (String) msjContent.get("URL_IMAGEN");
-					
-					CarasDetectadas carasDetectadas = this.gestorCaras.obtenerCarasImagen(urlImagen, idUsuario);
-					List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = carasDetectadas.getListOfColorTagProbability();
-					
-						
-					msj = new ACLMessage(ACLMessage.INFORM);
-					msj.addReceiver(new AID("AgenteConversacionUsuario", AID.ISLOCALNAME));
-					
-					try {
-						msj.setContentObject((Serializable) tripletaColorEtiquetaProbabilidad);
-						getAgent().send(msj);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					/**
-					 PENDIENTE PROCESAR POR SEPARADO
-					for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
-						
-					}**/
-					
-					
-					break;
-				
-				case "...":
-					
-					
-					break;
-					
-				default:
-					break;
-				}		
-				
-				
+				comando = (int) msjContent.get("COMANDO");
+
+				if (comando == ConstantesComportamiento.RECONOCER_CARAS){
+					enviarResultadosClasificacionAgenteConversacional(msjContent);
+				}
 			} catch (UnreadableException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
+		}
+
+
+
+	}
+
+	private void enviarResultadosClasificacionAgenteConversacional(HashMap<String, Object> msjContent){
+		ACLMessage msj = this.self.getAgent().receive();
+		msj = new ACLMessage(ACLMessage.INFORM);
+
+		String idUsuario = (String) msjContent.get("ID");
+		String urlImagen = (String) msjContent.get("URL_IMAGEN");
+
+		CarasDetectadas carasDetectadas = this.gestorCaras.obtenerCarasImagen(urlImagen, idUsuario);
+		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = carasDetectadas.getListOfColorTagProbability();
+
+
+		msjContent = new HashMap<String, Object>();
+
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_CONVERSACION_USUARIO, AID.ISLOCALNAME));
+
+		msjContent.put("COMANDO", ConstantesComportamiento.RESULTADO_RECONOCIMIENTO_IMAGEN);
+		msjContent.put("RESULTADO_RECONOCIMIENTO", tripletaColorEtiquetaProbabilidad);
+
+		try {
+			msj.setContentObject(msjContent);
+			getAgent().send(msj);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
+
 
 }

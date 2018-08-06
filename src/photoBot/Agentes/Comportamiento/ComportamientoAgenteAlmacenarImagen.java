@@ -29,9 +29,7 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 		this.self = this;
 		
 		registerFirstState(new OneShotBehaviour() {
-			/**
-			 * 
-			 */
+
 			private static final long serialVersionUID = 1L;
 			private int estado = 0;
 
@@ -50,9 +48,7 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 		
 		
 		registerState(new OneShotBehaviour() {
-			/**
-			 * 
-			 */
+
 			private static final long serialVersionUID = 1L;
 			private int estado = 1;
 
@@ -90,9 +86,7 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 		}, "ESTADO_ESPERA_RECIBIR");
 		
 		registerState(new OneShotBehaviour() {
-			/**
-			 * 
-			 */
+
 			private static final long serialVersionUID = 1L;
 			private int estado = 3;
 
@@ -114,12 +108,12 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 						
 						HashMap<String, Object> msjContent = new HashMap<String, Object>();
 						
-						
+						msjContent.put("COMANDO", ConstantesComportamiento.RECONOCER_CARAS);
 						msjContent.put("ID", userID);
 						msjContent.put("URL_IMAGEN", url_img);
 										
 						ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
-						msj.addReceiver(new AID("AgenteGestionarCaras", AID.ISLOCALNAME));
+						msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
 						
 						try {
 							msj.setContentObject((Serializable)msjContent);
@@ -138,11 +132,7 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 
 				}	
 				
-				/*ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
-				msj.addReceiver(new AID("AgenteConversacional", AID.ISLOCALNAME));
-				msj.setContent("OK");
-				self.getAgent().send(msj);*/
-				
+	
 				this.estado = 4;
 			}
 			

@@ -32,8 +32,11 @@ public class CarasDetectadas {
 	 */
 	public CarasDetectadas(MatOfRect caras, List<Pair<Integer, Double>> personas, String url) {
 		this.carasDetectadas = caras;
-		this.rellenarHashMapPersonas(personas);
 		this.urlImagen = url;
+		this.lCarasEtiquetadas = new HashMap<String, Pair<Integer, Double>>();
+		
+		
+		this.rellenarHashMapPersonas(personas);
 	}
 	
 	private void rellenarHashMapPersonas(List<Pair<Integer, Double>> personas) {

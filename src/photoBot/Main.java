@@ -3,6 +3,7 @@ package photoBot;
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
 import jade.wrapper.*;
+import photoBot.Agentes.Comportamiento.ConstantesComportamiento;
 public class Main {
 	
 	public static void main(String[] args) {
@@ -15,17 +16,20 @@ public class Main {
 		try {
 			
 			//AGENTE CONVERSACION
-			AgentController agentController = container.createNewAgent("AgenteConversacional", "photoBot.Agentes.AgenteConversacionUsuario", null);			
+			AgentController agentController = container.createNewAgent(ConstantesComportamiento.AGENTE_CONVERSACION_USUARIO, "photoBot.Agentes.AgenteConversacionUsuario", null);			
 			agentController.start();
 			
 			//AGENTE SUBIR iMAGEN
-			agentController = container.createNewAgent("AgenteAlmacenarImagenes", "photoBot.Agentes.AgenteAlmacenarImagenes", null);			
+			agentController = container.createNewAgent(ConstantesComportamiento.AGENTE_ALMACENAR_IMAGEN, "photoBot.Agentes.AgenteAlmacenarImagenes", null);			
 			agentController.start();
 			
 			//AGENTE BUSCAR iMAGEN
-			agentController = container.createNewAgent("AgenteBuscarImagen", "photoBot.Agentes.AgenteBuscarImagen", null);			
+			agentController = container.createNewAgent(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, "photoBot.Agentes.AgenteBuscarImagen", null);			
 			agentController.start();
 			
+			//AGENTE GESTIONAR CARAS
+			agentController = container.createNewAgent(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, "photoBot.Agentes.AgenteGestionarCaras", null);			
+			agentController.start();			
 			
 		} catch (StaleProxyException e) {
 			e.printStackTrace();

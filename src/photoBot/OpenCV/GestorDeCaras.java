@@ -119,11 +119,11 @@ public class GestorDeCaras {
 	private void actualizarClasificadorPersonalizado(int idClasificador, CarasDetectadas carasDetectadas) {
 		
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
-		lbphClasificador.read("./clasificadores/" + idClasificador);
+		lbphClasificador.read("./clasificadores/" + idClasificador + ".xml");
 		
 		lbphClasificador.update(carasDetectadas.getListOfMat(), carasDetectadas.getListOfLabels());
 		
-		lbphClasificador.save("./clasificadores/" + idClasificador);
+		lbphClasificador.save("./clasificadores/" + idClasificador + ".xml");
 	}
 	
 	private void crearClasificadorPersonalizado(int idUsuario, CarasDetectadas carasDetectadas) {
@@ -131,7 +131,7 @@ public class GestorDeCaras {
 		
 		lbphClasificador.train(carasDetectadas.getListOfMat(), carasDetectadas.getListOfLabels());
 		
-		lbphClasificador.save("./clasificadores/" + idUsuario);
+		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
 	}
 	
 	private List<Pair<Integer, Double>> dameEtiquetasPorcentajes(MatOfRect carasDetectadas, String urlImagen, String idUsuario){
@@ -144,11 +144,11 @@ public class GestorDeCaras {
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
 		
 		//1. Ver si existe el clasificador
-		File f = new File("./clasificadores/" + idUsuario);
+		File f = new File("./clasificadores/" + idUsuario + ".xml");
 		
 		//2. Si el clasificador existe
 		if(f.exists()){
-			lbphClasificador.read("./clasificadores/" + idUsuario);
+			lbphClasificador.read("./clasificadores/" + idUsuario + ".xml");
 			
 			for(Rect rect : carasDetectadas.toArray()) {
 				Mat cara = new Mat(imagen, rect);

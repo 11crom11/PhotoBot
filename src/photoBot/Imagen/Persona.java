@@ -1,12 +1,34 @@
 package photoBot.Imagen;
 
+import java.util.List;
+
+import org.bson.types.ObjectId;
+
 public class Persona {
-	private String nombre;
-	private int edad;
 	
-	public Persona(String n, int e) {
-		this.nombre = n;
-		this.edad = e;
+    private ObjectId id;
+    
+	private String nombre;
+	private int etiqueta;
+	
+	
+	public Persona(){
+		
+	}
+
+	public Persona(String nombre, int etiqueta) {
+		this.id = new ObjectId();
+
+		this.nombre = nombre;
+		this.etiqueta = etiqueta;
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -15,14 +37,6 @@ public class Persona {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public int getEdad() {
-		return edad;
-	}
-
-	public void setEdad(int edad) {
-		this.edad = edad;
 	}
 	
 	

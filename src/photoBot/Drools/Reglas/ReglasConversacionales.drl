@@ -56,4 +56,41 @@ rule "Recibir texto posterior a solicitud de subir imagen"
         
     then
     	comportamiento.bot_anularSubidaFotos();
-end        
+end
+
+rule "Solicitar datos usuario no registrado"
+	salience 100
+	when
+		conversacion : Conversacion();
+		comportamiento : ComportamientoAgenteConversacionUsuario();
+		
+		usuarioRegistrado : Boolean ( usuarioRegistrado == false ) from conversacion.isUsuarioRegistrado();
+		esperarDatos : Boolean ( esperarDatos == false ) from conversacion.isEsperarDatosDelUsuario();
+		
+	then
+		comportamiento.bot_pedirDatosUsuarioNuevo(); 
+
+end
+
+
+rule "Recibir texto posterior a solicitud registro"
+	salience 90
+	when
+		etiqueta1 : Etiqueta();
+		etiqueta2 : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_numero : String (equals("Numero") == true) from etiqueta1.getTipo();
+        tipo_nombre_persona : String (equals("Nombre_persona") == true) from etiqueta2.getTipo();
+        
+ 		usuarioRegistrado : Boolean ( usuarioRegistrado == false ) from conversacion.isUsuarioRegistrado();
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+        
+	then
+		comportamiento.bot_registrarUsuarioNuevo(etiqueta2, etiqueta1); 
+
+end
+
+        

@@ -15,11 +15,20 @@ public class Conversacion {
 	private List<String> lEventos;
 	private List<Persona> lPersonas;
 	private Date fechaFoto;
+	private boolean usuarioRegistrado;
+	private boolean esperarDatosDelUsuario;
 	
+
+	public void setEsperarDatosDelUsuario(boolean esperarDatosDelUsuario) {
+		this.esperarDatosDelUsuario = esperarDatosDelUsuario;
+	}
+
 	public Conversacion() {
 		this.saludo = false;
 		this.subirFoto = false;
 		this.buscarFoto = false;
+		this.usuarioRegistrado = false;
+		this.esperarDatosDelUsuario = false;
 		
 		this.lEventos = new ArrayList<String>();
 		this.lPersonas = new ArrayList<Persona>();
@@ -29,6 +38,15 @@ public class Conversacion {
 		this.fechaFoto = null;
 	}
 	
+	public boolean isEsperarDatosDelUsuario() {
+		return esperarDatosDelUsuario;
+	}
+	
+	public void registradaInfoDelUsuario(){
+		this.esperarDatosDelUsuario = false;
+		this.usuarioRegistrado = true;
+	}
+
 	public void saludoRecibido() {
 		this.saludo = true;
 	}
@@ -88,5 +106,13 @@ public class Conversacion {
 	
 	public void fotosCargadasCorrectamente() {
 		this.fotosCargadasSubida = true;
+	}
+	
+	public boolean isUsuarioRegistrado() {
+		return usuarioRegistrado;
+	}
+
+	public void setUsuarioRegistrado(boolean usuarioRegistrado) {
+		this.usuarioRegistrado = usuarioRegistrado;
 	}
 }

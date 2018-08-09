@@ -12,10 +12,12 @@ import org.joda.time.DateTime;
 
 import gate.util.GateException;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
+import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Drools.ProcesadorDeReglas;
 import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorLenguaje;
+import photoBot.Imagen.Usuario;
 import photoBot.OpenCV.CarasDetectadas;
 import photoBot.OpenCV.GestorDeCaras;
 import jade.core.AID;
@@ -34,7 +36,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private GestorDeCaras gestorCaras;
 	
 	private Conversacion conversacion;
+	private PhotoBotBBDD bd;
 	
+
 	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot pB) {
 		super(a);
 		this.photoBot = pB;
@@ -51,6 +55,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
         this.gestorCaras = new GestorDeCaras();
         
         this.conversacion = new Conversacion();
+        
+        this.bd = new PhotoBotBBDD();
 	}
 	
 	@Override
@@ -87,6 +93,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		//Si hay un mensaje por parte de usuario                                                
 		if(photoBot.hayMensaje()) {
+			
+			//0- esta registrado en la base datos el usuario?
+			this.conversacion.setUsuarioRegistrado(bd.existeUsuario(photoBot.getUserID()));
 			
 			//1- Recibir mensaje
 			String mensaje = photoBot.getMensaje();
@@ -172,6 +181,25 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 	}
 	
+	public void bot_pedirDatosUsuarioNuevo(){
+		this.conversacion.setEsperarDatosDelUsuario(true);
+		
+		photoBot.enviarMensajeTextoAlUsuario("Hola! Encantado de conocerte! Me llamo PhotoBot!");
+		photoBot.enviarMensajeTextoAlUsuario("Parece que es la primera vez que nos vemos, por favor, ¿podrías decirme tu nombre y tu edad?");
+	}
+	
+	public void bot_registrarUsuarioNuevo(Etiqueta nombre, Etiqueta edad){
+		boolean ok = this.bd.crearUsuario(new Usuario(photoBot.getUserID(), nombre.getNombre(), Integer.valueOf(edad.getNombre())));
+		
+		if(ok){
+			photoBot.enviarMensajeTextoAlUsuario("Encantado " + nombre.getNombre() + "!");
+			this.conversacion.registradaInfoDelUsuario();
+		}
+		else{
+			photoBot.enviarMensajeTextoAlUsuario("Ups!!! Parece que ha ocurrido un error, ¿por favor, puedes repetirme tu nombre?");
+		}
+	}
+	
 	private void recibirRespuestaSubidaImagenes(ACLMessage msj, HashMap<String, Object> contenido) {
 		//if() DEPENDIENDO DE LA RESPUESTA (TODO OK, O FALTAN DATOS) HACER UNA COSA U OTRA
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
@@ -205,4 +233,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		return ret;
 	}
+	
+	
 }

@@ -1,0 +1,14 @@
+Phase:	Buscar_numero
+Options: control = appelt
+
+
+Rule: Buscar_numero
+Priority: 100
+(	
+ 	(
+		{Token.kind == "number"}
+ 	)
+  
+):decimal
+-->
+:decimal.Numero = {kind = "Numero", rule = "Buscar_numero"}

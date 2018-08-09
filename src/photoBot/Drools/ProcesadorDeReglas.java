@@ -51,7 +51,9 @@ public class ProcesadorDeReglas {
 			ksession.insert(e);
 		}
 		
-		this.ksession.fireAllRules();
+		//this.ksession.fireAllRules(); //Se ejecutan todas las reglas 
+
+		this.ksession.fireAllRules(1); //Se ejecutan solamente el numero de reglas pasado por parametro
 		this.ksession = this.kbase.newStatefulKnowledgeSession();
 		
 		return conversacion;

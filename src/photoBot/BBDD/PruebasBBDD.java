@@ -17,12 +17,24 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
 import photoBot.Imagen.Persona;
+import photoBot.Imagen.Usuario;
 
 public class PruebasBBDD {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		
+		PhotoBotBBDD bd = new PhotoBotBBDD();
+		
+		Usuario u = new Usuario(598312, "Daniel", 23);
+		bd.crearUsuario(u);
+		
+				//collection.insertOne(p);
+		boolean existe = bd.existeUsuario(598313);
+		System.out.print(existe == true ? "existe" : "no existe");
+		
+		/*
 		CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(com.mongodb.MongoClient.getDefaultCodecRegistry(), 
 				CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 		
@@ -36,7 +48,7 @@ public class PruebasBBDD {
 		//Persona p = new Persona("Daniel", 23, lPersonas);
 		
 		//collection.insertOne(p);
-		
+		*/
 		/**
 		Document doc = new Document("name", "MongoDB")
 	                .append("type", "database")

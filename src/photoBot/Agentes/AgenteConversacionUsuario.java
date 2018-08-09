@@ -22,13 +22,14 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
+import photoBot.BBDD.PhotoBotBBDD;
 
 public class AgenteConversacionUsuario extends Agent {
 	
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private TelegramBotsApi apiTelegram;
-	
+		
 	private ComportamientoAgenteConversacionUsuario comportamiento;
 	
 	@Override
@@ -79,24 +80,10 @@ public class AgenteConversacionUsuario extends Agent {
 			
 			this.chatID = update.getMessage().getChatId();
 			this.userID = update.getMessage().getFrom().getId();
-			this.date = update.getMessage().getDate();
-			//Behaviour estado = comportamiento.getEstado();
-			//String estadoActualString = estado.getBehaviourName();
 			
-
-			/**		
-			else if (update.hasMessage() && update.getMessage().hasText()) {
-		        SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
-		                .setChatId(update.getMessage().getChatId())
-		                .setText(update.getMessage().getText());
-		        try {
-		            execute(message); // Call method to send the message
-		        } catch (TelegramApiException e) {
-		            e.printStackTrace();
-		        }
-		    }
-			*/
-
+			this.date = update.getMessage().getDate();
+			
+			
 		}
 
 		@Override

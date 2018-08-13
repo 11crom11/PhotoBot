@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -109,11 +110,10 @@ public class GestorDeCaras {
 			
 			i = (i + 1) % (ColoresCaras.getNumColores() - 1);
 			
-			
 		}
 		
-		Imgcodecs.imwrite("./galeria/prueba.jpeg", imagen);
-		
+		Imgcodecs.imwrite(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg", imagen);
+
 	}
 	
 	private void actualizarClasificadorPersonalizado(int idClasificador, CarasDetectadas carasDetectadas) {

@@ -12,8 +12,8 @@ public class Imagen {
 
 	private Date fecha;
 	private List<Persona> lPersonas;
-	private List<Evento> contexto;
-	private Usuario propietario;
+	private List<Evento> lEventos;
+	private Integer propietario;
 	private String ubicacion;
 	
 	
@@ -24,7 +24,7 @@ public class Imagen {
 
 		this.fecha = null;
 		this.lPersonas = new ArrayList<Persona>();
-		this.contexto = new ArrayList<Evento>();
+		this.lEventos = new ArrayList<Evento>();
 	}
 	
 	public Imagen(Date f) {		
@@ -32,15 +32,15 @@ public class Imagen {
 
 		this.fecha = f;
 		this.lPersonas = new ArrayList<Persona>();
-		this.contexto = new ArrayList<Evento>();
+		this.lEventos = new ArrayList<Evento>();
 	}
 	
-	public Imagen(Date fecha, List<Persona> lPersonas, List<Evento> contexto, Usuario propietario, String ubicacion) {
+	public Imagen(Date fecha, List<Persona> lPersonas, List<Evento> contexto, Integer propietario, String ubicacion) {
 		this.id = new ObjectId();
 
 		this.fecha = fecha;
 		this.lPersonas = lPersonas;
-		this.contexto = contexto;
+		this.lEventos = contexto;
 		this.propietario = propietario;
 		this.ubicacion = ubicacion;
 	}
@@ -53,11 +53,11 @@ public class Imagen {
 		this.id = id;
 	}
 
-	public Usuario getPropietario() {
+	public Integer getPropietario() {
 		return propietario;
 	}
 
-	public void setPropietario(Usuario propietario) {
+	public void setPropietario(Integer propietario) {
 		this.propietario = propietario;
 	}
 
@@ -74,7 +74,7 @@ public class Imagen {
 	}
 
 	public void setContexto(List<Evento> contexto) {
-		this.contexto = contexto;
+		this.lEventos = contexto;
 	}
 
 	public Date getFecha() {
@@ -96,12 +96,12 @@ public class Imagen {
 	}
 	
 	public void addEventoContextoImagen(Evento e) {
-		this.contexto.add(e);
+		this.lEventos.add(e);
 	}
 	
 	public void addEventoContextoImagen(List<Evento> le) {
 		for(Evento e : le) {
-			this.contexto.add(e);
+			this.lEventos.add(e);
 		}
 	}
 
@@ -110,7 +110,7 @@ public class Imagen {
 	}
 
 	public List<Evento> getContexto() {
-		return contexto;
+		return lEventos;
 	}
 	
 	

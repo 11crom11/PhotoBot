@@ -27,8 +27,6 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		super(a);
 		this.self = this;
 		this.gestorCaras = new GestorDeCaras();
-
-
 	}
 
 	@Override
@@ -66,6 +64,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 
 		String idUsuario = (String) msjContent.get("ID");
 		String urlImagen = (String) msjContent.get("URL_IMAGEN");
+		long fechaSubida = (long) msjContent.get("FECHA_SUBIDA");
 
 		CarasDetectadas carasDetectadas = this.gestorCaras.obtenerCarasImagen(urlImagen, idUsuario);
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = carasDetectadas.getListOfColorTagProbability();
@@ -76,8 +75,11 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_CONVERSACION_USUARIO, AID.ISLOCALNAME));
 
 		msjContent.put("COMANDO", ConstantesComportamiento.RESULTADO_RECONOCIMIENTO_IMAGEN);
+		msjContent.put("URL_IMAGEN", urlImagen);
+		msjContent.put("FECHA_SUBIDA", fechaSubida);
 		msjContent.put("RESULTADO_RECONOCIMIENTO", tripletaColorEtiquetaProbabilidad);
 
+		
 		try {
 			msj.setContentObject(msjContent);
 			getAgent().send(msj);

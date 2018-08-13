@@ -3,10 +3,13 @@ package photoBot.Agentes.Comportamiento;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.joda.time.DateTime;
 
@@ -17,6 +20,9 @@ import photoBot.Drools.ProcesadorDeReglas;
 import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorLenguaje;
+import photoBot.Imagen.Evento;
+import photoBot.Imagen.Imagen;
+import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
 import photoBot.OpenCV.CarasDetectadas;
 import photoBot.OpenCV.GestorDeCaras;
@@ -141,7 +147,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private void obtenerImagenesBusquedaAgente(ACLMessage msj, HashMap<String, Object> contenido) {
 		List<String> list = (List<String>) contenido.get("LISTA");
 		
-		photoBot.devolverTodasLasImagenesDelUsuario(list);
+		photoBot.enviarImagenes(list);
 
 	}
 	
@@ -201,12 +207,42 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 	private void recibirRespuestaSubidaImagenes(ACLMessage msj, HashMap<String, Object> contenido) {
-		//if() DEPENDIENDO DE LA RESPUESTA (TODO OK, O FALTAN DATOS) HACER UNA COSA U OTRA
+		String urlImagen = (String) contenido.get("URL_IMAGEN");
+		long fechaSubida = (long) contenido.get("FECHA_SUBIDA");
+		
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
+
+		//Enviamos la foto recuadrada al usuario
+		List<String> list = new ArrayList<String>();
+		list.add(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg");
+		
+		this.photoBot.enviarImagenes(list);
+		
+		String color;
+		Integer persona;
+		Double probabilidad;
+		String mensajeTexto;
+		
+		List<String> listMensaje = new ArrayList<>();
 		
 		for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
+			
+			color = triple.getLeft();
+			persona = triple.getMiddle();
+			probabilidad = triple.getRight();
+			
+			//SEGUIR AQUIIIIIIIIIIIIIIII
+			if (probabilidad <= 50.0){
+				//listaMensaje.add("El de color: " + triple.getLeft() + " es: " + triple.getMiddle() + " con un porcentaje del: " + triple.getRight());
+			}
+			
 			photoBot.enviarMensajeTextoAlUsuario("El de color: " + triple.getLeft() + " es: " + triple.getMiddle() + " con un porcentaje del: " + triple.getRight());
 		}
+		
+		//obtener datos de la foto
+		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<Evento>(), this.photoBot.getUserID(), urlImagen);
+
+		this.bd.registrarImagen(im);
 	}
 	
 	/**

@@ -137,7 +137,7 @@ public class AgenteConversacionUsuario extends Agent {
 		 * Esta función devuelve todas las imagenes contenidas en la carpeta de un usuario
 		 * concreto a partir del userID de la conversación concreta
 		 */
-		public void devolverTodasLasImagenesDelUsuario(List<String> listaDeImagenes){
+		public void enviarImagenes(List<String> listaDeImagenes){
 	        SendPhoto sendPhotoRequest = new SendPhoto();
 	        
 	        sendPhotoRequest.setChatId(chatID);

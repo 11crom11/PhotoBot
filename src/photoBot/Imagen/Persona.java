@@ -13,7 +13,7 @@ public class Persona {
 	
 	
 	public Persona(){
-		
+
 	}
 
 	public Persona(String nombre, int etiqueta) {

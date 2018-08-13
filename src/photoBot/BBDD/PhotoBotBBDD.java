@@ -55,4 +55,12 @@ public class PhotoBotBBDD {
 		
 		return ok;
 	}
+	
+	public boolean registrarImagen(Imagen imagen){
+		boolean ok = true;
+		
+		this.cImagenes.insertOne(imagen);
+		
+		return ok;
+	}
 }

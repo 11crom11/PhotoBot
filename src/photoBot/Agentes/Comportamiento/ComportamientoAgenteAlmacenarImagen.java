@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -101,8 +102,8 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 					File imagen = lFotos.get(i);
 					
 					try {
-						
-						String url_img = dir.getPath() + "/" + new Timestamp(System.currentTimeMillis()).getTime() + ".jpeg";
+						long fecha = new Timestamp(System.currentTimeMillis()).getTime();
+						String url_img = dir.getPath() + "/" + fecha + ".jpeg";
 						
 						ImageIO.write(ImageIO.read(imagen), "jpeg", new java.io.File(url_img));
 						
@@ -111,6 +112,7 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 						msjContent.put("COMANDO", ConstantesComportamiento.RECONOCER_CARAS);
 						msjContent.put("ID", userID);
 						msjContent.put("URL_IMAGEN", url_img);
+						msjContent.put("FECHA_SUBIDA", fecha);
 										
 						ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
 						msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));

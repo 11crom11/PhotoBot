@@ -209,7 +209,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private void recibirRespuestaSubidaImagenes(ACLMessage msj, HashMap<String, Object> contenido) {
 		String urlImagen = (String) contenido.get("URL_IMAGEN");
 		long fechaSubida = (long) contenido.get("FECHA_SUBIDA");
-		
+		String mensajeUsuario = "";
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
 
 		//Enviamos la foto recuadrada al usuario
@@ -223,21 +223,41 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		Double probabilidad;
 		String mensajeTexto;
 		
-		List<String> listMensaje = new ArrayList<>();
-		
+		List<String> grupoDesconocido = new ArrayList<>();
+		List<String> grupoMedioConocido = new ArrayList<>();
+		List<String> grupoConocido = new ArrayList<>();
+
 		for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
 			
 			color = triple.getLeft();
 			persona = triple.getMiddle();
 			probabilidad = triple.getRight();
 			
-			//SEGUIR AQUIIIIIIIIIIIIIIII
 			if (probabilidad <= 50.0){
-				//listaMensaje.add("El de color: " + triple.getLeft() + " es: " + triple.getMiddle() + " con un porcentaje del: " + triple.getRight());
+				grupoDesconocido.add(triple.getLeft());
+			}
+			else if (probabilidad > 50.00){
+				grupoConocido.add(triple.getMiddle() + " con el color " + triple.getLeft());
 			}
 			
-			photoBot.enviarMensajeTextoAlUsuario("El de color: " + triple.getLeft() + " es: " + triple.getMiddle() + " con un porcentaje del: " + triple.getRight());
 		}
+		
+		if(!grupoDesconocido.isEmpty()){
+			mensajeUsuario += "No he reconocido a las personas recuadradas con los siguientes colores, "
+					+ "por favor, ¿podrías indicarme para cada color, de qué persona se trata?: " + String.join(", ", grupoDesconocido) + ".\n\n";
+		}
+		
+		if(!grupoConocido.isEmpty()){
+			mensajeUsuario += !grupoDesconocido.isEmpty() ? "Por otra parte, he reconocido a " + String.join(", a ", grupoConocido) + ".": "En la imagen he reconocido a  \n" + 
+					String.join(", a ", grupoConocido) + ".";
+		}
+
+		
+		photoBot.enviarMensajeTextoAlUsuario(mensajeUsuario);
+		
+		File f = new File(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg");
+		String m = f.delete() ? FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg HA SIDO ELIMINADO" : "La eliminación ha fallado";
+		System.out.print(m);
 		
 		//obtener datos de la foto
 		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<Evento>(), this.photoBot.getUserID(), urlImagen);

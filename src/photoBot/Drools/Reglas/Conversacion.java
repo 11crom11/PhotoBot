@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
 
 public class Conversacion {
@@ -18,10 +19,8 @@ public class Conversacion {
 	private boolean usuarioRegistrado;
 	private boolean esperarDatosDelUsuario;
 	
-
-	public void setEsperarDatosDelUsuario(boolean esperarDatosDelUsuario) {
-		this.esperarDatosDelUsuario = esperarDatosDelUsuario;
-	}
+	private Imagen imagenPeticionInfo;
+	
 
 	public Conversacion() {
 		this.saludo = false;
@@ -36,6 +35,24 @@ public class Conversacion {
 		this.fotosCargadasSubida = false;
 		
 		this.fechaFoto = null;
+		this.imagenPeticionInfo = null;
+	}
+	
+	public void setImagenPeticionInfo(Imagen imagenPeticionInfo){
+		this.esperarDatosDelUsuario = true;
+		this.imagenPeticionInfo = imagenPeticionInfo;
+	}
+	
+	public void infoRecibida(){
+		this.esperarDatosDelUsuario = false;
+	}
+	
+	public Imagen getImagenPeticionInfo(){
+		return this.imagenPeticionInfo;
+	}
+	
+	public void setEsperarDatosDelUsuario(boolean esperarDatosDelUsuario) {
+		this.esperarDatosDelUsuario = esperarDatosDelUsuario;
 	}
 	
 	public boolean isEsperarDatosDelUsuario() {

@@ -94,23 +94,19 @@ rule "Recibir texto posterior a solicitud registro"
 
 end
 
-//CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAR
 rule "Recoger datos imagen"
 	salience 80
 	when
-		etiqueta1 : Etiqueta();
-		etiqueta2 : Etiqueta();
+		etiqueta : Etiqueta();
 
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        tipo_numero : String (equals("Numero") == true) from etiqueta1.getTipo();
-        tipo_nombre_persona : String (equals("Nombre_persona") == true) from etiqueta2.getTipo();
+        tipo_nombre_persona_color : String (equals("Nombre_persona_color") == true) from etiqueta.getTipo();
         
- 		usuarioRegistrado : Boolean ( usuarioRegistrado == false ) from conversacion.isUsuarioRegistrado();
+ 		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
-        
 	then
-		comportamiento.bot_registrarUsuarioNuevo(etiqueta2, etiqueta1); 
+		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta); 
 
 end

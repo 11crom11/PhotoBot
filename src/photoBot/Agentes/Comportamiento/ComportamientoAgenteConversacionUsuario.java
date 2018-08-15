@@ -263,8 +263,22 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<Evento>(), this.photoBot.getUserID(), urlImagen);
 
 		this.bd.registrarImagen(im);
+		this.conversacion.setEsperarDatosDelUsuario(true);
+		this.conversacion.setImagenPeticionInfo(im);
+		
 	}
 	
+	public void bot_actualizarInfoImagen(Imagen imagen, Etiqueta etiqueta){
+		String color = etiqueta.getColor();
+		String nombrePersona = etiqueta.getNombre();
+		
+		//TODO QUITAR LO DE -1 MAS ADELANTE
+		imagen.addPersonaImagen(new Persona(nombrePersona, -1));
+		
+		//ACTUALICAR BBDD Y EL OBJETO CARASDETECTADAS
+		this.bd.actualizarInfoImagen(imagen);
+	}
+
 	/**
 	 * Esta funcion devuelve un saludo dependiendo de la hora recibida como parametro
 	 * @param hora El numero de la hora (0-23)

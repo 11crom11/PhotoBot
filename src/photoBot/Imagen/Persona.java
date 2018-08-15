@@ -11,10 +11,7 @@ public class Persona {
 	private String nombre;
 	private int etiqueta;
 	
-	
-	public Persona(){
 
-	}
 
 	public Persona(String nombre, int etiqueta) {
 		this.id = new ObjectId();

@@ -43,6 +43,11 @@ public class Conversacion {
 		this.imagenPeticionInfo = imagenPeticionInfo;
 	}
 	
+	public void registradaInfoImagen(){
+		this.esperarDatosDelUsuario = false;
+		this.imagenPeticionInfo = null;
+	}
+
 	public void infoRecibida(){
 		this.esperarDatosDelUsuario = false;
 	}

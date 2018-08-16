@@ -5,18 +5,28 @@ import java.util.Date;
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.*;
 
+//@Entity ("imagen")
 public class Imagen {
 	
+	@Id
     private ObjectId id;
-
+	
+	@Property
 	private Date fecha;
-	private List<Persona> lPersonas;
-	private List<Evento> lEventos;
-	private Integer propietario;
+	
+	@Property	
 	private String ubicacion;
 	
+	@Property	
+	private List<String> lEventos;
 	
+	@Reference
+	private List<Persona> lPersonas;
+	
+	@Reference	
+	private Usuario propietario;
 
 
 	public Imagen() {
@@ -24,7 +34,7 @@ public class Imagen {
 
 		this.fecha = null;
 		this.lPersonas = new ArrayList<Persona>();
-		this.lEventos = new ArrayList<Evento>();
+		this.lEventos = new ArrayList<String>();
 	}
 	
 	public Imagen(Date f) {		
@@ -32,10 +42,10 @@ public class Imagen {
 
 		this.fecha = f;
 		this.lPersonas = new ArrayList<Persona>();
-		this.lEventos = new ArrayList<Evento>();
+		this.lEventos = new ArrayList<String>();
 	}
 	
-	public Imagen(Date fecha, List<Persona> lPersonas, List<Evento> contexto, Integer propietario, String ubicacion) {
+	public Imagen(Date fecha, List<Persona> lPersonas, List<String> contexto, Usuario propietario, String ubicacion) {
 		this.id = new ObjectId();
 
 		this.fecha = fecha;
@@ -53,11 +63,11 @@ public class Imagen {
 		this.id = id;
 	}
 
-	public Integer getPropietario() {
+	public Usuario getPropietario() {
 		return propietario;
 	}
 
-	public void setPropietario(Integer propietario) {
+	public void setPropietario(Usuario propietario) {
 		this.propietario = propietario;
 	}
 
@@ -73,7 +83,7 @@ public class Imagen {
 		this.lPersonas = lPersonas;
 	}
 
-	public void setContexto(List<Evento> contexto) {
+	public void setContexto(List<String> contexto) {
 		this.lEventos = contexto;
 	}
 
@@ -95,12 +105,12 @@ public class Imagen {
 		}
 	}
 	
-	public void addEventoContextoImagen(Evento e) {
+	public void addEventoContextoImagen(String e) {
 		this.lEventos.add(e);
 	}
 	
-	public void addEventoContextoImagen(List<Evento> le) {
-		for(Evento e : le) {
+	public void addEventoContextoImagen(List<String> le) {
+		for(String e : le) {
 			this.lEventos.add(e);
 		}
 	}
@@ -109,7 +119,7 @@ public class Imagen {
 		return lPersonas;
 	}
 
-	public List<Evento> getContexto() {
+	public List<String> getContexto() {
 		return lEventos;
 	}
 	

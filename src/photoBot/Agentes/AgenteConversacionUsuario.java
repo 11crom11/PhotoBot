@@ -23,6 +23,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
 import photoBot.BBDD.PhotoBotBBDD;
+import photoBot.Imagen.Usuario;
 
 public class AgenteConversacionUsuario extends Agent {
 	
@@ -59,12 +60,16 @@ public class AgenteConversacionUsuario extends Agent {
 	public class PhotoBot extends TelegramLongPollingBot {
 
 		private Long chatID;
-		private Integer userID;
+		private Usuario user;
 		private Integer date;
 		private Update update;
 
-		public Integer getUserID(){
-			return userID;
+		public Usuario getUser(){
+			return user;
+		}
+		
+		public void setUser(Usuario user) {
+			this.user = user;
 		}
 		
 		@Override
@@ -73,15 +78,18 @@ public class AgenteConversacionUsuario extends Agent {
 			return nombreBot;
 		}
 
-			
 		@Override
 		public void onUpdateReceived(Update update) {
-			this.update = update;
 			
 			this.chatID = update.getMessage().getChatId();
-			this.userID = update.getMessage().getFrom().getId();
+			
+			//Consultamos si existe el usuario, 
+			this.user = new Usuario(update.getMessage().getFrom().getId());
+			
+			//this.userID = update.getMessage().getFrom().getId();
 			
 			this.date = update.getMessage().getDate();
+			this.update = update;
 			
 			
 		}
@@ -117,7 +125,7 @@ public class AgenteConversacionUsuario extends Agent {
 				
 				//bImg = ImageIO.read(fileJava);
 				
-				java.io.File dir = new java.io.File("./galeria/" + this.userID);
+				java.io.File dir = new java.io.File("./galeria/" + this.user.getIdUsuarioTelegram());
 				dir.mkdirs();
 				ImageIO.write(ImageIO.read(fileJava), "jpeg", new java.io.File(dir.getPath() + "/" + this.date + ".jpeg"));
 				

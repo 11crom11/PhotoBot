@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Triple;
+import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 
 import gate.util.GateException;
@@ -101,7 +102,15 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		if(photoBot.hayMensaje()) {
 			
 			//0- esta registrado en la base datos el usuario?
-			this.conversacion.setUsuarioRegistrado(bd.existeUsuario(photoBot.getUserID()));
+			List<Usuario> lUsu = bd.existeUsuario(photoBot.getUser());
+			
+			if(lUsu.isEmpty()){
+				this.conversacion.setUsuarioRegistrado(false);
+			}
+			else{
+				this.conversacion.setUsuarioRegistrado(true);
+				this.photoBot.setUser(lUsu.get(0));
+			}
 			
 			//1- Recibir mensaje
 			String mensaje = photoBot.getMensaje();
@@ -138,7 +147,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
 		msjContent.put("COMANDO", ConstantesComportamiento.SOLICITAR_IMG_AGENTE);
-		msjContent.put("ID", photoBot.getUserID().toString());
+		msjContent.put("ID", photoBot.getUser().getIdUsuarioTelegram().toString());
 		
 		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
 		self.getAgent().send(msj);
@@ -168,7 +177,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
 		List<File> lFotos = photoBot.obtenerImagenesMensaje();
-		String userID = photoBot.getUserID().toString();
+		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
 		msjContent.put("COMANDO", ConstantesComportamiento.ENVIAR_IMG_AGENTE);
 		msjContent.put("ID", userID);
@@ -195,7 +204,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 	public void bot_registrarUsuarioNuevo(Etiqueta nombre, Etiqueta edad){
-		boolean ok = this.bd.crearUsuario(new Usuario(photoBot.getUserID(), nombre.getNombre(), Integer.valueOf(edad.getNombre())));
+		
+		boolean ok = this.bd.crearUsuario(new Usuario(photoBot.getUser().getIdUsuarioTelegram(), nombre.getNombre(), Integer.valueOf(edad.getNombre())));
 		
 		if(ok){
 			photoBot.enviarMensajeTextoAlUsuario("Encantado " + nombre.getNombre() + "!");
@@ -260,7 +270,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		System.out.print(m);
 		
 		//obtener datos de la foto
-		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<Evento>(), this.photoBot.getUserID(), urlImagen);
+		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<String>(), this.photoBot.getUser(), urlImagen);
 
 		this.bd.registrarImagen(im);
 		this.conversacion.setEsperarDatosDelUsuario(true);
@@ -273,7 +283,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		String nombrePersona = etiqueta.getNombre();
 		
 		//TODO QUITAR LO DE -1 MAS ADELANTE
-		imagen.addPersonaImagen(new Persona(nombrePersona, -1));
+		//Persona p = new Persona(nombrePersona, -1, imagen.getPropietario());
+		Persona p = new Persona(nombrePersona, -1, this.photoBot.getUser());
+		this.bd.registrarPersonaUsuario(p);
+		
+		imagen.addPersonaImagen(p);
 		
 		//ACTUALICAR BBDD Y EL OBJETO CARASDETECTADAS
 		this.bd.actualizarInfoImagen(imagen);

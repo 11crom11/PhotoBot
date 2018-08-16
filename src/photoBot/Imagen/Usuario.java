@@ -1,13 +1,21 @@
 package photoBot.Imagen;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.*;
 
+//@Entity("usuarios")
 public class Usuario {
 	
+	@Id
     private ObjectId id;
-
+	
+	@Property
 	private Integer idUsuarioTelegram;
+	
+	@Property
 	private String nombre;
+	
+	@Property
 	private int edad;
 	
 	
@@ -15,6 +23,10 @@ public class Usuario {
 
 	}
 
+	public Usuario(Integer idUsuarioTelegram){
+		this.idUsuarioTelegram = idUsuarioTelegram;
+	}
+	
 	public Usuario(Integer idUsuarioTelegram, String nombre, int edad) {
 		this.idUsuarioTelegram = idUsuarioTelegram;
 		this.nombre = nombre;

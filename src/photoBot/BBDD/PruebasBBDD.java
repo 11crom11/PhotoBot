@@ -31,8 +31,8 @@ public class PruebasBBDD {
 		bd.crearUsuario(u);
 		
 				//collection.insertOne(p);
-		boolean existe = bd.existeUsuario(598313);
-		System.out.print(existe == true ? "existe" : "no existe");
+		//boolean existe = bd.existeUsuario(598313);
+		//System.out.print(existe == true ? "existe" : "no existe");
 		
 		/*
 		CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(com.mongodb.MongoClient.getDefaultCodecRegistry(), 

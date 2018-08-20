@@ -281,10 +281,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	public void bot_actualizarInfoImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
 		String nombrePersona = etiqueta.getNombre();
+		int etiquetaClasificador = this.bd.obtenerEtiquetaPersona(this.photoBot.getUser(), nombrePersona);
 		
 		//TODO QUITAR LO DE -1 MAS ADELANTE
 		//Persona p = new Persona(nombrePersona, -1, imagen.getPropietario());
-		Persona p = new Persona(nombrePersona, -1, this.photoBot.getUser());
+		Persona p = new Persona(nombrePersona, etiquetaClasificador, this.photoBot.getUser());
 		this.bd.registrarPersonaUsuario(p);
 		
 		imagen.addPersonaImagen(p);

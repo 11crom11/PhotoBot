@@ -11,6 +11,7 @@ import org.bson.conversions.Bson;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.QueryResults;
 
 import com.mongodb.DBCollection;
 import com.mongodb.client.FindIterable;
@@ -124,5 +125,45 @@ public class PhotoBotBBDD {
 		this.dataStore.save(p);
 		
 		return ok;
+	}
+	
+	public int obtenerEtiquetaPersona(Usuario u, String p) {
+		int etiqueta = 0;
+		
+		Query<Persona> q = this.dataStore.createQuery(Persona.class);
+		
+		Query<Usuario> user = this.dataStore.createQuery(Usuario.class);
+		
+		Usuario aux = user.field("idUsuarioTelegram").equal(u.getIdUsuarioTelegram())
+								.get();
+		
+		//Como una imagen tiene propiedades referenciadas, si quiero hacer una consulta por de un valor de un atributo de una propiedad
+		//lo tengo que hacer en varias consultas
+		List<Persona> persona = q.field("nombre").equal(p)
+								.field("user").equal(aux)
+								.asList();
+		
+		//Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
+		if (persona.size() != 0) {
+			etiqueta = persona.get(0).getEtiqueta();
+		}
+		//Si no tengo ninguna foto con esta persona, voy a ver cual es la primera etiqueta libre
+		else {
+			persona = q.field("user").equal(aux)
+					.order("-etiqueta")
+					.asList();
+			
+			//Si es la primera vez que subo una fotografia, la primera etiqueta que utilice para clasificar sera el 1
+			if(persona.size() == 0) {
+				etiqueta = 1;
+			}
+			//Si ya tengo a mas personas, cojo la etiqueta mas alta libre
+			else {
+				etiqueta = persona.get(0).getEtiqueta() + 1;
+			}
+		}
+		
+		
+		return etiqueta;
 	}
 }

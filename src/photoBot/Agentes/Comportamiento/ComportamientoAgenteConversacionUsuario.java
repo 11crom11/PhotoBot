@@ -278,7 +278,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		File f = new File(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg");
 		String m = f.delete() ? FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg HA SIDO ELIMINADO" : "La eliminación ha fallado";
-		System.out.print(m);
+		System.out.println(m);
 		
 		//obtener datos de la foto
 		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<String>(), this.photoBot.getUser(), urlImagen);
@@ -286,8 +286,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.bd.registrarImagen(im);
 		this.conversacion.setEsperarDatosDelUsuario(true);
 		this.conversacion.setImagenPeticionInfo(im);
-		
-	}
+}
 	
 	public void bot_actualizarInfoImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
@@ -311,13 +310,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.photoBot.setUser(this.photoBot.getUser());
 		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
 		
-		
+		this.procReglas.ejecutarReglas(this.conversacion, this);
 	}
 
-	public void bot_actualizarClasificador(CarasDetectadas carasDetectadas){
+	public void bot_actualizarClasificador(Conversacion conversacion){
 		System.out.println("Estoy actualizando el clasificador");
 		
-		this.gestorCaras.actualizarClasificadorPersonalizado(this.photoBot.getUser().getIdUsuarioTelegram().toString(), carasDetectadas);
+		this.gestorCaras.actualizarClasificadorPersonalizado(this.photoBot.getUser().getIdUsuarioTelegram().toString(), conversacion.getCarasDetectadas());
 	}
 	
 	/**

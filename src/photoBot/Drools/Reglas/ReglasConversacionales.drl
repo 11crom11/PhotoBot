@@ -113,7 +113,7 @@ rule "Recoger datos imagen"
 end
 
 rule "Actualizar clasificador"
-	salience 70
+	salience 80   
 	when
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
@@ -122,6 +122,5 @@ rule "Actualizar clasificador"
         faltancaras : Boolean ( faltancaras == false ) from carasdetectadas.carasReconocidas();
         
 	then
-		comportamiento.bot_actualizarClasificador(carasdetectadas);
-
+		comportamiento.bot_actualizarClasificador(conversacion);
 end

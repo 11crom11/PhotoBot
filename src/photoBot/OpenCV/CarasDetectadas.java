@@ -15,12 +15,18 @@ import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-public class CarasDetectadas {
+import jade.util.leap.Serializable;
+
+public class CarasDetectadas implements Serializable {
 
 	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;
 	
-	private MatOfRect carasDetectadas;
+	private transient MatOfRect carasDetectadas;
 	private String urlImagen;
+	
+	public CarasDetectadas(){
+		
+	}
 	
 	/**
 	 * Este constructor se encarga de crear un objeto CarasDetectadas. El objetivo de este objeto
@@ -112,8 +118,9 @@ public class CarasDetectadas {
 	}
 
 	public boolean carasReconocidas(){
-
-		return this.lCarasEtiquetadas.containsValue(Pair.of(-1, 0.0));
+		boolean ok = this.lCarasEtiquetadas.containsValue(Pair.of(-1, 0.0));
+		
+		return ok;
 	}
 	
 	public HashMap<String, Pair<Integer, Double>> getlCarasEtiquetadas() {

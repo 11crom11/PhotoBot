@@ -100,45 +100,22 @@ public class PhotoBotBBDD {
 		int etiqueta = 0;
 		
 		Query<Persona> q = this.dataStore.createQuery(Persona.class);
-		Query<Usuario> user = this.dataStore.createQuery(Usuario.class);
-		
-		//Como una imagen tiene propiedades referenciadas, si quiero hacer una consulta por de un valor de un atributo de una propiedad referenciada
-		//lo tengo que hacer en varias consultas
-		
-		
-		//1º Por seguridad, recojo lo ultimo del objeto referenciado de la BBDD
-		Usuario aux = user.field("idUsuarioTelegram").equal(u.getIdUsuarioTelegram())
-								.get();
-		//2º Miro a ver si el usuario ya tiene a esa persona en alguna foto
 		q.and(
-				  q.criteria("user").equal(aux),
+				  q.criteria("user").equal(u),
 				  q.criteria("nombre").equal(p));
 		
-		List<Persona> persona = q.asList();
+		//1º Miro a ver si existe una persona dentro de la lista de personas del usuario en la BBDD
+		Persona persona = q.get();
 		
-		//3ºA Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
-		if (persona.size() != 0) {
-			etiqueta = persona.get(0).getEtiqueta();
-			ret = persona.get(0);
+		//2ºA Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
+		if (persona != null) {
+			etiqueta = persona.getEtiqueta();
+			ret = persona;
 		}
-		//3ºB Si no tengo ninguna foto con esta persona, voy a ver cual es la primera etiqueta libre
+		//2ºB Si no tengo ninguna foto con esta persona, cojo la siguiente etiqueta libre (si es la primer persona 0 -> 1, eoc, n -> n+1)
 		else {
 			
-			//4ºB Miro a ver si tiene alguna persona ya registrada
-			q = this.dataStore.createQuery(Persona.class); //reiniciar la query
-			
-			persona = q.field("user").equal(aux)
-					.order("-etiqueta")
-					.asList();
-			
-			//5ºB.A No tengo a personas. Es la primera vez que subo una fotografia, la primera etiqueta que utilice para clasificar sera el 1
-			if(persona.size() == 0) {
-				etiqueta = 1;
-			}
-			//5ºB.B Si ya tengo a mas personas, cojo la etiqueta mas alta libre
-			else {
-				etiqueta = aux.getEtiquetaMaxUsada() + 1;
-			}
+			etiqueta = u.getEtiquetaMaxUsada() + 1; 
 			
 			ret = new Persona(p, etiqueta, u);
 		}

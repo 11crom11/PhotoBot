@@ -3,7 +3,7 @@ package photoBot.Imagen;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
-//@Entity("usuarios")
+//@Entity("Usuario")
 public class Usuario {
 	
 	@Id
@@ -18,6 +18,9 @@ public class Usuario {
 	@Property
 	private int edad;
 	
+	@Property
+	private int etiquetaMaxUsada;
+	
 	
 	public Usuario() {
 
@@ -27,11 +30,12 @@ public class Usuario {
 		this.idUsuarioTelegram = idUsuarioTelegram;
 	}
 	
-	public Usuario(Integer idUsuarioTelegram, String nombre, int edad) {
+	public Usuario(Integer idUsuarioTelegram, String nombre, int edad, int etiqueta) {
 		this.idUsuarioTelegram = idUsuarioTelegram;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.id = new ObjectId();
+		this.etiquetaMaxUsada = etiqueta;
 		
 	}
 	
@@ -66,4 +70,14 @@ public class Usuario {
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
+
+	public int getEtiquetaMaxUsada() {
+		return etiquetaMaxUsada;
+	}
+
+	public void setEtiquetaMaxUsada(int etiquetaMaxUsada) {
+		this.etiquetaMaxUsada = etiquetaMaxUsada;
+	}
+	
+	
 }

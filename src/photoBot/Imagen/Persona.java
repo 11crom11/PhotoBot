@@ -1,17 +1,17 @@
 package photoBot.Imagen;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
-//@Entity("persona")
+import com.mongodb.DBRef;
+
+//@Entity("Persona")
 public class Persona {
 	
 	@Id
     private ObjectId id;
     
-	@Reference
+	@Reference(idOnly = true)
 	private Usuario user;
 	
 	@Property
@@ -20,9 +20,20 @@ public class Persona {
 	@Property
 	private int etiqueta;
 	
+	public Persona() {
+		
+	}
 	
 	public Persona(String nombre, int etiqueta, Usuario user) {
 		this.id = new ObjectId();
+
+		this.nombre = nombre;
+		this.etiqueta = etiqueta;
+		this.user = user;
+	}
+	
+	public Persona(String nombre, int etiqueta, Usuario user, ObjectId id) {
+		this.id = id;
 
 		this.nombre = nombre;
 		this.etiqueta = etiqueta;

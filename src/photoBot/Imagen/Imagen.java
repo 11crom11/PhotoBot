@@ -7,7 +7,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
-//@Entity ("imagen")
+//@Entity ("Imagen")
 public class Imagen {
 	
 	@Id
@@ -22,12 +22,11 @@ public class Imagen {
 	@Property	
 	private List<String> lEventos;
 	
-	@Reference
+	@Reference(idOnly = true)
 	private List<Persona> lPersonas;
 	
-	@Reference	
+	@Reference(idOnly = true)
 	private Usuario propietario;
-
 
 	public Imagen() {
 		this.id = new ObjectId();

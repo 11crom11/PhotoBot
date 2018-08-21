@@ -21,7 +21,6 @@ import photoBot.Drools.ProcesadorDeReglas;
 import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorLenguaje;
-import photoBot.Imagen.Evento;
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
@@ -102,14 +101,14 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		if(photoBot.hayMensaje()) {
 			
 			//0- esta registrado en la base datos el usuario?
-			List<Usuario> lUsu = bd.existeUsuario(photoBot.getUser());
+			Usuario usu = bd.existeUsuario(photoBot.getUser());
 			
-			if(lUsu.isEmpty()){
+			if(usu == null){
 				this.conversacion.setUsuarioRegistrado(false);
 			}
 			else{
 				this.conversacion.setUsuarioRegistrado(true);
-				this.photoBot.setUser(lUsu.get(0));
+				this.photoBot.setUser(usu);
 			}
 			
 			//1- Recibir mensaje
@@ -198,6 +197,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	
 	public void bot_pedirDatosUsuarioNuevo(){
 		this.conversacion.setEsperarDatosDelUsuario(true);
+		this.conversacion.saludoRecibido();
 		
 		photoBot.enviarMensajeTextoAlUsuario("Hola! Encantado de conocerte! Me llamo PhotoBot!");
 		photoBot.enviarMensajeTextoAlUsuario("Parece que es la primera vez que nos vemos, por favor, ¿podrías decirme tu nombre y tu edad?");
@@ -205,7 +205,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	
 	public void bot_registrarUsuarioNuevo(Etiqueta nombre, Etiqueta edad){
 		
-		boolean ok = this.bd.crearUsuario(new Usuario(photoBot.getUser().getIdUsuarioTelegram(), nombre.getNombre(), Integer.valueOf(edad.getNombre())));
+		Usuario usuario = new Usuario(photoBot.getUser().getIdUsuarioTelegram(), nombre.getNombre(), Integer.valueOf(edad.getNombre()), 0);
+		
+		boolean ok = this.bd.crearUsuario(usuario);
+		
+		this.photoBot.setUser(usuario);
 		
 		if(ok){
 			photoBot.enviarMensajeTextoAlUsuario("Encantado " + nombre.getNombre() + "!");
@@ -281,17 +285,24 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	public void bot_actualizarInfoImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
 		String nombrePersona = etiqueta.getNombre();
-		int etiquetaClasificador = this.bd.obtenerEtiquetaPersona(this.photoBot.getUser(), nombrePersona);
+		Persona p = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), nombrePersona);
+		int etiquetaClasificador = p.getEtiqueta();
 		
-		//TODO QUITAR LO DE -1 MAS ADELANTE
-		//Persona p = new Persona(nombrePersona, -1, imagen.getPropietario());
-		Persona p = new Persona(nombrePersona, etiquetaClasificador, this.photoBot.getUser());
-		this.bd.registrarPersonaUsuario(p);
+		
+		if(etiquetaClasificador == this.photoBot.getUser().getEtiquetaMaxUsada() + 1) {
+			p = new Persona(nombrePersona, etiquetaClasificador, this.photoBot.getUser());
+			this.bd.registrarPersonaUsuario(p);
+		}
 		
 		imagen.addPersonaImagen(p);
 		
 		//ACTUALICAR BBDD Y EL OBJETO CARASDETECTADAS
 		this.bd.actualizarInfoImagen(imagen);
+		
+		//ACTUALIZAR EL ATRIBUTO ETIQUETAMAXUTILIZADA DEL USUARIO
+		this.photoBot.getUser().setEtiquetaMaxUsada(etiquetaClasificador);
+		this.photoBot.setUser(this.photoBot.getUser());
+		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
 	}
 
 	/**

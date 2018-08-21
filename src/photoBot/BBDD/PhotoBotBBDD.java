@@ -3,28 +3,14 @@ package photoBot.BBDD;
 
 import java.util.List;
 
-import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistries;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
-import org.bson.conversions.Bson;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.QueryResults;
+import org.mongodb.morphia.query.UpdateOperations;
 
-import com.mongodb.DBCollection;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.DBRef;
 
-import jade.util.leap.Collection;
-import photoBot.Imagen.Evento;
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
@@ -34,12 +20,6 @@ public class PhotoBotBBDD {
 	
 	private final Morphia morphia;
 	private final Datastore dataStore;
-	/*
-	private MongoCollection<Usuario> cUsuarios;
-	private MongoCollection<Persona> cPersonas;
-	private MongoCollection<Imagen> cImagenes;
-	private DBCollection cImagenesDos;
-*/
 	
 	public PhotoBotBBDD(){
 		
@@ -48,30 +28,15 @@ public class PhotoBotBBDD {
 		this.morphia.mapPackage("photoBot.Imagen");
 		
 		this.dataStore = morphia.createDatastore(new com.mongodb.MongoClient(), "photobot");
-		/*
-		CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(com.mongodb.MongoClient.getDefaultCodecRegistry(), 
-				CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-		MongoDatabase database = mongoClient.getDatabase("photobot").withCodecRegistry(pojoCodecRegistry);
 		
-		this.cUsuarios = database.getCollection("usuarios", Usuario.class);
-		this.cPersonas = database.getCollection("personas_usuarios", Persona.class);
-		this.cImagenes = database.getCollection("imagenes", Imagen.class);
-		*/
-		//this.cImagenesDos = database.getCollection("imagenes", Imagen.class);
 	}
 	
-	public List<Usuario> existeUsuario(Usuario usuario){
+	public Usuario existeUsuario(Usuario usuario){
 		
-		/**
-		FindIterable<Usuario> cursor  = this.cUsuarios.find(Filters.and(Filters.exists("idUsuarioTelegram"), Filters.eq("idUsuarioTelegram", idUsuarioTelegram)));
-		
-		
-		return cursor.first() != null ? true : false;
-		*/
 		Query<Usuario> q = this.dataStore.createQuery(Usuario.class);
 		
-		
-		return q.field("idUsuarioTelegram").equal(usuario.getIdUsuarioTelegram()).asList();
+		//return q.field("idUsuarioTelegram").equal(usuario.getIdUsuarioTelegram()).asList();
+		return q.field("idUsuarioTelegram").equal(usuario.getIdUsuarioTelegram()).get();
 	}
 	
 	
@@ -80,7 +45,8 @@ public class PhotoBotBBDD {
 	public boolean crearUsuario(Usuario usuario){
 		boolean ok = false;
 		
-		boolean existeUsuario = this.existeUsuario(usuario).isEmpty() ? false : true;
+		//boolean existeUsuario = this.existeUsuario(usuario).isEmpty() ? false : true;
+		boolean existeUsuario = this.existeUsuario(usuario) == null ? false : true;
 		System.out.println("Estoy registrando al usuario");
 		
 		if(!existeUsuario){
@@ -98,19 +64,13 @@ public class PhotoBotBBDD {
 		
 		this.dataStore.save(imagen);
 		
-		//this.cImagenes.insertOne(imagen);
-		
 		return ok;
 	}
 	
 	public boolean actualizarInfoImagen(Imagen imagen){
 		boolean ok = true;
 		System.out.println("Actualizando informacion de la imagen");
-		
-		//imagen.addEventoContextoImagen(new Evento("Mierda"));
-		//imagen.addPersonaImagen(imagen.getlPersonas().get(0));
-		
-		//this.cImagenes.replaceOne(Filters.eq("_id", imagen.getId()), imagen);
+
 		this.dataStore.save(imagen);
 		
 		
@@ -127,43 +87,67 @@ public class PhotoBotBBDD {
 		return ok;
 	}
 	
-	public int obtenerEtiquetaPersona(Usuario u, String p) {
+	/**
+	 * Este metodo devuelve un Objeto Persona de la base de datos con su respectiva etiqueta.
+	 * Si la persona no existe en la base de datos, se crea un objeto persona con un numero un
+	 * etiqueta correspondiente (el siguiente valor libre del usuario)
+	 * @param u Usuario registrado
+	 * @param p Nombre de la persona a buscar
+	 * @return Objeto Persona con el valor etiqueta correspondiente
+	 */
+	public Persona obtenerPersonaEtiqueta(Usuario u, String p) {
+		Persona ret = null;
 		int etiqueta = 0;
 		
 		Query<Persona> q = this.dataStore.createQuery(Persona.class);
-		
 		Query<Usuario> user = this.dataStore.createQuery(Usuario.class);
 		
+		//Como una imagen tiene propiedades referenciadas, si quiero hacer una consulta por de un valor de un atributo de una propiedad referenciada
+		//lo tengo que hacer en varias consultas
+		
+		
+		//1º Por seguridad, recojo lo ultimo del objeto referenciado de la BBDD
 		Usuario aux = user.field("idUsuarioTelegram").equal(u.getIdUsuarioTelegram())
 								.get();
+		//2º Miro a ver si el usuario ya tiene a esa persona en alguna foto
+		q.and(
+				  q.criteria("user").equal(aux),
+				  q.criteria("nombre").equal(p));
 		
-		//Como una imagen tiene propiedades referenciadas, si quiero hacer una consulta por de un valor de un atributo de una propiedad
-		//lo tengo que hacer en varias consultas
-		List<Persona> persona = q.field("nombre").equal(p)
-								.field("user").equal(aux)
-								.asList();
+		List<Persona> persona = q.asList();
 		
-		//Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
+		//3ºA Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
 		if (persona.size() != 0) {
 			etiqueta = persona.get(0).getEtiqueta();
+			ret = persona.get(0);
 		}
-		//Si no tengo ninguna foto con esta persona, voy a ver cual es la primera etiqueta libre
+		//3ºB Si no tengo ninguna foto con esta persona, voy a ver cual es la primera etiqueta libre
 		else {
+			
+			//4ºB Miro a ver si tiene alguna persona ya registrada
+			q = this.dataStore.createQuery(Persona.class); //reiniciar la query
+			
 			persona = q.field("user").equal(aux)
 					.order("-etiqueta")
 					.asList();
 			
-			//Si es la primera vez que subo una fotografia, la primera etiqueta que utilice para clasificar sera el 1
+			//5ºB.A No tengo a personas. Es la primera vez que subo una fotografia, la primera etiqueta que utilice para clasificar sera el 1
 			if(persona.size() == 0) {
 				etiqueta = 1;
 			}
-			//Si ya tengo a mas personas, cojo la etiqueta mas alta libre
+			//5ºB.B Si ya tengo a mas personas, cojo la etiqueta mas alta libre
 			else {
-				etiqueta = persona.get(0).getEtiqueta() + 1;
+				etiqueta = aux.getEtiquetaMaxUsada() + 1;
 			}
+			
+			ret = new Persona(p, etiqueta, u);
 		}
 		
 		
-		return etiqueta;
+		return ret;
+	}
+	
+	public void actualizarInfoUsuario(Usuario u) {
+		this.dataStore.save(u);
 	}
 }

@@ -27,8 +27,8 @@ public class PruebasBBDD {
 		
 		PhotoBotBBDD bd = new PhotoBotBBDD();
 		
-		Usuario u = new Usuario(598312, "Daniel", 23);
-		bd.crearUsuario(u);
+		//Usuario u = new Usuario(598312, "Daniel", 23);
+		//bd.crearUsuario(u);
 		
 				//collection.insertOne(p);
 		//boolean existe = bd.existeUsuario(598313);

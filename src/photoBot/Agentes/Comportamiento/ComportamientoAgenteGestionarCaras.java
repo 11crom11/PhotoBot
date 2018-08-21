@@ -78,14 +78,13 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		msjContent.put("URL_IMAGEN", urlImagen);
 		msjContent.put("FECHA_SUBIDA", fechaSubida);
 		msjContent.put("RESULTADO_RECONOCIMIENTO", tripletaColorEtiquetaProbabilidad);
-
+		msjContent.put("OBJETO_CARAS_DETECTADAS", carasDetectadas);
 		
 		try {
 			msj.setContentObject(msjContent);
 			getAgent().send(msj);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

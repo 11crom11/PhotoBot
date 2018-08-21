@@ -39,6 +39,8 @@ public class GestorDeCaras {
 		
 		FaceRecognizer lbphRecognizer = LBPHFaceRecognizer.create();
 		
+		lbphRecognizer.read("MiModelooo4.xml");
+		
 		List<Mat> lMat = new java.util.ArrayList<Mat>();
 		Mat labels = new Mat(carasDetectadas.toArray().length, 1, CvType.CV_32SC1);
 
@@ -49,7 +51,7 @@ public class GestorDeCaras {
 			//i++;
 		}
 		
-		labels.put(0, 0, 1); //Monica rojo
+		/*labels.put(0, 0, 1); //Monica rojo
 		labels.put(1, 0, 1); //Monica naranja
 		labels.put(2, 0, 1); //Monica amarillo
 		labels.put(3, 0, 1); //Monica verde
@@ -59,15 +61,19 @@ public class GestorDeCaras {
 		labels.put(7, 0, 1); //Monica magenta
 		labels.put(8, 0, 2); //Matias rosa
 		labels.put(9, 0, 2); //Matias marron
-		labels.put(10, 0, 2); //Matias negro
+		labels.put(10, 0, 2); //Matias negro*/
+		
+		labels.put(0, 0, 3); //Matias negro
 			
-		lbphRecognizer.train(lMat, labels);
-		lbphRecognizer.save("MiModelo.xml");
+		//lbphRecognizer.train(lMat, labels);
+		//lbphRecognizer.update(lMat, labels);
+		
+		//lbphRecognizer.save("MiModelooo4.xml");
 		
 		int[] personasPredichas = {-1};
 		double[] confidence = {0.0};
 		
-		Mat cosa = Imgcodecs.imread("./galeria/test_monica.jpeg");
+		Mat cosa = Imgcodecs.imread("./galeria/test_vicente.jpeg");
 		Imgproc.cvtColor(cosa, cosa, Imgproc.COLOR_BGR2GRAY);
 		
 		MatOfRect lili = new MatOfRect();
@@ -76,11 +82,13 @@ public class GestorDeCaras {
 				
 		
 		lbphRecognizer.predict(new Mat(cosa, lili.toArray()[0]), personasPredichas, confidence);
-		//System.out.println("Predicho: " + lbphRecognizer.predict_label(new Mat(cosa, lili.toArray()[0])));
+		System.out.println("Predicho: " + lbphRecognizer.predict_label(new Mat(cosa, lili.toArray()[0])));
 		
 		int k = 0;
 		k = 5;
 		k = k+ 2;
+		
+		
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////
@@ -116,20 +124,18 @@ public class GestorDeCaras {
 
 	}
 	
-	private void actualizarClasificadorPersonalizado(int idClasificador, CarasDetectadas carasDetectadas) {
+	public void actualizarClasificadorPersonalizado(String idUsuario, CarasDetectadas carasDetectadas) {
 		
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
-		lbphClasificador.read("./clasificadores/" + idClasificador + ".xml");
+		lbphClasificador.read("./clasificadores/" + idUsuario + ".xml");
 		
 		lbphClasificador.update(carasDetectadas.getListOfMat(), carasDetectadas.getListOfLabels());
 		
-		lbphClasificador.save("./clasificadores/" + idClasificador + ".xml");
+		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
 	}
 	
-	private void crearClasificadorPersonalizado(int idUsuario, CarasDetectadas carasDetectadas) {
+	private void crearClasificadorPersonalizado(String idUsuario) {
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
-		
-		lbphClasificador.train(carasDetectadas.getListOfMat(), carasDetectadas.getListOfLabels());
 		
 		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
 	}
@@ -163,6 +169,8 @@ public class GestorDeCaras {
 		}
 		//3. Si el clasificador no existe, no puede detectar personas, así que ponemos todo -1 y probabilidad 0
 		else{
+			crearClasificadorPersonalizado(idUsuario);
+			
 			for(int i = 0; i < carasDetectadas.toArray().length; i++) {
 				int[] personasPredichas = {-1};
 				double[] confidence = {0.0};

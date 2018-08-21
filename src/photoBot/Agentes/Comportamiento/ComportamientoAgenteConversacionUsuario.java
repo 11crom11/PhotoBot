@@ -225,7 +225,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		long fechaSubida = (long) contenido.get("FECHA_SUBIDA");
 		String mensajeUsuario = "";
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
-
+		CarasDetectadas carasDetectadas = (CarasDetectadas) contenido.get("OBJETO_CARAS_DETECTADAS");
+		this.conversacion.setCarasDetectadas(carasDetectadas);
+		
 		//Enviamos la foto recuadrada al usuario
 		List<String> list = new ArrayList<String>();
 		list.add(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg");
@@ -236,6 +238,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		Integer persona;
 		Double probabilidad;
 		String mensajeTexto;
+		String nombre;
 		
 		List<String> grupoDesconocido = new ArrayList<>();
 		List<String> grupoMedioConocido = new ArrayList<>();
@@ -245,13 +248,17 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			
 			color = triple.getLeft();
 			persona = triple.getMiddle();
+			
+			nombre = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), persona.toString()).getNombre();
+			
 			probabilidad = triple.getRight();
 			
 			if (probabilidad <= 50.0){
 				grupoDesconocido.add(triple.getLeft());
+				this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, -1, 0.0);
 			}
 			else if (probabilidad > 50.00){
-				grupoConocido.add(triple.getMiddle() + " con el color " + triple.getLeft());
+				grupoConocido.add(nombre + " con el color " + triple.getLeft());
 			}
 			
 		}
@@ -290,21 +297,29 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		
 		if(etiquetaClasificador == this.photoBot.getUser().getEtiquetaMaxUsada() + 1) {
-			p = new Persona(nombrePersona, etiquetaClasificador, this.photoBot.getUser());
 			this.bd.registrarPersonaUsuario(p);
+			this.photoBot.getUser().setEtiquetaMaxUsada(etiquetaClasificador);
 		}
 		
 		imagen.addPersonaImagen(p);
 		
-		//ACTUALICAR BBDD Y EL OBJETO CARASDETECTADAS
+		//ACTUALIZAR BBDD Y EL OBJETO CARASDETECTADAS
+		this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, etiquetaClasificador, 100.0);
 		this.bd.actualizarInfoImagen(imagen);
 		
 		//ACTUALIZAR EL ATRIBUTO ETIQUETAMAXUTILIZADA DEL USUARIO
-		this.photoBot.getUser().setEtiquetaMaxUsada(etiquetaClasificador);
 		this.photoBot.setUser(this.photoBot.getUser());
 		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
+		
+		
 	}
 
+	public void bot_actualizarClasificador(CarasDetectadas carasDetectadas){
+		System.out.println("Estoy actualizando el clasificador");
+		
+		this.gestorCaras.actualizarClasificadorPersonalizado(this.photoBot.getUser().getIdUsuarioTelegram().toString(), carasDetectadas);
+	}
+	
 	/**
 	 * Esta funcion devuelve un saludo dependiendo de la hora recibida como parametro
 	 * @param hora El numero de la hora (0-23)

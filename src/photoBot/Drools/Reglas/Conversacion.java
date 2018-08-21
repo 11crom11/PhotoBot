@@ -6,6 +6,7 @@ import java.util.List;
 
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
+import photoBot.OpenCV.CarasDetectadas;
 
 public class Conversacion {
 	
@@ -21,7 +22,9 @@ public class Conversacion {
 	
 	private Imagen imagenPeticionInfo;
 	
-
+	private CarasDetectadas carasDetectadas;
+	
+	
 	public Conversacion() {
 		this.saludo = false;
 		this.subirFoto = false;
@@ -36,6 +39,7 @@ public class Conversacion {
 		
 		this.fechaFoto = null;
 		this.imagenPeticionInfo = null;
+		this.carasDetectadas = null;
 	}
 	
 	public void setImagenPeticionInfo(Imagen imagenPeticionInfo){
@@ -137,4 +141,14 @@ public class Conversacion {
 	public void setUsuarioRegistrado(boolean usuarioRegistrado) {
 		this.usuarioRegistrado = usuarioRegistrado;
 	}
+
+	public CarasDetectadas getCarasDetectadas() {
+		return carasDetectadas;
+	}
+
+	public void setCarasDetectadas(CarasDetectadas carasDetectadas) {
+		this.carasDetectadas = carasDetectadas;
+	}
+	
+	
 }

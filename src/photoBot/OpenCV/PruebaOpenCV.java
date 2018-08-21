@@ -13,7 +13,7 @@ public class PruebaOpenCV {
 	private static void detectarCaras() {
 		
 		//String url = "./galeria/573730609/1529661117.jpeg";
-		String url = "./galeria/caras.jpeg";
+		String url = "./galeria/test_vicente.jpeg";
 		
 		GestorDeCaras gestorCaras = new GestorDeCaras();
 		

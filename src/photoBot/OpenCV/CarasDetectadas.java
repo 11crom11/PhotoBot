@@ -1,6 +1,7 @@
 package photoBot.OpenCV;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -52,9 +53,9 @@ public class CarasDetectadas {
 	 * @param color Color con la que una cara ha sido detectada por el detector de caras.
 	 * @param persona Nuevo valor de etiqueta que se quiere establecer a una persona.
 	 */
-	public void actualizarPersonaHashMap(String color, int persona) {
+	public void actualizarPersonaHashMap(String color, int persona, double prob) {
 
-		Pair<Integer, Double> p = Pair.of(persona, 100.0);
+		Pair<Integer, Double> p = Pair.of(persona, prob);
 		this.lCarasEtiquetadas.put(color, p);
 	}
 	
@@ -109,4 +110,19 @@ public class CarasDetectadas {
 		
 		return ret;
 	}
+
+	public boolean carasReconocidas(){
+
+		return this.lCarasEtiquetadas.containsValue(Pair.of(-1, 0.0));
+	}
+	
+	public HashMap<String, Pair<Integer, Double>> getlCarasEtiquetadas() {
+		return lCarasEtiquetadas;
+	}
+
+	public void setlCarasEtiquetadas(HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas) {
+		this.lCarasEtiquetadas = lCarasEtiquetadas;
+	}
+	
+	
 }

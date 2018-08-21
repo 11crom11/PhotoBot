@@ -1,11 +1,12 @@
 package photoBot.Drools.Reglas
- 
+
+import photoBot.OpenCV.*;
 import photoBot.Drools.*;
 import photoBot.Gate.*;
 import photoBot.Agentes.Comportamiento.*;
 import photoBot.Imagen.*;
 
- 
+
 rule "Encontrar saludo"
 	activation-group "grupo_saludo"
 	salience 20
@@ -107,6 +108,20 @@ rule "Recoger datos imagen"
  		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
 	then
-		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta); 
+		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta);
+
+end
+
+rule "Actualizar clasificador"
+	salience 70
+	when
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+       
+        carasdetectadas :  CarasDetectadas ( carasdetectadas != null ) from conversacion.getCarasDetectadas();
+        faltancaras : Boolean ( faltancaras == false ) from carasdetectadas.carasReconocidas();
+        
+	then
+		comportamiento.bot_actualizarClasificador(carasdetectadas);
 
 end

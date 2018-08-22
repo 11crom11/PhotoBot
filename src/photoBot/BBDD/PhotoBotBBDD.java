@@ -107,12 +107,12 @@ public class PhotoBotBBDD {
 		//1º Miro a ver si existe una persona dentro de la lista de personas del usuario en la BBDD
 		Persona persona = q.get();
 		
-		//2ºA Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
+		//2A Si ya tengo alguna foto en la que salga esta persona: cojo su etiqueta
 		if (persona != null) {
 			etiqueta = persona.getEtiqueta();
 			ret = persona;
 		}
-		//2ºB Si no tengo ninguna foto con esta persona, cojo la siguiente etiqueta libre (si es la primer persona 0 -> 1, eoc, n -> n+1)
+		//2B Si no tengo ninguna foto con esta persona, cojo la siguiente etiqueta libre (si es la primer persona 0 -> 1, eoc, n -> n+1)
 		else {
 			
 			etiqueta = u.getEtiquetaMaxUsada() + 1; 

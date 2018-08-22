@@ -132,6 +132,7 @@ public class GestorDeCaras {
 		lbphClasificador.update(carasDetectadas.getListOfMat(), carasDetectadas.getListOfLabels());
 		
 		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
+		
 	}
 	
 	private void crearClasificadorPersonalizado(String idUsuario) {

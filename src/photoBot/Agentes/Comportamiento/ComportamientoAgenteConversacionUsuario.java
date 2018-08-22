@@ -13,6 +13,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
+import org.opencv.core.MatOfRect;
 
 import gate.util.GateException;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
@@ -26,6 +27,7 @@ import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
 import photoBot.OpenCV.CarasDetectadas;
 import photoBot.OpenCV.GestorDeCaras;
+import photoBot.Utilidades.SerializadorObjeto;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -226,6 +228,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		String mensajeUsuario = "";
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
 		CarasDetectadas carasDetectadas = (CarasDetectadas) contenido.get("OBJETO_CARAS_DETECTADAS");
+		//long k = (long) contenido.get("OBJETO_CARAS_DETECTADAS");
+		//MatOfRect mor = MatOfRect.fromNativeAddr(k);
+		//CarasDetectadas carasDetectadas = (CarasDetectadas) SerializadorObjeto.deserialize(k);
+		
+		carasDetectadas.actualizaMatOfRect();
+		
+		//volver a DESCOMENTARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 		this.conversacion.setCarasDetectadas(carasDetectadas);
 		
 		//Enviamos la foto recuadrada al usuario
@@ -310,13 +319,14 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.photoBot.setUser(this.photoBot.getUser());
 		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
 		
-		this.procReglas.ejecutarReglas(this.conversacion, this);
+		this.procReglas.ejecutarReglas(this.conversacion, this.self);
 	}
 
-	public void bot_actualizarClasificador(Conversacion conversacion){
+	public void bot_actualizarClasificador(){
 		System.out.println("Estoy actualizando el clasificador");
 		
-		this.gestorCaras.actualizarClasificadorPersonalizado(this.photoBot.getUser().getIdUsuarioTelegram().toString(), conversacion.getCarasDetectadas());
+		this.gestorCaras.actualizarClasificadorPersonalizado(this.photoBot.getUser().getIdUsuarioTelegram().toString(), this.conversacion.getCarasDetectadas());
+		//this.conversacion.setCarasDetectadas(null);
 	}
 	
 	/**

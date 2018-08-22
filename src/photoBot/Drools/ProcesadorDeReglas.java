@@ -60,7 +60,8 @@ public class ProcesadorDeReglas {
 	}
 	
 	public Conversacion ejecutarReglas(Conversacion conversacion, Behaviour comportamientoAgente){
-		
+		this.ksession = this.kbase.newStatefulKnowledgeSession();
+
 		ksession.insert(conversacion);
 		ksession.insert(comportamientoAgente);
 		

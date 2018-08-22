@@ -17,6 +17,7 @@ import jade.lang.acl.UnreadableException;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
 import photoBot.OpenCV.CarasDetectadas;
 import photoBot.OpenCV.GestorDeCaras;
+import photoBot.Utilidades.SerializadorObjeto;
 
 public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 
@@ -78,6 +79,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		msjContent.put("URL_IMAGEN", urlImagen);
 		msjContent.put("FECHA_SUBIDA", fechaSubida);
 		msjContent.put("RESULTADO_RECONOCIMIENTO", tripletaColorEtiquetaProbabilidad);
+		//byte[]  k = SerializadorObjeto.serialize(carasDetectadas);
 		msjContent.put("OBJETO_CARAS_DETECTADAS", carasDetectadas);
 		
 		try {

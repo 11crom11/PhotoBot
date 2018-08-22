@@ -19,9 +19,14 @@ import jade.util.leap.Serializable;
 
 public class CarasDetectadas implements Serializable {
 
+	private static final long serialVersionUID = 9186857759954162799L;
+
 	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;
 	
 	private transient MatOfRect carasDetectadas;
+	private long natObjAddCarasDetectadas;
+	
+	
 	private String urlImagen;
 	
 	public CarasDetectadas(){
@@ -39,9 +44,10 @@ public class CarasDetectadas implements Serializable {
 	 */
 	public CarasDetectadas(MatOfRect caras, List<Pair<Integer, Double>> personas, String url) {
 		this.carasDetectadas = caras;
+		this.natObjAddCarasDetectadas = this.carasDetectadas.getNativeObjAddr();
+		
 		this.urlImagen = url;
 		this.lCarasEtiquetadas = new HashMap<String, Pair<Integer, Double>>();
-		
 		
 		this.rellenarHashMapPersonas(personas);
 	}
@@ -123,6 +129,10 @@ public class CarasDetectadas implements Serializable {
 		return ok;
 	}
 	
+	public void actualizaMatOfRect(){
+		this.carasDetectadas = MatOfRect.fromNativeAddr(this.natObjAddCarasDetectadas);
+	}
+	
 	public HashMap<String, Pair<Integer, Double>> getlCarasEtiquetadas() {
 		return lCarasEtiquetadas;
 	}
@@ -130,6 +140,13 @@ public class CarasDetectadas implements Serializable {
 	public void setlCarasEtiquetadas(HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas) {
 		this.lCarasEtiquetadas = lCarasEtiquetadas;
 	}
-	
+
+	public MatOfRect getCarasDetectadas() {
+		return carasDetectadas;
+	}
+
+	public void setCarasDetectadas(MatOfRect carasDetectadas) {
+		this.carasDetectadas = carasDetectadas;
+	}
 	
 }

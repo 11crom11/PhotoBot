@@ -22,7 +22,7 @@ public class Conversacion {
 	
 	private Imagen imagenPeticionInfo;
 	
-	private CarasDetectadas carasDetectadas;
+	private boolean pendienteActualizarClasificador;
 	
 	
 	public Conversacion() {
@@ -39,7 +39,7 @@ public class Conversacion {
 		
 		this.fechaFoto = null;
 		this.imagenPeticionInfo = null;
-		this.carasDetectadas = null;
+		this.pendienteActualizarClasificador = false;
 	}
 	
 	public void setImagenPeticionInfo(Imagen imagenPeticionInfo){
@@ -142,13 +142,11 @@ public class Conversacion {
 		this.usuarioRegistrado = usuarioRegistrado;
 	}
 
-	public CarasDetectadas getCarasDetectadas() {
-		return carasDetectadas;
+	public boolean isPendienteActualizarClasificador() {
+		return pendienteActualizarClasificador;
 	}
 
-	public void setCarasDetectadas(CarasDetectadas carasDetectadas) {
-		this.carasDetectadas = carasDetectadas;
+	public void setPendienteActualizarClasificador(boolean pendienteActualizarClasificador) {
+		this.pendienteActualizarClasificador = pendienteActualizarClasificador;
 	}
-	
-	
 }

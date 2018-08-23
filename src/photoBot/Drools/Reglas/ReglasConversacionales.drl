@@ -111,16 +111,3 @@ rule "Recoger datos imagen"
 		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta);
 
 end
-
-rule "Actualizar clasificador"
-	salience 70   
-	when
-        conversacion : Conversacion();
-        comportamiento : ComportamientoAgenteConversacionUsuario();
-       
-        carasdetectadas :  CarasDetectadas ( carasdetectadas != null ) from conversacion.getCarasDetectadas();
-        faltancaras : Boolean ( faltancaras == false ) from carasdetectadas.carasReconocidas();
-        
-	then
-		comportamiento.bot_actualizarClasificador();
-end

@@ -124,6 +124,22 @@ public class PhotoBotBBDD {
 		return ret;
 	}
 	
+	public String obtenerNombrePersona(Usuario u, int etiqueta) {
+		Query<Persona> q = this.dataStore.createQuery(Persona.class);
+		q.and(
+				  q.criteria("user").equal(u),
+				  q.criteria("etiqueta").equal(etiqueta));
+		
+		Persona persona = q.get();
+		
+		if(persona != null) {
+			return persona.getNombre();
+		}
+		else {
+			return "";
+		}
+	}
+	
 	public void actualizarInfoUsuario(Usuario u) {
 		this.dataStore.save(u);
 	}

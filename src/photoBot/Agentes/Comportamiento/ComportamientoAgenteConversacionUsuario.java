@@ -41,7 +41,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private ComportamientoAgenteConversacionUsuario self;
 	private ProcesadorDeReglas procReglas;
 	private ProcesadorLenguaje procLenguaje;
-	private GestorDeCaras gestorCaras;
 	
 	private Conversacion conversacion;
 	private PhotoBotBBDD bd;
@@ -59,8 +58,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			e1.printStackTrace();
 		}
         this.procReglas = new ProcesadorDeReglas();
-        
-        this.gestorCaras = new GestorDeCaras();
         
         this.conversacion = new Conversacion();
         
@@ -89,6 +86,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				}
 				else if(comando ==  ConstantesComportamiento.RESULTADO_RECONOCIMIENTO_IMAGEN) {
 					recibirRespuestaSubidaImagenes(msj, msjContent);
+				}
+				else if(comando == ConstantesComportamiento.CLASIFICADOR_USUARIO_ACTUALIZADO) {
+					clasificadorUsuarioActualizado();
 				}
 				else if(comando == -1) {
 					//........................
@@ -227,15 +227,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		long fechaSubida = (long) contenido.get("FECHA_SUBIDA");
 		String mensajeUsuario = "";
 		List<Triple<String, Integer, Double>> tripletaColorEtiquetaProbabilidad = (List<Triple<String, Integer, Double>>) contenido.get("RESULTADO_RECONOCIMIENTO");
-		CarasDetectadas carasDetectadas = (CarasDetectadas) contenido.get("OBJETO_CARAS_DETECTADAS");
-		//long k = (long) contenido.get("OBJETO_CARAS_DETECTADAS");
-		//MatOfRect mor = MatOfRect.fromNativeAddr(k);
-		//CarasDetectadas carasDetectadas = (CarasDetectadas) SerializadorObjeto.deserialize(k);
 		
-		carasDetectadas.actualizaMatOfRect();
-		
-		//volver a DESCOMENTARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-		this.conversacion.setCarasDetectadas(carasDetectadas);
+		//this.conversacion.setCarasDetectadas(carasDetectadas);
+		this.conversacion.setPendienteActualizarClasificador(true);
 		
 		//Enviamos la foto recuadrada al usuario
 		List<String> list = new ArrayList<String>();
@@ -246,7 +240,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		String color;
 		Integer persona;
 		Double probabilidad;
-		String mensajeTexto;
 		String nombre;
 		
 		List<String> grupoDesconocido = new ArrayList<>();
@@ -258,13 +251,31 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			color = triple.getLeft();
 			persona = triple.getMiddle();
 			
-			nombre = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), persona.toString()).getNombre();
+			nombre = this.bd.obtenerNombrePersona(this.photoBot.getUser(), persona);
 			
 			probabilidad = triple.getRight();
 			
 			if (probabilidad <= 50.0){
 				grupoDesconocido.add(triple.getLeft());
-				this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, -1, 0.0);
+				
+				//this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, -1, 0.0);
+				HashMap<String, Object> msjContent = new HashMap<String, Object>();
+				
+				msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_CAMPO_CARAS_DETECTADAS);
+				msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
+				msjContent.put("COLOR", color);
+				msjContent.put("ETIQUETA", -1);
+				msjContent.put("CONFIDENCE", 0.0);
+				
+				ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
+				msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
+				
+				try {
+					msjc.setContentObject((Serializable)msjContent);
+					getAgent().send(msjc);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 			else if (probabilidad > 50.00){
 				grupoConocido.add(nombre + " con el color " + triple.getLeft());
@@ -278,7 +289,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 		
 		if(!grupoConocido.isEmpty()){
-			mensajeUsuario += !grupoDesconocido.isEmpty() ? "Por otra parte, he reconocido a " + String.join(", a ", grupoConocido) + ".": "En la imagen he reconocido a  \n" + 
+			mensajeUsuario += !grupoDesconocido.isEmpty() ? "Por otra parte, he reconocido a " + String.join(", a ", grupoConocido) + ".": "En la imagen he reconocido a " + 
 					String.join(", a ", grupoConocido) + ".";
 		}
 
@@ -312,21 +323,30 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		imagen.addPersonaImagen(p);
 		
 		//ACTUALIZAR BBDD Y EL OBJETO CARASDETECTADAS
-		this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, etiquetaClasificador, 100.0);
+		//this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, etiquetaClasificador, 100.0);
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_CAMPO_CARAS_DETECTADAS);
+		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
+		msjContent.put("COLOR", color);
+		msjContent.put("ETIQUETA", etiquetaClasificador);
+		msjContent.put("CONFIDENCE", 100.0);
+		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
+		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
+		
+		try {
+			msjc.setContentObject((Serializable)msjContent);
+			getAgent().send(msjc);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		this.bd.actualizarInfoImagen(imagen);
 		
 		//ACTUALIZAR EL ATRIBUTO ETIQUETAMAXUTILIZADA DEL USUARIO
 		this.photoBot.setUser(this.photoBot.getUser());
 		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
 		
-		this.procReglas.ejecutarReglas(this.conversacion, this.self);
-	}
-
-	public void bot_actualizarClasificador(){
-		System.out.println("Estoy actualizando el clasificador");
-		
-		this.gestorCaras.actualizarClasificadorPersonalizado(this.photoBot.getUser().getIdUsuarioTelegram().toString(), this.conversacion.getCarasDetectadas());
-		//this.conversacion.setCarasDetectadas(null);
+		//this.procReglas.ejecutarReglas(this.conversacion, this.self);
 	}
 	
 	/**
@@ -352,6 +372,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 		
 		return ret;
+	}
+	
+	private void clasificadorUsuarioActualizado() {
+		this.conversacion.setPendienteActualizarClasificador(false);
+		
+		//POSIBLEMENTE AQUI HAYA QUE VOLVER A EJECUTAR REGLAS, DEPENDE DE COMO
+		//QUEDE ORGANIZADO EL NUEVO SISTEMA DE REGLAS
 	}
 	
 	

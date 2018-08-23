@@ -124,7 +124,7 @@ public class GestorDeCaras {
 
 	}
 	
-	public void actualizarClasificadorPersonalizado(String idUsuario, CarasDetectadas carasDetectadas) {
+	public void actualizarClasificadorPersonalizado(int idUsuario, CarasDetectadas carasDetectadas) {
 		
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
 		lbphClasificador.read("./clasificadores/" + idUsuario + ".xml");
@@ -162,9 +162,9 @@ public class GestorDeCaras {
 				int[] personasPredichas = {-1};
 				double[] confidence = {0.0};
 				
-				//For dani :) --> probar a pasar al predict un mat que tenga todas las caras con .push_back()
 				lbphClasificador.predict(cara, personasPredichas, confidence);
 				ret.add(Pair.of(personasPredichas[0], confidence[0]));
+				int k = 0;k++;
 				
 			}			
 		}

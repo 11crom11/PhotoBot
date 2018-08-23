@@ -7,6 +7,8 @@ public final class ConstantesComportamiento {
 	public static final int ENTREGAR_IMG_ENCONTRADAS;
 	public static final int RESULTADO_RECONOCIMIENTO_IMAGEN;
 	public static final int RECONOCER_CARAS;
+	public static final int CLASIFICADOR_USUARIO_ACTUALIZADO;
+	public static final int ACTUALIZAR_CAMPO_CARAS_DETECTADAS;
 
 	public static final String AGENTE_ALMACENAR_IMAGEN;
 	public static final String AGENTE_BUSCAR_IMAGEN;
@@ -20,6 +22,8 @@ public final class ConstantesComportamiento {
 		ENTREGAR_IMG_ENCONTRADAS = 4;
 		RESULTADO_RECONOCIMIENTO_IMAGEN = 5;
 		RECONOCER_CARAS = 6;
+		CLASIFICADOR_USUARIO_ACTUALIZADO = 7;
+		ACTUALIZAR_CAMPO_CARAS_DETECTADAS = 8;
 		
 		AGENTE_ALMACENAR_IMAGEN = "AgenteAlmacenarImagenes";
 		AGENTE_BUSCAR_IMAGEN = "AgenteBuscarImagen";

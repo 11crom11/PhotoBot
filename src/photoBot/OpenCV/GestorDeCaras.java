@@ -160,7 +160,7 @@ public class GestorDeCaras {
 			for(Rect rect : carasDetectadas.toArray()) {
 				Mat cara = new Mat(imagen, rect);
 				int[] personasPredichas = {-1};
-				double[] confidence = {0.0};
+				double[] confidence = {1.0};
 				
 				lbphClasificador.predict(cara, personasPredichas, confidence);
 				ret.add(Pair.of(personasPredichas[0], confidence[0]));

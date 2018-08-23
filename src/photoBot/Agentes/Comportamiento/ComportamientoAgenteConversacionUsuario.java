@@ -255,7 +255,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			
 			probabilidad = triple.getRight();
 			
-			if (probabilidad <= 50.0){
+			if (probabilidad > 50.00 || probabilidad == 0.0){
+				grupoConocido.add(nombre + " con el color " + triple.getLeft());
+			}
+			else if (probabilidad <= 50.0){
 				grupoDesconocido.add(triple.getLeft());
 				
 				//this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, -1, 0.0);
@@ -276,9 +279,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
-			else if (probabilidad > 50.00){
-				grupoConocido.add(nombre + " con el color " + triple.getLeft());
 			}
 			
 		}

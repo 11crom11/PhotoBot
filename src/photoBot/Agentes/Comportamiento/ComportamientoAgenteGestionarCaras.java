@@ -79,6 +79,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		
 		//2- ALMACENAR EL RESULTADO DE LA DETECCION PARA UNA FUTURA ACTUALIZACION DEL ALGUN CLASIFICADOR
 		//msjContent.put("OBJETO_CARAS_DETECTADAS", carasDetectadas);
+		System.out.println("HE ALMACENADO EL RESULTADO DE RECONOCIMIENTO EN LA MEMORIA DEL AGENTE GESTOR DE CARAS");
 		this.resultadosDeteccion.put(Integer.valueOf(idUsuario), carasDetectadas);
 
 		//3- ENVIAR AL AGENTE CONVERSACIONAL EL RESULTADO DEL RECONOCIMIENTO
@@ -106,6 +107,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		double confidence = (double) msjContent.get("CONFIDENCE");
 		
 		this.resultadosDeteccion.get(idUsuario).actualizarPersonaHashMap(color, etiqueta, confidence);
+		System.out.println("HE MODIFICADO EL VALOR DE LA PERSONA DE COLOR " + color + "A " + etiqueta);
 		
 		comprobarTotalidadDescripcionPersonasYactualizar(idUsuario);
 	}
@@ -117,6 +119,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 			CarasDetectadas caras = this.resultadosDeteccion.get(idUsuario);
 			
 			this.gestorCaras.actualizarClasificadorPersonalizado(idUsuario, caras);
+			System.out.println("HE ACTUALIZADO EL CLASIFICADOR");
 			this.resultadosDeteccion.remove(idUsuario);
 			
 			//enviar mensaje al agente conversacional indicandole que modifique el objeto conversacion

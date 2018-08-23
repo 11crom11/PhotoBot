@@ -106,6 +106,7 @@ public class ComportamientoAgenteAlmacenarImagen extends FSMBehaviour {
 						String url_img = dir.getPath() + "/" + fecha + ".jpeg";
 						
 						ImageIO.write(ImageIO.read(imagen), "jpeg", new java.io.File(url_img));
+						System.out.println("He almacenado la imagen: " + fecha + ".jpeg");
 						
 						HashMap<String, Object> msjContent = new HashMap<String, Object>();
 						

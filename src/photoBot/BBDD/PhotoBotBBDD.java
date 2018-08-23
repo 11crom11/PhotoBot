@@ -47,10 +47,11 @@ public class PhotoBotBBDD {
 		
 		//boolean existeUsuario = this.existeUsuario(usuario).isEmpty() ? false : true;
 		boolean existeUsuario = this.existeUsuario(usuario) == null ? false : true;
-		System.out.println("Estoy registrando al usuario");
+		System.out.print("ESTO REGISTRANDO AL USUARIO...");
 		
 		if(!existeUsuario){
 			//this.cUsuarios.insertOne(usuario);
+			System.out.println("USUARIO REGISTRADO CORRECTAMENTE");
 			this.dataStore.save(usuario);
 			
 			ok = true;
@@ -62,6 +63,7 @@ public class PhotoBotBBDD {
 	public boolean registrarImagen(Imagen imagen){
 		boolean ok = true;
 		
+		System.out.println("NUEVA IMAGEN EN LA BBDD");
 		this.dataStore.save(imagen);
 		
 		return ok;
@@ -69,7 +71,7 @@ public class PhotoBotBBDD {
 	
 	public boolean actualizarInfoImagen(Imagen imagen){
 		boolean ok = true;
-		System.out.println("Actualizando informacion de la imagen");
+		System.out.println("ACTUALIZANDO INFORMACIÓN DE LA IMAGEN");
 
 		this.dataStore.save(imagen);
 		
@@ -81,7 +83,7 @@ public class PhotoBotBBDD {
 	public boolean registrarPersonaUsuario(Persona p){
 		boolean ok = true;
 		
-		System.out.println("Inserción de persona en la base de datos");
+		System.out.println("INSERCION DE UNA NUEVA PERSONA EN LA BBDD");
 		this.dataStore.save(p);
 		
 		return ok;
@@ -142,5 +144,6 @@ public class PhotoBotBBDD {
 	
 	public void actualizarInfoUsuario(Usuario u) {
 		this.dataStore.save(u);
+		System.out.println("INFORMACIÓN DEL USUARIO ACTUALIZADA EN LA BBDD");
 	}
 }

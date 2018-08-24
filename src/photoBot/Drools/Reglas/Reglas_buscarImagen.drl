@@ -10,6 +10,8 @@ import photoBot.Imagen.*;
 
 
 //declare any global variables here
+global java.lang.Integer GR_BI;
+
 rule "Solicitud de busqueda de todas las imagenes"
 	salience 15
 	when

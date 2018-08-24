@@ -10,6 +10,8 @@ import photoBot.Imagen.*;
 
 
 //declare any global variables here
+global java.lang.Integer GR_SI;
+
 rule "Solicitud de subir imagen"
 	salience 15
 	when

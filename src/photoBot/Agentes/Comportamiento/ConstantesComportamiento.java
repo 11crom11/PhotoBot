@@ -14,6 +14,12 @@ public final class ConstantesComportamiento {
 	public static final String AGENTE_BUSCAR_IMAGEN;
 	public static final String AGENTE_CONVERSACION_USUARIO;
 	public static final String AGENTE_GESTIONAR_CARAS;
+	
+	public static final int GRUPO_BUSCAR_IMAGEN;
+	public static final int GRUPO_SUBIR_IMAGEN;
+	public static final int GRUPO_REGISTRO_USUARIO;
+	public static final int GRUPO_SALUDO;
+	public static final int GRUPO_EXISTENCIA_USUARIO;
 
 	static {
 		OBTENER_IMG_AGENTE = 1;
@@ -29,6 +35,12 @@ public final class ConstantesComportamiento {
 		AGENTE_BUSCAR_IMAGEN = "AgenteBuscarImagen";
 		AGENTE_CONVERSACION_USUARIO = "AgenteConversacional";
 		AGENTE_GESTIONAR_CARAS = "AgenteGestionarCaras";
+		
+		GRUPO_BUSCAR_IMAGEN = 5;
+		GRUPO_SUBIR_IMAGEN = 4;
+		GRUPO_REGISTRO_USUARIO = 3;
+		GRUPO_SALUDO = 2;
+		GRUPO_EXISTENCIA_USUARIO = 1;
 	}
 	
 	public ConstantesComportamiento() {

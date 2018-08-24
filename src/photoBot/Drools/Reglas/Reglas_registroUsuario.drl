@@ -10,6 +10,8 @@ import photoBot.Imagen.*;
 
 
 //declare any global variables here
+global java.lang.Integer GR_RE;
+
 rule "Solicitar datos usuario no registrado"
 	salience 100
 	when

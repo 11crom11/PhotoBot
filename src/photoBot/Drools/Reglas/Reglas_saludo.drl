@@ -12,6 +12,8 @@ import photoBot.Imagen.*;
 
 
 //declare any global variables here
+global java.lang.Integer GR_SA;
+
 rule "Encontrar saludo"
 	salience 20
 	when

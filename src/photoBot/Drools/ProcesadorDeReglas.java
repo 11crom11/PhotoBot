@@ -9,10 +9,12 @@ import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.common.InternalAgenda;
+import org.drools.io.Resource;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 import jade.core.behaviours.Behaviour;
+import photoBot.Agentes.Comportamiento.ConstantesComportamiento;
 import photoBot.Gate.Etiqueta;
 
 public class ProcesadorDeReglas {
@@ -25,7 +27,11 @@ public class ProcesadorDeReglas {
 		
 		//kbuilder/////////////////////////////////////////////////////////////////////////////////////////
 		this.kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/ReglasConversacionales.drl"), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_buscarImagen.drl"), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_comprobarExistencia.drl"), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_registroUsuario.drl"), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_saludo.drl"), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_subirImagen.drl"), ResourceType.DRL);
 		if (kbuilder.hasErrors()) {
 			for (KnowledgeBuilderError error : kbuilder.getErrors()) {
 				System.err.println(error);
@@ -39,6 +45,12 @@ public class ProcesadorDeReglas {
 		
 		//ksession/////////////////////////////////////////////////////////////////////////////////////////
 		this.ksession = kbase.newStatefulKnowledgeSession();
+		
+		this.ksession.setGlobal("GR_BI", ConstantesComportamiento.GRUPO_BUSCAR_IMAGEN);
+		this.ksession.setGlobal("GR_EX", ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
+		this.ksession.setGlobal("GR_RE", ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
+		this.ksession.setGlobal("GR_SA", ConstantesComportamiento.GRUPO_SALUDO);
+		this.ksession.setGlobal("GR_SI", ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
 
 	}
 	

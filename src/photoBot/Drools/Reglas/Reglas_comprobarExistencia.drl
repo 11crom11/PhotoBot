@@ -10,4 +10,4 @@ import photoBot.Imagen.*;
 
 
 //declare any global variables here
-
+global java.lang.Integer GR_EX;

@@ -107,7 +107,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		double confidence = (double) msjContent.get("CONFIDENCE");
 		
 		this.resultadosDeteccion.get(idUsuario).actualizarPersonaHashMap(color, etiqueta, confidence);
-		System.out.println("HE MODIFICADO EL VALOR DE LA PERSONA DE COLOR " + color + "A " + etiqueta);
+		System.out.println("HE MODIFICADO EL VALOR DE LA PERSONA DE COLOR " + color + " a " + etiqueta);
 		
 		comprobarTotalidadDescripcionPersonasYactualizar(idUsuario);
 	}
@@ -120,7 +120,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 			
 			this.gestorCaras.actualizarClasificadorPersonalizado(idUsuario, caras);
 			System.out.println("HE ACTUALIZADO EL CLASIFICADOR");
-			this.resultadosDeteccion.remove(idUsuario);
+			//this.resultadosDeteccion.remove(idUsuario); //a veces falla carasReconocidas()
 			
 			//enviar mensaje al agente conversacional indicandole que modifique el objeto conversacion
 			HashMap<String, Object> msjContent = new HashMap<String, Object>();

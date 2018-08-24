@@ -22,20 +22,25 @@ public class ProcesadorDeReglas {
 	private KnowledgeBase kbase;
 	private StatefulKnowledgeSession ksession;
 	private final KnowledgeBuilder kbuilder;
+	private ManejadorReglas manejadorReglas;
+	
 	
 	public ProcesadorDeReglas(){
 		
 		//kbuilder/////////////////////////////////////////////////////////////////////////////////////////
 		this.kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+		
 		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_buscarImagen.drl"), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_comprobarExistencia.drl"), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_registroUsuario.drl"), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_saludo.drl"), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource("photoBot/Drools/Reglas/Reglas_subirImagen.drl"), ResourceType.DRL);
+		
 		if (kbuilder.hasErrors()) {
 			for (KnowledgeBuilderError error : kbuilder.getErrors()) {
 				System.err.println(error);
 			}
+			
 			throw new IllegalArgumentException("Imposible crear knowledge con el drl");
 		}
 		
@@ -51,6 +56,8 @@ public class ProcesadorDeReglas {
 		this.ksession.setGlobal("GR_RE", ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
 		this.ksession.setGlobal("GR_SA", ConstantesComportamiento.GRUPO_SALUDO);
 		this.ksession.setGlobal("GR_SI", ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
+		
+		this.manejadorReglas = new ManejadorReglas();
 
 	}
 	
@@ -58,6 +65,7 @@ public class ProcesadorDeReglas {
 		
 		ksession.insert(conversacion);
 		ksession.insert(comportamientoAgente);
+		ksession.insert(this.manejadorReglas);
 		
 		for (Etiqueta e : lEtiquetas) {
 			ksession.insert(e);
@@ -78,7 +86,8 @@ public class ProcesadorDeReglas {
 
 		ksession.insert(conversacion);
 		ksession.insert(comportamientoAgente);
-		
+		ksession.insert(this.manejadorReglas);
+
 			
 		//this.ksession.fireAllRules(); //Se ejecutan todas las reglas 
 

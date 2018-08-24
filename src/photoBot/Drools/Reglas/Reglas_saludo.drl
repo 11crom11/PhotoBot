@@ -3,7 +3,6 @@ package photoBot.Drools.Reglas
 
 //list any import classes here.
 
-
 import photoBot.OpenCV.*;
 import photoBot.Drools.*;
 import photoBot.Gate.*;
@@ -17,14 +16,37 @@ global java.lang.Integer GR_SA;
 rule "Encontrar saludo"
 	salience 20
 	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SA) from manejador.getGrupoActivado();
+        
         etiqueta : Etiqueta();
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
+     	
         haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
-        tipo_s : String (equals("Saludo") == true) from etiqueta.getTipo(); 
+        tipo_s : String (equals("Saludo") == true) from etiqueta.getTipo();
+        
     then
         conversacion.saludoRecibido();
         comportamiento.bot_saludar();
 		update(conversacion);
+		
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
+		update(manejador);
 end
+
+/*
+rule "Despedir"
+	salience 10
+	
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion != GR_SA) from manejador.getGrupoActivado();
+	
+	then
+		System.out.println("He ejecutado regla Despedir");
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
+		update(manejador);
+end
+*/

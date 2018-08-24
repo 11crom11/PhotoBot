@@ -1,0 +1,28 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+
+
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+rule "Encontrar saludo"
+	salience 20
+	when
+        etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
+        tipo_s : String (equals("Saludo") == true) from etiqueta.getTipo(); 
+    then
+        conversacion.saludoRecibido();
+        comportamiento.bot_saludar();
+		update(conversacion);
+end

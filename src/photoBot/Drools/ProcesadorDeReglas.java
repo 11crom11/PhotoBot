@@ -8,11 +8,11 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
+import org.drools.common.InternalAgenda;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 import jade.core.behaviours.Behaviour;
-import photoBot.Drools.Reglas.Conversacion;
 import photoBot.Gate.Etiqueta;
 
 public class ProcesadorDeReglas {
@@ -53,6 +53,8 @@ public class ProcesadorDeReglas {
 		
 		//this.ksession.fireAllRules(); //Se ejecutan todas las reglas 
 
+		//this.ksession.getAgenda().getAgendaGroup("dog").setFocus();
+		
 		this.ksession.fireAllRules(); //Se ejecutan solamente el numero de reglas pasado por parametro
 		this.ksession = this.kbase.newStatefulKnowledgeSession();
 		

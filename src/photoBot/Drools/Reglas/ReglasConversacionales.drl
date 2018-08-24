@@ -8,7 +8,8 @@ import photoBot.Imagen.*;
 
 
 rule "Encontrar saludo"
-	activation-group "grupo_saludo"
+	//activation-group "grupo_saludo"
+	//ruleflow-group "dog"
 	salience 20
 	when
         etiqueta : Etiqueta();
@@ -20,6 +21,7 @@ rule "Encontrar saludo"
     then
         conversacion.saludoRecibido();
         comportamiento.bot_saludar();
+		update(conversacion);
 end
 
 rule "Solicitud de busqueda de todas las imagenes"

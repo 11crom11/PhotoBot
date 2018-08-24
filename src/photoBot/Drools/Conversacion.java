@@ -1,4 +1,4 @@
-package photoBot.Drools.Reglas;
+package photoBot.Drools;
 
 import java.util.ArrayList;
 import java.util.Date;

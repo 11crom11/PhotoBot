@@ -1,0 +1,23 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+rule "Solicitud de busqueda de todas las imagenes"
+	salience 15
+	when
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
+    then
+    	comportamiento.bot_solicitudBuscarTodasImagenes();    
+end

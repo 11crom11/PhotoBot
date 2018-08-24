@@ -1,0 +1,54 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+rule "Solicitud de subir imagen"
+	salience 15
+	when
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Cargar") == true) from etiqueta.getTipo();
+        
+    then
+    	comportamiento.esperarFotoConversacion();
+end
+
+rule "Recibir texto posterior a solicitud de subir imagen"
+	salience 20
+	when
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        solicitudSubirFoto : Boolean( solicitudSubirFoto == true ) from conversacion.isSubirFoto();
+        fotosCargadas : Boolean( fotosCargadas == false) from conversacion.isFotosCargadasSubida();
+        
+    then
+    	comportamiento.bot_anularSubidaFotos();
+end
+
+rule "Recoger datos imagen"
+	salience 80
+	when
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_nombre_persona_color : String (equals("Nombre_persona_color") == true) from etiqueta.getTipo();
+        
+ 		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta);
+
+end

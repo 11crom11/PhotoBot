@@ -27,8 +27,23 @@ public class Prueba {
 			}
 			System.out.println("----------------------");
 			
+			
+			
+			
 			etiquetas = pl.analizarTextoGate("quiero ayer, bot.");
 		
+			System.out.println("ETIQUETAS ENCONTRADAS:");
+			for(Etiqueta aux : etiquetas){
+				System.out.println(aux.getTipo() + " --> " + aux.getNombre());
+			}
+			System.out.println("----------------------");
+			
+		
+			
+			
+			
+			etiquetas = pl.analizarTextoGate("blo");
+			
 			System.out.println("ETIQUETAS ENCONTRADAS:");
 			for(Etiqueta aux : etiquetas){
 				System.out.println(aux.getTipo() + " --> " + aux.getNombre());

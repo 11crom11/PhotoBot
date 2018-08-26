@@ -20,6 +20,7 @@ public final class ConstantesComportamiento {
 	public static final int GRUPO_REGISTRO_USUARIO;
 	public static final int GRUPO_SALUDO;
 	public static final int GRUPO_EXISTENCIA_USUARIO;
+	public static final int GRUPO_ESPERA_PETICION_USUARIO;
 
 	static {
 		OBTENER_IMG_AGENTE = 1;
@@ -36,6 +37,7 @@ public final class ConstantesComportamiento {
 		AGENTE_CONVERSACION_USUARIO = "AgenteConversacional";
 		AGENTE_GESTIONAR_CARAS = "AgenteGestionarCaras";
 		
+		GRUPO_ESPERA_PETICION_USUARIO = 6;
 		GRUPO_BUSCAR_IMAGEN = 5;
 		GRUPO_SUBIR_IMAGEN = 4;
 		GRUPO_REGISTRO_USUARIO = 3;

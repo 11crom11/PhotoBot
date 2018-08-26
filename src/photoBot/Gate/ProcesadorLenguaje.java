@@ -1,13 +1,19 @@
 package photoBot.Gate;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import com.ontotext.gate.gazetteer.HashGazetteer;
 
 import gate.Annotation;
 import gate.AnnotationSet;
@@ -18,7 +24,16 @@ import gate.Factory;
 import gate.FeatureMap;
 import gate.Gate;
 import gate.Node;
+import gate.ProcessingResource;
 import gate.corpora.DocumentContentImpl;
+import gate.creole.ResourceInstantiationException;
+import gate.creole.gazetteer.DefaultGazetteer;
+import gate.creole.gazetteer.Gazetteer;
+import gate.creole.gazetteer.GazetteerList;
+import gate.creole.gazetteer.GazetteerNode;
+import gate.creole.gazetteer.LinearDefinition;
+import gate.creole.gazetteer.LinearNode;
+import gate.creole.gazetteer.Lookup;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 
@@ -26,8 +41,8 @@ public class ProcesadorLenguaje {
 	
 	/** The Corpus Pipeline application to contain ANNIE */
 	private CorpusController annieController;
-	//private StandAloneAnnie annie;
 	private Corpus corpus;
+	private DefaultGazetteer gazettero;
 	
 	
 	/**
@@ -57,9 +72,9 @@ public class ProcesadorLenguaje {
 		File annieGapp = new File(anniePlugin, "ANNIE_with_defaults.gapp");		
 		
 		this.annieController = (CorpusController) PersistenceManager.loadObjectFromFile(annieGapp);
-		//this.annie = new StandAloneAnnie();
-		//this.annie.initAnnie();
-		this.corpus = Factory.newCorpus("StandAloneAnnie corpus");	
+		this.corpus = Factory.newCorpus("PhotoBot corpus");
+		
+		this.gazettero = this.obtenerGazettero();
 	}
 	
 	/**
@@ -116,6 +131,7 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Cargar");
 			annotTypesRequired.add("Nombre_persona_color");
 			annotTypesRequired.add("Numero");
+			annotTypesRequired.add("Evento");
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		
@@ -226,5 +242,55 @@ public class ProcesadorLenguaje {
 		}
 				
 		return new Etiqueta("Nombre_persona_color", nombre, color);
+	}
+	
+	private DefaultGazetteer obtenerGazettero() {
+		
+		DefaultGazetteer g = null;
+		
+		Collection<ProcessingResource>  prs = annieController.getPRs();
+		
+		for (ProcessingResource processingResource : prs) {
+			if (processingResource.getClass() == DefaultGazetteer.class){
+				g = (DefaultGazetteer) processingResource;
+				break;
+			}
+		}
+		
+		
+		return g;
+	}
+	
+	public void addPalabraContextoGazetero(String palabra) {
+
+		
+		/*this.gazettero.addLookup(palabra, new Lookup("eventos.lst", "evento_imagen", "evento_imagen", "spanish"));
+		//LinearNode m = new LinearNode("eventos.lst", "evento_imagen", "evento_imagen", "spanish");
+		LinearDefinition ld = this.gazettero.getLinearDefinition();
+		Map<String, LinearNode> k = ld.getNodesByListNames();
+		LinearNode ln = k.get("eventos.lst");
+		GazetteerList eventos = ld.getListsByNode().get(ln);
+		eventos.add(new GazetteerNode("blo", ":"));*/
+		
+		
+
+		int p = 0;
+		int s = p + 1;
+
+		try {
+			BufferedWriter output = new BufferedWriter(new FileWriter("GATE\\plugins\\ANNIE\\resources\\gazetteer\\eventos.lst", true));
+			output.write(palabra);
+			output.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			this.gazettero.reInit();
+		} catch (ResourceInstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -56,6 +56,7 @@ public class ProcesadorDeReglas {
 		this.ksession.setGlobal("GR_RE", ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
 		this.ksession.setGlobal("GR_SA", ConstantesComportamiento.GRUPO_SALUDO);
 		this.ksession.setGlobal("GR_SI", ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
+		this.ksession.setGlobal("GR_PU", ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
 		
 		this.manejadorReglas = new ManejadorReglas();
 

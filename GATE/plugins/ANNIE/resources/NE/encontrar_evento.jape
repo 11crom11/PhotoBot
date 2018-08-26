@@ -1,0 +1,13 @@
+Phase:	Evento
+Input:  Token SpaceToken Lookup
+Options: control = brill
+
+Rule: Evento
+Priority: 100
+(	({Lookup.majorType == evento_imagen }	
+	  
+)
+ 
+):evento
+-->
+:evento.Evento = {kind = "evento", rule = "Eventos"}

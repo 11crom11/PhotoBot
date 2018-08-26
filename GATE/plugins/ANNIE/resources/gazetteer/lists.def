@@ -4,7 +4,7 @@ colores.lst:colores_imagen
 confirmacion.lst:confirmacion_imagen
 despedida.lst:despedida_imagen
 diasSemana.lst:
-eventos.lst:
+eventos.lst:evento_imagen:evento_imagen:spanish
 fecha.lst:fechas_imagen
 fechasPasadas.lst:
 fotos.lst:

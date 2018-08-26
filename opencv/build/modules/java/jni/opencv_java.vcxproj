@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{66E97875-B2C2-33CE-8734-3EA79026C055}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>opencv_java</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_java.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_java400</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_java.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_java400</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\ml\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\photo\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\video\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp;C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\flann\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\ml\include;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\include;C:\Users\d_dan\Desktop\opencv-master\modules\photo\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\include;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\include;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\include;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\include;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\include;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\include;C:\Program Files\Java\jdk1.8.0_171\include;C:\Program Files\Java\jdk1.8.0_171\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>4</ProcessorNumber>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR="Debug";CVAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR=\"Debug\";CVAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\ml\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\photo\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\video\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp;C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\flann\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\ml\include;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\include;C:\Users\d_dan\Desktop\opencv-master\modules\photo\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\include;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\include;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\include;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\include;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\include;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\include;C:\Program Files\Java\jdk1.8.0_171\include;C:\Program Files\Java\jdk1.8.0_171\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\ml\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\photo\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\video\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp;C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\flann\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\ml\include;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\include;C:\Users\d_dan\Desktop\opencv-master\modules\photo\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\include;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\include;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\include;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\include;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\include;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\include;C:\Program Files\Java\jdk1.8.0_171\include;C:\Program Files\Java\jdk1.8.0_171\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\..\lib\Debug\opencv_core400d.lib;..\..\..\lib\Debug\opencv_flann400d.lib;..\..\..\lib\Debug\opencv_imgproc400d.lib;..\..\..\lib\Debug\opencv_ml400d.lib;..\..\..\lib\Debug\opencv_objdetect400d.lib;..\..\..\lib\Debug\opencv_photo400d.lib;..\..\..\lib\Debug\opencv_video400d.lib;..\..\..\lib\Debug\opencv_dnn400d.lib;..\..\..\lib\Debug\opencv_face400d.lib;..\..\..\lib\Debug\opencv_imgcodecs400d.lib;..\..\..\lib\Debug\opencv_videoio400d.lib;..\..\..\lib\Debug\opencv_highgui400d.lib;..\..\..\lib\Debug\opencv_features2d400d.lib;..\..\..\lib\Debug\opencv_calib3d400d.lib;..\..\..\3rdparty\lib\Debug\ippiwd.lib;..\..\..\3rdparty\ippicv\ippicv_win\lib\intel64\ippicvmt.lib;..\..\..\3rdparty\lib\Debug\libprotobufd.lib;..\..\..\lib\Debug\opencv_objdetect400d.lib;..\..\..\lib\Debug\opencv_photo400d.lib;..\..\..\lib\Debug\opencv_video400d.lib;..\..\..\lib\Debug\opencv_features2d400d.lib;..\..\..\lib\Debug\opencv_flann400d.lib;..\..\..\lib\Debug\opencv_highgui400d.lib;..\..\..\lib\Debug\opencv_videoio400d.lib;..\..\..\lib\Debug\opencv_imgcodecs400d.lib;..\..\..\lib\Debug\opencv_imgproc400d.lib;..\..\..\lib\Debug\opencv_core400d.lib;..\..\..\3rdparty\lib\Debug\ittnotifyd.lib;..\..\..\3rdparty\lib\Debug\libjpeg-turbod.lib;..\..\..\3rdparty\lib\Debug\libwebpd.lib;..\..\..\3rdparty\lib\Debug\libpngd.lib;..\..\..\3rdparty\lib\Debug\libtiffd.lib;..\..\..\3rdparty\lib\Debug\libjasperd.lib;..\..\..\3rdparty\lib\Debug\IlmImfd.lib;..\..\..\3rdparty\lib\Debug\zlibd.lib;vfw32.lib;comctl32.lib;gdi32.lib;ole32.lib;setupapi.lib;ws2_32.lib;..\..\..\3rdparty\lib\Debug\ippiwd.lib;..\..\..\3rdparty\ippicv\ippicv_win\lib\intel64\ippicvmt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/d_dan/Desktop/opencv-master/build/lib/Debug/opencv_java400.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/d_dan/Desktop/opencv-master/build/lib/Debug/opencv_java400.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\ml\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\photo\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\video\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp;C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\flann\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\ml\include;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\include;C:\Users\d_dan\Desktop\opencv-master\modules\photo\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\include;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\include;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\include;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\include;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\include;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\include;C:\Program Files\Java\jdk1.8.0_171\include;C:\Program Files\Java\jdk1.8.0_171\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>4</ProcessorNumber>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR="Release";CVAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR=\"Release\";CVAPI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\ml\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\photo\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\video\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp;C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\flann\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\ml\include;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\include;C:\Users\d_dan\Desktop\opencv-master\modules\photo\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\include;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\include;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\include;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\include;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\include;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\include;C:\Program Files\Java\jdk1.8.0_171\include;C:\Program Files\Java\jdk1.8.0_171\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\ml\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\photo\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\video\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\misc\java\src\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp;C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen\cpp;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\flann\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\ml\include;C:\Users\d_dan\Desktop\opencv-master\modules\objdetect\include;C:\Users\d_dan\Desktop\opencv-master\modules\photo\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;C:\Users\d_dan\Desktop\opencv-master\modules\dnn\include;C:\Users\d_dan\Desktop\opencv_contrib-master\modules\face\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgcodecs\include;C:\Users\d_dan\Desktop\opencv-master\modules\videoio\include;C:\Users\d_dan\Desktop\opencv-master\modules\highgui\include;C:\Users\d_dan\Desktop\opencv-master\modules\features2d\include;C:\Users\d_dan\Desktop\opencv-master\modules\calib3d\include;C:\Program Files\Java\jdk1.8.0_171\include;C:\Program Files\Java\jdk1.8.0_171\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\..\lib\Release\opencv_core400.lib;..\..\..\lib\Release\opencv_flann400.lib;..\..\..\lib\Release\opencv_imgproc400.lib;..\..\..\lib\Release\opencv_ml400.lib;..\..\..\lib\Release\opencv_objdetect400.lib;..\..\..\lib\Release\opencv_photo400.lib;..\..\..\lib\Release\opencv_video400.lib;..\..\..\lib\Release\opencv_dnn400.lib;..\..\..\lib\Release\opencv_face400.lib;..\..\..\lib\Release\opencv_imgcodecs400.lib;..\..\..\lib\Release\opencv_videoio400.lib;..\..\..\lib\Release\opencv_highgui400.lib;..\..\..\lib\Release\opencv_features2d400.lib;..\..\..\lib\Release\opencv_calib3d400.lib;..\..\..\3rdparty\lib\Release\ippiw.lib;..\..\..\3rdparty\ippicv\ippicv_win\lib\intel64\ippicvmt.lib;..\..\..\3rdparty\lib\Release\libprotobuf.lib;..\..\..\lib\Release\opencv_objdetect400.lib;..\..\..\lib\Release\opencv_photo400.lib;..\..\..\lib\Release\opencv_video400.lib;..\..\..\lib\Release\opencv_features2d400.lib;..\..\..\lib\Release\opencv_flann400.lib;..\..\..\lib\Release\opencv_highgui400.lib;..\..\..\lib\Release\opencv_videoio400.lib;..\..\..\lib\Release\opencv_imgcodecs400.lib;..\..\..\lib\Release\opencv_imgproc400.lib;..\..\..\lib\Release\opencv_core400.lib;..\..\..\3rdparty\lib\Release\ittnotify.lib;..\..\..\3rdparty\lib\Release\libjpeg-turbo.lib;..\..\..\3rdparty\lib\Release\libwebp.lib;..\..\..\3rdparty\lib\Release\libpng.lib;..\..\..\3rdparty\lib\Release\libtiff.lib;..\..\..\3rdparty\lib\Release\libjasper.lib;..\..\..\3rdparty\lib\Release\IlmImf.lib;..\..\..\3rdparty\lib\Release\zlib.lib;vfw32.lib;comctl32.lib;gdi32.lib;ole32.lib;setupapi.lib;ws2_32.lib;..\..\..\3rdparty\lib\Release\ippiw.lib;..\..\..\3rdparty\ippicv\ippicv_win\lib\intel64\ippicvmt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/d_dan/Desktop/opencv-master/build/lib/Release/opencv_java400.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/d_dan/Desktop/opencv-master/build/lib/Release/opencv_java400.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\jni\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/d_dan/Desktop/opencv-master/modules/java/jni/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/d_dan/Desktop/opencv-master -BC:/Users/d_dan/Desktop/opencv-master/build --check-stamp-file C:/Users/d_dan/Desktop/opencv-master/build/modules/java/jni/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/java/jni/CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\java\jni\CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\java\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\java\jni\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/d_dan/Desktop/opencv-master/modules/java/jni/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/d_dan/Desktop/opencv-master -BC:/Users/d_dan/Desktop/opencv-master/build --check-stamp-file C:/Users/d_dan/Desktop/opencv-master/build/modules/java/jni/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/java/jni/CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\java\jni\CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\java\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\java\jni\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\common.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\converters.h" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\Mat.cpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\converters.cpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\jni_part.cpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\listconverters.cpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\opencv_java.cpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\generator\src\cpp\utils.cpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp\core_manual.cpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\core\misc\java\src\cpp\core_manual.hpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp\dnn_converters.cpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\misc\java\src\cpp\dnn_converters.hpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp\features2d_converters.cpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\features2d\misc\java\src\cpp\features2d_converters.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\ZERO_CHECK.vcxproj">
+      <Project>{5F150B91-9B2D-37A3-844E-9FDBF491CE82}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\openexr\IlmImf.vcxproj">
+      <Project>{7D4C093D-4D7A-30D9-877E-3A17BA298FDB}</Project>
+      <Name>IlmImf</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen_opencv_java_source.vcxproj">
+      <Project>{38EB8724-3585-33B9-B3AA-A00B887F24C7}</Project>
+      <Name>gen_opencv_java_source</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippiw\ippiw.vcxproj">
+      <Project>{30A708C7-401C-3DFF-A1F8-EFEF5EC90EA8}</Project>
+      <Name>ippiw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ittnotify\ittnotify.vcxproj">
+      <Project>{973A9577-B6AE-3005-B32B-D3100B664125}</Project>
+      <Name>ittnotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libjasper\libjasper.vcxproj">
+      <Project>{55F8A6A7-59A0-3C09-9495-EC32100DF90E}</Project>
+      <Name>libjasper</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libjpeg-turbo\libjpeg-turbo.vcxproj">
+      <Project>{56220155-9DE9-3637-B99A-461085428282}</Project>
+      <Name>libjpeg-turbo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libpng\libpng.vcxproj">
+      <Project>{62ADF53B-E4F4-3EFD-B7E8-403F619F011C}</Project>
+      <Name>libpng</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\protobuf\libprotobuf.vcxproj">
+      <Project>{AC0CC23B-37A1-36B5-B395-06A2A80CA9AD}</Project>
+      <Name>libprotobuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libtiff\libtiff.vcxproj">
+      <Project>{25BD1A5D-5FEC-351D-ADC1-256BA425D0C0}</Project>
+      <Name>libtiff</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libwebp\libwebp.vcxproj">
+      <Project>{42A16088-1BC5-3064-905B-D88EA74D8B49}</Project>
+      <Name>libwebp</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\calib3d\opencv_calib3d.vcxproj">
+      <Project>{F32A7A41-C95F-30A1-A3FF-CA66F67870C0}</Project>
+      <Name>opencv_calib3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core.vcxproj">
+      <Project>{9E3E872B-7778-3249-90FA-30E2F7E2A513}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_dnn.vcxproj">
+      <Project>{943D1D7D-25CE-3C11-8231-35F6E33CE754}</Project>
+      <Name>opencv_dnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\face\opencv_face.vcxproj">
+      <Project>{7821A069-33D8-339C-AD03-D46188EC2F5C}</Project>
+      <Name>opencv_face</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\features2d\opencv_features2d.vcxproj">
+      <Project>{0BEE3333-CFF2-379B-8353-A1749EF79031}</Project>
+      <Name>opencv_features2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\flann\opencv_flann.vcxproj">
+      <Project>{4ED8D726-75DD-3DB1-B99A-0CC659DDD583}</Project>
+      <Name>opencv_flann</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\highgui\opencv_highgui.vcxproj">
+      <Project>{C0D19A19-DE0C-329A-8389-3C036FC59CDD}</Project>
+      <Name>opencv_highgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgcodecs\opencv_imgcodecs.vcxproj">
+      <Project>{28A6A009-30EC-3976-8BCD-5CB35A6CAFCC}</Project>
+      <Name>opencv_imgcodecs</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc.vcxproj">
+      <Project>{6DB79AE1-ABFD-3E08-BA8B-36104D5C70EF}</Project>
+      <Name>opencv_imgproc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\jar\opencv_java_jar.vcxproj">
+      <Project>{DCFFA169-A340-3B8F-AE04-5A8C49E59F57}</Project>
+      <Name>opencv_java_jar</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\ml\opencv_ml.vcxproj">
+      <Project>{893C5ACD-557E-3259-A841-1315136235DE}</Project>
+      <Name>opencv_ml</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\objdetect\opencv_objdetect.vcxproj">
+      <Project>{A5698D24-8F54-3236-858A-5ABB166CE563}</Project>
+      <Name>opencv_objdetect</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\photo\opencv_photo.vcxproj">
+      <Project>{4AD57A20-7C2E-3263-8C2E-9848ECC40C68}</Project>
+      <Name>opencv_photo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\video\opencv_video.vcxproj">
+      <Project>{C53E3BC1-5B76-3C3C-BAE1-9C2D546133FD}</Project>
+      <Name>opencv_video</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\videoio\opencv_videoio.vcxproj">
+      <Project>{64D44B4A-40C0-3601-A8E2-C960335F0BF1}</Project>
+      <Name>opencv_videoio</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\zlib\zlib.vcxproj">
+      <Project>{7A725B47-854F-368E-808B-B629F16A1BB3}</Project>
+      <Name>zlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

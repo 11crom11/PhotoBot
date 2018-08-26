@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3d419a2b63de2e57b545304686fe748b\opencv_java_jar_source_copy.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\934f4385efd880246620425fd6e32d46\opencv_java_jar_source_copy.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\jar\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\jar\CMakeFiles\opencv_java_jar_source_copy" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F2CE2223-8C7C-37C5-BBDA-E9C29A713FE8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

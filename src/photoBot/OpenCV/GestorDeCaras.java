@@ -1,6 +1,7 @@
 package photoBot.OpenCV;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +18,22 @@ import org.opencv.face.LBPHFaceRecognizer;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.osgi.OpenCVNativeLoader;
 
 public class GestorDeCaras {
-	
+   
 	private CascadeClassifier clasificadorCaras;
 	
 	public GestorDeCaras() {
+		String path =  System.getProperty("user.dir");
+		System.out.println(path);
 
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
 		
-		String urlXml = "C:\\hlocal\\opencv\\sources\\data\\lbpcascades\\lbpcascade_frontalface_improved.xml";
+		String urlXml = path + "\\opencv\\sources\\data\\lbpcascades\\lbpcascade_frontalface_improved.xml";
+		System.out.println(urlXml);
+
 		this.clasificadorCaras = new CascadeClassifier(urlXml);
 		
 	}

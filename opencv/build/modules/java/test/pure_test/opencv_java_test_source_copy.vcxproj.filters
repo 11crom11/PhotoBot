@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\res\drawable\chessboard.jpg">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\res\drawable\icon.png">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\res\drawable\lena.png">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\res\layout\main.xml" />
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\res\raw\lbpcascade_frontalface.xml" />
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\res\values\strings.xml" />
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\common_test\src\org\opencv\test\utils\ConvertersTest.java" />
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3d419a2b63de2e57b545304686fe748b\opencv_java_test_source_copy.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\8ebcb3c3d3920e40a236fd75529d8ddd\opencv_java_test_source_copy.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\CMakeFiles\opencv_java_test_source_copy" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F2CE2223-8C7C-37C5-BBDA-E9C29A713FE8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{B79F57EF-FF52-34A5-A0D8-BF71741A163D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

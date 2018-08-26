@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{357FB7B5-1CCC-3089-BFCC-7AF111D2AAD1}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>opencv_test_java</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\f9d59af57cabc5bb93e3431d2162f977\OpenCVTestCase.java.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying src/org/opencv/test/OpenCVTestCase.java</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/src/org/opencv/test/OpenCVTestCase.java C:/Users/d_dan/Desktop/opencv-master/build/java_test/src/org/opencv/test/OpenCVTestCase.java
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/f9d59af57cabc5bb93e3431d2162f977/OpenCVTestCase.java.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestCase.java;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestCase.java</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying src/org/opencv/test/OpenCVTestCase.java</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/src/org/opencv/test/OpenCVTestCase.java C:/Users/d_dan/Desktop/opencv-master/build/java_test/src/org/opencv/test/OpenCVTestCase.java
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/f9d59af57cabc5bb93e3431d2162f977/OpenCVTestCase.java.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestCase.java;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestCase.java</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\f9d59af57cabc5bb93e3431d2162f977\OpenCVTestRunner.java.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying src/org/opencv/test/OpenCVTestRunner.java</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/src/org/opencv/test/OpenCVTestRunner.java C:/Users/d_dan/Desktop/opencv-master/build/java_test/src/org/opencv/test/OpenCVTestRunner.java
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/f9d59af57cabc5bb93e3431d2162f977/OpenCVTestRunner.java.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestRunner.java;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestRunner.java</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying src/org/opencv/test/OpenCVTestRunner.java</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/src/org/opencv/test/OpenCVTestRunner.java C:/Users/d_dan/Desktop/opencv-master/build/java_test/src/org/opencv/test/OpenCVTestRunner.java
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/f9d59af57cabc5bb93e3431d2162f977/OpenCVTestRunner.java.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestRunner.java;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestRunner.java</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\14774dc586155eb9c2af258848d79ece\junit-4.11.jar.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying lib/junit-4.11.jar</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/lib/junit-4.11.jar C:/Users/d_dan/Desktop/opencv-master/build/java_test/lib/junit-4.11.jar
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/14774dc586155eb9c2af258848d79ece/junit-4.11.jar.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\lib\junit-4.11.jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\lib\junit-4.11.jar</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying lib/junit-4.11.jar</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/lib/junit-4.11.jar C:/Users/d_dan/Desktop/opencv-master/build/java_test/lib/junit-4.11.jar
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/14774dc586155eb9c2af258848d79ece/junit-4.11.jar.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\lib\junit-4.11.jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\lib\junit-4.11.jar</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\8e040bf3d833683c2beceb77d359d6ba\build.xml.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying build.xml</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/build.xml C:/Users/d_dan/Desktop/opencv-master/build/java_test/build.xml
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/8e040bf3d833683c2beceb77d359d6ba/build.xml.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\build.xml;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\build.xml</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying build.xml</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/modules/java/test/pure_test/build.xml C:/Users/d_dan/Desktop/opencv-master/build/java_test/build.xml
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/8e040bf3d833683c2beceb77d359d6ba/build.xml.rule;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\build.xml;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\build.xml</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\e851f38baf971ad9d187583897f5b740\opencv-400.jar.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying the OpenCV jar</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/build/bin/opencv-400.jar C:/Users/d_dan/Desktop/opencv-master/build/java_test/bin/opencv-400.jar
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/e851f38baf971ad9d187583897f5b740/opencv-400.jar.rule;C:\Users\d_dan\Desktop\opencv-master\build\bin\opencv-400.jar;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\dephelper\opencv_java_jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\bin\opencv-400.jar</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying the OpenCV jar</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/d_dan/Desktop/opencv-master/build/bin/opencv-400.jar C:/Users/d_dan/Desktop/opencv-master/build/java_test/bin/opencv-400.jar
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/e851f38baf971ad9d187583897f5b740/opencv-400.jar.rule;C:\Users\d_dan\Desktop\opencv-master\build\bin\opencv-400.jar;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\dephelper\opencv_java_jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\bin\opencv-400.jar</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\016d844770c55fb12b65548b94fc952a\opencv-test.jar.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Build Java tests</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\d_dan\Desktop\opencv-master\build\java_test
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+call C:\apache-ant-1.9.13\bin\ant.bat -noinput -k build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/016d844770c55fb12b65548b94fc952a/opencv-test.jar.rule;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\dephelper\opencv_java_test_source_copy;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestCase.java;C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestCase.java;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestRunner.java;C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestRunner.java;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\lib\junit-4.11.jar;C:\Users\d_dan\Desktop\opencv-master\build\java_test\lib\junit-4.11.jar;C:\Users\d_dan\Desktop\opencv-master\build\java_test\build.xml;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\build.xml;C:\Users\d_dan\Desktop\opencv-master\build\bin\opencv-400.jar;C:\Users\d_dan\Desktop\opencv-master\build\java_test\bin\opencv-400.jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\build\jar\opencv-test.jar</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Build Java tests</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Users\d_dan\Desktop\opencv-master\build\java_test
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+call C:\apache-ant-1.9.13\bin\ant.bat -noinput -k build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/016d844770c55fb12b65548b94fc952a/opencv-test.jar.rule;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\dephelper\opencv_java_test_source_copy;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestCase.java;C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestCase.java;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\src\org\opencv\test\OpenCVTestRunner.java;C:\Users\d_dan\Desktop\opencv-master\build\java_test\src\org\opencv\test\OpenCVTestRunner.java;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\lib\junit-4.11.jar;C:\Users\d_dan\Desktop\opencv-master\build\java_test\lib\junit-4.11.jar;C:\Users\d_dan\Desktop\opencv-master\build\java_test\build.xml;C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\build.xml;C:\Users\d_dan\Desktop\opencv-master\build\bin\opencv-400.jar;C:\Users\d_dan\Desktop\opencv-master\build\java_test\bin\opencv-400.jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\java_test\build\jar\opencv-test.jar</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\8ebcb3c3d3920e40a236fd75529d8ddd\opencv_test_java.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/8ebcb3c3d3920e40a236fd75529d8ddd/opencv_test_java.rule;C:\Users\d_dan\Desktop\opencv-master\build\lib\Debug\opencv_java400.dll;C:\Users\d_dan\Desktop\opencv-master\build\java_test\build\jar\opencv-test.jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\CMakeFiles\opencv_test_java</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/8ebcb3c3d3920e40a236fd75529d8ddd/opencv_test_java.rule;C:\Users\d_dan\Desktop\opencv-master\build\lib\Release\opencv_java400.dll;C:\Users\d_dan\Desktop\opencv-master\build\java_test\build\jar\opencv-test.jar;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\CMakeFiles\opencv_test_java</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\CMakeFiles\opencv_test_java" />
+    <XML Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\build.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\ZERO_CHECK.vcxproj">
+      <Project>{5F150B91-9B2D-37A3-844E-9FDBF491CE82}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java_bindings_generator\gen_opencv_java_source.vcxproj">
+      <Project>{38EB8724-3585-33B9-B3AA-A00B887F24C7}</Project>
+      <Name>gen_opencv_java_source</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\jni\opencv_java.vcxproj">
+      <Project>{66E97875-B2C2-33CE-8734-3EA79026C055}</Project>
+      <Name>opencv_java</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\opencv_java_test_source_copy.vcxproj">
+      <Project>{601AFAA4-38C2-30CB-A553-0A2E25624705}</Project>
+      <Name>opencv_java_test_source_copy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

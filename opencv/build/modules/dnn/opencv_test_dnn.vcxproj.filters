@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\npy_blob.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_backends.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_caffe_importer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_darknet_importer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_googlenet.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_halide_layers.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_layers.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_misc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_nms.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_tf_importer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_torch_importer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_test_dnn_pch.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\npy_blob.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_common.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\dnn\test\test_precomp.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{E7A740BB-5739-3097-B3F4-2B582C12EB3E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{30BB559C-4E15-3A01-B090-B751C9CFE46C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -10,10 +10,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
-import com.ontotext.gate.gazetteer.HashGazetteer;
 
 import gate.Annotation;
 import gate.AnnotationSet;
@@ -28,12 +25,6 @@ import gate.ProcessingResource;
 import gate.corpora.DocumentContentImpl;
 import gate.creole.ResourceInstantiationException;
 import gate.creole.gazetteer.DefaultGazetteer;
-import gate.creole.gazetteer.Gazetteer;
-import gate.creole.gazetteer.GazetteerList;
-import gate.creole.gazetteer.GazetteerNode;
-import gate.creole.gazetteer.LinearDefinition;
-import gate.creole.gazetteer.LinearNode;
-import gate.creole.gazetteer.Lookup;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 

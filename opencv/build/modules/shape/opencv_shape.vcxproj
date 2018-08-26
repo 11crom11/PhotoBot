@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B1F85AB8-3B74-349E-9C40-3813D41202F9}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>opencv_shape</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_shape.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_shape400d</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_shape.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_shape400</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\shape\src;C:\Users\d_dan\Desktop\opencv-master\modules\shape\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\shape;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>4</ProcessorNumber>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:\Users\d_dan\Desktop\opencv-master\build\lib\Debug\opencv_shape400d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\shape\src;C:\Users\d_dan\Desktop\opencv-master\modules\shape\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\shape;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\shape\src;C:\Users\d_dan\Desktop\opencv-master\modules\shape\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\shape;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\shape\src;C:\Users\d_dan\Desktop\opencv-master\modules\shape\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\shape;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>4</ProcessorNumber>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>C:\Users\d_dan\Desktop\opencv-master\build\lib\Release\opencv_shape400.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\shape\src;C:\Users\d_dan\Desktop\opencv-master\modules\shape\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\shape;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\shape\src;C:\Users\d_dan\Desktop\opencv-master\modules\shape\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\shape;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\modules\video\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/d_dan/Desktop/opencv-master/modules/shape/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/d_dan/Desktop/opencv-master -BC:/Users/d_dan/Desktop/opencv-master/build --check-stamp-file C:/Users/d_dan/Desktop/opencv-master/build/modules/shape/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\shape\CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\shape\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\shape\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/d_dan/Desktop/opencv-master/modules/shape/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/d_dan/Desktop/opencv-master -BC:/Users/d_dan/Desktop/opencv-master/build --check-stamp-file C:/Users/d_dan/Desktop/opencv-master/build/modules/shape/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\shape\CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\modules\shape\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\shape\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\include\opencv2\shape.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\include\opencv2\shape\emdL1.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\include\opencv2\shape\hist_cost.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\include\opencv2\shape\shape.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\include\opencv2\shape\shape_distance.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\include\opencv2\shape\shape_transformer.hpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\aff_trans.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\emdL1.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\haus_dis.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\hist_cost.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\sc_dis.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\tps_trans.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\emdL1_def.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\precomp.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\shape\src\scd_def.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\build\cvconfig.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\build\opencv2\opencv_modules.hpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\shape\opencv_shape_pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/shape/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\ZERO_CHECK.vcxproj">
+      <Project>{5F150B91-9B2D-37A3-844E-9FDBF491CE82}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippiw\ippiw.vcxproj">
+      <Project>{30A708C7-401C-3DFF-A1F8-EFEF5EC90EA8}</Project>
+      <Name>ippiw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ittnotify\ittnotify.vcxproj">
+      <Project>{973A9577-B6AE-3005-B32B-D3100B664125}</Project>
+      <Name>ittnotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core.vcxproj">
+      <Project>{9E3E872B-7778-3249-90FA-30E2F7E2A513}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc.vcxproj">
+      <Project>{6DB79AE1-ABFD-3E08-BA8B-36104D5C70EF}</Project>
+      <Name>opencv_imgproc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\video\opencv_video.vcxproj">
+      <Project>{C53E3BC1-5B76-3C3C-BAE1-9C2D546133FD}</Project>
+      <Name>opencv_video</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\zlib\zlib.vcxproj">
+      <Project>{7A725B47-854F-368E-808B-B629F16A1BB3}</Project>
+      <Name>zlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CF3F2373-30B2-3092-9AA9-B5DA8DBB4394}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\ZERO_CHECK.vcxproj">
+      <Project>{5F150B91-9B2D-37A3-844E-9FDBF491CE82}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core.vcxproj">
+      <Project>{9E3E872B-7778-3249-90FA-30E2F7E2A513}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_AVX.vcxproj">
+      <Project>{20839087-AE48-3A93-BC90-629B9B18FED9}</Project>
+      <Name>opencv_core_AVX</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_AVX2.vcxproj">
+      <Project>{BADD5441-FBEB-3A26-9F31-E14A6606CC8E}</Project>
+      <Name>opencv_core_AVX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_FP16.vcxproj">
+      <Project>{163B922C-0EAE-35D1-93F5-6F2E49BA05C7}</Project>
+      <Name>opencv_core_FP16</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_SSE4_1.vcxproj">
+      <Project>{BB919A35-A42E-3069-93B9-5C42B9C57212}</Project>
+      <Name>opencv_core_SSE4_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_SSE4_2.vcxproj">
+      <Project>{FE588DAE-CEF2-32AD-9380-6F85EB0DE6B9}</Project>
+      <Name>opencv_core_SSE4_2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_perf_core.vcxproj">
+      <Project>{C1DC8871-A388-353A-82AE-DD1743D9FA20}</Project>
+      <Name>opencv_perf_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_test_core.vcxproj">
+      <Project>{B03A1B38-260B-32E9-87FB-B3958A09D5CA}</Project>
+      <Name>opencv_test_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_test_core_FP16.vcxproj">
+      <Project>{EEFAFF18-F43F-39E9-BC34-D955AA5AAB25}</Project>
+      <Name>opencv_test_core_FP16</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

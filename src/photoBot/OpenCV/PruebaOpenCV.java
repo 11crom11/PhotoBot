@@ -1,7 +1,5 @@
 package photoBot.OpenCV;
 
-import org.opencv.core.MatOfRect;
-
 public class PruebaOpenCV {
 
 	public static void main(String[] args) {

@@ -3,7 +3,6 @@ package photoBot.Agentes;
 import java.util.Date;
 
 import jade.core.Agent;
-import photoBot.Agentes.Comportamiento.ComportamientoAgenteAlmacenarImagen;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteGestionarCaras;
 
 public class AgenteGestionarCaras extends Agent{

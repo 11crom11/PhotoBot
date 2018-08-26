@@ -1,9 +1,9 @@
 package photoBot.Gate;
 
-import gate.util.GateException;
-
 import java.io.IOException;
 import java.util.List;
+
+import gate.util.GateException;
 
 public class Prueba {
 

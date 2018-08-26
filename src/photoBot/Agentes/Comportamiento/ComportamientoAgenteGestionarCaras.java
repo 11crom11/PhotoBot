@@ -1,6 +1,5 @@
 package photoBot.Agentes.Comportamiento;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,10 +13,8 @@ import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
-import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
 import photoBot.OpenCV.CarasDetectadas;
 import photoBot.OpenCV.GestorDeCaras;
-import photoBot.Utilidades.SerializadorObjeto;
 
 public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 

@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6DB79AE1-ABFD-3E08-BA8B-36104D5C70EF}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>opencv_imgproc</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_imgproc.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_imgproc400d</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_imgproc.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_imgproc400</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>4</ProcessorNumber>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:\Users\d_dan\Desktop\opencv-master\build\lib\Debug\opencv_imgproc400d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>4</ProcessorNumber>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>C:\Users\d_dan\Desktop\opencv-master\build\lib\Release\opencv_imgproc400.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;__OPENCV_BUILD=1;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include;C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc;C:\Users\d_dan\Desktop\opencv-master\modules\core\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\fa0e592905aefefd0c394421f04dba18\opencl_kernels_imgproc.cpp.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Processing OpenCL kernels (imgproc)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -DMODULE_NAME=imgproc -DCL_DIR=C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/opencl -DOUTPUT=C:/Users/d_dan/Desktop/opencv-master/build/modules/imgproc/opencl_kernels_imgproc.cpp -P C:/Users/d_dan/Desktop/opencv-master/cmake/cl2cpp.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/fa0e592905aefefd0c394421f04dba18/opencl_kernels_imgproc.cpp.rule;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\accumulate.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\bilateral.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\blend_linear.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\boxFilter.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\boxFilter3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\calc_back_project.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\canny.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\clahe.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_hsv.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_lab.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_rgb.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_yuv.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\corner.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\covardata.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filter2D.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filter2DSmall.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSepCol.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSepRow.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSep_singlePass.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSmall.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gaussianBlur3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gaussianBlur5x5.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gftt.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\histogram.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\hough_lines.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\integral_sum.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\laplacian3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\laplacian5.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\linearPolar.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\logPolar.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\match_template.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\medianFilter.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\moments.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\morph.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\morph3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\precornerdetect.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyr_down.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyr_up.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyramid_up.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\remap.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\resize.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\sepFilter3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\threshold.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_affine.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_perspective.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_transform.cl;C:\Users\d_dan\Desktop\opencv-master\cmake\cl2cpp.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencl_kernels_imgproc.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Processing OpenCL kernels (imgproc)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -DMODULE_NAME=imgproc -DCL_DIR=C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/opencl -DOUTPUT=C:/Users/d_dan/Desktop/opencv-master/build/modules/imgproc/opencl_kernels_imgproc.cpp -P C:/Users/d_dan/Desktop/opencv-master/cmake/cl2cpp.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/fa0e592905aefefd0c394421f04dba18/opencl_kernels_imgproc.cpp.rule;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\accumulate.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\bilateral.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\blend_linear.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\boxFilter.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\boxFilter3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\calc_back_project.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\canny.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\clahe.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_hsv.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_lab.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_rgb.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_yuv.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\corner.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\covardata.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filter2D.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filter2DSmall.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSepCol.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSepRow.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSep_singlePass.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSmall.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gaussianBlur3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gaussianBlur5x5.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gftt.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\histogram.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\hough_lines.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\integral_sum.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\laplacian3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\laplacian5.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\linearPolar.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\logPolar.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\match_template.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\medianFilter.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\moments.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\morph.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\morph3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\precornerdetect.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyr_down.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyr_up.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyramid_up.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\remap.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\resize.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\sepFilter3x3.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\threshold.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_affine.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_perspective.cl;C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_transform.cl;C:\Users\d_dan\Desktop\opencv-master\cmake\cl2cpp.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencl_kernels_imgproc.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc\hal\hal.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc\hal\interface.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc\imgproc.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc\imgproc_c.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc\types_c.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\include\opencv2\imgproc\detail\distortion_model.hpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\accum.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\accum.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\approx.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\blend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\canny.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\clahe.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\color.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\color_hsv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\color_lab.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\color_rgb.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\color_yuv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\colormap.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\connectedcomponents.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\contours.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\convhull.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\corner.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\cornersubpix.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\demosaicing.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\deriv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\distransform.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\drawing.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\emd.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\featureselect.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\filter.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\floodfill.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\gabor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\generalized_hough.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\geometry.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\grabcut.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\hershey_fonts.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\histogram.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\hough.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\imgwarp.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\intersection.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\linefit.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\lsd.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\main.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\matchcontours.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\min_enclosing_triangle.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\moments.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\morph.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\phasecorr.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\pyramids.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\resize.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\rotcalipers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\samplers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\segmentation.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\shapedescr.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\smooth.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\spatialgradient.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\subdivision2d.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\sumpixels.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\tables.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\templmatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\thresh.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\undistort.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\utils.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\accumulate.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\bilateral.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\blend_linear.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\boxFilter.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\boxFilter3x3.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\calc_back_project.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\canny.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\clahe.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_hsv.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_lab.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_rgb.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\color_yuv.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\corner.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\covardata.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filter2D.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filter2DSmall.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSepCol.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSepRow.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSep_singlePass.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\filterSmall.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gaussianBlur3x3.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gaussianBlur5x5.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\gftt.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\histogram.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\hough_lines.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\integral_sum.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\laplacian3.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\laplacian5.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\linearPolar.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\logPolar.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\match_template.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\medianFilter.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\moments.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\morph.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\morph3x3.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\precornerdetect.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyr_down.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyr_up.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\pyramid_up.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\remap.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\resize.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\sepFilter3x3.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\threshold.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_affine.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_perspective.cl" />
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\opencl\warp_transform.cl" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencl_kernels_imgproc.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencl_kernels_imgproc.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\_geom.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\accum.simd.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\color.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\corner.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\filter.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\filterengine.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\fixedpoint.inl.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\gcgraph.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\hal_replacement.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\imgwarp.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\precomp.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\resize.hpp" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\modules\imgproc\src\undistort.hpp" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\imgwarp.sse4_1.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\resize.sse4_1.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX.dir\$(Configuration)\corner.avx.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX.dir\$(Configuration)\accum.avx.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\filter.avx2.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\imgwarp.avx2.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\resize.avx2.obj" />
+    <Object Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\undistort.avx2.obj" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\build\cvconfig.h" />
+    <ClInclude Include="C:\Users\d_dan\Desktop\opencv-master\build\opencv2\opencv_modules.hpp" />
+    <ClCompile Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/modules/imgproc/src/precomp.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\ZERO_CHECK.vcxproj">
+      <Project>{5F150B91-9B2D-37A3-844E-9FDBF491CE82}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippiw\ippiw.vcxproj">
+      <Project>{30A708C7-401C-3DFF-A1F8-EFEF5EC90EA8}</Project>
+      <Name>ippiw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ittnotify\ittnotify.vcxproj">
+      <Project>{973A9577-B6AE-3005-B32B-D3100B664125}</Project>
+      <Name>ittnotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core.vcxproj">
+      <Project>{9E3E872B-7778-3249-90FA-30E2F7E2A513}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX.vcxproj">
+      <Project>{B9A8D190-FE34-3A69-AFA8-ACBCA6B906EF}</Project>
+      <Name>opencv_imgproc_AVX</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX2.vcxproj">
+      <Project>{4E56317B-D856-35AE-B2BB-57FA5D873B6B}</Project>
+      <Name>opencv_imgproc_AVX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_SSE4_1.vcxproj">
+      <Project>{0F38C9D3-57B3-3D5F-8759-9F9A1C9A9119}</Project>
+      <Name>opencv_imgproc_SSE4_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\zlib\zlib.vcxproj">
+      <Project>{7A725B47-854F-368E-808B-B629F16A1BB3}</Project>
+      <Name>zlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

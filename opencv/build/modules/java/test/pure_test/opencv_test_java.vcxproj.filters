@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\f9d59af57cabc5bb93e3431d2162f977\OpenCVTestCase.java.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\f9d59af57cabc5bb93e3431d2162f977\OpenCVTestRunner.java.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\14774dc586155eb9c2af258848d79ece\junit-4.11.jar.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\8e040bf3d833683c2beceb77d359d6ba\build.xml.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\e851f38baf971ad9d187583897f5b740\opencv-400.jar.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\016d844770c55fb12b65548b94fc952a\opencv-test.jar.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\8ebcb3c3d3920e40a236fd75529d8ddd\opencv_test_java.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\CMakeFiles\opencv_test_java" />
+  </ItemGroup>
+  <ItemGroup>
+    <XML Include="C:\Users\d_dan\Desktop\opencv-master\modules\java\test\pure_test\build.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F2CE2223-8C7C-37C5-BBDA-E9C29A713FE8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{B79F57EF-FF52-34A5-A0D8-BF71741A163D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

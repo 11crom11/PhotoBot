@@ -1,6 +1,7 @@
 package photoBot.OpenCV;
 
 import java.util.HashMap;
+
 import org.opencv.core.Scalar;
 
 /**

@@ -1,9 +1,9 @@
 package photoBot.Imagen;
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.*;
-
-import com.mongodb.DBRef;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
 
 //@Entity("Persona")
 public class Persona {

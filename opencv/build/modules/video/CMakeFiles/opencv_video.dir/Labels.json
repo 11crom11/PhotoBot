@@ -1,0 +1,240 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/include/opencv2/video.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/include/opencv2/video/background_segm.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/include/opencv2/video/tracking.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/include/opencv2/video/tracking_c.h",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/include/opencv2/video/video.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/bgfg_KNN.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/bgfg_gaussmix2.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/camshift.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/compat_video.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/ecc.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/kalman.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/lkpyramid.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/optflowgf.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/tvl1flow.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/opencl/bgfg_knn.cl",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/opencl/bgfg_mog2.cl",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/opencl/optical_flow_farneback.cl",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/opencl/optical_flow_tvl1.cl",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/opencl/pyrlk.cl",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/modules/video/opencl_kernels_video.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/modules/video/opencl_kernels_video.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/lkpyramid.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/video/src/precomp.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/cvconfig.h"
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/opencv2/opencv_modules.hpp"
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/modules/video/opencv_video_pch.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_video",
+				"Module"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/ddedd8d8c87de3884aa688ed9d6cb2d3/opencl_kernels_video.cpp.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Main",
+			"opencv_video",
+			"Module"
+		],
+		"name" : "opencv_video"
+	}
+}

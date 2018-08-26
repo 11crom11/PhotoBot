@@ -1,0 +1,51 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/shape/test/test_main.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_shape",
+				"AccuracyTest"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/shape/test/test_shape.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_shape",
+				"AccuracyTest"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/modules/shape/test/test_precomp.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_shape",
+				"AccuracyTest"
+			]
+		},
+		{
+			"file" : "C:/Users/d_dan/Desktop/opencv-master/build/modules/shape/opencv_test_shape_pch.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_shape",
+				"AccuracyTest"
+			]
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Main",
+			"opencv_shape",
+			"AccuracyTest"
+		],
+		"name" : "opencv_test_shape"
+	}
+}

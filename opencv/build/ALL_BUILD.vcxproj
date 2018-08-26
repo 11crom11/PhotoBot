@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CF3F2373-30B2-3092-9AA9-B5DA8DBB4394}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippicv_win\include;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippicv\ippiw_win\include;C:\Users\d_dan\Desktop\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\d_dan\Desktop\opencv-master\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/d_dan/Desktop/opencv-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/d_dan/Desktop/opencv-master -BC:/Users/d_dan/Desktop/opencv-master/build --check-stamp-file C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/d_dan/Desktop/opencv-master/CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeFindFrameworks.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeFindJavaCommon.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckTypeSize.c.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MIPSpro-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-C-FeatureTests.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-CXX-FeatureTests.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.12\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindJNI.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindLAPACK.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPythonInterp.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPythonLibs.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\ProcessorCount.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\TestBigEndian.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\TestEndianess.c.in;C:\Program Files\CMake\share\cmake-3.12\Templates\CPackConfig.cmake.in;C:\Users\d_dan\Desktop\opencv-master\3rdparty\ffmpeg\ffmpeg.cmake;C:\Users\d_dan\Desktop\opencv-master\3rdparty\ippicv\ippicv.cmake;C:\Users\d_dan\Desktop\opencv-master\CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ffmpeg\ffmpeg_version.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeCCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeCXXCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeRCCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeSystem.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\CheckTypeSize\CMAKE_SIZEOF_UNSIGNED_SHORT.c;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\feature_tests.c;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\feature_tests.cxx;C:\Users\d_dan\Desktop\opencv-master\cmake\FindGstreamerWindows.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVCRTLinkage.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVCompilerOptimizations.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVCompilerOptions.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectApacheAnt.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectCXXCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectDirectX.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectOpenCL.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectPython.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectTrace.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectVTK.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDownload.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVExtraTargets.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindIPP.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindIPPIW.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLAPACK.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsGUI.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsGrfmt.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsPerf.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsVideo.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindMKL.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindMatlab.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindOpenBLAS.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindProtobuf.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenABI.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenAndroidMK.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenConfig.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenHeaders.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenPkgconfig.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVMinDepVersions.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVModule.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVPCHSupport.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVPackaging.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVUtils.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVVersion.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_avx2.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_avx512.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_avx512skx.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_fp16.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_popcnt.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_sse3.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_sse41.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_sse42.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_ssse3.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cxx11.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\directx.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\opencl.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\vfwtest.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\win32uitest.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\OpenCVConfig-version.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\OpenCVConfig.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\OpenCVConfig.root-WIN32.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\cmake_uninstall.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\custom_hal.hpp.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\cv_cpu_config.h.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\cvconfig.h.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\opencv_modules.hpp.in;C:\Users\d_dan\Desktop\opencv-master\modules\core\include\opencv2\core\version.hpp;C:\Users\d_dan\Desktop\opencv-master\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/d_dan/Desktop/opencv-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/d_dan/Desktop/opencv-master -BC:/Users/d_dan/Desktop/opencv-master/build --check-stamp-file C:/Users/d_dan/Desktop/opencv-master/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/d_dan/Desktop/opencv-master/CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeFindFrameworks.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeFindJavaCommon.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CPack.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CPackComponent.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckTypeSize.c.in;C:\Program Files\CMake\share\cmake-3.12\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MIPSpro-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-C-FeatureTests.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-CXX-FeatureTests.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.12\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindJNI.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindLAPACK.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPythonInterp.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindPythonLibs.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\ProcessorCount.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\TestBigEndian.cmake;C:\Program Files\CMake\share\cmake-3.12\Modules\TestEndianess.c.in;C:\Program Files\CMake\share\cmake-3.12\Templates\CPackConfig.cmake.in;C:\Users\d_dan\Desktop\opencv-master\3rdparty\ffmpeg\ffmpeg.cmake;C:\Users\d_dan\Desktop\opencv-master\3rdparty\ippicv\ippicv.cmake;C:\Users\d_dan\Desktop\opencv-master\CMakeLists.txt;C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ffmpeg\ffmpeg_version.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeCCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeCXXCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeRCCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\3.12.0-rc3\CMakeSystem.cmake;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\CheckTypeSize\CMAKE_SIZEOF_UNSIGNED_SHORT.c;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\feature_tests.c;C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\feature_tests.cxx;C:\Users\d_dan\Desktop\opencv-master\cmake\FindGstreamerWindows.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVCRTLinkage.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVCompilerOptimizations.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVCompilerOptions.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectApacheAnt.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectCXXCompiler.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectDirectX.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectOpenCL.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectPython.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectTrace.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDetectVTK.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVDownload.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVExtraTargets.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindIPP.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindIPPIW.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLAPACK.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsGUI.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsGrfmt.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsPerf.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindLibsVideo.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindMKL.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindMatlab.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindOpenBLAS.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVFindProtobuf.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenABI.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenAndroidMK.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenConfig.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenHeaders.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVGenPkgconfig.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVMinDepVersions.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVModule.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVPCHSupport.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVPackaging.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVUtils.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\OpenCVVersion.cmake;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_avx2.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_avx512.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_avx512skx.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_fp16.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_popcnt.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_sse3.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_sse41.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_sse42.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cpu_ssse3.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\cxx11.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\directx.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\opencl.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\vfwtest.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\checks\win32uitest.cpp;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\OpenCVConfig-version.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\OpenCVConfig.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\OpenCVConfig.root-WIN32.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\cmake_uninstall.cmake.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\custom_hal.hpp.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\cv_cpu_config.h.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\cvconfig.h.in;C:\Users\d_dan\Desktop\opencv-master\cmake\templates\opencv_modules.hpp.in;C:\Users\d_dan\Desktop\opencv-master\modules\core\include\opencv2\core\version.hpp;C:\Users\d_dan\Desktop\opencv-master\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\d_dan\Desktop\opencv-master\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\ZERO_CHECK.vcxproj">
+      <Project>{5F150B91-9B2D-37A3-844E-9FDBF491CE82}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\openexr\IlmImf.vcxproj">
+      <Project>{7D4C093D-4D7A-30D9-877E-3A17BA298FDB}</Project>
+      <Name>IlmImf</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ippiw\ippiw.vcxproj">
+      <Project>{30A708C7-401C-3DFF-A1F8-EFEF5EC90EA8}</Project>
+      <Name>ippiw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\ittnotify\ittnotify.vcxproj">
+      <Project>{973A9577-B6AE-3005-B32B-D3100B664125}</Project>
+      <Name>ittnotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libjasper\libjasper.vcxproj">
+      <Project>{55F8A6A7-59A0-3C09-9495-EC32100DF90E}</Project>
+      <Name>libjasper</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libjpeg-turbo\libjpeg-turbo.vcxproj">
+      <Project>{56220155-9DE9-3637-B99A-461085428282}</Project>
+      <Name>libjpeg-turbo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libpng\libpng.vcxproj">
+      <Project>{62ADF53B-E4F4-3EFD-B7E8-403F619F011C}</Project>
+      <Name>libpng</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\protobuf\libprotobuf.vcxproj">
+      <Project>{AC0CC23B-37A1-36B5-B395-06A2A80CA9AD}</Project>
+      <Name>libprotobuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libtiff\libtiff.vcxproj">
+      <Project>{25BD1A5D-5FEC-351D-ADC1-256BA425D0C0}</Project>
+      <Name>libtiff</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\libwebp\libwebp.vcxproj">
+      <Project>{42A16088-1BC5-3064-905B-D88EA74D8B49}</Project>
+      <Name>libwebp</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\annotation\opencv_annotation.vcxproj">
+      <Project>{4D93DD48-89E1-396D-8041-A35100A29B34}</Project>
+      <Name>opencv_annotation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\calib3d\opencv_calib3d.vcxproj">
+      <Project>{F32A7A41-C95F-30A1-A3FF-CA66F67870C0}</Project>
+      <Name>opencv_calib3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core.vcxproj">
+      <Project>{9E3E872B-7778-3249-90FA-30E2F7E2A513}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_AVX.vcxproj">
+      <Project>{20839087-AE48-3A93-BC90-629B9B18FED9}</Project>
+      <Name>opencv_core_AVX</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_AVX2.vcxproj">
+      <Project>{BADD5441-FBEB-3A26-9F31-E14A6606CC8E}</Project>
+      <Name>opencv_core_AVX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_FP16.vcxproj">
+      <Project>{163B922C-0EAE-35D1-93F5-6F2E49BA05C7}</Project>
+      <Name>opencv_core_FP16</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_SSE4_1.vcxproj">
+      <Project>{BB919A35-A42E-3069-93B9-5C42B9C57212}</Project>
+      <Name>opencv_core_SSE4_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_core_SSE4_2.vcxproj">
+      <Project>{FE588DAE-CEF2-32AD-9380-6F85EB0DE6B9}</Project>
+      <Name>opencv_core_SSE4_2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\createsamples\opencv_createsamples.vcxproj">
+      <Project>{35A075D3-15B0-30C8-B843-02E4A8C1DE70}</Project>
+      <Name>opencv_createsamples</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_dnn.vcxproj">
+      <Project>{943D1D7D-25CE-3C11-8231-35F6E33CE754}</Project>
+      <Name>opencv_dnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_dnn_AVX.vcxproj">
+      <Project>{60B87139-5E3A-395E-BB76-4F871A638E42}</Project>
+      <Name>opencv_dnn_AVX</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_dnn_AVX2.vcxproj">
+      <Project>{4181135E-9A58-3187-8E00-DBB204E2229D}</Project>
+      <Name>opencv_dnn_AVX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\face\opencv_face.vcxproj">
+      <Project>{7821A069-33D8-339C-AD03-D46188EC2F5C}</Project>
+      <Name>opencv_face</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\features2d\opencv_features2d.vcxproj">
+      <Project>{0BEE3333-CFF2-379B-8353-A1749EF79031}</Project>
+      <Name>opencv_features2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\features2d\opencv_features2d_AVX2.vcxproj">
+      <Project>{0A8EAEAF-8AFD-3A16-AC6D-3C8D7073713D}</Project>
+      <Name>opencv_features2d_AVX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\flann\opencv_flann.vcxproj">
+      <Project>{4ED8D726-75DD-3DB1-B99A-0CC659DDD583}</Project>
+      <Name>opencv_flann</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\highgui\opencv_highgui.vcxproj">
+      <Project>{C0D19A19-DE0C-329A-8389-3C036FC59CDD}</Project>
+      <Name>opencv_highgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgcodecs\opencv_imgcodecs.vcxproj">
+      <Project>{28A6A009-30EC-3976-8BCD-5CB35A6CAFCC}</Project>
+      <Name>opencv_imgcodecs</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc.vcxproj">
+      <Project>{6DB79AE1-ABFD-3E08-BA8B-36104D5C70EF}</Project>
+      <Name>opencv_imgproc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX.vcxproj">
+      <Project>{B9A8D190-FE34-3A69-AFA8-ACBCA6B906EF}</Project>
+      <Name>opencv_imgproc_AVX</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_AVX2.vcxproj">
+      <Project>{4E56317B-D856-35AE-B2BB-57FA5D873B6B}</Project>
+      <Name>opencv_imgproc_AVX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_imgproc_SSE4_1.vcxproj">
+      <Project>{0F38C9D3-57B3-3D5F-8759-9F9A1C9A9119}</Project>
+      <Name>opencv_imgproc_SSE4_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\interactive-calibration\opencv_interactive-calibration.vcxproj">
+      <Project>{4AA07406-0753-3ABA-A898-0B2F615CA889}</Project>
+      <Name>opencv_interactive-calibration</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\jni\opencv_java.vcxproj">
+      <Project>{66E97875-B2C2-33CE-8734-3EA79026C055}</Project>
+      <Name>opencv_java</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\ml\opencv_ml.vcxproj">
+      <Project>{893C5ACD-557E-3259-A841-1315136235DE}</Project>
+      <Name>opencv_ml</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\objdetect\opencv_objdetect.vcxproj">
+      <Project>{A5698D24-8F54-3236-858A-5ABB166CE563}</Project>
+      <Name>opencv_objdetect</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\objdetect\opencv_objdetect_AVX.vcxproj">
+      <Project>{CF1829FC-02E1-3165-9355-B5F2232B0D65}</Project>
+      <Name>opencv_objdetect_AVX</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\calib3d\opencv_perf_calib3d.vcxproj">
+      <Project>{9421FE4D-7D85-3C7C-A8F9-F3F42E46840D}</Project>
+      <Name>opencv_perf_calib3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_perf_core.vcxproj">
+      <Project>{C1DC8871-A388-353A-82AE-DD1743D9FA20}</Project>
+      <Name>opencv_perf_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_perf_dnn.vcxproj">
+      <Project>{B811DA8D-A83F-355A-8ACF-47123D000C10}</Project>
+      <Name>opencv_perf_dnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\features2d\opencv_perf_features2d.vcxproj">
+      <Project>{421E02EA-7BE8-364A-9E74-9E734D9F5C5B}</Project>
+      <Name>opencv_perf_features2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgcodecs\opencv_perf_imgcodecs.vcxproj">
+      <Project>{A3FF533B-4F1B-3EA4-93D1-015D160B58CF}</Project>
+      <Name>opencv_perf_imgcodecs</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_perf_imgproc.vcxproj">
+      <Project>{1D7ABCC6-0B4F-34E4-8A98-A9BEAA8BD8D3}</Project>
+      <Name>opencv_perf_imgproc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\objdetect\opencv_perf_objdetect.vcxproj">
+      <Project>{347840B3-E688-3A62-9D90-22E4FB3EFE53}</Project>
+      <Name>opencv_perf_objdetect</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\photo\opencv_perf_photo.vcxproj">
+      <Project>{75E5EC04-B1F1-3BCA-AA9E-47BE2C93F8AB}</Project>
+      <Name>opencv_perf_photo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\stitching\opencv_perf_stitching.vcxproj">
+      <Project>{AC2A1EEB-B343-3745-80C7-D13F81CB6118}</Project>
+      <Name>opencv_perf_stitching</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\superres\opencv_perf_superres.vcxproj">
+      <Project>{2579D3D7-FACD-3E07-9477-5302D0C854F5}</Project>
+      <Name>opencv_perf_superres</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\video\opencv_perf_video.vcxproj">
+      <Project>{0639463D-73F6-3E4D-94BA-8997A38D4275}</Project>
+      <Name>opencv_perf_video</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\videoio\opencv_perf_videoio.vcxproj">
+      <Project>{36D0572C-3CB9-3F1F-98C7-A5670548E2B7}</Project>
+      <Name>opencv_perf_videoio</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\photo\opencv_photo.vcxproj">
+      <Project>{4AD57A20-7C2E-3263-8C2E-9848ECC40C68}</Project>
+      <Name>opencv_photo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\shape\opencv_shape.vcxproj">
+      <Project>{B1F85AB8-3B74-349E-9C40-3813D41202F9}</Project>
+      <Name>opencv_shape</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\stitching\opencv_stitching.vcxproj">
+      <Project>{3BD510E5-A2C2-397C-8389-0DB9D2EEBE08}</Project>
+      <Name>opencv_stitching</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\superres\opencv_superres.vcxproj">
+      <Project>{4679F71E-13C0-3D09-9A81-039797947B31}</Project>
+      <Name>opencv_superres</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\calib3d\opencv_test_calib3d.vcxproj">
+      <Project>{526D6CA6-0D21-3714-A354-23D804053FB6}</Project>
+      <Name>opencv_test_calib3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_test_core.vcxproj">
+      <Project>{B03A1B38-260B-32E9-87FB-B3958A09D5CA}</Project>
+      <Name>opencv_test_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\core\opencv_test_core_FP16.vcxproj">
+      <Project>{EEFAFF18-F43F-39E9-BC34-D955AA5AAB25}</Project>
+      <Name>opencv_test_core_FP16</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\dnn\opencv_test_dnn.vcxproj">
+      <Project>{1ED74036-3F62-3F91-8814-E766883DB195}</Project>
+      <Name>opencv_test_dnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\face\opencv_test_face.vcxproj">
+      <Project>{13D008B1-50E5-3DD5-9092-8CE6956262CC}</Project>
+      <Name>opencv_test_face</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\features2d\opencv_test_features2d.vcxproj">
+      <Project>{0F5DA212-F900-31A8-B362-102CF1439C24}</Project>
+      <Name>opencv_test_features2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\flann\opencv_test_flann.vcxproj">
+      <Project>{A3C5EE69-31AB-3307-A936-00DFE9E3ABD1}</Project>
+      <Name>opencv_test_flann</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\highgui\opencv_test_highgui.vcxproj">
+      <Project>{F5972406-3F9E-3DC8-B3D5-A42C1C5525B0}</Project>
+      <Name>opencv_test_highgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgcodecs\opencv_test_imgcodecs.vcxproj">
+      <Project>{C88B48A8-D016-3685-8694-0FAC4D54B6BF}</Project>
+      <Name>opencv_test_imgcodecs</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\imgproc\opencv_test_imgproc.vcxproj">
+      <Project>{DEA93CE2-203A-3AA4-8CDE-13ED5C85D677}</Project>
+      <Name>opencv_test_imgproc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\java\test\pure_test\opencv_test_java.vcxproj">
+      <Project>{357FB7B5-1CCC-3089-BFCC-7AF111D2AAD1}</Project>
+      <Name>opencv_test_java</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\ml\opencv_test_ml.vcxproj">
+      <Project>{CB4467FE-8912-3377-BB2B-4C5A2D2F3F5C}</Project>
+      <Name>opencv_test_ml</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\objdetect\opencv_test_objdetect.vcxproj">
+      <Project>{873F349D-22BA-3AB0-994D-8B0A6F1D3619}</Project>
+      <Name>opencv_test_objdetect</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\photo\opencv_test_photo.vcxproj">
+      <Project>{B855D6F3-4FD1-316A-894C-87F7DE978EA4}</Project>
+      <Name>opencv_test_photo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\shape\opencv_test_shape.vcxproj">
+      <Project>{F1B7EF20-762A-3CED-A414-3434DD9EA10C}</Project>
+      <Name>opencv_test_shape</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\stitching\opencv_test_stitching.vcxproj">
+      <Project>{46AD152D-AE80-3367-9948-9BDAA9CFED0D}</Project>
+      <Name>opencv_test_stitching</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\superres\opencv_test_superres.vcxproj">
+      <Project>{F0DBB9C6-EB31-3473-8CD4-32F04F1667C9}</Project>
+      <Name>opencv_test_superres</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\video\opencv_test_video.vcxproj">
+      <Project>{3FB982C6-BD43-3E57-B40C-CC14FE02A0F5}</Project>
+      <Name>opencv_test_video</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\videoio\opencv_test_videoio.vcxproj">
+      <Project>{D1E96327-EF75-3552-8B68-960D645E4927}</Project>
+      <Name>opencv_test_videoio</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\videostab\opencv_test_videostab.vcxproj">
+      <Project>{21D3EE03-83CA-3FAC-8880-7F7DA6684252}</Project>
+      <Name>opencv_test_videostab</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\traincascade\opencv_traincascade.vcxproj">
+      <Project>{F9059B77-FA45-3F88-ACE8-C4B24E3402A1}</Project>
+      <Name>opencv_traincascade</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\ts\opencv_ts.vcxproj">
+      <Project>{F3B012D0-D24F-385B-AB79-9C4EE9ACA409}</Project>
+      <Name>opencv_ts</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\version\opencv_version.vcxproj">
+      <Project>{5EB09276-6425-3FE0-9810-F6F6B0A84FE3}</Project>
+      <Name>opencv_version</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\version\opencv_version_win32.vcxproj">
+      <Project>{E49FB324-25A9-3580-A629-B90DBB5150A3}</Project>
+      <Name>opencv_version_win32</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\video\opencv_video.vcxproj">
+      <Project>{C53E3BC1-5B76-3C3C-BAE1-9C2D546133FD}</Project>
+      <Name>opencv_video</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\videoio\opencv_videoio.vcxproj">
+      <Project>{64D44B4A-40C0-3601-A8E2-C960335F0BF1}</Project>
+      <Name>opencv_videoio</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\modules\videostab\opencv_videostab.vcxproj">
+      <Project>{98C03EF2-7834-3D7D-90B9-6F3EA08F45C7}</Project>
+      <Name>opencv_videostab</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\apps\visualisation\opencv_visualisation.vcxproj">
+      <Project>{60346D72-F974-3C0F-ABB3-3A0651A5E795}</Project>
+      <Name>opencv_visualisation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\d_dan\Desktop\opencv-master\build\3rdparty\zlib\zlib.vcxproj">
+      <Project>{7A725B47-854F-368E-808B-B629F16A1BB3}</Project>
+      <Name>zlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

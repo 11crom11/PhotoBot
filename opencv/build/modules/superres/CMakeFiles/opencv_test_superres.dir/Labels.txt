@@ -1,0 +1,21 @@
+# Target labels
+ Main
+ opencv_superres
+ AccuracyTest
+# Source files and their labels
+C:/Users/d_dan/Desktop/opencv-master/modules/superres/test/test_main.cpp
+ Main
+ opencv_superres
+ AccuracyTest
+C:/Users/d_dan/Desktop/opencv-master/modules/superres/test/test_superres.cpp
+ Main
+ opencv_superres
+ AccuracyTest
+C:/Users/d_dan/Desktop/opencv-master/modules/superres/test/test_precomp.hpp
+ Main
+ opencv_superres
+ AccuracyTest
+C:/Users/d_dan/Desktop/opencv-master/build/modules/superres/opencv_test_superres_pch.cpp
+ Main
+ opencv_superres
+ AccuracyTest

@@ -1,12 +1,19 @@
 package photoBot;
 
+import java.io.File;
+import java.io.IOException;
+
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
-import jade.wrapper.*;
+import jade.wrapper.AgentContainer;
+import jade.wrapper.AgentController;
+import jade.wrapper.StaleProxyException;
 import photoBot.Agentes.Comportamiento.ConstantesComportamiento;
 public class Main {
 	
 	public static void main(String[] args) {
+
+
 		Runtime rt = Runtime.instance();
 		ProfileImpl p = new ProfileImpl(false);
 		

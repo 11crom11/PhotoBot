@@ -1,15 +1,9 @@
 package photoBot.BBDD;
 
 
-import java.util.List;
-
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.UpdateOperations;
-
-import com.mongodb.DBRef;
 
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
@@ -27,7 +21,7 @@ public class PhotoBotBBDD {
 		
 		this.morphia.mapPackage("photoBot.Imagen");
 		
-		this.dataStore = morphia.createDatastore(new com.mongodb.MongoClient(), "photobot");
+		this.dataStore = morphia.createDatastore(new com.mongodb.MongoClient("172.29.129.141", 27017), "photobot");
 		
 	}
 	

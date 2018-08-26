@@ -22,7 +22,6 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
-import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Imagen.Usuario;
 
 public class AgenteConversacionUsuario extends Agent {

@@ -6,6 +6,7 @@ import java.util.List;
 
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
+import photoBot.OpenCV.CarasDetectadas;
 
 public class Conversacion {
 	

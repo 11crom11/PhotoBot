@@ -25,5 +25,12 @@ rule "Solicitud de busqueda de todas las imagenes"
         
         tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
     then
-    	comportamiento.bot_solicitudBuscarTodasImagenes();    
+    	comportamiento.bot_solicitudBuscarTodasImagenes();  
+    	
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
+		//CUANDO SE TRANSICIONA AL ESTADO EXISTENCIA_USUARIO...
+		//...NO ES HACE UPDATE PARA NO ENTRAR EN BUCLE
+		//update(manejador);
+		
+		System.out.println("REGLA BUSCAR TODAS LAS IMAGENES EJECUTADA");
 end

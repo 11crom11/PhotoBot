@@ -16,6 +16,9 @@ global java.lang.Integer GR_PU;
 rule "Solicitud de subir imagen"
 	salience 15
 	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_PU) from manejador.getGrupoActivado();
+	
 		etiqueta : Etiqueta();
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
@@ -29,6 +32,9 @@ end
 rule "Recibir texto posterior a solicitud de subir imagen"
 	salience 20
 	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();        
+        
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
@@ -42,6 +48,9 @@ end
 rule "Recoger datos imagen"
 	salience 80
 	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
 		etiqueta : Etiqueta();
 
         conversacion : Conversacion();

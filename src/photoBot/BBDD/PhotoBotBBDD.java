@@ -21,7 +21,8 @@ public class PhotoBotBBDD {
 		
 		this.morphia.mapPackage("photoBot.Imagen");
 		
-		this.dataStore = morphia.createDatastore(new com.mongodb.MongoClient("172.29.129.141", 27017), "photobot");
+		//172.29.129.141
+		this.dataStore = morphia.createDatastore(new com.mongodb.MongoClient("localhost", 27017), "photobot");
 		
 	}
 	

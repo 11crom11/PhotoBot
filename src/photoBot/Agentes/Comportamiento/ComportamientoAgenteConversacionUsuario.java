@@ -6,18 +6,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Triple;
+import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
+import org.opencv.core.MatOfRect;
 
 import gate.util.GateException;
-import jade.core.AID;
-import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.UnreadableException;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
 import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Drools.Conversacion;
@@ -27,6 +25,14 @@ import photoBot.Gate.ProcesadorLenguaje;
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
+import photoBot.OpenCV.CarasDetectadas;
+import photoBot.OpenCV.GestorDeCaras;
+import photoBot.Utilidades.SerializadorObjeto;
+import jade.core.AID;
+import jade.core.Agent;
+import jade.core.behaviours.CyclicBehaviour;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.UnreadableException;
 
 public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
@@ -97,7 +103,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		if(photoBot.hayMensaje()) {
 			
 			//0- esta registrado en la base datos el usuario?
-			Usuario usu = bd.existeUsuario(photoBot.getUser());
+			//MOVIDO A UN METODO QUE ES EJECUTADO POR UNA REGLA DEL GRUPO EXISTENCIA_USUARIO
+			/*Usuario usu = bd.existeUsuario(photoBot.getUser());
 			
 			if(usu == null){
 				this.conversacion.setUsuarioRegistrado(false);
@@ -105,7 +112,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			else{
 				this.conversacion.setUsuarioRegistrado(true);
 				this.photoBot.setUser(usu);
-			}
+			}*/
+			
+			//this.comprobarExistenciayObtenerUsuario();
 			
 			//1- Recibir mensaje
 			String mensaje = photoBot.getMensaje();
@@ -135,7 +144,15 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 	public void bot_saludar() {
-		photoBot.enviarMensajeTextoAlUsuario(saludoRespectoHora() + ", ¿qué tal va todo?");
+		
+		if(this.conversacion.isUsuarioRegistrado()) {
+			photoBot.enviarMensajeTextoAlUsuario(saludoRespectoHora() + " " + this.photoBot.getUser().getNombre() + ", ¿qué tal va todo?");
+		}
+		else {
+			photoBot.enviarMensajeTextoAlUsuario(saludoRespectoHora() + ", veo que es la primera vez que hablamos.");
+
+		}
+		
 	}
 	
 	public void bot_solicitudBuscarTodasImagenes() {
@@ -195,13 +212,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.conversacion.setEsperarDatosDelUsuario(true);
 		this.conversacion.saludoRecibido();
 		
-		photoBot.enviarMensajeTextoAlUsuario("Hola! Encantado de conocerte! Me llamo PhotoBot!");
-		photoBot.enviarMensajeTextoAlUsuario("Parece que es la primera vez que nos vemos, por favor, ¿podrías decirme tu nombre y tu edad?");
+		photoBot.enviarMensajeTextoAlUsuario("Encantado de conocerte! Me llamo PhotoBot!");
+		photoBot.enviarMensajeTextoAlUsuario("Por favor, ¿podrías decirme tu nombre?");
 	}
 	
-	public void bot_registrarUsuarioNuevo(Etiqueta nombre, Etiqueta edad){
+	public void bot_registrarUsuarioNuevo(Etiqueta nombre){
 		
-		Usuario usuario = new Usuario(photoBot.getUser().getIdUsuarioTelegram(), nombre.getNombre(), Integer.valueOf(edad.getNombre()), 0);
+		Usuario usuario = new Usuario(photoBot.getUser().getIdUsuarioTelegram(), nombre.getNombre(), 0);
 		
 		boolean ok = this.bd.crearUsuario(usuario);
 		
@@ -341,6 +358,18 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
 		
 		//this.procReglas.ejecutarReglas(this.conversacion, this.self);
+	}
+	
+	public void comprobarExistenciayObtenerUsuario() {
+		Usuario usu = bd.existeUsuario(photoBot.getUser());
+		
+		if(usu == null){
+			this.conversacion.setUsuarioRegistrado(false);
+		}
+		else{
+			this.conversacion.setUsuarioRegistrado(true);
+			this.photoBot.setUser(usu);
+		}
 	}
 	
 	/**

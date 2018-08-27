@@ -8,6 +8,8 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
+import org.drools.common.InternalAgenda;
+import org.drools.io.Resource;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
@@ -49,18 +51,21 @@ public class ProcesadorDeReglas {
 		//ksession/////////////////////////////////////////////////////////////////////////////////////////
 		this.ksession = kbase.newStatefulKnowledgeSession();
 		
+		this.manejadorReglas = new ManejadorReglas();
+
+	}
+	
+	public Conversacion ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas, Conversacion conversacion, Behaviour comportamientoAgente){
+		
+		//this.ksession = this.kbase.newStatefulKnowledgeSession();
+		
 		this.ksession.setGlobal("GR_BI", ConstantesComportamiento.GRUPO_BUSCAR_IMAGEN);
 		this.ksession.setGlobal("GR_EX", ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
 		this.ksession.setGlobal("GR_RE", ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
 		this.ksession.setGlobal("GR_SA", ConstantesComportamiento.GRUPO_SALUDO);
 		this.ksession.setGlobal("GR_SI", ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
 		this.ksession.setGlobal("GR_PU", ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
-		
-		this.manejadorReglas = new ManejadorReglas();
 
-	}
-	
-	public Conversacion ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas, Conversacion conversacion, Behaviour comportamientoAgente){
 		
 		ksession.insert(conversacion);
 		ksession.insert(comportamientoAgente);
@@ -82,6 +87,14 @@ public class ProcesadorDeReglas {
 	
 	public Conversacion ejecutarReglas(Conversacion conversacion, Behaviour comportamientoAgente){
 		this.ksession = this.kbase.newStatefulKnowledgeSession();
+		
+		this.ksession.setGlobal("GR_BI", ConstantesComportamiento.GRUPO_BUSCAR_IMAGEN);
+		this.ksession.setGlobal("GR_EX", ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
+		this.ksession.setGlobal("GR_RE", ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
+		this.ksession.setGlobal("GR_SA", ConstantesComportamiento.GRUPO_SALUDO);
+		this.ksession.setGlobal("GR_SI", ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
+		this.ksession.setGlobal("GR_PU", ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+
 
 		ksession.insert(conversacion);
 		ksession.insert(comportamientoAgente);

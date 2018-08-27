@@ -32,21 +32,8 @@ rule "Encontrar saludo"
         comportamiento.bot_saludar();
 		update(conversacion);
 		
-		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
 		update(manejador);
+		
+		System.out.println("REGLA ENCONTRAR SALUDO EJECUTADA");
 end
-
-/*
-rule "Despedir"
-	salience 10
-	
-	when
-		manejador : ManejadorReglas();
-        grupoActivacion : Integer(grupoActivacion != GR_SA) from manejador.getGrupoActivado();
-	
-	then
-		System.out.println("He ejecutado regla Despedir");
-		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
-		update(manejador);
-end
-*/

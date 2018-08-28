@@ -1,0 +1,111 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+global java.lang.Integer GR_SI;
+global java.lang.Integer GR_PU;
+
+rule "Solicitud de subir imagen"
+	salience 90
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_PU) from manejador.getGrupoActivado();
+	
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Cargar") == true) from etiqueta.getTipo();
+        subirFoto : Boolean (subirFoto == false) from conversacion.isSubirFoto();
+        
+    then
+    	comportamiento.esperarFotoConversacion();
+    	update(conversacion);
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
+		update(manejador);
+    	System.out.println("REGLA RECIBIR SOLICITUD DE SUBIR IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Guardar imagen"
+	salience 90
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();
+	
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        esperaDatos : Boolean (esperaDatos == false) from conversacion.isEsperarDatosDelUsuario();
+        fotosCargadas : Boolean (fotosCargadas == true) from conversacion.isFotosCargadasSubida();
+        
+    then
+    	comportamiento.bot_solicitudSubirImagenes();
+    	System.out.println("REGLA SUBIR IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Recoger datos imagen"
+	salience 80
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_nombre_persona_color : String ((equals("Nombre_persona_color") == true) || (equals("Persona_color_desconocida") == true)) from etiqueta.getTipo();
+        
+ 		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta);
+		System.out.println("REGLA RECOGER DATOS DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+/*
+rule "Indicar finalizacion descripcion de imagen"
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_finalizar : String (equals("FinalizarDescripcion") == true) == true)) from etiqueta.getTipo();
+        
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_finalizarDescripcionImagen();
+		System.out.println("REGLA INDICAR FINALIZACION DESCRIPCION IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+*/
+/*
+rule "Recibir texto posterior a solicitud de subir imagen"
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();        
+        
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        solicitudSubirFoto : Boolean( solicitudSubirFoto == true ) from conversacion.isSubirFoto();
+        fotosCargadas : Boolean( fotosCargadas == false) from conversacion.isFotosCargadasSubida();
+        
+    then
+    	comportamiento.bot_anularSubidaFotos();
+end
+*/

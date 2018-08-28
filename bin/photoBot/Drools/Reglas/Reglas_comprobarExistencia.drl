@@ -1,0 +1,106 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+global java.lang.Integer GR_EX;
+
+rule "Comprobar existencia usuario"
+	no-loop true
+	lock-on-active true
+	salience 203
+	when
+		manejador : ManejadorReglas();
+ 		
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+    then
+    	comportamiento.comprobarExistenciayObtenerUsuario();
+    	update(conversacion);
+    	update(manejador);
+    	System.out.println("REGLA COMPROBAR EXISTENCIA USUARIO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Usuario existe y esta saludado"
+	no-loop true
+	lock-on-active true
+	salience 202
+	when
+		manejador : ManejadorReglas();
+        //grupoActivacion : Integer(grupoActivacion == GR_EX) from manejador.getGrupoActivado();
+		
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        existe : Boolean (existe == true) from conversacion.isUsuarioRegistrado();
+        haySaludo : Boolean( haySaludo == true ) from conversacion.isSaludo();
+    then
+		System.out.println("REGLA USUARIO EXISTE Y ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Usuario existe y no esta saludado"
+	no-loop true
+	lock-on-active true
+	salience 202
+	when
+		manejador : ManejadorReglas();
+        //grupoActivacion : Integer(grupoActivacion == GR_EX) from manejador.getGrupoActivado();
+		
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        existe : Boolean (existe == true) from conversacion.isUsuarioRegistrado();
+        haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
+    then
+    	
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SALUDO);
+		update(manejador);
+		System.out.println("REGLA USUARIO EXISTE Y  NO ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+
+rule "Usuario no existe y esta saludado"
+	no-loop true
+	lock-on-active true
+	salience 202
+	when
+		manejador : ManejadorReglas();
+        //grupoActivacion : Integer(grupoActivacion == GR_EX) from manejador.getGrupoActivado();
+		
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        existe : Boolean (existe == false) from conversacion.isUsuarioRegistrado();
+        haySaludo : Boolean( haySaludo == true ) from conversacion.isSaludo();
+    then
+    	
+		update(manejador);
+		System.out.println("REGLA USUARIO NO EXISTE Y ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Usuario no existe y no esta saludado"
+	no-loop true
+	lock-on-active true
+	salience 202
+	when
+		manejador : ManejadorReglas();
+        //grupoActivacion : Integer(grupoActivacion == GR_EX) from manejador.getGrupoActivado();
+		
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        existe : Boolean (existe == false) from conversacion.isUsuarioRegistrado();
+        haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
+    then
+    	
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SALUDO);
+		update(manejador);
+		System.out.println("REGLA USUARIO NO EXISTE Y NO ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end

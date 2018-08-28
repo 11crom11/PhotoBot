@@ -1,0 +1,76 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+global java.lang.Integer GR_RE;
+
+rule "Usuario existente"
+	salience 100
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_RE) from manejador.getGrupoActivado();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+                
+ 		usuarioRegistrado : Boolean ( usuarioRegistrado == true ) from conversacion.isUsuarioRegistrado();        
+	then
+		
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+		update(manejador);
+		
+		System.out.println("REGLA USUARIO EXISTENTE EJECUTADA -> ESPERA A PETICION USUARIO" + "--" + manejador.getGrupoActivado());
+
+end
+
+rule "Solicitar datos usuario no registrado"
+	salience 90
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_RE) from manejador.getGrupoActivado();
+        
+		conversacion : Conversacion();
+		comportamiento : ComportamientoAgenteConversacionUsuario();
+		
+		usuarioRegistrado : Boolean ( usuarioRegistrado == false ) from conversacion.isUsuarioRegistrado();
+		esperarDatos : Boolean ( esperarDatos == false ) from conversacion.isEsperarDatosDelUsuario();
+		
+	then
+		comportamiento.bot_pedirDatosUsuarioNuevo();
+    	System.out.println("REGLA SOLICITAR DATOS USUARIO NO REGISTRADO EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
+rule "Recibir texto posterior a solicitud registro"
+	salience 80
+	when	
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_RE) from manejador.getGrupoActivado();
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+                
+        tipo_nombre_persona : String (equals("Nombre_persona") == true) from etiqueta.getTipo();
+        
+ 		usuarioRegistrado : Boolean ( usuarioRegistrado == false ) from conversacion.isUsuarioRegistrado();
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+        
+	then
+		comportamiento.bot_registrarUsuarioNuevo(etiqueta);
+		
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+		update(manejador);
+		
+		System.out.println("REGLA RECIBIR TEXTO POSTERIOR A REGISTRO EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end

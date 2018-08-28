@@ -1,0 +1,61 @@
+//created on: 24-ago-2018
+package photoBot.Drools.Reglas
+
+//list any import classes here.
+
+import photoBot.OpenCV.*;
+import photoBot.Drools.*;
+import photoBot.Gate.*;
+import photoBot.Agentes.Comportamiento.*;
+import photoBot.Imagen.*;
+
+
+//declare any global variables here
+global java.lang.Integer GR_SA;
+
+rule "Encontrar saludo"
+	activation-group "Saludo"
+	salience 20
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SA) from manejador.getGrupoActivado();
+        
+        etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+     	
+        haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
+        tipo_s : String (equals("Saludo") == true) from etiqueta.getTipo();
+        
+    then
+        conversacion.saludoRecibido();
+        comportamiento.bot_saludar(true);
+		update(conversacion);
+		
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
+		update(manejador);
+		
+		System.out.println("REGLA ENCONTRAR SALUDO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Arrancar conversacion sin saludar por parte del usuario"
+	activation-group "Saludo"
+	salience 10
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SA) from manejador.getGrupoActivado();
+        
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+    then
+        conversacion.saludoRecibido();
+        comportamiento.bot_saludar(false);
+		update(conversacion);
+		
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
+		update(manejador);
+		
+		System.out.println("REGLA ARRANCAR CONVERSACION SIN SALUDO POR PARTE DE USUARIO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end

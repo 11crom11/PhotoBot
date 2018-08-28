@@ -17,3 +17,4 @@ saludo.lst:saludos_imagen
 subir_imagen.lst:subir_imagen
 tiempo.lst:
 personaDesconocida.lst:personaDesconocida_imagen
+finalizar.lst:finalizar_descripcion_imagen:::Finalizar

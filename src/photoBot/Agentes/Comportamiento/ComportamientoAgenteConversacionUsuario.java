@@ -364,26 +364,49 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	
 	public void bot_actualizarInfoImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
-		String nombrePersona = etiqueta.getNombre();
-		Persona p = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), nombrePersona);
-		int etiquetaClasificador = p.getEtiqueta();
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
-		
-		if(etiquetaClasificador == this.photoBot.getUser().getEtiquetaMaxUsada() + 1) {
-			this.bd.registrarPersonaUsuario(p);
-			this.photoBot.getUser().setEtiquetaMaxUsada(etiquetaClasificador);
+		if(etiqueta.getTipo().equals("Persona_color_desconocida")) {
+			//ADJUNTAR ELEMENTOS AL MENSAJE DE AGENTE
+			msjContent.put("ETIQUETA", -2);
+			msjContent.put("CONFIDENCE", -2.0);
+			
+			/////////////////////////////////////////////////////////////
+		}
+		else {
+			
+			//ACTUALIZACION DE LA BBDD
+			String nombrePersona = etiqueta.getNombre();
+			Persona p = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), nombrePersona);
+			int etiquetaClasificador = p.getEtiqueta();
+			
+			if(etiquetaClasificador == this.photoBot.getUser().getEtiquetaMaxUsada() + 1) {
+				this.bd.registrarPersonaUsuario(p);
+				this.photoBot.getUser().setEtiquetaMaxUsada(etiquetaClasificador);
+			}
+			
+			imagen.addPersonaImagen(p);
+			this.bd.actualizarInfoImagen(imagen);
+			
+			////////////////////////////////////////////////////////////
+			
+			//ACTUALIZAR EL ATRIBUTO ETIQUETAMAXUTILIZADA DEL USUARIO
+			this.photoBot.setUser(this.photoBot.getUser());
+			this.bd.actualizarInfoUsuario(this.photoBot.getUser());
+			
+			////////////////////////////////////////////////////////////
+			
+			//ADJUNTAR ELEMENTOS AL MENSAJE DE AGENTE
+			msjContent.put("ETIQUETA", etiquetaClasificador);
+			msjContent.put("CONFIDENCE", 100.0);
+			
+			/////////////////////////////////////////////////////////////
 		}
 		
-		imagen.addPersonaImagen(p);
-		
-		//ACTUALIZAR BBDD Y EL OBJETO CARASDETECTADAS
-		//this.conversacion.getCarasDetectadas().actualizarPersonaHashMap(color, etiquetaClasificador, 100.0);
-		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_CAMPO_CARAS_DETECTADAS);
 		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
 		msjContent.put("COLOR", color);
-		msjContent.put("ETIQUETA", etiquetaClasificador);
-		msjContent.put("CONFIDENCE", 100.0);
+		
 		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
 		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
 		
@@ -393,14 +416,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		this.bd.actualizarInfoImagen(imagen);
-		
-		//ACTUALIZAR EL ATRIBUTO ETIQUETAMAXUTILIZADA DEL USUARIO
-		this.photoBot.setUser(this.photoBot.getUser());
-		this.bd.actualizarInfoUsuario(this.photoBot.getUser());
-		
-		//this.procReglas.ejecutarReglas(this.conversacion, this.self);
 	}
 	
 	public void comprobarExistenciayObtenerUsuario() {

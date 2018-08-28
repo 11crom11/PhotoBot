@@ -123,6 +123,7 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Nombre_persona_color");
 			annotTypesRequired.add("Numero");
 			annotTypesRequired.add("Evento");
+			annotTypesRequired.add("Persona_color_desconocida");
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		
@@ -135,6 +136,16 @@ public class ProcesadorLenguaje {
 					AnnotationSet colsNoms =defaultAnnotSet.get(annotTypesRequired);
 					
 					Etiqueta e = this.obtenerParNombreColorPersona(s, etiquetasToken, colsNoms);
+					etiquetas.add(e);
+				}
+				else if(s.getType().equals("Persona_color_desconocida")) {
+					annotTypesRequired = new HashSet<String>();
+					annotTypesRequired.add("Color");
+					annotTypesRequired.add("Nombre_persona");
+					AnnotationSet colsNoms =defaultAnnotSet.get(annotTypesRequired);
+					
+					Etiqueta e = this.obtenerParNombreColorPersona(s, etiquetasToken, colsNoms);
+					e.setTipo("Persona_color_desconocida");
 					etiquetas.add(e);
 				}
 				else {

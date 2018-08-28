@@ -62,7 +62,7 @@ rule "Recoger datos imagen"
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        tipo_nombre_persona_color : String (equals("Nombre_persona_color") == true) from etiqueta.getTipo();
+        tipo_nombre_persona_color : String ((equals("Nombre_persona_color") == true) || (equals("Persona_color_desconocida") == true)) from etiqueta.getTipo();
         
  		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();

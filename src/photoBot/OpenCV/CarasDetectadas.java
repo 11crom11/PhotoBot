@@ -77,9 +77,16 @@ public class CarasDetectadas {
 		List<Mat> lMat = new ArrayList<Mat>();
 		Mat imagen = Imgcodecs.imread(this.urlImagen);
 		Imgproc.cvtColor(imagen, imagen, Imgproc.COLOR_BGR2GRAY);
+		int i = 0;
 		
 		for(Rect r : this.carasDetectadas.toArray()) {
-			lMat.add(new Mat(imagen, r));
+			int labelAux = this.lCarasEtiquetadas.get((ColoresCaras.getColor(i))).getLeft();
+			
+			if(labelAux != -2) {
+				lMat.add(new Mat(imagen, r));
+			}
+			
+			i++;
 		}
 		
 		return lMat;
@@ -87,7 +94,7 @@ public class CarasDetectadas {
 	
 	/**
 	 * Este metodo devuelve un Mat con todas las etiquetas de todas las caras almacenadas en lCaras,
-	 * en el mismo orden en el que se encuentran en carasDetectadas.
+	 * en el mismo orden en el que se encuentran en carasDetectadas. Obvia las personas desconocidas.
 	 * 
 	 * @return Devuelve una Mat con las etiquetas Label de todas las caras contenidas en este objeto, en el mismo orden.
 	 */
@@ -95,7 +102,11 @@ public class CarasDetectadas {
 		Mat labels = new Mat(carasDetectadas.toArray().length, 1, CvType.CV_32SC1);
 				
 		for (int i = 0; i < this.carasDetectadas.toArray().length; i++) {
-			labels.put(i, 0, this.lCarasEtiquetadas.get((ColoresCaras.getColor(i))).getLeft());
+			int labelAux = this.lCarasEtiquetadas.get((ColoresCaras.getColor(i))).getLeft();
+			
+			if(labelAux != -2) {
+				labels.put(i, 0, labelAux);
+			}
 		}		
 		
 		return labels;

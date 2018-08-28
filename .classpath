@@ -1,107 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="photoBot/opencv/build/lib/Release"/>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/jackson-annotations-2.3.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/jackson-core-2.3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/jackson-databind-2.3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/java-getopt-1.0.13.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/jaxen-1.1.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/jdom-1.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/jempbox-1.8.8.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/joda-time-2.9.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/junit-4.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/log4j-1.2.17.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/nekohtml-1.9.14.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/pdfbox-1.8.8.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/poi-3.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/poi-ooxml-3.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/poi-ooxml-schemas-3.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/poi-scratchpad-3.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/spring-aop-2.5.6.SEC01.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/spring-beans-2.5.6.SEC01.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/spring-core-2.5.6.SEC01.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/stax2-api-3.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/tika-core-1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/tika-parsers-1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/ant-1.9.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/ant-launcher-1.9.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/aopalliance-1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/apache-mime4j-core-0.7.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/apache-mime4j-dom-0.7.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/bcmail-jdk15-1.45.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/bcprov-jdk15-1.45.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/commons-codec-1.9.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/commons-compress-1.8.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/commons-io-2.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/commons-lang-2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/commons-logging-1.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/flying-saucer-core-9.0.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/fontbox-1.8.8.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/gate-asm-5.0.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/gate-compiler-jdt-4.3.2-P20140317-1600.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/gate.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/hamcrest-core-1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/ivy-2.3.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/woodstox-core-lgpl-4.2.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/xercesImpl-2.9.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/xmlbeans-2.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/xmlunit-1.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/xpp3-1.1.4c.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/xstream-1.4.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="telegram_jars/telegrambots-3.6-jar-with-dependencies.jar"/>
-	<classpathentry exported="true" kind="lib" path="telegram_jars/telegrambots-abilities-3.6-jar-with-dependencies.jar"/>
-	<classpathentry exported="true" kind="lib" path="telegram_jars/telegrambots-meta-3.6-jar-with-dependencies.jar"/>
-	<classpathentry exported="true" kind="lib" path="telegram_jars/telegrambotsextensions-3.6-jar-with-dependencies.jar"/>
-	<classpathentry exported="true" kind="lib" path="GATE/lib/gateLauncher.jar"/>
-	<classpathentry exported="true" kind="lib" path="jade/lib/jade.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/antlr-2.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/antlr-3.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/antlr-runtime-3.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/bcmail-jdk14-138.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/bcprov-jdk14-138.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/dom4j-1.6.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-clips-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-compiler-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-core-5.4.0.Final.jar" sourcepath="C:/Users/usuario_local/.m2/repository/org/drools/drools-core/5.4.0.Final/drools-core-5.4.0.Final-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-decisiontables-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-jsr94-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-persistence-jpa-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-templates-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/drools-verifier-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/ecj-3.5.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/guava-r06.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/itext-2.1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/javassist-3.14.0-GA.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/jsr94-1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/jta-1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/jxl-2.6.10.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/knowledge-api-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/knowledge-internal-api-5.4.0.Final.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/log4j-1.2.14.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/mvel2-2.1.0.drools16.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/protobuf-java-2.4.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/slf4j-api-1.6.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/stringtemplate-3.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/xml-apis-1.3.04.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/xmlpull-1.1.3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/xpp3_min-1.1.4c.jar"/>
-	<classpathentry exported="true" kind="lib" path="DROOLS/xstream-1.4.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="MONGODB/bson-3.8.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="MONGODB/mongodb-driver-3.8.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="MONGODB/mongodb-driver-core-3.8.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="MONGODB/morphia-1.3.1.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenCV-3.4.2"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Ivan/git/PhotoBot/opencv/build/bin/opencv-400.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="photoBot/opencv/build/lib/Release"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenCV"/>
+	<classpathentry kind="lib" path="GATE/lib/jackson-annotations-2.3.0.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/jackson-core-2.3.2.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/jackson-databind-2.3.2.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/java-getopt-1.0.13.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/jaxen-1.1.6.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/jdom-1.1.3.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/jempbox-1.8.8.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/joda-time-2.9.2.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/nekohtml-1.9.14.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/pdfbox-1.8.8.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/poi-3.11.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/poi-ooxml-3.11.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/poi-ooxml-schemas-3.11.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/poi-scratchpad-3.11.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/spring-aop-2.5.6.SEC01.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/spring-beans-2.5.6.SEC01.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/spring-core-2.5.6.SEC01.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/stax2-api-3.1.1.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/tika-core-1.7.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/tika-parsers-1.7.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/ant-1.9.3.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/ant-launcher-1.9.3.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/apache-mime4j-core-0.7.2.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/apache-mime4j-dom-0.7.2.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/bcmail-jdk15-1.45.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/bcprov-jdk15-1.45.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/commons-compress-1.8.1.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/flying-saucer-core-9.0.4.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/fontbox-1.8.8.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/gate-asm-5.0.3.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/gate-compiler-jdt-4.3.2-P20140317-1600.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/gate.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/ivy-2.3.0.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/woodstox-core-lgpl-4.2.0.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/xercesImpl-2.9.1.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/xmlunit-1.5.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/xpp3-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/xstream-1.4.7.jar"/>
+	<classpathentry kind="lib" path="telegram_jars/telegrambots-3.6-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="telegram_jars/telegrambots-abilities-3.6-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="telegram_jars/telegrambots-meta-3.6-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="telegram_jars/telegrambotsextensions-3.6-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="GATE/lib/gateLauncher.jar"/>
+	<classpathentry kind="lib" path="jade/lib/jade.jar"/>
+	<classpathentry kind="lib" path="DROOLS/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="DROOLS/antlr-3.3.jar"/>
+	<classpathentry kind="lib" path="DROOLS/antlr-runtime-3.3.jar"/>
+	<classpathentry kind="lib" path="DROOLS/bcmail-jdk14-138.jar"/>
+	<classpathentry kind="lib" path="DROOLS/bcprov-jdk14-138.jar"/>
+	<classpathentry kind="lib" path="DROOLS/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-clips-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-compiler-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-core-5.4.0.Final.jar" sourcepath="C:/Users/usuario_local/.m2/repository/org/drools/drools-core/5.4.0.Final/drools-core-5.4.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-decisiontables-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-jsr94-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-persistence-jpa-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-templates-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/drools-verifier-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/ecj-3.5.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/guava-r06.jar"/>
+	<classpathentry kind="lib" path="DROOLS/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/itext-2.1.2.jar"/>
+	<classpathentry kind="lib" path="DROOLS/javassist-3.14.0-GA.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jsr94-1.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/jxl-2.6.10.jar"/>
+	<classpathentry kind="lib" path="DROOLS/knowledge-api-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/knowledge-internal-api-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="DROOLS/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="DROOLS/mvel2-2.1.0.drools16.jar"/>
+	<classpathentry kind="lib" path="DROOLS/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/slf4j-api-1.6.4.jar"/>
+	<classpathentry kind="lib" path="DROOLS/stringtemplate-3.2.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xml-apis-1.3.04.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xmlpull-1.1.3.1.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="DROOLS/xstream-1.4.1.jar"/>
+	<classpathentry kind="lib" path="MONGODB/bson-3.8.0.jar"/>
+	<classpathentry kind="lib" path="MONGODB/mongodb-driver-3.8.0.jar"/>
+	<classpathentry kind="lib" path="MONGODB/mongodb-driver-core-3.8.0.jar"/>
+	<classpathentry kind="lib" path="MONGODB/morphia-1.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

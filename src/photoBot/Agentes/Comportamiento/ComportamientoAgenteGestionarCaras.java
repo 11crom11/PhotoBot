@@ -45,13 +45,15 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 				comando = (int) msjContent.get("COMANDO");
 
 				if (comando == ConstantesComportamiento.RECONOCER_CARAS){
-					reconocerCarasYenviarResultadosClasificacionAgenteConversacional(msjContent);
+					this.reconocerCarasYenviarResultadosClasificacionAgenteConversacional(msjContent);
 				}
 				else if (comando == ConstantesComportamiento.ACTUALIZAR_CAMPO_CARAS_DETECTADAS) {
-					actualizarCampoCarasDetectadas(msjContent);
+					this.actualizarCampoCarasDetectadas(msjContent);
+				}
+				else if (comando == ConstantesComportamiento.ACTUALIZAR_CLASIFICADOR) {
+					this.actualizarClasificador(msjContent);
 				}
 			} catch (UnreadableException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -112,13 +114,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 	private void comprobarTotalidadDescripcionPersonasYactualizar(int idUsuario) {
 		boolean carasNoReconocidas = this.resultadosDeteccion.get(idUsuario).carasReconocidas();
 		
-		if (carasNoReconocidas == false) {
-			CarasDetectadas caras = this.resultadosDeteccion.get(idUsuario);
-			
-			this.gestorCaras.actualizarClasificadorPersonalizado(idUsuario, caras);
-			System.out.println("HE ACTUALIZADO EL CLASIFICADOR");
-			//this.resultadosDeteccion.remove(idUsuario); //a veces falla carasReconocidas()
-			
+		if (carasNoReconocidas == false) {		
 			//enviar mensaje al agente conversacional indicandole que modifique el objeto conversacion
 			HashMap<String, Object> msjContent = new HashMap<String, Object>();
 			
@@ -135,5 +131,15 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private void actualizarClasificador(HashMap<String, Object> msjContent) {
+		int idUsuario = (int) msjContent.get("ID");
+		
+		CarasDetectadas caras = this.resultadosDeteccion.get(idUsuario);
+		
+		this.gestorCaras.actualizarClasificadorPersonalizado(idUsuario, caras);
+		System.out.println("HE ACTUALIZADO EL CLASIFICADOR");
+		//this.resultadosDeteccion.remove(idUsuario); //a veces falla carasReconocidas()
 	}
 }

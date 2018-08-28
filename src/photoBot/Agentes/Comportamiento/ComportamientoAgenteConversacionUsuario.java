@@ -102,20 +102,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		//Si hay un mensaje por parte de usuario                                                
 		if(photoBot.hayMensaje()) {
 			
-			//0- esta registrado en la base datos el usuario?
-			//MOVIDO A UN METODO QUE ES EJECUTADO POR UNA REGLA DEL GRUPO EXISTENCIA_USUARIO
-			/*Usuario usu = bd.existeUsuario(photoBot.getUser());
-			
-			if(usu == null){
-				this.conversacion.setUsuarioRegistrado(false);
-			}
-			else{
-				this.conversacion.setUsuarioRegistrado(true);
-				this.photoBot.setUser(usu);
-			}*/
-			
-			//this.comprobarExistenciayObtenerUsuario();
-			
 			//1- Recibir mensaje
 			String mensaje = photoBot.getMensaje();
 			List<Etiqueta> lEtiquetas = new ArrayList<>();
@@ -344,7 +330,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 			
 			photoBot.enviarMensajeTextoAlUsuario(mensajeUsuario);
-			
+			conversacion.setPersonasNoReconocidasDescritas(false);
 			
 		}
 		
@@ -358,6 +344,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.bd.registrarImagen(im);
 		this.conversacion.setEsperarDatosDelUsuario(true);
 		this.conversacion.setImagenPeticionInfo(im);
+		this.conversacion.setContextoDescrito(false);
+		
 
 		
 }
@@ -418,6 +406,26 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	public void bot_finalizarDescripcionImagen() {
+		if(conversacion.isFotoCompletamenteDescrita() == false) {
+			this.photoBot.enviarMensajeTextoAlUsuario("Todavía faltan personas que no me has dichos quienes son.");
+			
+			if(conversacion.isContextoDescrito() == false) {
+				this.photoBot.enviarMensajeTextoAlUsuario("Tampoco me has dicho el contexto de la imagen, aunque si quieres, esto último no es obligatorio.");
+			}
+		}
+		else {
+			if(conversacion.isContextoDescrito() == false) {
+				this.photoBot.enviarMensajeTextoAlUsuario("No me has indicado ningún contexto que describa la imagen, ¿seguro que quieres continuar?");
+				this.conversacion.setEsperaConfirmacionFinalizarFoto(true);
+			}
+			else {
+				//FOTO COMPLETAMENTE DESCRITA
+				
+			}
+		}
+	}
+	
 	public void comprobarExistenciayObtenerUsuario() {
 		Usuario usu = bd.existeUsuario(photoBot.getUser());
 		
@@ -456,11 +464,28 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 	private void clasificadorUsuarioActualizado() {
-		this.conversacion.setPendienteActualizarClasificador(false);
-		this.conversacion.setEsperarDatosDelUsuario(false);
+		//this.conversacion.setPendienteActualizarClasificador(false);
+		//this.conversacion.setEsperarDatosDelUsuario(false);
 		
 		//POSIBLEMENTE AQUI HAYA QUE VOLVER A EJECUTAR REGLAS, DEPENDE DE COMO
 		//QUEDE ORGANIZADO EL NUEVO SISTEMA DE REGLAS
+		conversacion.setPersonasNoReconocidasDescritas(true);
+	}
+	
+	private void actualizarClasificador() {
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_CLASIFICADOR);
+		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
+		
+		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
+		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
+		
+		try {
+			msjc.setContentObject((Serializable)msjContent);
+			getAgent().send(msjc);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

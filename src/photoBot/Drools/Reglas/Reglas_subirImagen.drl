@@ -72,6 +72,26 @@ rule "Recoger datos imagen"
 
 end
 
+rule "Indicar finalizacion descripcion de imagen"
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_finalizar : String (equals("FinalizarDescripcion") == true) == true)) from etiqueta.getTipo();
+        
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_finalizarDescripcionImagen();
+		System.out.println("REGLA INDICAR FINALIZACION DESCRIPCION IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
 /*
 rule "Recibir texto posterior a solicitud de subir imagen"
 	salience 70

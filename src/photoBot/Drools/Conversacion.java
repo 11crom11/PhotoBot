@@ -29,6 +29,9 @@ public class Conversacion {
 	private boolean fotosCargadasSubida;                        // X
 	private boolean pendienteActualizarClasificador;            // X
 	private boolean fotoCompletamenteDescrita;                  //
+	private boolean personasNoReconocidasDescritas;             // X
+	private boolean contextoDescrito;                           // X
+	private boolean esperaConfirmacionFinalizarFoto;            // X      
     ////////////////////////////////////////////////////////////////
 	
 	
@@ -43,10 +46,51 @@ public class Conversacion {
 		
 		this.imagenPeticionInfo = null;
 		this.pendienteActualizarClasificador = false;
+		
+		this.personasNoReconocidasDescritas = true;
+		this.fotoCompletamenteDescrita = true;
+		this.contextoDescrito = true;
+		this.esperaConfirmacionFinalizarFoto = false;
 	}
 	
 	
 	
+	public boolean isEsperaConfirmacionFinalizarFoto() {
+		return esperaConfirmacionFinalizarFoto;
+	}
+
+
+
+	public void setEsperaConfirmacionFinalizarFoto(boolean esperaConfirmacionFinalizarFoto) {
+		this.esperaConfirmacionFinalizarFoto = esperaConfirmacionFinalizarFoto;
+	}
+
+
+
+	public boolean isContextoDescrito() {
+		return contextoDescrito;
+	}
+
+
+
+	public void setContextoDescrito(boolean contextoDescrito) {
+		this.contextoDescrito = contextoDescrito;
+	}
+
+
+
+	public boolean isPersonasNoReconocidasDescritas() {
+		return personasNoReconocidasDescritas;
+	}
+
+
+
+	public void setPersonasNoReconocidasDescritas(boolean personasNoReconocidasDescritas) {
+		this.personasNoReconocidasDescritas = personasNoReconocidasDescritas;
+	}
+
+
+
 	public boolean isFotoCompletamenteDescrita() {
 		return fotoCompletamenteDescrita;
 	}

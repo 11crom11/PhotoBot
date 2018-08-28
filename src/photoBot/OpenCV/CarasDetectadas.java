@@ -115,14 +115,6 @@ public class CarasDetectadas {
 	public List<Triple<String, Integer, Double>> getListOfColorTagProbability(){
 		List<Triple<String, Integer, Double>> ret = new ArrayList<>();
 		
-		/**
-		lCarasEtiquetadas.forEach(new BiConsumer<String, Pair<Integer, Double>>() {
-			@Override
-			public void accept(String t, Pair<Integer, Double> u) {
-				ret.add(Triple.of(t, u.getLeft(), u.getRight()));
-			}
-		});*/
-		
 		lCarasEtiquetadas.forEach((key, value) -> {
 			ret.add(Triple.of(key, value.getLeft(), value.getRight()));
 		});

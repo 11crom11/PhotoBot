@@ -28,8 +28,8 @@ public class GestorDeCaras {
 		String path =  System.getProperty("user.dir");
 		System.out.println(path);
 
-		//System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		System.load(Core.NATIVE_LIBRARY_NAME);
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		//System.load(Core.NATIVE_LIBRARY_NAME);
 		
 		String urlXml = path + "\\opencv\\sources\\data\\lbpcascades\\lbpcascade_frontalface_improved.xml";
 		System.out.println(urlXml);

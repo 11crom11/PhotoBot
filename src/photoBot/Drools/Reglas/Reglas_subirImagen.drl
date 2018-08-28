@@ -71,7 +71,7 @@ rule "Recoger datos imagen"
 		System.out.println("REGLA RECOGER DATOS DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
-
+/*
 rule "Indicar finalizacion descripcion de imagen"
 	salience 70
 	when
@@ -91,7 +91,7 @@ rule "Indicar finalizacion descripcion de imagen"
 		System.out.println("REGLA INDICAR FINALIZACION DESCRIPCION IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
-
+*/
 /*
 rule "Recibir texto posterior a solicitud de subir imagen"
 	salience 70

@@ -25,3 +25,5 @@ encontrar_nombre_persona_color
 encontrar_color
 encontrar_numero
 encontrar_evento
+encontrar_persona_desconocida
+encontrar_persona_color_desconocida

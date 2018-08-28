@@ -1,0 +1,30 @@
+Phase:	Buscar_nombres_persona_color_desconocida
+Options: control = appelt
+Input: Color PersonaDesconocida
+
+
+Rule: Buscar_persona_desconocida_color
+Priority: 100
+(	
+ 	(
+ 		{PersonaDesconocida}
+		{Color}
+ 	)
+  
+):persona_color_img_desc
+-->
+:persona_color_img_desc.Persona_color_desconocida = {kind = "Nombre_color_desconocida", rule = "Buscar_nombre_persona_color_desconocida"}
+
+/*********************************/
+
+Rule: Buscar_persona_color_deconocida
+Priority: 100
+(	
+ 	(
+		{Color}		
+		{PersonaDesconocida}
+ 	)
+  
+):persona_color_img_desc
+-->
+:persona_color_img_desc.Persona_color_desconocida = {kind = "Nombre_color_desconocida", rule = "Buscar_nombre_persona_color_desconocida"}

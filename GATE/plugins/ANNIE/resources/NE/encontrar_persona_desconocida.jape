@@ -1,0 +1,13 @@
+Phase:	Saludo
+Input:  Token SpaceToken Lookup
+Options: control = brill
+
+Rule: PersonaDesconocida
+Priority: 100
+(	({Lookup.majorType == personaDesconocida_imagen }	
+	  
+)
+ 
+):desconocido
+-->
+:desconocido.PersonaDesconocida = {kind = "Desconocido", rule = "Desconocido"}

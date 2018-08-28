@@ -1,6 +1,6 @@
 Phase:	Buscar_nombres_persona_color
 Options: control = appelt
-Input: Lookup Nombre_persona
+Input: Lookup Nombre_persona PersonaDesconocida
 
 
 Rule: Buscar_nombre_persona_color
@@ -28,3 +28,5 @@ Priority: 100
 ):persona_color_img
 -->
 :persona_color_img.Nombre_persona_color = {kind = "Nombre_color", rule = "Buscar_nombre_persona_color"}
+
+/*************************************************************************************************************/

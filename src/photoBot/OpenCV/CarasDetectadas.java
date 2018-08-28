@@ -15,13 +15,11 @@ import org.opencv.imgproc.Imgproc;
 
 import jade.util.leap.Serializable;
 
-public class CarasDetectadas implements Serializable {
-
-	private static final long serialVersionUID = 9186857759954162799L;
+public class CarasDetectadas {
 
 	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;
 	
-	private transient MatOfRect carasDetectadas;
+	private MatOfRect carasDetectadas;
 	private long natObjAddCarasDetectadas;
 	
 	

@@ -27,7 +27,7 @@ rule "Usuario existente"
 		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
 		update(manejador);
 		
-		System.out.println("REGLA USUARIO EXISTENTE EJECUTADA -> ESPERA A PETICION USUARIO");
+		System.out.println("REGLA USUARIO EXISTENTE EJECUTADA -> ESPERA A PETICION USUARIO" + "--" + manejador.getGrupoActivado());
 
 end
 
@@ -45,7 +45,7 @@ rule "Solicitar datos usuario no registrado"
 		
 	then
 		comportamiento.bot_pedirDatosUsuarioNuevo();
-    	System.out.println("REGLA SOLICITAR DATOS USUARIO NO REGISTRADO EJECUTADA");
+    	System.out.println("REGLA SOLICITAR DATOS USUARIO NO REGISTRADO EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
 
@@ -71,22 +71,6 @@ rule "Recibir texto posterior a solicitud registro"
 		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
 		update(manejador);
 		
-		System.out.println("REGLA RECIBIR TEXTO POSTERIOR A REGISTRO EJECUTADA");
+		System.out.println("REGLA RECIBIR TEXTO POSTERIOR A REGISTRO EJECUTADA" + "--" + manejador.getGrupoActivado());
 
-end
-
-rule "mec"
-	salience 5
-	when
-		manejador : ManejadorReglas();
-        //grupoActivacion : Integer(grupoActivacion == GR_RE) from manejador.getGrupoActivado();
-	
-		etiqueta : Etiqueta();
-
-        conversacion : Conversacion();
-        comportamiento : ComportamientoAgenteConversacionUsuario();
-                
-	then
-		
-		System.out.println(manejador.getGrupoActivado());
 end

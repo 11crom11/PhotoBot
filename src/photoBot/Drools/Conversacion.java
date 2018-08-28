@@ -9,20 +9,27 @@ import photoBot.Imagen.Persona;
 import photoBot.OpenCV.CarasDetectadas;
 
 public class Conversacion {
+	                                                        //EN USO
+	//ESPERA DE DATOS POR PARTE DEL USUARIO/////////////////////////
+	private boolean esperarDatosDelUsuario;                     // X
+	////////////////////////////////////////////////////////////////
 	
-	private boolean saludo;
-	private boolean subirFoto;
-	private boolean buscarFoto;
-	private boolean fotosCargadasSubida;
-	private List<String> lEventos;
-	private List<Persona> lPersonas;
-	private Date fechaFoto;
-	private boolean usuarioRegistrado;
-	private boolean esperarDatosDelUsuario;
+	//SALUDO & REGISTRO/////////////////////////////////////////////
+	private boolean saludo;                                     // X
+	private boolean usuarioRegistrado;                          // X
+    ////////////////////////////////////////////////////////////////
 	
-	private Imagen imagenPeticionInfo;
+	//BUSCAR IMAGENES///////////////////////////////////////////////
+	private boolean buscarFoto;                                 //
+    ////////////////////////////////////////////////////////////////
 	
-	private boolean pendienteActualizarClasificador;
+	//SUBIR IMAGEN//////////////////////////////////////////////////
+	private boolean subirFoto;                                  // X
+	private Imagen imagenPeticionInfo;                          // X
+	private boolean fotosCargadasSubida;                        // X
+	private boolean pendienteActualizarClasificador;            // X
+	private boolean fotoCompletamenteDescrita;                  //
+    ////////////////////////////////////////////////////////////////
 	
 	
 	public Conversacion() {
@@ -32,16 +39,26 @@ public class Conversacion {
 		this.usuarioRegistrado = false;
 		this.esperarDatosDelUsuario = false;
 		
-		this.lEventos = new ArrayList<String>();
-		this.lPersonas = new ArrayList<Persona>();
-		
 		this.fotosCargadasSubida = false;
 		
-		this.fechaFoto = null;
 		this.imagenPeticionInfo = null;
 		this.pendienteActualizarClasificador = false;
 	}
 	
+	
+	
+	public boolean isFotoCompletamenteDescrita() {
+		return fotoCompletamenteDescrita;
+	}
+
+
+
+	public void setFotoCompletamenteDescrita(boolean fotoCompletamenteDescrita) {
+		this.fotoCompletamenteDescrita = fotoCompletamenteDescrita;
+	}
+
+
+
 	public void setImagenPeticionInfo(Imagen imagenPeticionInfo){
 		this.esperarDatosDelUsuario = true;
 		this.imagenPeticionInfo = imagenPeticionInfo;
@@ -84,31 +101,6 @@ public class Conversacion {
 	public void solicitudBuscarFotoRecibida() {
 		this.buscarFoto = true;
 	}
-	
-	public void insertarPersonaImagen(Persona p) {
-		this.lPersonas.add(p);
-	}
-	
-	public void insertarEventoContextoImagen(String e) {
-		this.lEventos.add(e);
-	}
-	
-	public void indicarFechaImagen(Date d) {
-		this.fechaFoto = d;
-	}
-	
-	public void limpiarConversacion() {
-		this.saludo = false;
-		this.subirFoto = false;
-		this.buscarFoto = false;
-		
-		this.lEventos = new ArrayList<String>();
-		this.lPersonas = new ArrayList<Persona>();
-		
-		this.fotosCargadasSubida = false;
-		
-		this.fechaFoto = null;
-	}
 
 	public boolean isSaludo() {
 		return saludo;
@@ -130,8 +122,12 @@ public class Conversacion {
 		this.subirFoto = false;
 	}
 	
-	public void fotosCargadasCorrectamente() {
+	public void fotosCargadasUsuario() {
 		this.fotosCargadasSubida = true;
+	}
+	
+	public void fotoAlmacenada() {
+		this.fotosCargadasSubida = false;
 	}
 	
 	public boolean isUsuarioRegistrado() {

@@ -75,37 +75,13 @@ public class ProcesadorDeReglas {
 			ksession.insert(e);
 		}
 		
-		//this.ksession.fireAllRules(); //Se ejecutan todas las reglas 
-
-		//this.ksession.getAgenda().getAgendaGroup("dog").setFocus();
-		
-		this.ksession.fireAllRules(); //Se ejecutan solamente el numero de reglas pasado por parametro
+		this.ksession.fireAllRules();
 		this.ksession = this.kbase.newStatefulKnowledgeSession();
 		
 		return conversacion;
 	}
 	
-	public Conversacion ejecutarReglas(Conversacion conversacion, Behaviour comportamientoAgente){
-		this.ksession = this.kbase.newStatefulKnowledgeSession();
-		
-		this.ksession.setGlobal("GR_BI", ConstantesComportamiento.GRUPO_BUSCAR_IMAGEN);
-		this.ksession.setGlobal("GR_EX", ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
-		this.ksession.setGlobal("GR_RE", ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
-		this.ksession.setGlobal("GR_SA", ConstantesComportamiento.GRUPO_SALUDO);
-		this.ksession.setGlobal("GR_SI", ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
-		this.ksession.setGlobal("GR_PU", ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
-
-
-		ksession.insert(conversacion);
-		ksession.insert(comportamientoAgente);
-		ksession.insert(this.manejadorReglas);
-
-			
-		//this.ksession.fireAllRules(); //Se ejecutan todas las reglas 
-
-		this.ksession.fireAllRules(); //Se ejecutan solamente el numero de reglas pasado por parametro
-		this.ksession = this.kbase.newStatefulKnowledgeSession();
-		
-		return conversacion;
+	public void seleccionarGrupoSubirImagenManejador() {
+		this.manejadorReglas.setGrupoActivado(ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
 	}
 }

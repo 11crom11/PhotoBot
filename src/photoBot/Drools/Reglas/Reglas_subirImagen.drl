@@ -14,7 +14,7 @@ global java.lang.Integer GR_SI;
 global java.lang.Integer GR_PU;
 
 rule "Solicitud de subir imagen"
-	salience 15
+	salience 90
 	when
 		manejador : ManejadorReglas();
         grupoActivacion : Integer(grupoActivacion == GR_PU) from manejador.getGrupoActivado();
@@ -24,25 +24,31 @@ rule "Solicitud de subir imagen"
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
         tipo_b : String (equals("Cargar") == true) from etiqueta.getTipo();
+        subirFoto : Boolean (subirFoto == false) from conversacion.isSubirFoto();
         
     then
     	comportamiento.esperarFotoConversacion();
+    	update(conversacion);
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
+		update(manejador);
+    	System.out.println("REGLA RECIBIR SOLICITUD DE SUBIR IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
-rule "Recibir texto posterior a solicitud de subir imagen"
-	salience 20
+rule "Guardar imagen"
+	salience 90
 	when
 		manejador : ManejadorReglas();
-        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();        
-        
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();
+	
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        solicitudSubirFoto : Boolean( solicitudSubirFoto == true ) from conversacion.isSubirFoto();
-        fotosCargadas : Boolean( fotosCargadas == false) from conversacion.isFotosCargadasSubida();
+        esperaDatos : Boolean (esperaDatos == false) from conversacion.isEsperarDatosDelUsuario();
+        fotosCargadas : Boolean (fotosCargadas == true) from conversacion.isFotosCargadasSubida();
         
     then
-    	comportamiento.bot_anularSubidaFotos();
+    	comportamiento.bot_solicitudSubirImagenes();
+    	System.out.println("REGLA SUBIR IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
 rule "Recoger datos imagen"
@@ -62,5 +68,24 @@ rule "Recoger datos imagen"
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
 	then
 		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta);
+		System.out.println("REGLA RECOGER DATOS DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
+
+/*
+rule "Recibir texto posterior a solicitud de subir imagen"
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();        
+        
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        solicitudSubirFoto : Boolean( solicitudSubirFoto == true ) from conversacion.isSubirFoto();
+        fotosCargadas : Boolean( fotosCargadas == false) from conversacion.isFotosCargadasSubida();
+        
+    then
+    	comportamiento.bot_anularSubidaFotos();
+end
+*/

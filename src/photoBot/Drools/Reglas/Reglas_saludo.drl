@@ -14,6 +14,7 @@ import photoBot.Imagen.*;
 global java.lang.Integer GR_SA;
 
 rule "Encontrar saludo"
+	activation-group "Saludo"
 	salience 20
 	when
 		manejador : ManejadorReglas();
@@ -29,11 +30,32 @@ rule "Encontrar saludo"
         
     then
         conversacion.saludoRecibido();
-        comportamiento.bot_saludar();
+        comportamiento.bot_saludar(true);
 		update(conversacion);
 		
 		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
 		update(manejador);
 		
-		System.out.println("REGLA ENCONTRAR SALUDO EJECUTADA");
+		System.out.println("REGLA ENCONTRAR SALUDO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Arrancar conversacion sin saludar por parte del usuario"
+	activation-group "Saludo"
+	salience 10
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SA) from manejador.getGrupoActivado();
+        
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+    then
+        conversacion.saludoRecibido();
+        comportamiento.bot_saludar(false);
+		update(conversacion);
+		
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_REGISTRO_USUARIO);
+		update(manejador);
+		
+		System.out.println("REGLA ARRANCAR CONVERSACION SIN SALUDO POR PARTE DE USUARIO EJECUTADA" + "--" + manejador.getGrupoActivado());
 end

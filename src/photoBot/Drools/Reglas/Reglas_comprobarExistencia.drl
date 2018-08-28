@@ -25,7 +25,7 @@ rule "Comprobar existencia usuario"
     	comportamiento.comprobarExistenciayObtenerUsuario();
     	update(conversacion);
     	update(manejador);
-    	System.out.println("REGLA COMPROBAR EXISTENCIA USUARIO EJECUTADA");
+    	System.out.println("REGLA COMPROBAR EXISTENCIA USUARIO EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
 rule "Usuario existe y esta saludado"
@@ -42,7 +42,7 @@ rule "Usuario existe y esta saludado"
         existe : Boolean (existe == true) from conversacion.isUsuarioRegistrado();
         haySaludo : Boolean( haySaludo == true ) from conversacion.isSaludo();
     then
-		System.out.println("REGLA USUARIO EXISTE Y ESTA SALUDADO EJECUTADA");
+		System.out.println("REGLA USUARIO EXISTE Y ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
 rule "Usuario existe y no esta saludado"
@@ -60,9 +60,9 @@ rule "Usuario existe y no esta saludado"
         haySaludo : Boolean( haySaludo == false ) from conversacion.isSaludo();
     then
     	
-    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
-		update(manejador);  //GRUPO_SALUDO
-		System.out.println("REGLA USUARIO EXISTE Y  NO ESTA SALUDADO EJECUTADA");
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SALUDO);
+		update(manejador);
+		System.out.println("REGLA USUARIO EXISTE Y  NO ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
 
@@ -82,7 +82,7 @@ rule "Usuario no existe y esta saludado"
     then
     	
 		update(manejador);
-		System.out.println("REGLA USUARIO NO EXISTE Y ESTA SALUDADO EJECUTADA");
+		System.out.println("REGLA USUARIO NO EXISTE Y ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
 rule "Usuario no existe y no esta saludado"
@@ -102,5 +102,5 @@ rule "Usuario no existe y no esta saludado"
     	
     	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_SALUDO);
 		update(manejador);
-		System.out.println("REGLA USUARIO NO EXISTE Y NO ESTA SALUDADO EJECUTADA");
+		System.out.println("REGLA USUARIO NO EXISTE Y NO ESTA SALUDADO EJECUTADA" + "--" + manejador.getGrupoActivado());
 end

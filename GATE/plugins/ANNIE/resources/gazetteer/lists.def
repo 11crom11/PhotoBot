@@ -1,7 +1,7 @@
 apellidos.lst:apellidosPersonas_imagen
 buscarImagenes.lst:buscar_imagen
 colores.lst:colores_imagen
-confirmacion.lst:confirmacion_imagen
+confirmacion.lst:confirmacion_imagen:::Confirmacion
 despedida.lst:despedida_imagen
 diasSemana.lst:
 eventos.lst:evento_imagen:evento_imagen:spanish
@@ -9,7 +9,7 @@ fecha.lst:fechas_imagen
 fechasPasadas.lst:
 fotos.lst:
 meses.lst:
-negacion.lst:
+negacion.lst:negacion_imagen:::Negacion
 nombresPersona.lst:nombresPersonas_imagen
 numero.lst:
 org_ending.lst:

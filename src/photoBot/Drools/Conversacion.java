@@ -1,12 +1,6 @@
 package photoBot.Drools;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import photoBot.Imagen.Imagen;
-import photoBot.Imagen.Persona;
-import photoBot.OpenCV.CarasDetectadas;
 
 public class Conversacion {
 	                                                        //EN USO
@@ -188,5 +182,16 @@ public class Conversacion {
 
 	public void setPendienteActualizarClasificador(boolean pendienteActualizarClasificador) {
 		this.pendienteActualizarClasificador = pendienteActualizarClasificador;
+	}
+	
+	public void procesoSubirImagenCompletado() {
+		 setPendienteActualizarClasificador(false);
+		 setContextoDescrito(true);
+		 setEsperaConfirmacionFinalizarFoto(false);
+		 setEsperarDatosDelUsuario(false);
+		 setPersonasNoReconocidasDescritas(true);
+		 setImagenPeticionInfo(null);
+		 this.subirFoto = false;
+		 this.fotoCompletamenteDescrita = true;
 	}
 }

@@ -71,7 +71,27 @@ rule "Recoger datos imagen"
 		System.out.println("REGLA RECOGER DATOS DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
-/*
+
+rule "Foto completamente descrita"
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+		completado : Boolean (completado == true) from conversacion.isFotoCompletamenteDescrita();
+
+	then
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+		update(manejador);
+		System.out.println("REGLA FOTO COMPLETAMENTE DESCRITA EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
 rule "Indicar finalizacion descripcion de imagen"
 	salience 70
 	when
@@ -83,7 +103,28 @@ rule "Indicar finalizacion descripcion de imagen"
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        tipo_finalizar : String (equals("FinalizarDescripcion") == true) == true)) from etiqueta.getTipo();
+        tipo_finalizar : String (equals("FinalizarDescripcion") == true) from etiqueta.getTipo();
+        
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_finalizarDescripcionImagen();
+		update(comportamiento);
+		System.out.println("REGLA INDICAR FINALIZACION DESCRIPCION IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
+rule "Recibir "
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_finalizar : String (equals("FinalizarDescripcion") == true) from etiqueta.getTipo();
         
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
 	then
@@ -91,7 +132,7 @@ rule "Indicar finalizacion descripcion de imagen"
 		System.out.println("REGLA INDICAR FINALIZACION DESCRIPCION IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
-*/
+
 /*
 rule "Recibir texto posterior a solicitud de subir imagen"
 	salience 70

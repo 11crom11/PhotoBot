@@ -321,6 +321,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			if(!grupoDesconocido.isEmpty()){
 				mensajeUsuario += "No he reconocido a las personas recuadradas con los siguientes colores, "
 						+ "por favor, ¿podrías indicarme para cada color, de qué persona se trata?: " + String.join(", ", grupoDesconocido) + ".\n\n";
+			
+				conversacion.setPendienteActualizarClasificador(true);
+				conversacion.setPersonasNoReconocidasDescritas(false);
 			}
 			
 			if(!grupoConocido.isEmpty()){
@@ -331,7 +334,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			
 			photoBot.enviarMensajeTextoAlUsuario(mensajeUsuario);
 			conversacion.setPersonasNoReconocidasDescritas(false);
-			
+			conversacion.setFotoCompletamenteDescrita(false);
+			conversacion.setContextoDescrito(false);
 		}
 		
 		File f = new File(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg");
@@ -421,9 +425,21 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			}
 			else {
 				//FOTO COMPLETAMENTE DESCRITA
-				
+				 actualizarClasificador();
+				 this.conversacion.procesoSubirImagenCompletado();
+				 this.conversacion.setFotoCompletamenteDescrita(true);
 			}
 		}
+	}
+	
+	public void bot_confirmadoFinalizacionDescripcionImagen() {
+		actualizarClasificador();
+		this.conversacion.procesoSubirImagenCompletado();
+	}
+	
+	public void bot_negacionFinalizacionDescripcionImagen() {
+		this.conversacion.setEsperaConfirmacionFinalizarFoto(false);
+		this.photoBot.enviarMensajeTextoAlUsuario("Vale, dime la información de la imagen que quieres que tenga en cuenta y luego avisame otra vez cuando hayas acabado.");
 	}
 	
 	public void comprobarExistenciayObtenerUsuario() {

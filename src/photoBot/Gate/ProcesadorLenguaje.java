@@ -124,7 +124,8 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Numero");
 			annotTypesRequired.add("Evento");
 			annotTypesRequired.add("Persona_color_desconocida");
-			annotTypesRequired.add("FinalizarDescripcion"); 
+			annotTypesRequired.add("FinalizarDescripcion");
+			annotTypesRequired.add("Confirmacion"); 
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		

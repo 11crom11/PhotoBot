@@ -134,7 +134,7 @@ end
 
 rule "Indicar finalizacion descripcion de imagen"
 	no-loop true
-	lock-on-active true
+	//lock-on-active true
 	activation-group "FinalizarDescripcion"
 	salience 70
 	when

@@ -1,0 +1,58 @@
+Phase:	Buscar_fecha_compuesta_consulta
+Input: FechaTipo1 FechaTipo2 FechaTipo3 FechaTipo4 FechaTipo7
+Options: control = appelt
+
+Rule: Encontrar_fecha_c_1
+Priority: 70
+(	{FechaTipo1}
+	{FechaTipo1}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_c_2
+Priority: 70
+(	{FechaTipo2}
+	{FechaTipo2}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_c_3
+Priority: 70
+(	{FechaTipo3}
+	{FechaTipo4}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_c_4
+Priority: 70
+(	{FechaTipo4}
+	{FechaTipo4}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_c_7
+Priority: 70
+(	{FechaTipo7}
+	{FechaTipo7}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************

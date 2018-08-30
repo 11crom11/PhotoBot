@@ -1,0 +1,102 @@
+Phase:	Buscar_fecha_consulta
+Input: Numero Mes
+Options: control = appelt
+
+Rule: Encontrar_fecha_cifras_dia_mes_anyo
+Priority: 100
+(	{Numero}
+	{Numero}
+	{Numero}	
+	  
+):fecha
+-->
+:fecha.FechaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_cifras_dia_mes
+Priority: 90
+(	{Numero}
+	{Numero}
+	
+):fecha
+-->
+:fecha.FechaTipo2 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_cifras_dia_anyo_letras_mes
+Priority: 100
+(	{Numero}
+	{Mes}
+	{Numero}
+	
+):fecha
+-->
+:fecha.FechaTipo3 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_cifras_dia_letras_mes
+Priority: 90
+(	{Numero}
+	{Mes}
+	
+):fecha
+-->
+:fecha.FechaTipo4 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_palabras_mes_mes_cifras_anyo
+Priority: 90
+(	{Mes}
+	{Mes}
+	{Numero}
+	
+):fecha
+-->
+:fecha.FechaTipo5 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_palabras_mes_mes
+Priority: 80
+(	{Mes}
+	{Mes}
+	
+):fecha
+-->
+:fecha.FechaTipo6 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_letras_mes_cifras_anyo
+Priority: 90
+(	{Mes}
+	{Numero}
+	
+):fecha
+-->
+:fecha.FechaTipo7 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+Rule: Encontrar_fecha_letras_mes
+Priority: 70
+(	{Mes}
+	
+):fecha
+-->
+:fecha.FechaTipo8 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//******************************************************************************
+
+//TIPO 01 del 12 del 12 del 2008 x
+//TIPO 02 del 14 de 11 x
+//TIPO 03 del 3 de abril de 2007 x
+//TIPO 04 del 12 de diciembre x
+//TIPO 05 las fotos de mayo a julio de 2007
+//TIPO 06 las fotos de junio a octubre
+//TIPO 07 las fotos de febrero de 2007 x
+//TIPO 08 las fotos de marzo 

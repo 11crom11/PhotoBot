@@ -8,10 +8,10 @@ eventos.lst:evento_imagen:evento_imagen:spanish
 fecha.lst:fechas_imagen
 fechasPasadas.lst:
 fotos.lst:
-meses.lst:
+meses.lst::::Mes
 negacion.lst::::Negacion
 nombresPersona.lst:nombresPersonas_imagen
-numero.lst:
+numero.lst::::NumeroEscrito
 org_ending.lst:
 saludo.lst:saludos_imagen
 subir_imagen.lst:subir_imagen

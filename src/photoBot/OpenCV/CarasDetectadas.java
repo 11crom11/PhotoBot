@@ -98,8 +98,8 @@ public class CarasDetectadas {
 	 * 
 	 * @return Devuelve una Mat con las etiquetas Label de todas las caras contenidas en este objeto, en el mismo orden.
 	 */
-	public Mat getListOfLabels() {
-		Mat labels = new Mat(carasDetectadas.toArray().length, 1, CvType.CV_32SC1);
+	public Mat getListOfLabels(int size) {
+		Mat labels = new Mat(size, 1, CvType.CV_32SC1);
 				
 		for (int i = 0; i < this.carasDetectadas.toArray().length; i++) {
 			int labelAux = this.lCarasEtiquetadas.get((ColoresCaras.getColor(i))).getLeft();

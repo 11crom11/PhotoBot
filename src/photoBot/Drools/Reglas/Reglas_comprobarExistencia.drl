@@ -26,11 +26,12 @@ rule "Comprobar existencia usuario"
     	update(conversacion);
     	update(manejador);
     	System.out.println("REGLA COMPROBAR EXISTENCIA USUARIO EJECUTADA" + "--" + manejador.getGrupoActivado());
+
 end
 
 rule "Usuario existe y esta saludado"
 	no-loop true
-	lock-on-active true
+	//lock-on-active true
 	salience 202
 	when
 		manejador : ManejadorReglas();
@@ -47,7 +48,7 @@ end
 
 rule "Usuario existe y no esta saludado"
 	no-loop true
-	lock-on-active true
+	//lock-on-active true
 	salience 202
 	when
 		manejador : ManejadorReglas();
@@ -68,7 +69,7 @@ end
 
 rule "Usuario no existe y esta saludado"
 	no-loop true
-	lock-on-active true
+	//lock-on-active true
 	salience 202
 	when
 		manejador : ManejadorReglas();
@@ -87,7 +88,7 @@ end
 
 rule "Usuario no existe y no esta saludado"
 	no-loop true
-	lock-on-active true
+	//lock-on-active true
 	salience 202
 	when
 		manejador : ManejadorReglas();

@@ -74,7 +74,9 @@ public class GestorDeCaras {
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
 		lbphClasificador.read("./clasificadores/" + idUsuario + ".xml");
 		
-		lbphClasificador.update(carasDetectadas.getListOfMat(), carasDetectadas.getListOfLabels());
+		List<Mat> lRec = carasDetectadas.getListOfMat();
+		
+		lbphClasificador.update(lRec, carasDetectadas.getListOfLabels(lRec.size()));
 		
 		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
 		

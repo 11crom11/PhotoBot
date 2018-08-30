@@ -25,7 +25,8 @@ public class Conversacion {
 	private boolean fotoCompletamenteDescrita;                  // X
 	private boolean personasNoReconocidasDescritas;             // X
 	private boolean contextoDescrito;                           // X
-	private boolean esperaConfirmacionFinalizarFoto;            // X      
+	private boolean esperaConfirmacionFinalizarFoto;            // X   
+	private boolean fotoSinPersonas;                            // X
     ////////////////////////////////////////////////////////////////
 	
 	
@@ -35,6 +36,7 @@ public class Conversacion {
 		this.buscarFoto = false;
 		this.usuarioRegistrado = false;
 		this.esperarDatosDelUsuario = false;
+		this.fotoSinPersonas = true;
 		
 		this.fotosCargadasSubida = false;
 		
@@ -49,6 +51,18 @@ public class Conversacion {
 	
 	
 	
+	public boolean isFotoSinPersonas() {
+		return fotoSinPersonas;
+	}
+
+
+
+	public void setFotoSinPersonas(boolean fotoSinPersonas) {
+		this.fotoSinPersonas = fotoSinPersonas;
+	}
+
+
+
 	public boolean isEsperaConfirmacionFinalizarFoto() {
 		return esperaConfirmacionFinalizarFoto;
 	}
@@ -193,5 +207,6 @@ public class Conversacion {
 		 setImagenPeticionInfo(null);
 		 this.subirFoto = false;
 		 this.fotoCompletamenteDescrita = true;
+		 this.fotoSinPersonas = true;
 	}
 }

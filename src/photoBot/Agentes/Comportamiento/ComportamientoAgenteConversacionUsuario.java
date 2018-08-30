@@ -207,7 +207,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		photoBot.enviarMensajeTextoAlUsuario("Encantado de conocerte! Me llamo PhotoBot!");
 		photoBot.enviarMensajeTextoAlUsuario("Soy un asistente virtual y mi misión es ayudarte a organizar todas tus fotografías."
-				+ " Las imaganes que reciba por tu parte las almacenaré en mi buena memoria fotográfica e intentaré aprenderme el"
+				+ " Las imágenes que reciba por tu parte las almacenaré en mi buena memoria fotográfica e intentaré aprenderme el"
 				+ " nombre de tus amigos para luego poder ayudarte a recuperar tus fotos de manera cómoda, sin que tengas que"
 				+ " malgastar tu tiempo buscando entre miles de fotos.");
 		photoBot.enviarMensajeTextoAlUsuario("Para empezar, por favor, ¿podrías decirme tu nombre?");
@@ -223,17 +223,17 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		if(ok){
 			photoBot.enviarMensajeTextoAlUsuario("Encantado " + nombre.getNombre() + "!");
-			photoBot.enviarMensajeTextoAlUsuario("A partir de aquí puedes enviarme las imágenes que quieras que almacene y yo"
-					+ " te preguntare al principio por las personas que aparecen en ellas, para así aprenderme sus nombres."
+			photoBot.enviarMensajeTextoAlUsuario("A partir de aquí puedes enviarme las imágenes que quieras almacenar y yo"
+					+ " te preguntaré al principio por las personas que aparecen en ellas, para así aprenderme sus nombres."
 					+ " Con el tiempo te prometo que me los aprenderé :P");
 			photoBot.enviarMensajeTextoAlUsuario("También te preguntaré por el contexto de la imagen (boda, cumpleaños...) para"
 					+ " facilitarte luego la búsqueda de la imagen.");
 			photoBot.enviarMensajeTextoAlUsuario("Eso es todo lo que tengo que contarte a modo de tutorial, creo que ya podemos empezar.");
-			photoBot.enviarMensajeTextoAlUsuario("Si vas a subir una foto pueder decirmelo o bien enviame directamente la imagen de una"
+			photoBot.enviarMensajeTextoAlUsuario("Si vas a subir una foto pueder decírmelo o bien enviame directamente la imagen de una"
 					+ " en una, por favor."
-					+ " Por el contrario, si quieres buscar una foto solo tendrás pedirmelo con las personas que quieres que aparezcan"
+					+ " Por el contrario, si quieres buscar una foto solo tendrás pedírmelo con las personas que quieres que aparezcan"
 					+ ", así como si también quieres filtrar por el contexto de la foto y yo haré el resto.");
-			photoBot.enviarMensajeTextoAlUsuario("Muy bien, ahora si he terminado de contarte el rollo :P. Empecemos :)");
+			photoBot.enviarMensajeTextoAlUsuario("Muy bien, ahora si he terminado de contarte el rollo :P. Estoy a tu disposición :)");
 			this.conversacion.registradaInfoDelUsuario();
 		}
 		else{
@@ -269,6 +269,12 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 					+ " En el caso de que me haya confundido, deberás volver a fotografíar el retrato."
 					+ " Por otro lado, si no me he confundido y quieres guardar la imagen para luego recuperarla me tendrás que decir su contexto,"
 					+ " por el contrario, solo podrás recuperarla indicandome la fecha de subida.");
+			
+			this.conversacion.setContextoDescrito(false);
+			this.conversacion.setFotoCompletamenteDescrita(false);
+			this.conversacion.setFotoSinPersonas(true);
+			
+			
 		}
 		else {
 			for (Triple<String, Integer, Double> triple : tripletaColorEtiquetaProbabilidad) {
@@ -323,9 +329,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 			
 			photoBot.enviarMensajeTextoAlUsuario(mensajeUsuario);
-			photoBot.enviarMensajeTextoAlUsuario("Corrígeme si me confundo.");
+			photoBot.enviarMensajeTextoAlUsuario("Corrígeme si me confundo, si todo está OK. Avísame cuando hayas acabado!");
 			conversacion.setFotoCompletamenteDescrita(false);
 			conversacion.setContextoDescrito(false);
+			conversacion.setFotoSinPersonas(false);
 		}
 		
 		File f = new File(FilenameUtils.getPath(urlImagen) + FilenameUtils.getBaseName(urlImagen) + "_rec.jpeg");
@@ -424,10 +431,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			}
 			else {
 				//FOTO COMPLETAMENTE DESCRITA
-				 actualizarClasificador();
-				 this.conversacion.procesoSubirImagenCompletado();
-				 this.conversacion.setFotoCompletamenteDescrita(true);
-				 avisarUsuarioFinalizacionSubidaFoto();
+				if (conversacion.isFotoSinPersonas() == false) {
+					actualizarClasificador();
+				}
+ 
+				this.conversacion.procesoSubirImagenCompletado();
+				this.conversacion.setFotoCompletamenteDescrita(true);
+				avisarUsuarioFinalizacionSubidaFoto();
 			}
 		}
 	}
@@ -486,12 +496,14 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 	private void personasDesconocidasDescritas() {
-		conversacion.setPersonasNoReconocidasDescritas(true);
-		this.photoBot.enviarMensajeTextoAlUsuario("Enhorabuena, acabas de desribirme a todas las personas "
-				+ "que no he reconocido. Asegurate de que las personas que te reconozca "
-				+ "son las que son. Las máquinas también nos podemos con confundir ;)");
+		if(this.conversacion.isPersonasNoReconocidasDescritas() == false) {
+			this.photoBot.enviarMensajeTextoAlUsuario("Enhorabuena, acabas de desribirme a todas las personas "
+					+ "que no he reconocido. Asegurate de que las personas que te reconozca "
+					+ "son las que son. Las máquinas también nos podemos con confundir ;)");
+			this.photoBot.enviarMensajeTextoAlUsuario("¿Alguna cosa más que añadir?");
+		}
 		
-		this.photoBot.enviarMensajeTextoAlUsuario("¿Alguna cosa más que añadir?");
+		conversacion.setPersonasNoReconocidasDescritas(true);
 	}
 	
 	private void actualizarClasificador() {

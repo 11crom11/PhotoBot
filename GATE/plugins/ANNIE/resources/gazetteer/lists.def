@@ -9,7 +9,7 @@ fecha.lst:fechas_imagen
 fechasPasadas.lst:
 fotos.lst:
 meses.lst:
-negacion.lst:negacion_imagen:::Negacion
+negacion.lst::::Negacion
 nombresPersona.lst:nombresPersonas_imagen
 numero.lst:
 org_ending.lst:

@@ -51,7 +51,26 @@ rule "Guardar imagen"
     	System.out.println("REGLA SUBIR IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
-rule "Recoger datos imagen"
+rule "Rechazar imagen"
+	activation-group "Rechazo imagen"
+	lock-on-active true
+	salience 90
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();
+	
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        esperaDatos : Boolean (esperaDatos == true) from conversacion.isEsperarDatosDelUsuario();
+        fotosCargadas : Boolean (fotosCargadas == true) from conversacion.isFotosCargadasSubida();
+        
+    then
+    	comportamiento.bot_rechazarImagenes();
+    	System.out.println("REGLA SUBIR IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Recoger datos persona imagen"
 	salience 80
 	when
 		manejador : ManejadorReglas();
@@ -67,8 +86,29 @@ rule "Recoger datos imagen"
  		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
 	then
-		comportamiento.bot_actualizarInfoImagen(imagen, etiqueta);
-		System.out.println("REGLA RECOGER DATOS DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+		comportamiento.bot_actualizarInfoPersonaImagen(imagen, etiqueta);
+		System.out.println("REGLA RECOGER DATOS PERSONA DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
+rule "Recoger datos contexto imagen"
+	salience 80
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_nombre_persona_color : String (equals("Evento") == true) from etiqueta.getTipo();
+        
+ 		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_actualizarInfoContextoImagen(imagen, etiqueta);
+		System.out.println("REGLA RECOGER DATOS CONTEXTO DE IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
 
@@ -93,6 +133,9 @@ rule "Foto completamente descrita"
 end
 
 rule "Indicar finalizacion descripcion de imagen"
+	no-loop true
+	lock-on-active true
+	activation-group "FinalizarDescripcion"
 	salience 70
 	when
 		manejador : ManejadorReglas();
@@ -103,7 +146,7 @@ rule "Indicar finalizacion descripcion de imagen"
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        tipo_finalizar : String (equals("FinalizarDescripcion") == true) from etiqueta.getTipo();
+        tipo_finalizar : String (equals("Finalizar") == true) from etiqueta.getTipo();
         
  		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
 	then
@@ -113,7 +156,7 @@ rule "Indicar finalizacion descripcion de imagen"
 
 end
 
-rule "Recibir "
+rule "Recibir negacion finalizacion"
 	salience 70
 	when
 		manejador : ManejadorReglas();
@@ -124,12 +167,34 @@ rule "Recibir "
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        tipo_finalizar : String (equals("FinalizarDescripcion") == true) from etiqueta.getTipo();
+        tipo_negacion : String (equals("Negacion") == true) from etiqueta.getTipo();
         
- 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+ 		esperarConfirmacion : Boolean ( esperarConfirmacion == true ) from conversacion.isEsperaConfirmacionFinalizarFoto();
 	then
-		comportamiento.bot_finalizarDescripcionImagen();
-		System.out.println("REGLA INDICAR FINALIZACION DESCRIPCION IMAGEN EJECUTADA" + "--" + manejador.getGrupoActivado());
+		comportamiento.bot_negacionFinalizacionDescripcionImagen();
+		System.out.println("REGLA RECIBIR NEGACION FINALIZACION EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
+rule "Recibir afirmacion finalizacion"
+	salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_confirmacion : String (equals("Confirmacion") == true) from etiqueta.getTipo();
+        
+ 		esperarConfirmacion : Boolean ( esperarConfirmacion == true ) from conversacion.isEsperaConfirmacionFinalizarFoto();
+	then
+		comportamiento.bot_confirmadoFinalizacionDescripcionImagen();
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+		update(manejador);
+		System.out.println("REGLA RECIBIR AFIRMACION FINALIZACION EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
 

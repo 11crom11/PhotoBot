@@ -13,7 +13,7 @@ import photoBot.Imagen.*;
 global java.lang.Integer GR_BI;
 global java.lang.Integer GR_PU;
 
-rule "Solicitud de busqueda de todas las imagenes"
+/*rule "Solicitud de busqueda de todas las imagenes"
 	salience 15
 	when
 		manejador : ManejadorReglas();
@@ -27,10 +27,43 @@ rule "Solicitud de busqueda de todas las imagenes"
     then
     	comportamiento.bot_solicitudBuscarTodasImagenes();  
     	
-    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_EXISTENCIA_USUARIO);
-		//CUANDO SE TRANSICIONA AL ESTADO EXISTENCIA_USUARIO...
-		//...NO ES HACE UPDATE PARA NO ENTRAR EN BUCLE
-		//update(manejador);
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+		update(manejador);
 		
 		System.out.println("REGLA BUSCAR TODAS LAS IMAGENES EJECUTADA");
+end
+*/
+
+rule "Solicitud peticion busqueda imagenes"
+salience 90
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_PU) from manejador.getGrupoActivado();
+		
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
+    then
+    	
+    	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_BUSCAR_IMAGEN);
+		update(manejador);
+		
+		System.out.println("REGLA SOLICITUD PETICION BUSQUEDA IMAGENES EJECUTADA");
+end
+
+rule "Obtener filtros de la conversacion"
+salience 80
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_BI) from manejador.getGrupoActivado();
+		
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        filtro : String ((equals("Nombre_persona") == true) || (equals("Evento") == true) || (equals("Busqueda") == true)) from etiqueta.getTipo();
+    then
+    	System.out.println("REGLA BUSCAR IMAGENES CON DIVERSOS FILTROS EJECUTADA");
 end

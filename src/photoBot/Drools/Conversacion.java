@@ -22,7 +22,7 @@ public class Conversacion {
 	private Imagen imagenPeticionInfo;                          // X
 	private boolean fotosCargadasSubida;                        // X
 	private boolean pendienteActualizarClasificador;            // X
-	private boolean fotoCompletamenteDescrita;                  //
+	private boolean fotoCompletamenteDescrita;                  // X
 	private boolean personasNoReconocidasDescritas;             // X
 	private boolean contextoDescrito;                           // X
 	private boolean esperaConfirmacionFinalizarFoto;            // X      

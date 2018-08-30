@@ -10,6 +10,9 @@ public final class ConstantesComportamiento {
 	public static final int CLASIFICADOR_USUARIO_ACTUALIZADO;
 	public static final int ACTUALIZAR_CAMPO_CARAS_DETECTADAS;
 	public static final int ACTUALIZAR_CLASIFICADOR;
+	public static final int TODAS_PERSONAS_IMAGEN_DESCRITAS;
+	public static final int BUSCAR_IMAGENES;
+	public static final int ANADIR_FILTRO_BUSQUEDA_ANTERIOR;
 
 	public static final String AGENTE_ALMACENAR_IMAGEN;
 	public static final String AGENTE_BUSCAR_IMAGEN;
@@ -33,6 +36,9 @@ public final class ConstantesComportamiento {
 		CLASIFICADOR_USUARIO_ACTUALIZADO = 7;
 		ACTUALIZAR_CAMPO_CARAS_DETECTADAS = 8;
 		ACTUALIZAR_CLASIFICADOR = 9;
+		TODAS_PERSONAS_IMAGEN_DESCRITAS = 10;
+		BUSCAR_IMAGENES = 11;
+		ANADIR_FILTRO_BUSQUEDA_ANTERIOR = 12;
 		
 		AGENTE_ALMACENAR_IMAGEN = "AgenteAlmacenarImagenes";
 		AGENTE_BUSCAR_IMAGEN = "AgenteBuscarImagen";

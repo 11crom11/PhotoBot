@@ -6,14 +6,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Triple;
-import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
-import org.opencv.core.MatOfRect;
 
 import gate.util.GateException;
 import photoBot.Agentes.AgenteConversacionUsuario.PhotoBot;
@@ -25,9 +22,6 @@ import photoBot.Gate.ProcesadorLenguaje;
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
-import photoBot.OpenCV.CarasDetectadas;
-import photoBot.OpenCV.GestorDeCaras;
-import photoBot.Utilidades.SerializadorObjeto;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -72,7 +66,6 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 		ACLMessage msj = this.self.getAgent().receive();
 		
-		
 		//Si hay un mensaje por parte de un agente
 		if(msj != null){
 			
@@ -87,11 +80,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				else if(comando ==  ConstantesComportamiento.RESULTADO_RECONOCIMIENTO_IMAGEN) {
 					recibirRespuestaSubidaImagenes(msj, msjContent);
 				}
-				else if(comando == ConstantesComportamiento.CLASIFICADOR_USUARIO_ACTUALIZADO) {
-					clasificadorUsuarioActualizado();
-				}
-				else if(comando == -1) {
-					//........................
+				else if(comando == ConstantesComportamiento.TODAS_PERSONAS_IMAGEN_DESCRITAS) {
+					personasDesconocidasDescritas();
 				}
 				
 			} catch (UnreadableException e) {
@@ -115,9 +105,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				
 				//2B- Indicar que se ha subido una imagen en el caso de que sea un mensaje con foto	
 				else if(photoBot.hayMensajeFoto()) {					
+					
 					this.procReglas.seleccionarGrupoSubirImagenManejador();
 					this.conversacion.fotosCargadasUsuario();
-					//bot_solicitudSubirImagenes();					
 				}
 				//3- Ejecutar reglas que haran acciones sobre los agentes y bot
 				this.conversacion = procReglas.ejecutarReglasEtiquetas(lEtiquetas, this.conversacion, self);
@@ -333,7 +323,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 			
 			photoBot.enviarMensajeTextoAlUsuario(mensajeUsuario);
-			conversacion.setPersonasNoReconocidasDescritas(false);
+			photoBot.enviarMensajeTextoAlUsuario("Corrígeme si me confundo.");
 			conversacion.setFotoCompletamenteDescrita(false);
 			conversacion.setContextoDescrito(false);
 		}
@@ -354,7 +344,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 }
 	
-	public void bot_actualizarInfoImagen(Imagen imagen, Etiqueta etiqueta){
+	public void bot_actualizarInfoPersonaImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
@@ -365,7 +355,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			
 			/////////////////////////////////////////////////////////////
 		}
-		else {
+		else if (etiqueta.getTipo().equals("Nombre_persona_color")){
 			
 			//ACTUALIZACION DE LA BBDD
 			String nombrePersona = etiqueta.getNombre();
@@ -410,8 +400,17 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	public void bot_actualizarInfoContextoImagen(Imagen imagen, Etiqueta etiqueta) {
+		imagen.addEventoContextoImagen(etiqueta.getNombre());
+		this.conversacion.setContextoDescrito(true);
+		this.bd.actualizarInfoImagen(imagen);
+		
+		this.photoBot.enviarMensajeTextoAlUsuario("Comprendo, tendré en cuenta que durante la foto se estaba "
+				+ "de " + etiqueta.getNombre() + ".");
+	}
+	
 	public void bot_finalizarDescripcionImagen() {
-		if(conversacion.isFotoCompletamenteDescrita() == false) {
+		if(conversacion.isPersonasNoReconocidasDescritas() == false) {
 			this.photoBot.enviarMensajeTextoAlUsuario("Todavía faltan personas que no me has dichos quienes son.");
 			
 			if(conversacion.isContextoDescrito() == false) {
@@ -428,6 +427,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				 actualizarClasificador();
 				 this.conversacion.procesoSubirImagenCompletado();
 				 this.conversacion.setFotoCompletamenteDescrita(true);
+				 avisarUsuarioFinalizacionSubidaFoto();
 			}
 		}
 	}
@@ -435,11 +435,17 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	public void bot_confirmadoFinalizacionDescripcionImagen() {
 		actualizarClasificador();
 		this.conversacion.procesoSubirImagenCompletado();
+		avisarUsuarioFinalizacionSubidaFoto();
 	}
 	
 	public void bot_negacionFinalizacionDescripcionImagen() {
 		this.conversacion.setEsperaConfirmacionFinalizarFoto(false);
 		this.photoBot.enviarMensajeTextoAlUsuario("Vale, dime la información de la imagen que quieres que tenga en cuenta y luego avisame otra vez cuando hayas acabado.");
+	}
+	
+	public void bot_rechazarImagenes() {
+		this.photoBot.enviarMensajeTextoAlUsuario("No puedo procesar esta nueva imagen mientras tenemos pendiente "
+				+ "la descripcion de otra imagen. Termina de contarme la imagen anterior y vuelve a enviarme esta foto.");
 	}
 	
 	public void comprobarExistenciayObtenerUsuario() {
@@ -479,13 +485,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		return ret;
 	}
 	
-	private void clasificadorUsuarioActualizado() {
-		//this.conversacion.setPendienteActualizarClasificador(false);
-		//this.conversacion.setEsperarDatosDelUsuario(false);
-		
-		//POSIBLEMENTE AQUI HAYA QUE VOLVER A EJECUTAR REGLAS, DEPENDE DE COMO
-		//QUEDE ORGANIZADO EL NUEVO SISTEMA DE REGLAS
+	private void personasDesconocidasDescritas() {
 		conversacion.setPersonasNoReconocidasDescritas(true);
+		this.photoBot.enviarMensajeTextoAlUsuario("Enhorabuena, acabas de desribirme a todas las personas "
+				+ "que no he reconocido. Asegurate de que las personas que te reconozca "
+				+ "son las que son. Las máquinas también nos podemos con confundir ;)");
+		
+		this.photoBot.enviarMensajeTextoAlUsuario("¿Alguna cosa más que añadir?");
 	}
 	
 	private void actualizarClasificador() {
@@ -502,6 +508,14 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void avisarUsuarioFinalizacionSubidaFoto() {
+		this.photoBot.enviarMensajeTextoAlUsuario("Muy bien. Me quedo con la información que me has"
+				+ " descrito de esta imagen para que puedas recuperarla posteriormente.");
+		this.photoBot.enviarMensajeTextoAlUsuario("¿Qué más puedo hacer por ti?");
+		
+		this.conversacion.setEsperarDatosDelUsuario(false);
 	}
 	
 	

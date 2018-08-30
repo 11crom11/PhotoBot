@@ -32,7 +32,6 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 	@Override
 	public void action() {
 		ACLMessage msj = this.self.getAgent().receive();
-		List<String> list = new ArrayList<>();
 
 		if(msj != null){
 
@@ -118,7 +117,7 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 			//enviar mensaje al agente conversacional indicandole que modifique el objeto conversacion
 			HashMap<String, Object> msjContent = new HashMap<String, Object>();
 			
-			msjContent.put("COMANDO", ConstantesComportamiento.CLASIFICADOR_USUARIO_ACTUALIZADO);
+			msjContent.put("COMANDO", ConstantesComportamiento.TODAS_PERSONAS_IMAGEN_DESCRITAS);
 							
 			ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
 			msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_CONVERSACION_USUARIO, AID.ISLOCALNAME));

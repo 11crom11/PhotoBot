@@ -1,6 +1,10 @@
 package photoBot.BBDD;
 
 
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
@@ -140,5 +144,20 @@ public class PhotoBotBBDD {
 	public void actualizarInfoUsuario(Usuario u) {
 		this.dataStore.save(u);
 		System.out.println("INFORMACIÓN DEL USUARIO ACTUALIZADA EN LA BBDD");
+	}
+	
+	public List<Imagen> buscarImagenesPorRangoFecha(Pair<Date, Date> fechas) {
+		
+		List<Imagen> lIm = null;
+		
+		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
+		
+		q.and(
+				q.criteria("fecha").greaterThanOrEq(fechas.getLeft()),
+				q.criteria("fecha").lessThanOrEq(fechas.getRight()));
+		
+		lIm = q.asList();
+		
+		return lIm;
 	}
 }

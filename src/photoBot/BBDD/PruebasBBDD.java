@@ -1,5 +1,15 @@
 package photoBot.BBDD;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import photoBot.Gate.Etiqueta;
+import photoBot.Gate.ProcesadorFechas;
+import photoBot.Imagen.Imagen;
+
 public class PruebasBBDD {
 
 	public static void main(String[] args) {
@@ -7,6 +17,15 @@ public class PruebasBBDD {
 		
 		
 		PhotoBotBBDD bd = new PhotoBotBBDD();
+		
+		Pair<Date, Date> pd= ProcesadorFechas.obtenerFormatoDate(
+				new Etiqueta("FechaCompuestaTipo1", "29 del 8 de 2018 al 30 del 8 del 2018"));
+		
+		List<Imagen> lIm = bd.buscarImagenesPorRangoFecha(pd);
+		
+		int k = 0;
+		int p = 6 + k;
+		int g = 9;
 		
 		//Usuario u = new Usuario(598312, "Daniel", 23);
 		//bd.crearUsuario(u);

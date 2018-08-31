@@ -1,0 +1,12 @@
+Phase:	Buscar_numero_anyo
+Input: Token
+Options: control = brill
+
+
+Rule: Encontrar_anyo
+Priority: 200
+(	{Token.kind == number, Token.length == 4}
+	
+):fecha
+-->
+:fecha.Anyo = {kind = "anyo_busqueda", rule = "Buscar_anyo_consulta"}

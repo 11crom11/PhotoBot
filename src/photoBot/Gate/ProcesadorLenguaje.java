@@ -126,7 +126,21 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Persona_color_desconocida");
 			annotTypesRequired.add("Finalizar");
 			annotTypesRequired.add("Confirmacion");
-			annotTypesRequired.add("Negacion"); 
+			annotTypesRequired.add("Negacion");
+			
+			annotTypesRequired.add("FechaTipo1");
+			annotTypesRequired.add("FechaCompuestaTipo1");
+			annotTypesRequired.add("FechaTipo2");
+			annotTypesRequired.add("FechaCompuestaTipo2");
+			annotTypesRequired.add("FechaTipo3");
+			annotTypesRequired.add("FechaCompuestaTipo3");
+			annotTypesRequired.add("FechaTipo4");
+			annotTypesRequired.add("FechaCompuestaTipo4");
+			annotTypesRequired.add("FechaTipo5");
+			annotTypesRequired.add("FechaTipo6");
+			annotTypesRequired.add("FechaTipo7");
+			annotTypesRequired.add("FechaCompuestaTipo7");
+			annotTypesRequired.add("FechaTipo8");
 			
 			Set<Annotation> etiquetasAnotacion = new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 		

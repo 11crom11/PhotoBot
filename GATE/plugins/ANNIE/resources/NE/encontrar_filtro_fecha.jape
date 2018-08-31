@@ -1,18 +1,31 @@
 Phase:	Buscar_fecha_consulta
-Input: Numero Mes
+Input: Numero Mes Anyo
 Options: control = appelt
 
 Rule: Encontrar_fecha_cifras_dia_mes_anyo
 Priority: 100
 (	{Numero}
 	{Numero}
-	{Numero}	
+	{Anyo}	
 	  
 ):fecha
 -->
 :fecha.FechaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
 
-//******************************************************************************
+Rule: Encontrar_fecha_c_1
+Priority: 110
+(	{Numero}
+	{Numero}
+	{Anyo}
+	{Numero}
+	{Numero}
+	{Anyo}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo1 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+//*****************************************************************************************************
 
 Rule: Encontrar_fecha_cifras_dia_mes
 Priority: 90
@@ -23,17 +36,41 @@ Priority: 90
 -->
 :fecha.FechaTipo2 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
 
+Rule: Encontrar_fecha_c_2
+Priority: 95
+(	{Numero}
+	{Numero}
+	{Numero}
+	{Numero}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo2 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
 //******************************************************************************
 
 Rule: Encontrar_fecha_cifras_dia_anyo_letras_mes
 Priority: 100
 (	{Numero}
 	{Mes}
-	{Numero}
+	{Anyo}
 	
 ):fecha
 -->
 :fecha.FechaTipo3 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+Rule: Encontrar_fecha_c_3
+Priority: 101
+(	{Numero}
+	{Mes}
+	{Anyo}
+	{Numero}
+	{Mes}
+	{Anyo}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo3 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
 
 //******************************************************************************
 
@@ -46,13 +83,24 @@ Priority: 90
 -->
 :fecha.FechaTipo4 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
 
+Rule: Encontrar_fecha_c_4
+Priority: 92
+(	{Numero}
+	{Mes}
+	{Numero}
+	{Mes}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo4 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
 //******************************************************************************
 
 Rule: Encontrar_fecha_palabras_mes_mes_cifras_anyo
 Priority: 90
 (	{Mes}
 	{Mes}
-	{Numero}
+	{Anyo}
 	
 ):fecha
 -->
@@ -74,11 +122,22 @@ Priority: 80
 Rule: Encontrar_fecha_letras_mes_cifras_anyo
 Priority: 90
 (	{Mes}
-	{Numero}
+	{Anyo}
 	
 ):fecha
 -->
 :fecha.FechaTipo7 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
+
+Rule: Encontrar_fecha_c_7
+Priority: 92
+(	{Mes}
+	{Anyo}
+	{Mes}
+	{Anyo}
+	
+):fecha
+-->
+:fecha.FechaCompuestaTipo7 = {kind = "fecha_busqueda", rule = "Buscar_fecha_consulta"}
 
 //******************************************************************************
 
@@ -92,11 +151,13 @@ Priority: 70
 
 //******************************************************************************
 
-//TIPO 01 del 12 del 12 del 2008 x
-//TIPO 02 del 14 de 11 x
-//TIPO 03 del 3 de abril de 2007 x
-//TIPO 04 del 12 de diciembre x
+//TIPO 01 del 12 del 12 del 2008 C*
+//TIPO 02 del 14 de 11 C*
+//TIPO 03 del 3 de abril de 2007 C*
+//TIPO 04 del 12 de diciembre C*
 //TIPO 05 las fotos de mayo a julio de 2007
 //TIPO 06 las fotos de junio a octubre
-//TIPO 07 las fotos de febrero de 2007 x
-//TIPO 08 las fotos de marzo 
+//TIPO 07 las fotos de febrero de 2007 C*
+//TIPO 08 las fotos de marzo
+
+//* Contienen una regla que construye una fecha compuesta uniendo dos veces la misma condicion de regla

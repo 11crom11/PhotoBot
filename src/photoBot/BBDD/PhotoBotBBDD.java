@@ -1,12 +1,15 @@
 package photoBot.BBDD;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.CriteriaContainerImpl;
+import org.mongodb.morphia.query.FieldEnd;
 import org.mongodb.morphia.query.Query;
 
 import photoBot.Imagen.Imagen;
@@ -159,5 +162,30 @@ public class PhotoBotBBDD {
 		lIm = q.asList();
 		
 		return lIm;
+	}
+	
+	public List<Imagen> buscarImagenesFiltros(List<Filtro> lFiltros){
+		
+		List<FiltroFecha> filtrosFecha = new ArrayList<FiltroFecha>();
+		//List<FiltroEvento> filtrosFecha = new ArrayList<FiltroFecha>();
+		//List<FiltroPersona> filtrosFecha = new ArrayList<FiltroFecha>();
+		
+		for(Filtro f : lFiltros) {
+			if(f.getClass() == FiltroFecha.class) {
+				filtrosFecha.add((FiltroFecha) f);
+			}
+		}
+		
+		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
+		
+		for(FiltroFecha f : filtrosFecha) {
+			Date d1 = f.getFilterValue().getRight().getLeft();
+			Date d2 = f.getFilterValue().getRight().getRight();
+			
+			q.field(f.getCampoBBDD()).greaterThanOrEq(d1);
+			q.field(f.getCampoBBDD()).lessThanOrEq(d2);
+		}
+		
+		return q.asList();
 	}
 }

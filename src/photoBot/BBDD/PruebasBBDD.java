@@ -19,7 +19,7 @@ public class PruebasBBDD {
 		PhotoBotBBDD bd = new PhotoBotBBDD();
 		
 		Pair<Date, Date> pd= ProcesadorFechas.obtenerFormatoDate(
-				new Etiqueta("FechaCompuestaTipo1", "29 del 8 de 2018 al 30 del 8 del 2018"));
+				new Etiqueta("FechaCompuestaTipo7", "abril del año 2018 a septiembre del 2018"));
 		
 		List<Imagen> lIm = bd.buscarImagenesPorRangoFecha(pd);
 		

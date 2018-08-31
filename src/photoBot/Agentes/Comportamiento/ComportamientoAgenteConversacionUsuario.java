@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.joda.time.DateTime;
 
@@ -18,6 +19,7 @@ import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Drools.Conversacion;
 import photoBot.Drools.ProcesadorDeReglas;
 import photoBot.Gate.Etiqueta;
+import photoBot.Gate.ProcesadorFechas;
 import photoBot.Gate.ProcesadorLenguaje;
 import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
@@ -456,6 +458,65 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	public void bot_rechazarImagenes() {
 		this.photoBot.enviarMensajeTextoAlUsuario("No puedo procesar esta nueva imagen mientras tenemos pendiente "
 				+ "la descripcion de otra imagen. Termina de contarme la imagen anterior y vuelve a enviarme esta foto.");
+	}
+	
+	public void bot_enviarFiltroFecha(Etiqueta etiqueta) {
+		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
+		Pair<Date, Date> filtroFecha = ProcesadorFechas.obtenerFormatoDate(etiqueta);
+		
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.ANADIR_FILTRO_FECHA);
+		msjContent.put("ID", userID);
+		msjContent.put("FILTRO", filtroFecha);
+						
+		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, AID.ISLOCALNAME));
+		
+		try {
+			msj.setContentObject((Serializable)msjContent);
+			getAgent().send(msj);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void bot_buscarImagenesFiltros() {
+		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
+		
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.BUSCAR_IMAGENES);
+		msjContent.put("ID", userID);
+						
+		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, AID.ISLOCALNAME));
+		
+		try {
+			msj.setContentObject((Serializable)msjContent);
+			getAgent().send(msj);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void solicitarInicializacionListaFiltros() {
+String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
+		
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.CREAR_LISTA_FILTROS);
+		msjContent.put("ID", userID);
+						
+		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, AID.ISLOCALNAME));
+		
+		try {
+			msj.setContentObject((Serializable)msjContent);
+			getAgent().send(msj);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void comprobarExistenciayObtenerUsuario() {

@@ -36,6 +36,8 @@ end
 
 rule "Solicitud peticion busqueda imagenes"
 salience 90
+	no-loop true
+	lock-on-active true
 	when
 		manejador : ManejadorReglas();
         grupoActivacion : Integer(grupoActivacion == GR_PU) from manejador.getGrupoActivado();
@@ -47,13 +49,14 @@ salience 90
         tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
     then
     	
+    	comportamiento.solicitarInicializacionListaFiltros();
     	manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_BUSCAR_IMAGEN);
 		update(manejador);
 		
-		System.out.println("REGLA SOLICITUD PETICION BUSQUEDA IMAGENES EJECUTADA");
+		System.out.println("REGLA SOLICITUD PETICION BUSQUEDA IMAGENES EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
-rule "Obtener filtros de la conversacion"
+rule "Obtener filtro fecha"
 salience 80
 	when
 		manejador : ManejadorReglas();
@@ -63,7 +66,39 @@ salience 80
         conversacion : Conversacion();
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
-        filtro : String ((equals("Nombre_persona") == true) || (equals("Evento") == true) || (equals("Busqueda") == true)) from etiqueta.getTipo();
+        filtro : String ((equals("FechaTipo1") == true) || 
+	        (equals("FechaTipo2") == true) || 
+	        (equals("FechaTipo3") == true) || 
+	        (equals("FechaTipo4") == true) || 
+	        (equals("FechaTipo5") == true) || 
+	        (equals("FechaTipo6") == true) || 
+	        (equals("FechaTipo7") == true) ||
+	        (equals("FechaCompuestaTipo1") == true) || 
+	        (equals("FechaCompuestaTipo2") == true) || 
+	        (equals("FechaCompuestaTipo3") == true) || 
+	        (equals("FechaCompuestaTipo4") == true) || 
+	        (equals("FechaCompuestaTipo7") == true) || 
+	        (equals("FechaTipo8") == true)) from etiqueta.getTipo();
     then
-    	System.out.println("REGLA BUSCAR IMAGENES CON DIVERSOS FILTROS EJECUTADA");
+    	comportamiento.bot_enviarFiltroFecha(etiqueta);
+    	System.out.println("REGLA OBTENER FILTRO FECHA EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Buscar imagen con filtros"
+salience 70
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_BI) from manejador.getGrupoActivado();
+		
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_b : String (equals("Busqueda") == true) from etiqueta.getTipo();
+    then
+    	
+		comportamiento.bot_buscarImagenesFiltros();
+		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
+		update(manejador);
+		System.out.println("REGLA BUSCAR IMAGENES CON FILTROS EJECUTADA" + "--" + manejador.getGrupoActivado());
 end

@@ -204,7 +204,7 @@ public class Conversacion {
 		 setEsperaConfirmacionFinalizarFoto(false);
 		 setEsperarDatosDelUsuario(false);
 		 setPersonasNoReconocidasDescritas(true);
-		 setImagenPeticionInfo(null);
+		 //setImagenPeticionInfo(null);
 		 this.subirFoto = false;
 		 this.fotoCompletamenteDescrita = true;
 		 this.fotoSinPersonas = true;

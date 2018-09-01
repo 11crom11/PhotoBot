@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import photoBot.Gate.Etiqueta;
 import photoBot.Gate.ProcesadorFechas;
 import photoBot.Imagen.Imagen;
+import photoBot.Imagen.Persona;
 
 public class PruebasBBDD {
 
@@ -22,7 +23,7 @@ public class PruebasBBDD {
 				new Etiqueta("FechaCompuestaTipo7", "abril del año 2018 a septiembre del 2018"));
 		
 		//List<Imagen> lIm = bd.buscarImagenesPorRangoFecha(pd);
-		List<Imagen> lIm = bd.prueba();
+		List<Persona> lIm = bd.prueba();
 		
 		int k = 0;
 		int p = 6 + k;

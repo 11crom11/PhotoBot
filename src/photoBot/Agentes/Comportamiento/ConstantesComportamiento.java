@@ -17,6 +17,7 @@ public final class ConstantesComportamiento {
 	public static final int ANADIR_FILTRO_EVENTO;
 	public static final int CREAR_LISTA_FILTROS;
 	public static final int SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN;
+	public static final int LISTADO_PERSONAS_IMAGEN;
 
 	public static final String AGENTE_ALMACENAR_IMAGEN;
 	public static final String AGENTE_BUSCAR_IMAGEN;
@@ -47,6 +48,7 @@ public final class ConstantesComportamiento {
 		ANADIR_FILTRO_EVENTO = 14;
 		CREAR_LISTA_FILTROS = 15;
 		SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN = 16;
+		LISTADO_PERSONAS_IMAGEN = 17;
 		
 		AGENTE_ALMACENAR_IMAGEN = "AgenteAlmacenarImagenes";
 		AGENTE_BUSCAR_IMAGEN = "AgenteBuscarImagen";

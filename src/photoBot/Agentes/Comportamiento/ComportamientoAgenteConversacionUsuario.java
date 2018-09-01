@@ -85,6 +85,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				else if(comando == ConstantesComportamiento.TODAS_PERSONAS_IMAGEN_DESCRITAS) {
 					personasDesconocidasDescritas();
 				}
+				else if(comando == ConstantesComportamiento.LISTADO_PERSONAS_IMAGEN) {
+					actualizarBBDDImagen(msjContent);
+				}
 				
 			} catch (UnreadableException e) {
 				e.printStackTrace();
@@ -125,6 +128,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+
 	public void bot_saludar(boolean botSaludado) {
 		
 		
@@ -444,6 +448,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				//FOTO COMPLETAMENTE DESCRITA
 				if (conversacion.isFotoSinPersonas() == false) {
 					actualizarClasificador();
+					enviarMensajeSolicitudPersonaImagen();
 				}
  
 				this.conversacion.procesoSubirImagenCompletado();
@@ -455,6 +460,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	
 	public void bot_confirmadoFinalizacionDescripcionImagen() {
 		actualizarClasificador();
+		enviarMensajeSolicitudPersonaImagen();
 		this.conversacion.procesoSubirImagenCompletado();
 		avisarUsuarioFinalizacionSubidaFoto();
 	}
@@ -550,7 +556,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 	public void solicitarInicializacionListaFiltros() {
-String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
+		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		msjContent.put("COMANDO", ConstantesComportamiento.CREAR_LISTA_FILTROS);
@@ -630,6 +636,19 @@ String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void actualizarBBDDImagen(HashMap<String, Object> msjContent) {
+		List<Integer> list = (List<Integer>) msjContent.get("LISTA");
+		
+		List<Persona> lPersonas = this.bd.listaPersonasPorEtiqueta(list);
+		
+		Imagen i = this.conversacion.getImagenPeticionInfo();
+		i.setlPersonas(lPersonas);
+		this.bd.actualizarInfoImagen(i);
+		
+		this.conversacion.setImagenPeticionInfo(null);
+		
 	}
 	
 	private void avisarUsuarioFinalizacionSubidaFoto() {

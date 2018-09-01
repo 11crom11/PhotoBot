@@ -181,8 +181,15 @@ public class PhotoBotBBDD {
 		}
 		
 		//ANADIR FILTROS DE EVENTO
-		if(filtrosEvento.isEmpty() == false)
-			q.field("lEventos").hasAllOf(filtrosEvento);
+		if(filtrosEvento.isEmpty() == false) {
+			List<String> aux = new ArrayList<>();
+			
+			for(FiltroEvento e : filtrosEvento) {
+				aux.add(e.getFilterValue().getRight());
+			}
+			
+			q.field("lEventos").hasAnyOf(aux);
+		}
 		
 		//ANADIR FILTROS DE PERSONAS
 		if(filtrosPersonas.isEmpty() == false) {
@@ -207,35 +214,24 @@ public class PhotoBotBBDD {
 		return q.asList();
 	}
 	
-	public List<Imagen> prueba() {
+	public List<Persona> prueba() {
 		Query<Persona> s = this.dataStore.createQuery(Persona.class);
-		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
 		
-		Persona p = s.field("nombre").equal("Matías").get();
-		s = this.dataStore.createQuery(Persona.class);
-		Persona p1 = s.field("nombre").equal("Mónica").get();
+		List<Integer> l = new ArrayList<>();
+		l.add(1);
+		l.add(2);
 		
-		List<Persona> aux = new ArrayList<Persona>();
-		aux.add(p);
-		//aux.add(p1);
+		s.field("etiqueta").hasAnyOf(l);
 		
-		q.field("lPersonas").hasAllOf(aux);
-		
-		return q.asList();
+		return s.asList();
 	}
-	
-	public List<Imagen> buscarImagenesPorRangoFecha(Pair<Date, Date> fechas) {
+
+	public List<Persona> listaPersonasPorEtiqueta(List<Integer> list) {
 		
-		List<Imagen> lIm = null;
+		List<Persona> ret = new ArrayList<Persona>();
 		
-		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
+		ret = this.dataStore.createQuery(Persona.class).field("etiqueta").hasAnyOf(list).asList();
 		
-		q.and(
-				q.criteria("fecha").greaterThanOrEq(fechas.getLeft()),
-				q.criteria("fecha").lessThanOrEq(fechas.getRight()));
-		
-		lIm = q.asList();
-		
-		return lIm;
+		return ret;
 	}
 }

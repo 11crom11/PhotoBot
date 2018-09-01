@@ -152,10 +152,12 @@ public class CarasDetectadas {
 	}
 	
 	public List<Integer> getEtiquetas(){
-		List<>
+		List<Integer> ret = new ArrayList<Integer>();
 		
 		for(Pair<Integer, Double> p : lCarasEtiquetadas.values()) {
-			
+			ret.add(p.getLeft());
 		}
+		
+		return ret;
 	}
 }

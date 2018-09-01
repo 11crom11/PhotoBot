@@ -66,10 +66,26 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 	}
 
 	private void generarListadoPersonasEtiqueta(HashMap<String, Object> msjContent) {
-		String idUsuario = (String) msjContent.get("ID");
+		Integer idUsuario = (Integer) msjContent.get("ID");
 		
-		List<Integer> lEtiquetas = 
+		List<Integer> lEtiquetas = this.resultadosDeteccion.get(idUsuario).getEtiquetas();
 		
+		ACLMessage msj = this.self.getAgent().receive();
+		msj = new ACLMessage(ACLMessage.INFORM);
+
+		msjContent = new HashMap<String, Object>();
+		
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_CONVERSACION_USUARIO, AID.ISLOCALNAME));
+		msjContent.put("COMANDO", ConstantesComportamiento.LISTADO_PERSONAS_IMAGEN);
+		msjContent.put("LISTA", lEtiquetas);
+		
+		try {
+			msj.setContentObject(msjContent);
+			getAgent().send(msj);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void reconocerCarasYenviarResultadosClasificacionAgenteConversacional(HashMap<String, Object> msjContent){

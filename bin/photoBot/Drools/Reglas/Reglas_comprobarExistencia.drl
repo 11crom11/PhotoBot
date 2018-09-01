@@ -30,6 +30,7 @@ end
 
 rule "Usuario existe y esta saludado"
 	no-loop true
+	activation-group "Saludado"
 	//lock-on-active true
 	salience 202
 	when
@@ -48,6 +49,7 @@ end
 rule "Usuario existe y no esta saludado"
 	no-loop true
 	//lock-on-active true
+	activation-group "No Saludado"
 	salience 202
 	when
 		manejador : ManejadorReglas();
@@ -69,6 +71,7 @@ end
 rule "Usuario no existe y esta saludado"
 	no-loop true
 	//lock-on-active true
+	activation-group "Saludado"
 	salience 202
 	when
 		manejador : ManejadorReglas();
@@ -88,6 +91,7 @@ end
 rule "Usuario no existe y no esta saludado"
 	no-loop true
 	//lock-on-active true
+	activation-group "No Saludado"
 	salience 202
 	when
 		manejador : ManejadorReglas();

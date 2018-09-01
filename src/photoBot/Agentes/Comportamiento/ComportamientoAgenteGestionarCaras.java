@@ -52,6 +52,9 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 				else if (comando == ConstantesComportamiento.ACTUALIZAR_CLASIFICADOR) {
 					this.actualizarClasificador(msjContent);
 				}
+				else if (comando == ConstantesComportamiento.SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN) {
+					this.generarListadoPersonasEtiqueta(msjContent);
+				}
 			} catch (UnreadableException e) {
 				e.printStackTrace();
 			}
@@ -60,6 +63,13 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 
 
 
+	}
+
+	private void generarListadoPersonasEtiqueta(HashMap<String, Object> msjContent) {
+		String idUsuario = (String) msjContent.get("ID");
+		
+		List<Integer> lEtiquetas = 
+		
 	}
 
 	private void reconocerCarasYenviarResultadosClasificacionAgenteConversacional(HashMap<String, Object> msjContent){

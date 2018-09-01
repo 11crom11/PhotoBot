@@ -160,7 +160,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private void obtenerImagenesBusquedaAgente(ACLMessage msj, HashMap<String, Object> contenido) {
 		List<String> list = (List<String>) contenido.get("LISTA");
 		
-		photoBot.enviarImagenes(list);
+		if(list.isEmpty() == false) {
+			photoBot.enviarImagenes(list);
+			photoBot.enviarMensajeTextoAlUsuario("Estas son las fotos que he encontrado teniendo en cuenta tus peticiones de búsqueda.");
+		}
+		else {
+			photoBot.enviarMensajeTextoAlUsuario("No he encontrado ninguna foto que cumpla todo lo que me has dicho.");
+		}
 
 	}
 	
@@ -266,6 +272,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		List<String> grupoMedioConocido = new ArrayList<>();
 		List<String> grupoConocido = new ArrayList<>();
 		
+		List<Persona> lPerReconocidas = new ArrayList<Persona>();
+		
 		if(tripletaColorEtiquetaProbabilidad.isEmpty()) {
 			photoBot.enviarMensajeTextoAlUsuario("No he conseguido reconocer a ninguna persona en esta fotografía."
 					+ " En el caso de que me haya confundido, deberás volver a fotografíar el retrato."
@@ -284,12 +292,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				color = triple.getLeft();
 				persona = triple.getMiddle();
 				
-				nombre = this.bd.obtenerNombrePersona(this.photoBot.getUser(), persona);
+				Persona p = this.bd.obtenerPersonaApartirEtiqeuta(this.photoBot.getUser(), persona);
 				
 				probabilidad = triple.getRight();
 				
 				if (probabilidad > 50.00 || probabilidad == 0.0){
-					grupoConocido.add(nombre + " con el color " + triple.getLeft());
+					grupoConocido.add(p.getNombre() + " con el color " + triple.getLeft());
+					lPerReconocidas.add(p);
 				}
 				else if (probabilidad <= 50.0){
 					grupoDesconocido.add(triple.getLeft());
@@ -376,8 +385,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				this.photoBot.getUser().setEtiquetaMaxUsada(etiquetaClasificador);
 			}
 			
-			imagen.addPersonaImagen(p);
-			this.bd.actualizarInfoImagen(imagen);
+			//imagen.addPersonaImagen(p); //PROBLEMA, SI ACTUALIZAO A ALGUIEN QUE HA RECONOCIDO MAL ME MANTIENE ESA PERSONA EN LA FOTO
+			//this.bd.actualizarInfoImagen(imagen);
 			
 			////////////////////////////////////////////////////////////
 			
@@ -468,6 +477,46 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		msjContent.put("COMANDO", ConstantesComportamiento.ANADIR_FILTRO_FECHA);
 		msjContent.put("ID", userID);
 		msjContent.put("FILTRO", filtroFecha);
+						
+		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, AID.ISLOCALNAME));
+		
+		try {
+			msj.setContentObject((Serializable)msjContent);
+			getAgent().send(msj);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void bot_enviarFiltroEvento(Etiqueta etiqueta) {
+		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
+		
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.ANADIR_FILTRO_EVENTO);
+		msjContent.put("ID", userID);
+		msjContent.put("FILTRO", etiqueta.getNombre());
+						
+		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
+		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, AID.ISLOCALNAME));
+		
+		try {
+			msj.setContentObject((Serializable)msjContent);
+			getAgent().send(msj);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void bot_enviarFiltroPersona(Etiqueta etiqueta) {
+		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
+		
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.ANADIR_FILTRO_PERSONA);
+		msjContent.put("ID", userID);
+		msjContent.put("FILTRO", etiqueta.getNombre());
 						
 		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
 		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_BUSCAR_IMAGEN, AID.ISLOCALNAME));
@@ -589,6 +638,22 @@ String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		this.photoBot.enviarMensajeTextoAlUsuario("¿Qué más puedo hacer por ti?");
 		
 		this.conversacion.setEsperarDatosDelUsuario(false);
+	}
+	
+	private void enviarMensajeSolicitudPersonaImagen() {
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN);
+		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
+		
+		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
+		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
+		
+		try {
+			msjc.setContentObject((Serializable)msjContent);
+			getAgent().send(msjc);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

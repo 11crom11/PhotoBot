@@ -128,7 +128,7 @@ public class PhotoBotBBDD {
 		return ret;
 	}
 	
-	public String obtenerNombrePersona(Usuario u, int etiqueta) {
+	public Persona obtenerPersonaApartirEtiqeuta(Usuario u, int etiqueta) {
 		Query<Persona> q = this.dataStore.createQuery(Persona.class);
 		q.and(
 				  q.criteria("user").equal(u),
@@ -137,16 +137,91 @@ public class PhotoBotBBDD {
 		Persona persona = q.get();
 		
 		if(persona != null) {
-			return persona.getNombre();
+			return persona;
 		}
 		else {
-			return "";
+			return null;
 		}
 	}
 	
 	public void actualizarInfoUsuario(Usuario u) {
 		this.dataStore.save(u);
 		System.out.println("INFORMACIÓN DEL USUARIO ACTUALIZADA EN LA BBDD");
+	}
+	
+	public List<Imagen> buscarImagenesFiltros(List<Filtro> lFiltros, String idU){
+		
+		Usuario u = this.dataStore.createQuery(Usuario.class).field("idUsuarioTelegram").equal(Integer.parseInt(idU)).get();
+		
+		List<FiltroFecha> filtrosFecha = new ArrayList<FiltroFecha>();
+		List<FiltroEvento> filtrosEvento = new ArrayList<FiltroEvento>();
+		List<FiltroPersona> filtrosPersonas = new ArrayList<FiltroPersona>();
+		
+		for(Filtro f : lFiltros) {
+			if(f.getClass() == FiltroFecha.class) {
+				filtrosFecha.add((FiltroFecha) f);
+			}
+			else if(f.getClass() == FiltroEvento.class) {
+				filtrosEvento.add((FiltroEvento) f);
+			}
+			else if(f.getClass() == FiltroPersona.class) {
+				filtrosPersonas.add((FiltroPersona) f);
+			}
+		}
+		
+		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
+		
+		//ANADIR FILTROS DE FECHA
+		for(FiltroFecha f : filtrosFecha) {
+			Date d1 = f.getFilterValue().getRight().getLeft();
+			Date d2 = f.getFilterValue().getRight().getRight();
+			
+			q.field(f.getCampoBBDD()).greaterThanOrEq(d1);
+			q.field(f.getCampoBBDD()).lessThanOrEq(d2);
+		}
+		
+		//ANADIR FILTROS DE EVENTO
+		if(filtrosEvento.isEmpty() == false)
+			q.field("lEventos").hasAllOf(filtrosEvento);
+		
+		//ANADIR FILTROS DE PERSONAS
+		if(filtrosPersonas.isEmpty() == false) {
+			
+			List<Persona> aux = new ArrayList<Persona>();
+			
+			for(FiltroPersona f : filtrosPersonas) {
+				Query<Persona> p = this.dataStore.createQuery(Persona.class);
+				p.field("nombre").equal(f.getFilterValue().getRight());
+				p.field("user").equal(u);
+				
+				aux.add(p.get());
+			}
+			
+			q.field("lPersonas").hasAllOf(aux);
+			
+		}
+		
+		//POR ULTIMO, QUE LAS IMAGENES ENCONTRADAS SEA DEL USUARIO QUE MANDO LA PETICION DE BUSCAR
+		q.field("propietario").equal(u);
+		
+		return q.asList();
+	}
+	
+	public List<Imagen> prueba() {
+		Query<Persona> s = this.dataStore.createQuery(Persona.class);
+		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
+		
+		Persona p = s.field("nombre").equal("Matías").get();
+		s = this.dataStore.createQuery(Persona.class);
+		Persona p1 = s.field("nombre").equal("Mónica").get();
+		
+		List<Persona> aux = new ArrayList<Persona>();
+		aux.add(p);
+		//aux.add(p1);
+		
+		q.field("lPersonas").hasAllOf(aux);
+		
+		return q.asList();
 	}
 	
 	public List<Imagen> buscarImagenesPorRangoFecha(Pair<Date, Date> fechas) {
@@ -162,30 +237,5 @@ public class PhotoBotBBDD {
 		lIm = q.asList();
 		
 		return lIm;
-	}
-	
-	public List<Imagen> buscarImagenesFiltros(List<Filtro> lFiltros){
-		
-		List<FiltroFecha> filtrosFecha = new ArrayList<FiltroFecha>();
-		//List<FiltroEvento> filtrosFecha = new ArrayList<FiltroFecha>();
-		//List<FiltroPersona> filtrosFecha = new ArrayList<FiltroFecha>();
-		
-		for(Filtro f : lFiltros) {
-			if(f.getClass() == FiltroFecha.class) {
-				filtrosFecha.add((FiltroFecha) f);
-			}
-		}
-		
-		Query<Imagen> q = this.dataStore.createQuery(Imagen.class);
-		
-		for(FiltroFecha f : filtrosFecha) {
-			Date d1 = f.getFilterValue().getRight().getLeft();
-			Date d2 = f.getFilterValue().getRight().getRight();
-			
-			q.field(f.getCampoBBDD()).greaterThanOrEq(d1);
-			q.field(f.getCampoBBDD()).lessThanOrEq(d2);
-		}
-		
-		return q.asList();
 	}
 }

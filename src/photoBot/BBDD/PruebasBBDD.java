@@ -21,7 +21,8 @@ public class PruebasBBDD {
 		Pair<Date, Date> pd= ProcesadorFechas.obtenerFormatoDate(
 				new Etiqueta("FechaCompuestaTipo7", "abril del año 2018 a septiembre del 2018"));
 		
-		List<Imagen> lIm = bd.buscarImagenesPorRangoFecha(pd);
+		//List<Imagen> lIm = bd.buscarImagenesPorRangoFecha(pd);
+		List<Imagen> lIm = bd.prueba();
 		
 		int k = 0;
 		int p = 6 + k;

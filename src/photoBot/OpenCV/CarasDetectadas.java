@@ -64,7 +64,10 @@ public class CarasDetectadas {
 	public void actualizarPersonaHashMap(String color, int persona, double prob) {
 
 		Pair<Integer, Double> p = Pair.of(persona, prob);
-		this.lCarasEtiquetadas.put(color, p);
+		
+		if(this.lCarasEtiquetadas.get(color) != null) {
+			this.lCarasEtiquetadas.put(color, p);
+		}	
 	}
 	
 	/**
@@ -148,4 +151,11 @@ public class CarasDetectadas {
 		this.carasDetectadas = carasDetectadas;
 	}
 	
+	public List<Integer> getEtiquetas(){
+		List<>
+		
+		for(Pair<Integer, Double> p : lCarasEtiquetadas.values()) {
+			
+		}
+	}
 }

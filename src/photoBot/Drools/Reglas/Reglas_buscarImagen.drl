@@ -84,8 +84,41 @@ salience 80
     	System.out.println("REGLA OBTENER FILTRO FECHA EJECUTADA" + "--" + manejador.getGrupoActivado());
 end
 
+rule "Obtener filtro evento"
+salience 80
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_BI) from manejador.getGrupoActivado();
+		
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        filtro : String (equals("Evento") == true) from etiqueta.getTipo();
+    then
+    	comportamiento.bot_enviarFiltroEvento(etiqueta);
+    	System.out.println("REGLA OBTENER FILTRO EVENTO EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
+rule "Obtener filtro Persona"
+salience 80
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_BI) from manejador.getGrupoActivado();
+		
+		etiqueta : Etiqueta();
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        filtro : String (equals("Nombre_persona") == true) from etiqueta.getTipo();
+    then
+    	comportamiento.bot_enviarFiltroPersona(etiqueta);
+    	System.out.println("REGLA OBTENER FILTRO PERSONA EJECUTADA" + "--" + manejador.getGrupoActivado());
+end
+
 rule "Buscar imagen con filtros"
 salience 70
+	activation-group "Buscar"
 	when
 		manejador : ManejadorReglas();
         grupoActivacion : Integer(grupoActivacion == GR_BI) from manejador.getGrupoActivado();

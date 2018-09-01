@@ -21,7 +21,9 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import photoBot.BBDD.Filtro;
+import photoBot.BBDD.FiltroEvento;
 import photoBot.BBDD.FiltroFecha;
+import photoBot.BBDD.FiltroPersona;
 import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Imagen.Imagen;
 
@@ -60,6 +62,12 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 				else if(comando == ConstantesComportamiento.ANADIR_FILTRO_FECHA) {
 					anadirFiltroFecha(msj, msjContent);
 				}
+				else if(comando == ConstantesComportamiento.ANADIR_FILTRO_EVENTO) {
+					anadirFiltroEvento(msj, msjContent);
+				}
+				else if(comando == ConstantesComportamiento.ANADIR_FILTRO_PERSONA) {
+					anadirFiltroPersona(msj, msjContent);
+				}
 				else if(comando == ConstantesComportamiento.CREAR_LISTA_FILTROS) {
 					inicializarListaFiltrosUsuario(msjContent);
 				}
@@ -82,7 +90,7 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 	private void buscarImagenes(ACLMessage msj, HashMap<String, Object> msjContent) {
 		String idUsuario = (String) msjContent.get("ID");
 		
-		List<Imagen> lImagenes = this.bd.buscarImagenesFiltros(this.filtros.get(idUsuario));
+		List<Imagen> lImagenes = this.bd.buscarImagenesFiltros(this.filtros.get(idUsuario), idUsuario);
 		
 		List<String> ficherosImagen = new ArrayList<String>();
 		
@@ -112,6 +120,26 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		
 		List<Filtro> aux = this.filtros.get(idUsuario);
 		aux.add(new FiltroFecha("fecha", filtro));
+		
+		this.filtros.put(idUsuario, aux);
+	}
+	
+	private void anadirFiltroEvento(ACLMessage msj, HashMap<String, Object> msjContent) {
+		String idUsuario = (String) msjContent.get("ID");
+		String filtro = (String) msjContent.get("FILTRO");
+		
+		List<Filtro> aux = this.filtros.get(idUsuario);
+		aux.add(new FiltroEvento("lEventos", filtro));
+		
+		this.filtros.put(idUsuario, aux);
+	}
+	
+	private void anadirFiltroPersona(ACLMessage msj, HashMap<String, Object> msjContent) {
+		String idUsuario = (String) msjContent.get("ID");
+		String filtro = (String) msjContent.get("FILTRO");
+		
+		List<Filtro> aux = this.filtros.get(idUsuario);
+		aux.add(new FiltroPersona("lPersonas", filtro));
 		
 		this.filtros.put(idUsuario, aux);
 	}

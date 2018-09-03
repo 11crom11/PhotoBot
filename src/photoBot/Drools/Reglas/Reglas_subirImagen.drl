@@ -113,7 +113,7 @@ rule "Recoger datos contexto imagen"
 end
 
 rule "Foto completamente descrita"
-	salience 70
+	salience 50
 	when
 		manejador : ManejadorReglas();
         grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
@@ -128,6 +128,7 @@ rule "Foto completamente descrita"
 	then
 		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
 		update(manejador);
+		comportamiento.bot_finalizarDescripcionImagen();
 		System.out.println("REGLA FOTO COMPLETAMENTE DESCRITA EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end

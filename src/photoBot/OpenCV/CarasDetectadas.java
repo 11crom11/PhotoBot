@@ -20,7 +20,6 @@ public class CarasDetectadas {
 	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;
 	
 	private MatOfRect carasDetectadas;
-	private long natObjAddCarasDetectadas;
 	
 	
 	private String urlImagen;
@@ -40,7 +39,6 @@ public class CarasDetectadas {
 	 */
 	public CarasDetectadas(MatOfRect caras, List<Pair<Integer, Double>> personas, String url) {
 		this.carasDetectadas = caras;
-		this.natObjAddCarasDetectadas = this.carasDetectadas.getNativeObjAddr();
 		
 		this.urlImagen = url;
 		this.lCarasEtiquetadas = new HashMap<String, Pair<Integer, Double>>();
@@ -129,10 +127,6 @@ public class CarasDetectadas {
 		boolean ok = this.lCarasEtiquetadas.containsValue(Pair.of(-1, 0.0));
 		
 		return ok;
-	}
-	
-	public void actualizaMatOfRect(){
-		this.carasDetectadas = MatOfRect.fromNativeAddr(this.natObjAddCarasDetectadas);
 	}
 	
 	public HashMap<String, Pair<Integer, Double>> getlCarasEtiquetadas() {

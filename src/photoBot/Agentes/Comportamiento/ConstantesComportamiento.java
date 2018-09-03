@@ -2,7 +2,7 @@ package photoBot.Agentes.Comportamiento;
 
 public final class ConstantesComportamiento {
 	public static final int OBTENER_IMG_AGENTE;
-	public static final int ENVIAR_IMG_AGENTE;
+	public static final int ENVIAR_IMG_AGENTE_ALMACENAR;
 	public static final int SOLICITAR_IMG_AGENTE;
 	public static final int ENTREGAR_IMG_ENCONTRADAS;
 	public static final int RESULTADO_RECONOCIMIENTO_IMAGEN;
@@ -18,6 +18,7 @@ public final class ConstantesComportamiento {
 	public static final int CREAR_LISTA_FILTROS;
 	public static final int SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN;
 	public static final int LISTADO_PERSONAS_IMAGEN;
+	public static final int ACTUALIZAR_IMAGEN_BBDD;
 
 	public static final String AGENTE_ALMACENAR_IMAGEN;
 	public static final String AGENTE_BUSCAR_IMAGEN;
@@ -33,7 +34,7 @@ public final class ConstantesComportamiento {
 
 	static {
 		OBTENER_IMG_AGENTE = 1;
-		ENVIAR_IMG_AGENTE = 2;
+		ENVIAR_IMG_AGENTE_ALMACENAR = 2;
 		SOLICITAR_IMG_AGENTE = 3;
 		ENTREGAR_IMG_ENCONTRADAS = 4;
 		RESULTADO_RECONOCIMIENTO_IMAGEN = 5;
@@ -49,6 +50,7 @@ public final class ConstantesComportamiento {
 		CREAR_LISTA_FILTROS = 15;
 		SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN = 16;
 		LISTADO_PERSONAS_IMAGEN = 17;
+		ACTUALIZAR_IMAGEN_BBDD = 18;
 		
 		AGENTE_ALMACENAR_IMAGEN = "AgenteAlmacenarImagenes";
 		AGENTE_BUSCAR_IMAGEN = "AgenteBuscarImagen";

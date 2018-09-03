@@ -1,12 +1,14 @@
 package photoBot.Imagen;
 
+import java.io.Serializable;
+
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 
 //@Entity("Persona")
-public class Persona {
+public class Persona implements Serializable{
 	
 	@Id
     private ObjectId id;

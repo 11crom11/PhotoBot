@@ -208,5 +208,6 @@ public class Conversacion {
 		 this.subirFoto = false;
 		 this.fotoCompletamenteDescrita = true;
 		 this.fotoSinPersonas = true;
+		 this.fotosCargadasSubida = false;
 	}
 }

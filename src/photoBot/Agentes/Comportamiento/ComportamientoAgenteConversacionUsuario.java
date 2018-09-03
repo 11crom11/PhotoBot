@@ -193,7 +193,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		List<File> lFotos = photoBot.obtenerImagenesMensaje();
 		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
-		msjContent.put("COMANDO", ConstantesComportamiento.ENVIAR_IMG_AGENTE);
+		msjContent.put("COMANDO", ConstantesComportamiento.ENVIAR_IMG_AGENTE_ALMACENAR);
 		msjContent.put("ID", userID);
 		msjContent.put("LISTA", lFotos);
 						
@@ -357,7 +357,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		//obtener datos de la foto
 		Imagen im = new Imagen(new Date(fechaSubida), new ArrayList<Persona>(),new ArrayList<String>(), this.photoBot.getUser(), urlImagen);
 
-		this.bd.registrarImagen(im);
+		//this.bd.registrarImagen(im);
 		this.conversacion.setEsperarDatosDelUsuario(true);
 		this.conversacion.setImagenPeticionInfo(im);
 		this.conversacion.setContextoDescrito(false);
@@ -379,7 +379,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 		else if (etiqueta.getTipo().equals("Nombre_persona_color")){
 			
-			//ACTUALIZACION DE LA BBDD
+			//ACTUALIZACION
 			String nombrePersona = etiqueta.getNombre();
 			Persona p = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), nombrePersona);
 			int etiquetaClasificador = p.getEtiqueta();
@@ -425,7 +425,22 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	public void bot_actualizarInfoContextoImagen(Imagen imagen, Etiqueta etiqueta) {
 		imagen.addEventoContextoImagen(etiqueta.getNombre());
 		this.conversacion.setContextoDescrito(true);
-		this.bd.actualizarInfoImagen(imagen);
+		this.conversacion.setImagenPeticionInfo(imagen);
+		
+		HashMap<String, Object> msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN);
+		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
+		msjContent.put("IMAGEN", imagen);
+		
+		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
+		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
+		
+		try {
+			msjc.setContentObject((Serializable)msjContent);
+			getAgent().send(msjc);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		this.photoBot.enviarMensajeTextoAlUsuario("Comprendo, tendré en cuenta que durante la foto se estaba "
 				+ "de " + etiqueta.getNombre() + ".");
@@ -645,10 +660,24 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 		Imagen i = this.conversacion.getImagenPeticionInfo();
 		i.setlPersonas(lPersonas);
-		this.bd.actualizarInfoImagen(i);
+		
+		msjContent = new HashMap<String, Object>();
+		msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_IMAGEN_BBDD);
+		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
+		msjContent.put("IMAGEN", i);
+		
+		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
+		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_ALMACENAR_IMAGEN, AID.ISLOCALNAME));
+		
+		try {
+			msjc.setContentObject((Serializable)msjContent);
+			getAgent().send(msjc);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		this.conversacion.setImagenPeticionInfo(null);
-		
+		this.conversacion.procesoSubirImagenCompletado();
 	}
 	
 	private void avisarUsuarioFinalizacionSubidaFoto() {

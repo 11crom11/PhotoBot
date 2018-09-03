@@ -36,7 +36,7 @@ public class Main {
 			
 			//AGENTE GESTIONAR CARAS
 			agentController = container.createNewAgent(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, "photoBot.Agentes.AgenteGestionarCaras", null);			
-			agentController.start();			
+			agentController.start();	
 			
 		} catch (StaleProxyException e) {
 			e.printStackTrace();

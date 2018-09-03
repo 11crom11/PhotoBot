@@ -124,11 +124,12 @@ rule "Foto completamente descrita"
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
 		completado : Boolean (completado == true) from conversacion.isFotoCompletamenteDescrita();
+		//esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
 
 	then
 		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);
 		update(manejador);
-		comportamiento.bot_finalizarDescripcionImagen();
+		//comportamiento.bot_finalizarDescripcionImagen();
 		System.out.println("REGLA FOTO COMPLETAMENTE DESCRITA EJECUTADA" + "--" + manejador.getGrupoActivado());
 
 end
@@ -169,8 +170,7 @@ rule "Recibir negacion finalizacion"
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
         tipo_negacion : String (equals("Negacion") == true) from etiqueta.getTipo();
-        
- 		esperarConfirmacion : Boolean ( esperarConfirmacion == true ) from conversacion.isEsperaConfirmacionFinalizarFoto();
+       	esperarConfirmacion : Boolean ( esperarConfirmacion == true ) from conversacion.isEsperaConfirmacionFinalizarFoto();
 	then
 		comportamiento.bot_negacionFinalizacionDescripcionImagen();
 		System.out.println("REGLA RECIBIR NEGACION FINALIZACION EJECUTADA" + "--" + manejador.getGrupoActivado());
@@ -189,8 +189,7 @@ rule "Recibir afirmacion finalizacion"
         comportamiento : ComportamientoAgenteConversacionUsuario();
         
         tipo_confirmacion : String (equals("Confirmacion") == true) from etiqueta.getTipo();
-        
- 		esperarConfirmacion : Boolean ( esperarConfirmacion == true ) from conversacion.isEsperaConfirmacionFinalizarFoto();
+       	esperarConfirmacion : Boolean ( esperarConfirmacion == true ) from conversacion.isEsperaConfirmacionFinalizarFoto();
 	then
 		comportamiento.bot_confirmadoFinalizacionDescripcionImagen();
 		manejador.setGrupoActivado(ConstantesComportamiento.GRUPO_ESPERA_PETICION_USUARIO);

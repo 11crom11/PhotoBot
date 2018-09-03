@@ -428,7 +428,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.conversacion.setImagenPeticionInfo(imagen);
 		
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
-		msjContent.put("COMANDO", ConstantesComportamiento.SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN);
+		msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_IMAGEN_BBDD);
 		msjContent.put("ID", this.photoBot.getUser().getIdUsuarioTelegram());
 		msjContent.put("IMAGEN", imagen);
 		

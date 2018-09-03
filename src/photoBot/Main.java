@@ -2,6 +2,7 @@ package photoBot;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
@@ -40,6 +41,18 @@ public class Main {
 			
 		} catch (StaleProxyException e) {
 			e.printStackTrace();
-		}             
+		}
+		
+		Scanner in = new Scanner(System.in);
+		
+		while(in.nextLine().equals("STOP") == false) {
+			
+		}
+		
+		try {
+			container.kill();
+		} catch (StaleProxyException e) {
+			System.out.println("AGENTES FINALIZADOS CORRECTAMENTE");
+		}
     }
 }

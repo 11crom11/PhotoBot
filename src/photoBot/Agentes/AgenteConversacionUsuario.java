@@ -19,6 +19,7 @@ import org.telegram.telegrambots.api.objects.PhotoSize;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import org.telegram.telegrambots.generics.BotSession;
 
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
@@ -29,6 +30,7 @@ public class AgenteConversacionUsuario extends Agent {
 	private static final long serialVersionUID = 1L;
 	private PhotoBot photoBot;
 	private TelegramBotsApi apiTelegram;
+	private static BotSession botSession;
 		
 	private ComportamientoAgenteConversacionUsuario comportamiento;
 	
@@ -43,7 +45,7 @@ public class AgenteConversacionUsuario extends Agent {
         this.comportamiento = new ComportamientoAgenteConversacionUsuario(this, photoBot);
         
         try {
-            this.apiTelegram.registerBot(this.photoBot);
+            this.botSession = this.apiTelegram.registerBot(this.photoBot);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -52,8 +54,13 @@ public class AgenteConversacionUsuario extends Agent {
 	}
 	
 	@Override
-	protected void takeDown(){
-		System.out.println(new Date());
+	protected void takeDown(){		
+		System.out.println("PARADA DE AGENTE CONVERSACION USUARIO");
+	}
+	
+	public static void pararBotTelegram() {
+		botSession.stop();
+		System.out.println("BOT TELEGRAM PHOTOBOT PARADO CORRECTAMENTE");
 	}
 	
 	public class PhotoBot extends TelegramLongPollingBot {
@@ -233,7 +240,7 @@ public class AgenteConversacionUsuario extends Agent {
 				LocalTime now = LocalTime.now();
 				return now.getHour();
 			}
-		}
+		}		
 	}
 	
 	public ComportamientoAgenteConversacionUsuario getComportamiento() {

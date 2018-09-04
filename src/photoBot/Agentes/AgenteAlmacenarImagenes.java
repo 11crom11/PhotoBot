@@ -21,7 +21,7 @@ public class AgenteAlmacenarImagenes extends Agent{
 	
 	@Override
 	protected void takeDown(){
-		System.out.println(new Date());
+		System.out.println("PARADA AGENTE ALMACENAR IMAGEN");
 	}
 
 }

@@ -301,7 +301,12 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				probabilidad = triple.getRight();
 				
 				if (probabilidad > 50.00 || probabilidad == 0.0){
-					grupoConocido.add(p.getNombre() + " con el color " + triple.getLeft());
+					String nombr = p.getNombre();
+					if(nombr.toLowerCase().equals("yo")) {
+						nombr = "tú";
+					}
+					
+					grupoConocido.add(nombr + " con el color " + triple.getLeft());
 					lPerReconocidas.add(p);
 				}
 				else if (probabilidad <= 50.0){
@@ -381,6 +386,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 			
 			//ACTUALIZACION
 			String nombrePersona = etiqueta.getNombre();
+			
+			if(nombrePersona.toLowerCase().equals("yo")) {
+				nombrePersona = "yo";
+			}
 			Persona p = this.bd.obtenerPersonaEtiqueta(this.photoBot.getUser(), nombrePersona);
 			int etiquetaClasificador = p.getEtiqueta();
 			

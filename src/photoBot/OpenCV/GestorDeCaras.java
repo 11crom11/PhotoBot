@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.tools.ant.taskdefs.Mkdir;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -83,8 +84,11 @@ public class GestorDeCaras {
 	}
 	
 	private void crearClasificadorPersonalizado(String idUsuario) {
-		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
 		
+		java.io.File dir = new java.io.File("./clasificadores/");
+		dir.mkdirs();
+		
+		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
 		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
 	}
 	

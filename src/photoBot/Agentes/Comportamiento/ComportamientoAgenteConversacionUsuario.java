@@ -459,7 +459,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		msjContent.put("IMAGEN", imagen);
 		
 		ACLMessage msjc = new ACLMessage(ACLMessage.INFORM);
-		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_GESTIONAR_CARAS, AID.ISLOCALNAME));
+		msjc.addReceiver(new AID(ConstantesComportamiento.AGENTE_ALMACENAR_IMAGEN, AID.ISLOCALNAME));
 		
 		try {
 			msjc.setContentObject((Serializable)msjContent);

@@ -299,6 +299,7 @@ public class ProcesadorLenguaje {
 
 		try {
 			BufferedWriter output = new BufferedWriter(new FileWriter("GATE\\plugins\\ANNIE\\resources\\gazetteer\\eventos.lst", true));
+			output.newLine();
 			output.write(palabra);
 			output.close();
 		} catch (IOException e1) {

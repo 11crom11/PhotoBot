@@ -91,6 +91,28 @@ rule "Recoger datos persona imagen"
 
 end
 
+rule "Avisar modificacion datos persona"
+	salience 79
+	activation-group "DatosImagen"
+	when
+		manejador : ManejadorReglas();
+        grupoActivacion : Integer(grupoActivacion == GR_SI) from manejador.getGrupoActivado();	
+	
+		etiqueta : Etiqueta();
+
+        conversacion : Conversacion();
+        comportamiento : ComportamientoAgenteConversacionUsuario();
+        
+        tipo_nombre_persona_color : String ((equals("Nombre_persona_color") == true) || (equals("Persona_color_desconocida") == true)) from etiqueta.getTipo();
+        
+ 		imagen : Imagen ( imagen != null ) from conversacion.getImagenPeticionInfo();
+ 		esperarDatos : Boolean ( esperarDatos == true ) from conversacion.isEsperarDatosDelUsuario();
+	then
+		comportamiento.bot_avisarCambiosPersona();
+		System.out.println("REGLA AVISAR MODIFICACION DATOS PERSONA EJECUTADA" + "--" + manejador.getGrupoActivado());
+
+end
+
 rule "Recoger datos contexto imagen"
 	salience 80
 	when

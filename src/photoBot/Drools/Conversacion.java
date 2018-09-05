@@ -27,6 +27,7 @@ public class Conversacion {
 	private boolean contextoDescrito;                           // X
 	private boolean esperaConfirmacionFinalizarFoto;            // X   
 	private boolean fotoSinPersonas;                            // X
+	private boolean contextoEnUnaPalabra;                       // X
     ////////////////////////////////////////////////////////////////
 	
 	
@@ -46,6 +47,7 @@ public class Conversacion {
 		this.personasNoReconocidasDescritas = true;
 		this.fotoCompletamenteDescrita = true;
 		this.contextoDescrito = true;
+		this.contextoEnUnaPalabra = false;
 		this.esperaConfirmacionFinalizarFoto = false;
 	}
 	
@@ -170,6 +172,10 @@ public class Conversacion {
 		return fotosCargadasSubida;
 	}
 	
+	public void setFotosCargadasSubida(boolean b) {
+		this.fotosCargadasSubida = b;
+	}
+	
 	public void solicitudSubirFotoFinalizada() {
 		this.subirFoto = false;
 	}
@@ -198,6 +204,20 @@ public class Conversacion {
 		this.pendienteActualizarClasificador = pendienteActualizarClasificador;
 	}
 	
+	
+	
+	public boolean isContextoEnUnaPalabra() {
+		return contextoEnUnaPalabra;
+	}
+
+
+
+	public void setContextoEnUnaPalabra(boolean contextoEnUnaPalabra) {
+		this.contextoEnUnaPalabra = contextoEnUnaPalabra;
+	}
+
+
+
 	public void procesoSubirImagenCompletado() {
 		 setPendienteActualizarClasificador(false);
 		 setContextoDescrito(true);
@@ -209,5 +229,6 @@ public class Conversacion {
 		 this.fotoCompletamenteDescrita = true;
 		 this.fotoSinPersonas = true;
 		 this.fotosCargadasSubida = false;
+		 this.contextoEnUnaPalabra = false;
 	}
 }

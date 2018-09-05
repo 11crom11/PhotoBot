@@ -127,6 +127,7 @@ public class ProcesadorLenguaje {
 			annotTypesRequired.add("Finalizar");
 			annotTypesRequired.add("Confirmacion");
 			annotTypesRequired.add("Negacion");
+			//annotTypesRequired.add("Adicion");
 			
 			annotTypesRequired.add("FechaTipo1");
 			annotTypesRequired.add("FechaCompuestaTipo1");

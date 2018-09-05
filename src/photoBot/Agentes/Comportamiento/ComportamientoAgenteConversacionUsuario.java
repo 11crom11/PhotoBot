@@ -103,9 +103,19 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 			try {
 				
-				//2A- Analizar el texto en caso de que sea um mensaje de texto
+				//2A- Analizar el texto en caso de que sea un mensaje de texto
 				if(photoBot.hayMensajeTexto()) {
 					lEtiquetas = procLenguaje.analizarTextoGate(mensaje);
+					
+					if(conversacion.isContextoEnUnaPalabra() == true) {
+						if(lEtiquetas.isEmpty() && mensaje.split(" ").length == 1) {
+							this.procLenguaje.addPalabraContextoGazetero(mensaje);
+							this.photoBot.enviarMensajeTextoAlUsuario("Muy bien. He añadido " + mensaje + " "
+									+ "a mi vocabulario de palabras de eventos y contexto.");
+							this.conversacion.setContextoDescrito(true);
+							this.bot_actualizarInfoContextoImagen(this.conversacion.getImagenPeticionInfo(), new Etiqueta("Evento", mensaje));
+						}
+					}
 				}
 				
 				//2B- Indicar que se ha subido una imagen en el caso de que sea un mensaje con foto	
@@ -199,6 +209,8 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 						
 		ACLMessage msj = new ACLMessage(ACLMessage.INFORM);
 		msj.addReceiver(new AID(ConstantesComportamiento.AGENTE_ALMACENAR_IMAGEN, AID.ISLOCALNAME));
+		
+		this.conversacion.setFotosCargadasSubida(false);
 		
 		try {
 			msj.setContentObject((Serializable)msjContent);
@@ -373,6 +385,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	
 	public void bot_actualizarInfoPersonaImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
+		color = color.toLowerCase();
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
 		if(etiqueta.getTipo().equals("Persona_color_desconocida")) {
@@ -429,6 +442,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void bot_avisarCambiosPersona() {
+		this.photoBot.enviarMensajeTextoAlUsuario("Ok, tendré en cuenta este dato.");
 	}
 	
 	public void bot_actualizarInfoContextoImagen(Imagen imagen, Etiqueta etiqueta) {
@@ -491,12 +508,18 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	
 	public void bot_negacionFinalizacionDescripcionImagen() {
 		this.conversacion.setEsperaConfirmacionFinalizarFoto(false);
-		this.photoBot.enviarMensajeTextoAlUsuario("Vale, dime la información de la imagen que quieres que tenga en cuenta y luego avisame otra vez cuando hayas acabado.");
+		this.photoBot.enviarMensajeTextoAlUsuario("Vale, dime la información de la imagen que quieres que tenga en cuenta y luego avisame otra vez cuando hayas acabado."
+				+ " Si anteriormente me has dicho el contexto y no lo he reconocido, dime ahora solamente la palabra, y así"
+				+ " lo añado a mi vocabulario.");
+		
+		this.conversacion.setContextoEnUnaPalabra(true);
 	}
 	
 	public void bot_rechazarImagenes() {
 		this.photoBot.enviarMensajeTextoAlUsuario("No puedo procesar esta nueva imagen mientras tenemos pendiente "
 				+ "la descripcion de otra imagen. Termina de contarme la imagen anterior y vuelve a enviarme esta foto.");
+		
+		this.conversacion.setFotosCargadasSubida(false);
 	}
 	
 	public void bot_enviarFiltroFecha(Etiqueta etiqueta) {

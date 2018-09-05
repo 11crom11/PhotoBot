@@ -72,5 +72,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		System.out.println("AGENTES FINALIZADOS CORRECTAMENTE");
+		System.out.println("APLICACIÓN FINALIZADA CORRECTAMENTE");
+		System.exit(0);
     }
 }

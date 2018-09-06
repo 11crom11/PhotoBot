@@ -21,10 +21,17 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.osgi.OpenCVNativeLoader;
 
+/**
+ * Esta clase implementa un procesador de caras a partir de OpenCV
+ *
+ */
 public class GestorDeCaras {
    
 	private CascadeClassifier clasificadorCaras;
 	
+	/**
+	 * Construye un procesador de caras
+	 */
 	public GestorDeCaras() {
 		String path =  System.getProperty("user.dir");
 		System.out.println(path);
@@ -39,6 +46,11 @@ public class GestorDeCaras {
 		
 	}
 	
+	/**
+	 * Este metodo devuelve un MatOfRect con las caras detectadas en una imagen
+	 * @param urlImagen ubicacion de la imagen
+	 * @return Matriz con las caras detectadas
+	 */
 	private MatOfRect detectarCarasImagen(String urlImagen) {
 		
 		MatOfRect carasDetectadas = new MatOfRect();
@@ -49,6 +61,11 @@ public class GestorDeCaras {
 		return carasDetectadas;
 	}
 	
+	/**
+	 * Construye una imagen con todas las caras reconocidas recuadradas de diferentes colores
+	 * @param urlImagen ubicacion de la imagen
+	 * @param carasDetectadas Matriz de caras detectadas
+	 */
 	private void generarImagenCarasRecuadradas(String urlImagen, MatOfRect carasDetectadas) {
 		
 		Mat imagen = Imgcodecs.imread(urlImagen);
@@ -70,6 +87,11 @@ public class GestorDeCaras {
 
 	}
 	
+	/**
+	 * Este metodo actualiza el clasificador de un usuario concreto con la informacion de una nueva imagen
+	 * @param idUsuario usuario al que pertenece el clasificador
+	 * @param carasDetectadas Resultado de la deteccion de la imagen
+	 */
 	public void actualizarClasificadorPersonalizado(int idUsuario, CarasDetectadas carasDetectadas) {
 		
 		FaceRecognizer lbphClasificador = LBPHFaceRecognizer.create();
@@ -83,6 +105,10 @@ public class GestorDeCaras {
 		
 	}
 	
+	/**
+	 * Este metodo crea el fichero del clasificador de un usuario en concreto
+	 * @param idUsuario id del usuario
+	 */
 	private void crearClasificadorPersonalizado(String idUsuario) {
 		
 		java.io.File dir = new java.io.File("./clasificadores/");
@@ -92,6 +118,13 @@ public class GestorDeCaras {
 		lbphClasificador.save("./clasificadores/" + idUsuario + ".xml");
 	}
 	
+	/**
+	 * Este metodo procesa una matriz de caras y devuelve el resultado de la deteccion (etiquetas y porcentajes de deteccion)
+	 * @param carasDetectadas Matriz con las caras detectadas
+	 * @param urlImagen direccion de ubicacion del fichero de imagen
+	 * @param idUsuario id del usuario
+	 * @return Lista de pares etiqueta-porcentaje de acierto
+	 */
 	private List<Pair<Integer, Double>> dameEtiquetasPorcentajes(MatOfRect carasDetectadas, String urlImagen, String idUsuario){
 		List<Pair<Integer, Double>> ret = new ArrayList<>();
 		

@@ -1,10 +1,13 @@
 package photoBot.Agentes;
 
-import java.util.Date;
-
 import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteBuscarImagenes;
 
+/**
+ * Agente JADE cuya funcion es buscar imágenes en la base de datos para entregarselas 
+ * al usuario a partir de unos criterios de búsqueda.
+ *
+ */
 public class AgenteBuscarImagen extends Agent {
 	
 	private ComportamientoAgenteBuscarImagenes comportamiento;

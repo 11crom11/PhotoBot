@@ -15,6 +15,12 @@ import org.opencv.imgproc.Imgproc;
 
 import jade.util.leap.Serializable;
 
+/**
+ * Esta clase tiene como funcionar almacenar el resultado de la deteccion de una imagen. 
+ * Posibilida la opcion de modificar el resultado para actualizarlo en caso de error.  
+ * Abstrae los objetos de OpenCV
+ *
+ */
 public class CarasDetectadas {
 
 	private HashMap<String, Pair<Integer, Double>> lCarasEtiquetadas;

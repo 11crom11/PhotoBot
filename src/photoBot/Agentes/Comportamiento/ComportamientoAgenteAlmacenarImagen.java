@@ -13,18 +13,24 @@ import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.FSMBehaviour;
-import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Imagen.Imagen;
 
+/**
+ * Esta clase implementa el comportamiento del agente Almacenar Imagen
+ *
+ */
 public class ComportamientoAgenteAlmacenarImagen extends CyclicBehaviour {
 	
 	private Behaviour self;
 	private PhotoBotBBDD bd;
 	
+	/**
+	 * Constructor del agente Almacenar Imagen
+	 * @param a Agente Almacenar Imagen
+	 */
 	public ComportamientoAgenteAlmacenarImagen(Agent a) {
 		super(a);
 		this.self = this;
@@ -61,6 +67,11 @@ public class ComportamientoAgenteAlmacenarImagen extends CyclicBehaviour {
 		
 	}
 	
+	/**
+	 * Este método almacena la imagen recibida por el chat de Telegram en la carpeta galeria.
+	 *  Este metodo es llamado a traves de un mensaje entre agentes
+	 * @param msjContent Contenido del mensaje Agente
+	 */
 	private void almacernarFicheroImagen(HashMap<String, Object> msjContent) {
 
 		String userID = (String) msjContent.get("ID");
@@ -105,6 +116,11 @@ public class ComportamientoAgenteAlmacenarImagen extends CyclicBehaviour {
 		}	
 	}
 	
+	/**
+	 * Este metodo actualiza la informacion de una imagen en la base de datos. 
+	 * Este metodo es llamado a travez de un mensaje entre agentes
+	 * @param msjContent
+	 */
 	private void actualizarImagenBBDD(HashMap<String, Object> msjContent) {
 		Integer userID = (Integer) msjContent.get("ID");
 		Imagen i = (Imagen) msjContent.get("IMAGEN");

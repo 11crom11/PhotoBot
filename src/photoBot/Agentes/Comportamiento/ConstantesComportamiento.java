@@ -1,5 +1,10 @@
 package photoBot.Agentes.Comportamiento;
 
+/**
+ * Esta clase contiene constantes que se usan para el comportamiento de los agentes, asi 
+ * como en el envio de mensajes
+ *
+ */
 public final class ConstantesComportamiento {
 	public static final int OBTENER_IMG_AGENTE;
 	public static final int ENVIAR_IMG_AGENTE_ALMACENAR;

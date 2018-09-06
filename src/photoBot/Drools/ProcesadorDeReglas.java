@@ -8,8 +8,6 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
-import org.drools.common.InternalAgenda;
-import org.drools.io.Resource;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
@@ -17,6 +15,14 @@ import jade.core.behaviours.Behaviour;
 import photoBot.Agentes.Comportamiento.ConstantesComportamiento;
 import photoBot.Gate.Etiqueta;
 
+/**
+ * Esta clase actua como el gestor de reglas de la aplicacion
+ *
+ */
+/**
+ * @author d_dan
+ *
+ */
 public class ProcesadorDeReglas {
 
 	private KnowledgeBase kbase;
@@ -25,6 +31,11 @@ public class ProcesadorDeReglas {
 	private ManejadorReglas manejadorReglas;
 	
 	
+	/**
+	 * Este constructor construye un Procesador de reglas a partir de los ficheros drl contenidos 
+	 * en los directorios especifios para tal fin (photoBot.Drools.Reglas). Utiliza la funcionalidad 
+	 * de DROOLS
+	 */
 	public ProcesadorDeReglas(){
 		
 		//kbuilder/////////////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +66,14 @@ public class ProcesadorDeReglas {
 
 	}
 	
+	/**
+	 * Este metodo pone en marcha al procesador de reglas, evaluando las reglas y ejecutandose aquellas que cumplan con
+	 * sus condiciones, teniendo en cuenta su base de conocimiento
+	 * @param lEtiquetas Lista de etiquetas que se insertaran en la base de conocimiento del procesador de reglas
+	 * @param conversacion Estado de la conversacion
+	 * @param comportamientoAgente Comportamiento del agente del que se quiere ejecutar sus metodos
+	 * @return
+	 */
 	public Conversacion ejecutarReglasEtiquetas(List<Etiqueta> lEtiquetas, Conversacion conversacion, Behaviour comportamientoAgente){
 		
 		//this.ksession = this.kbase.newStatefulKnowledgeSession();
@@ -81,6 +100,9 @@ public class ProcesadorDeReglas {
 		return conversacion;
 	}
 	
+	/**
+	 * Establece al grupo de reglas SUBIR_IMAGEN como grupo activo en el manejador de regla
+	 */
 	public void seleccionarGrupoSubirImagenManejador() {
 		this.manejadorReglas.setGrupoActivado(ConstantesComportamiento.GRUPO_SUBIR_IMAGEN);
 	}

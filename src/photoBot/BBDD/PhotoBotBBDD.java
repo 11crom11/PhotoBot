@@ -16,12 +16,20 @@ import photoBot.Imagen.Imagen;
 import photoBot.Imagen.Persona;
 import photoBot.Imagen.Usuario;
 
+/**
+ * Esta clase constiene la instancia a la base de datos. Utiliza el framework Morphia para
+ * interactuar con la base de datos MongoDB
+ *
+ */
 public class PhotoBotBBDD {
 
 	
 	private final Morphia morphia;
 	private final Datastore dataStore;
 	
+	/**
+	 * Este constructor devuelve una conexion a la base de datos de PhotoBot
+	 */
 	public PhotoBotBBDD(){
 		
 		this.morphia = new Morphia();
@@ -33,6 +41,12 @@ public class PhotoBotBBDD {
 		
 	}
 	
+	/**
+	 * Este metodo devuelve un objeto de tip Usuario en el caso de que exista aquel con ID de telegram proporcionado
+	 * a traves de un objeto Usuario.
+	 * @param usuario Usuario del que se quiere comprobar la existencia en la base de datos
+	 * @return Objeto Usuario con todos sus atributos completos con la informacion de la base de datos
+	 */
 	public Usuario existeUsuario(Usuario usuario){
 		
 		Query<Usuario> q = this.dataStore.createQuery(Usuario.class);
@@ -44,6 +58,11 @@ public class PhotoBotBBDD {
 	
 	
 	
+	/**
+	 * Este metodo registra a un usuario en la base de datos
+	 * @param usuario Usuario que se quiere registrar en la base de datos. Debe tener todos sus atributos con valores.
+	 * @return
+	 */
 	public boolean crearUsuario(Usuario usuario){
 		boolean ok = false;
 		
@@ -62,6 +81,11 @@ public class PhotoBotBBDD {
 		return ok;
 	}
 	
+	/**
+	 * Registrar una nueva imagen en la bbdd
+	 * @param imagen Imagen que se desea registrar en la base de datos. Puede contener atributos vacios.
+	 * @return
+	 */
 	public boolean registrarImagen(Imagen imagen){
 		boolean ok = true;
 		
@@ -71,6 +95,11 @@ public class PhotoBotBBDD {
 		return ok;
 	}
 	
+	/**
+	 * Este metodo actualiza la informacion de una imagen en la base de datos
+	 * @param imagen Imagen que se quiere actualizar en la bbdd
+	 * @return True si todo ha sido correcto
+	 */
 	public boolean actualizarInfoImagen(Imagen imagen){
 		boolean ok = true;
 		System.out.println("ACTUALIZANDO INFORMACIÓN DE LA IMAGEN");
@@ -82,6 +111,11 @@ public class PhotoBotBBDD {
 		
 	}
 	
+	/**
+	 * Este metodo registra una nueva persona en la base de datos con el usuario correspondiente
+	 * @param p Persona que se desea registrar en la base de datos
+	 * @return True si todo ha funcionado correctamente
+	 */
 	public boolean registrarPersonaUsuario(Persona p){
 		boolean ok = true;
 		
@@ -128,6 +162,12 @@ public class PhotoBotBBDD {
 		return ret;
 	}
 	
+	/**
+	 * Este metodo devuelve una Persona a partir de la etiqueta que se utiliza para su clasificacion
+	 * @param u Usuario al que pertenece la persona
+	 * @param etiqueta Etiqueta que se utiliza para clasificar su cara
+	 * @return Persona que cumple con los criterios de busqueda en la base de datos
+	 */
 	public Persona obtenerPersonaApartirEtiqeuta(Usuario u, int etiqueta) {
 		Query<Persona> q = this.dataStore.createQuery(Persona.class);
 		q.and(
@@ -144,11 +184,22 @@ public class PhotoBotBBDD {
 		}
 	}
 	
+	/**
+	 * Este metodo actualiza la informacion de un usuario en la base de datos
+	 * @param u Objeto Usuario con la informacion del usuario que va a ser actualizado
+	 */
 	public void actualizarInfoUsuario(Usuario u) {
 		this.dataStore.save(u);
 		System.out.println("INFORMACIÓN DEL USUARIO ACTUALIZADA EN LA BBDD");
 	}
 	
+	/**
+	 * Este metodo busca en la base de datos aquellas imagenes que cumplan con todos los filtros
+	 * recibidos por parametro
+	 * @param lFiltros Lista de filtros (de tipo persona, evento o fecha)
+	 * @param idU Id del usuario sobre el que se quiere buscar sus imagenes
+	 * @return
+	 */
 	public List<Imagen> buscarImagenesFiltros(List<Filtro> lFiltros, String idU){
 		
 		Usuario u = this.dataStore.createQuery(Usuario.class).field("idUsuarioTelegram").equal(Integer.parseInt(idU)).get();
@@ -213,24 +264,21 @@ public class PhotoBotBBDD {
 		
 		return q.asList();
 	}
-	
-	public List<Persona> prueba() {
-		Query<Persona> s = this.dataStore.createQuery(Persona.class);
-		
-		List<Integer> l = new ArrayList<>();
-		l.add(1);
-		l.add(2);
-		
-		s.field("etiqueta").hasAnyOf(l);
-		
-		return s.asList();
-	}
 
-	public List<Persona> listaPersonasPorEtiqueta(List<Integer> list) {
+	/**
+	 * Este metodo obtiene una lista de personas de un usuari a partir de las etiquetas proporcionadas
+	 * @param list Lista de etiquetas de las personas que se desea obtener
+	 * @param idU Usuario sobre el que se quiere obtener las personas
+	 * @return
+	 */
+	public List<Persona> listaPersonasPorEtiqueta(List<Integer> list, String idU) {
 		
 		List<Persona> ret = new ArrayList<Persona>();
 		
-		ret = this.dataStore.createQuery(Persona.class).field("etiqueta").hasAnyOf(list).asList();
+		Usuario u = this.dataStore.createQuery(Usuario.class).field("idUsuarioTelegram").equal(Integer.parseInt(idU)).get();
+		
+		ret = this.dataStore.createQuery(Persona.class).field("etiqueta").hasAnyOf(list)
+				.field("user").equal(u).asList();
 		
 		return ret;
 	}

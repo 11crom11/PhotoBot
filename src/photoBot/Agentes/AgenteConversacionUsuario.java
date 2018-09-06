@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -25,6 +24,11 @@ import jade.core.Agent;
 import photoBot.Agentes.Comportamiento.ComportamientoAgenteConversacionUsuario;
 import photoBot.Imagen.Usuario;
 
+/**
+ * Agente JADE cuya funcion es analizar la conversacion que se mantiene con el usuario para
+ * dirigir el funcionamiento de la aplicacion.
+ *
+ */
 public class AgenteConversacionUsuario extends Agent {
 	
 	private static final long serialVersionUID = 1L;
@@ -58,11 +62,22 @@ public class AgenteConversacionUsuario extends Agent {
 		System.out.println("PARADA DE AGENTE CONVERSACION USUARIO");
 	}
 	
+	/**
+	 * Este metodo finaliza la sesion del bot de Telegram.
+	 */
 	public static void pararBotTelegram() {
 		botSession.stop();
 		System.out.println("BOT TELEGRAM PHOTOBOT PARADO CORRECTAMENTE");
 	}
 	
+	/**
+	 * Clase que controla el funcionamiento del chat de Telegram
+	 *
+	 */
+	/**
+	 * @author d_dan
+	 *
+	 */
 	public class PhotoBot extends TelegramLongPollingBot {
 
 		private Long chatID;
@@ -70,10 +85,17 @@ public class AgenteConversacionUsuario extends Agent {
 		private Integer date;
 		private Update update;
 
+		/**
+		 * Este getter devuelve un objeto Usuario que contiene solamente el ID de telegram relleno
+		 * @return Usuario con el que se está conversando
+		 */
 		public Usuario getUser(){
 			return user;
 		}
 		
+		/**
+		 * @param Usuario al que asignar a la conversacion de Telegram
+		 */
 		public void setUser(Usuario user) {
 			this.user = user;
 		}
@@ -150,6 +172,7 @@ public class AgenteConversacionUsuario extends Agent {
 		/**
 		 * Esta función devuelve todas las imagenes contenidas en la carpeta de un usuario
 		 * concreto a partir del userID de la conversación concreta
+		 * @param listaImagenes lista con las ubicaciones de las imagenes que se desea enviar al chat del usuario activo
 		 */
 		public void enviarImagenes(List<String> listaDeImagenes){
 	        SendPhoto sendPhotoRequest = new SendPhoto();
@@ -186,6 +209,10 @@ public class AgenteConversacionUsuario extends Agent {
 			}
 		}
 		
+		/**
+		 * Este metodo obtiene las imagenes que el usuario envia al bot por el chat de Telegram
+		 * @return Lista de archivos (imagenes) que el bot recibe via Telegram
+		 */
 		public List<java.io.File> obtenerImagenesMensaje(){
 			List<java.io.File> lFotosRet = new ArrayList<java.io.File>();			
 			List<PhotoSize> lFotos = update.getMessage().getPhoto();
@@ -212,26 +239,47 @@ public class AgenteConversacionUsuario extends Agent {
 		
 		
 		
+		/**
+		 * @return Texto del ultimo mensaje que se ha recibido de la conversacion de Telegram
+		 */
 		public String getMensaje(){
 			return this.update.getMessage().getText();
 		}
 		
+		/**
+		 * Cuando un mensaja es leido se actualiza el atributo update.
+		 */
 		public void mensajeLeido(){
 			this.update = null;
 		}
 		
+		/**
+		 * Este metodo comprueba si se ha recibido un mensaje que esta sin leer
+		 * @return True cuando hay un nuevo mensaje sin leer, False cuando no hay mensaje
+		 */
 		public boolean hayMensaje() {
 			return this.update != null;
 		}
 		
+		/**
+		 * Este metodo comprueba si hay un mensaje de texto sin leer
+		 * @return True si hay un mensaje sin leer y es de tipo texto, False si no hay mensaje de texto
+		 */
 		public boolean hayMensajeTexto(){
 			return this.update != null && this.update.getMessage().hasText();
 		}
 		
+		/**
+		 * Este metodo comprueba si hay una imagen sin ver
+		 * @return True si se ha recibido un mensaje de tipo fotografia, False si no hay mensaje
+		 */
 		public boolean hayMensajeFoto(){
 			return this.update != null && this.update.getMessage().hasPhoto();
 		}
 		
+		/**
+		 * @return Fecha del ultimo mensaje recibido
+		 */
 		public int getFecha(){
 			if(this.date != null){
 				return this.date;
@@ -240,9 +288,13 @@ public class AgenteConversacionUsuario extends Agent {
 				LocalTime now = LocalTime.now();
 				return now.getHour();
 			}
-		}		
+		}	
 	}
 	
+	/**
+	 * Este metodo devuelve el comportamiento del agente Conversacion Usuario
+	 * @return Comportamiento del agente Conversacion Usuario
+	 */
 	public ComportamientoAgenteConversacionUsuario getComportamiento() {
 		return this.comportamiento;
 	}

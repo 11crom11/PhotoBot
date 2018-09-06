@@ -28,6 +28,10 @@ import gate.creole.gazetteer.DefaultGazetteer;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 
+/**
+ * Esta clase implementa un procesador de lenguaje a partir de GATE
+ *
+ */
 public class ProcesadorLenguaje {
 	
 	/** The Corpus Pipeline application to contain ANNIE */
@@ -281,21 +285,11 @@ public class ProcesadorLenguaje {
 		return g;
 	}
 	
+	/**
+	 * Este metodo introduce al gazettero de GATE una nueva palabra de tipo Evento
+	 * @param palabra Texto de la palabra que se quiere introducir
+	 */
 	public void addPalabraContextoGazetero(String palabra) {
-
-		
-		/*this.gazettero.addLookup(palabra, new Lookup("eventos.lst", "evento_imagen", "evento_imagen", "spanish"));
-		//LinearNode m = new LinearNode("eventos.lst", "evento_imagen", "evento_imagen", "spanish");
-		LinearDefinition ld = this.gazettero.getLinearDefinition();
-		Map<String, LinearNode> k = ld.getNodesByListNames();
-		LinearNode ln = k.get("eventos.lst");
-		GazetteerList eventos = ld.getListsByNode().get(ln);
-		eventos.add(new GazetteerNode("blo", ":"));*/
-		
-		
-
-		int p = 0;
-		int s = p + 1;
 
 		try {
 			BufferedWriter output = new BufferedWriter(new FileWriter("GATE\\plugins\\ANNIE\\resources\\gazetteer\\eventos.lst", true));

@@ -2,17 +2,12 @@ package photoBot.Agentes.Comportamiento;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
-
-import com.lowagie.text.Image;
 
 import jade.core.AID;
 import jade.core.Agent;
@@ -27,12 +22,20 @@ import photoBot.BBDD.FiltroPersona;
 import photoBot.BBDD.PhotoBotBBDD;
 import photoBot.Imagen.Imagen;
 
+/**
+ * Esta clase implementa el comportamiento del agente Buscar Imagenes
+ *
+ */
 public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 
 	private Behaviour self;
 	private PhotoBotBBDD bd;
 	private HashMap<String, List<Filtro>> filtros;
 	
+	/**
+	 * Constructor del comportamiento del agente Buscar Imagenes
+	 * @param a
+	 */
 	public ComportamientoAgenteBuscarImagenes(Agent a) {
 		super(a);
 		this.self = this;
@@ -80,6 +83,11 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		
 	}
 	
+	/**
+	 * Este metodo inicializa la lista de filtros de una nueva busqueda
+	 * Este metodo es llamado a traves de un mensaje entre agentes
+	 * @param msjContent
+	 */
 	private void inicializarListaFiltrosUsuario(HashMap<String, Object> msjContent) {
 		String idUsuario = (String) msjContent.get("ID");
 		
@@ -87,6 +95,12 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		this.filtros.put(idUsuario, lFiltros);
 	}
 	
+	/**
+	 * Este metodo devuelve todas las imagenes que cumplen con los criterios especificados
+	 * por el usuario. Este metodo se ejecuta tras la recepcion de un mensaje entre agentes
+	 * @param msj Mensaje de agente
+	 * @param msjContent Contenido del mensaje de agente
+	 */
 	private void buscarImagenes(ACLMessage msj, HashMap<String, Object> msjContent) {
 		String idUsuario = (String) msjContent.get("ID");
 		
@@ -114,6 +128,11 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo inserta un filtro de tipo fecha a la lista de filtros de una busqueda
+	 * @param msj Mensaje de agente. Este metodo se ejecuta tras la recepcion de un mensaje entre agentes.
+	 * @param msjContent Contenido de un mensaje entre agentes
+	 */
 	private void anadirFiltroFecha(ACLMessage msj, HashMap<String, Object> msjContent) {
 		String idUsuario = (String) msjContent.get("ID");
 		Pair<Date, Date> filtro = (Pair<Date, Date>) msjContent.get("FILTRO");
@@ -124,6 +143,11 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		this.filtros.put(idUsuario, aux);
 	}
 	
+	/**
+	 * Este metodo inserta un filtro de tipo evento a la lista de filtros de una busqueda
+	 * @param msj Mensaje de agente. Este metodo se ejecuta tras la recepcion de un mensaje entre agentes.
+	 * @param msjContent Contenido de un mensaje entre agentes
+	 */
 	private void anadirFiltroEvento(ACLMessage msj, HashMap<String, Object> msjContent) {
 		String idUsuario = (String) msjContent.get("ID");
 		String filtro = (String) msjContent.get("FILTRO");
@@ -134,6 +158,11 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		this.filtros.put(idUsuario, aux);
 	}
 	
+	/**
+	 * Este metodo inserta un filtro de tipo persona a la lista de filtros de una busqueda
+	 * @param msj Mensaje de agente. Este metodo se ejecuta tras la recepcion de un mensaje entre agentes.
+	 * @param msjContent Contenido de un mensaje entre agentes
+	 */
 	private void anadirFiltroPersona(ACLMessage msj, HashMap<String, Object> msjContent) {
 		String idUsuario = (String) msjContent.get("ID");
 		String filtro = (String) msjContent.get("FILTRO");
@@ -143,34 +172,4 @@ public class ComportamientoAgenteBuscarImagenes extends CyclicBehaviour {
 		
 		this.filtros.put(idUsuario, aux);
 	}
-	
-	/*VIEJO ... BORRAR CUANDO SE TENGAN IMPLEMENTADAS LAS FUNCIONES DE BUSQUEDA
-	private void buscarTodasImagenes(ACLMessage msj) {
-		List<String> list = new ArrayList<>();
-		
-		String userID = msj.getContent();
-		System.out.print("AgenteBuscarImagenes ha recibido el siguiente mensaje: " + userID);
-		
-		try {
-			Files.list(Paths.get("./galeria/" + userID)).forEach((imagen)->{
-				System.out.println(imagen.toString());
-				list.add(imagen.toString());
-				
-			});
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		HashMap<String, Object> msjContent = new HashMap<String, Object>();
-		
-		msjContent.put("COMANDO", ConstantesComportamiento.ENTREGAR_IMG_ENCONTRADAS);
-		msjContent.put("LISTA", list);
-		
-		ACLMessage reply = msj.createReply();
-		getAgent().send(reply);
-			//sendPhotoRequest.setNewPhoto(new java.io.File(imagen.toString()));
-	}
-	
-	*/
 }

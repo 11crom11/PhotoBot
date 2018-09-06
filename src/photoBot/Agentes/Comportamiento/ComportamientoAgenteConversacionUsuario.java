@@ -30,6 +30,10 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.UnreadableException;
 
+/**
+ * Esta clase implementa el comportamiento del agente Conversacion Usuario
+ *
+ */
 public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 	private static final long serialVersionUID = 1L;
@@ -42,6 +46,12 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	private PhotoBotBBDD bd;
 	
 
+	/**
+	 * Este constructor construye al comportamiento del agente Conversacion Usuario iniciando
+	 * todos sus procesadores.
+	 * @param a Agente Conversacion Usuario
+	 * @param pB Bot de Telegram
+	 */
 	public ComportamientoAgenteConversacionUsuario(Agent a, PhotoBot pB) {
 		super(a);
 		this.photoBot = pB;
@@ -114,6 +124,7 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 									+ "a mi vocabulario de palabras de eventos y contexto.");
 							this.conversacion.setContextoDescrito(true);
 							this.bot_actualizarInfoContextoImagen(this.conversacion.getImagenPeticionInfo(), new Etiqueta("Evento", mensaje));
+							this.conversacion.setContextoEnUnaPalabra(false);
 						}
 					}
 				}
@@ -139,6 +150,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 	}
 	
 
+	/**
+	 * Este metodo envia un saludo al usuario via chat de Telegram
+	 * @param botSaludado Indica si el usuario ha saludado al bot o no
+	 */
 	public void bot_saludar(boolean botSaludado) {
 		
 		
@@ -161,6 +176,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo envia un mensaje para buscar todas las imagenes de un usuario
+	 * @deprecated
+	 */
 	public void bot_solicitudBuscarTodasImagenes() {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
@@ -171,6 +190,12 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		self.getAgent().send(msj);
 	}
 	
+	/**
+	 * Este metodo se ejecuta cuando se recibe un mensaje de un agente adjuntando una lista de imagenes.
+	 *  Se envia al usuario todas la imagenes encontradas en la busqueda de la base de datos.
+	 * @param msj Mensaje de agente
+	 * @param contenido Contenido del mensaje de agente.
+	 */
 	private void obtenerImagenesBusquedaAgente(ACLMessage msj, HashMap<String, Object> contenido) {
 		List<String> list = (List<String>) contenido.get("LISTA");
 		
@@ -184,6 +209,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 	}
 	
+	/**
+	 * Este metodo establece en la coversacion que se espera la recepcion de una imagen y envia un mensaje al
+	 *  usuario avisando de que se espera una imagen
+	 */
 	public void esperarFotoConversacion() {
 		this.conversacion.solicitudSubirFotoRecibida();
 		
@@ -191,12 +220,18 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 
 	}
 	
+	/**
+	 * Este metodo anula la espera de recepcion de una imagen
+	 */
 	public void bot_anularSubidaFotos() {
 		this.conversacion.solicitudSubirFotoFinalizada();
 		
 		photoBot.enviarMensajeTextoAlUsuario("Parece ser que has cambiado de idea respecto a subir una nueva imagen. Lo dejaremos para más tarde.");
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente ALMACENAR IMAGENES indicandole que se quiere subir una imagen nueva.
+	 */
 	public void bot_solicitudSubirImagenes() {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		
@@ -225,6 +260,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al usuario via Telegram solicitando el nombre al usuario
+	 */
 	public void bot_pedirDatosUsuarioNuevo(){
 		this.conversacion.setEsperarDatosDelUsuario(true);
 		this.conversacion.saludoRecibido();
@@ -237,6 +275,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		photoBot.enviarMensajeTextoAlUsuario("Para empezar, por favor, ¿podrías decirme tu nombre?");
 	}
 	
+	/**
+	 * Este metodo registra a un usuario en la base de datos y envía un mensaje al usuario
+	 *  via Telegram explicando sus funciones.
+	 * @param nombre Etiqueta con el nombre del usuario
+	 */
 	public void bot_registrarUsuarioNuevo(Etiqueta nombre){
 		
 		Usuario usuario = new Usuario(photoBot.getUser().getIdUsuarioTelegram(), nombre.getNombre(), 0);
@@ -265,6 +308,13 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo se ejecuta tras la recepcion de un mensaje por parte del agente GESTIONAR CARAS
+	 * con los resultados del procesamiento de una imagen y envia al usuario via Telegram los
+	 *  reconocimientos
+	 * @param msj Mensaje de agente
+	 * @param contenido Contenido del mensaje de agente
+	 */
 	private void recibirRespuestaSubidaImagenes(ACLMessage msj, HashMap<String, Object> contenido) {
 		String urlImagen = (String) contenido.get("URL_IMAGEN");
 		long fechaSubida = (long) contenido.get("FECHA_SUBIDA");
@@ -383,6 +433,12 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		
 }
 	
+	/**
+	 * Este metodo envia un mensaje al agente GESTIONAR CARAS para actualizar los resultados
+	 *  de deteccion de imagen. 
+	 * @param imagen
+	 * @param etiqueta
+	 */
 	public void bot_actualizarInfoPersonaImagen(Imagen imagen, Etiqueta etiqueta){
 		String color = etiqueta.getColor();
 		color = color.toLowerCase();
@@ -444,10 +500,20 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al usuario indicando que va a tener en cuenta los nuevos
+	 *  cambios que respectan a una persona.
+	 */
 	public void bot_avisarCambiosPersona() {
 		this.photoBot.enviarMensajeTextoAlUsuario("Ok, tendré en cuenta este dato.");
 	}
 	
+	/**
+	 * Este metodo en via un mensaje al agente SUBIR IMAGEN para poder actualizar la BBDD
+	 *  con la informacion del contexto de una imagen
+	 * @param imagen
+	 * @param etiqueta
+	 */
 	public void bot_actualizarInfoContextoImagen(Imagen imagen, Etiqueta etiqueta) {
 		imagen.addEventoContextoImagen(etiqueta.getNombre());
 		this.conversacion.setContextoDescrito(true);
@@ -472,6 +538,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 				+ "de " + etiqueta.getNombre() + ".");
 	}
 	
+	/**
+	 * Este metodo avisa al usuario via Telegram de las carencias de datos de una imagen o finaliza el proceso
+	 *  de descripcion de una imagen.
+	 */
 	public void bot_finalizarDescripcionImagen() {
 		if(conversacion.isPersonasNoReconocidasDescritas() == false) {
 			this.photoBot.enviarMensajeTextoAlUsuario("Todavía faltan personas que no me has dichos quienes son.");
@@ -499,6 +569,9 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo confirma la finalizacion de descripcion de una imagen
+	 */
 	public void bot_confirmadoFinalizacionDescripcionImagen() {
 		actualizarClasificador();
 		enviarMensajeSolicitudPersonaImagen();
@@ -506,6 +579,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		avisarUsuarioFinalizacionSubidaFoto();
 	}
 	
+	/**
+	 * Este metodo anula la finalizacion de descripcion de imagen posibilitando
+	 * el poder crear nuevas palbras de contexto en el gazettero
+	 */
 	public void bot_negacionFinalizacionDescripcionImagen() {
 		this.conversacion.setEsperaConfirmacionFinalizarFoto(false);
 		this.photoBot.enviarMensajeTextoAlUsuario("Vale, dime la información de la imagen que quieres que tenga en cuenta y luego avisame otra vez cuando hayas acabado."
@@ -515,6 +592,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.conversacion.setContextoEnUnaPalabra(true);
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al usuario via Telegram avisando de que no se puede subir nuevas imagenes
+	 *  hasta que no se termine de describir la anterior recibida.
+	 */
 	public void bot_rechazarImagenes() {
 		this.photoBot.enviarMensajeTextoAlUsuario("No puedo procesar esta nueva imagen mientras tenemos pendiente "
 				+ "la descripcion de otra imagen. Termina de contarme la imagen anterior y vuelve a enviarme esta foto.");
@@ -522,6 +603,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.conversacion.setFotosCargadasSubida(false);
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente BUSCAR_IMAGENES con el objetivo de enviar 
+	 *  un filtro de tipo fecha 
+	 * @param etiqueta Etiqueta fecha
+	 */
 	public void bot_enviarFiltroFecha(Etiqueta etiqueta) {
 		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		Pair<Date, Date> filtroFecha = ProcesadorFechas.obtenerFormatoDate(etiqueta);
@@ -543,6 +629,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente BUSCAR_IMAGENES con el objetivo de enviar 
+	 *  un filtro de tipo evento
+	 * @param etiqueta Etiqueta evento
+	 */
 	public void bot_enviarFiltroEvento(Etiqueta etiqueta) {
 		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
@@ -563,6 +654,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente BUSCAR_IMAGENES con el objetivo de enviar 
+	 *  un filtro de tipo persona 
+	 * @param etiqueta Etiqueta persona
+	 */
 	public void bot_enviarFiltroPersona(Etiqueta etiqueta) {
 		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
@@ -583,6 +679,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente BUSCAR_IMAGENES con el objetivo de arrancar
+	 *  el proceso de busqueda de imagenes
+	 */
 	public void bot_buscarImagenesFiltros() {
 		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
@@ -602,6 +702,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente BUSCAR_IMAGENES con el objetivo de 
+	 *  inicializar la lista de filtros con la que se desea buscar en la base de datos
+	 */
 	public void solicitarInicializacionListaFiltros() {
 		String userID = photoBot.getUser().getIdUsuarioTelegram().toString();
 		
@@ -621,6 +725,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este metodo comprueba la existencia de la base de datos y modifica el estado del
+	 *  objeto Conversacion
+	 */
 	public void comprobarExistenciayObtenerUsuario() {
 		Usuario usu = bd.existeUsuario(photoBot.getUser());
 		
@@ -658,6 +766,11 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		return ret;
 	}
 	
+	/**
+	 * Este metodo comprueba en el objeto conversacion si todos las  personas de una imagen
+	 *  han sido descritas. En caso de haber sido todas descritas, avisa al usuario via Telegram
+	 *  de que ha finalizado describir a todas las personas.
+	 */
 	private void personasDesconocidasDescritas() {
 		if(this.conversacion.isPersonasNoReconocidasDescritas() == false) {
 			this.photoBot.enviarMensajeTextoAlUsuario("Enhorabuena, acabas de desribirme a todas las personas "
@@ -669,6 +782,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		conversacion.setPersonasNoReconocidasDescritas(true);
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente GESTIONAR CARAS con el objetivo de que el agente
+	 *  reentrene el clasificador de un usuario.
+	 */
 	private void actualizarClasificador() {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		msjContent.put("COMANDO", ConstantesComportamiento.ACTUALIZAR_CLASIFICADOR);
@@ -685,10 +802,15 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		}
 	}
 	
+	/**
+	 * Este método envia un mensaje al agente SUBIR IMAGENES indicando que se desea actualuar
+	 *  la informacion de una imagen en la base de datos
+	 * @param msjContent Contenido del mensaje de agente
+	 */
 	private void actualizarBBDDImagen(HashMap<String, Object> msjContent) {
 		List<Integer> list = (List<Integer>) msjContent.get("LISTA");
 		
-		List<Persona> lPersonas = this.bd.listaPersonasPorEtiqueta(list);
+		List<Persona> lPersonas = this.bd.listaPersonasPorEtiqueta(list, String.valueOf(photoBot.getUser().getIdUsuarioTelegram()));
 		
 		Imagen i = this.conversacion.getImagenPeticionInfo();
 		i.setlPersonas(lPersonas);
@@ -712,6 +834,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.conversacion.procesoSubirImagenCompletado();
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al usuario via Telegram avisando de que se ha finalizado
+	 *  el proceso de subir de imagen al sistema
+	 */
 	private void avisarUsuarioFinalizacionSubidaFoto() {
 		this.photoBot.enviarMensajeTextoAlUsuario("Muy bien. Me quedo con la información que me has"
 				+ " descrito de esta imagen para que puedas recuperarla posteriormente.");
@@ -720,6 +846,10 @@ public class ComportamientoAgenteConversacionUsuario extends CyclicBehaviour {
 		this.conversacion.setEsperarDatosDelUsuario(false);
 	}
 	
+	/**
+	 * Este metodo envia un mensaje al agente GESTIONAR CARAS con el objetivo de obtener el listado
+	 *  de personas que aparecen en la ultima imagen procesada.
+	 */
 	private void enviarMensajeSolicitudPersonaImagen() {
 		HashMap<String, Object> msjContent = new HashMap<String, Object>();
 		msjContent.put("COMANDO", ConstantesComportamiento.SOLICITAR_LISTADO_PERSONAS_ACTUALIZAR_IMAGEN);

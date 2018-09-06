@@ -8,6 +8,10 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
+/**
+ * Esta clase construye objetos Date a partir de diferentes tipos de etiquetas fecha
+ *
+ */
 public class ProcesadorFechas {
 	private static List<String> meses;
 
@@ -32,6 +36,11 @@ public class ProcesadorFechas {
 		
 	}
 	
+	/**
+	 * Este metodo devuelve un objeto de tipo Date a partir de cualquier tipo de etiqueta Fecha
+	 * @param e Etiqueta de tipo Fecha
+	 * @return
+	 */
 	public static Pair<Date, Date> obtenerFormatoDate(Etiqueta e) {
 		Pair<Date, Date> ret = null;
 		
@@ -80,6 +89,12 @@ public class ProcesadorFechas {
 		return ret;
 	}
 	
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 del 12 del 2008
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo1(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -136,6 +151,12 @@ public class ProcesadorFechas {
 	
 	//////////////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 del 12
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo2(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -183,6 +204,12 @@ public class ProcesadorFechas {
 	
 	//////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 de abril del 2008
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo3(String f) {
 	
 		Calendar cAux = Calendar.getInstance();
@@ -239,6 +266,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 de diciembre
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo4(String f) {
 	
 		Calendar cAux = Calendar.getInstance();
@@ -286,6 +319,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * mayo a julio de 2008
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo5(String f) {
 	
 		Calendar cAux = Calendar.getInstance();
@@ -351,6 +390,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * junio a octubre
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo6(String f) {
 	
 		Calendar cAux = Calendar.getInstance();
@@ -407,6 +452,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * febrero 2007
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo7(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -462,6 +513,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * marzo
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipo8(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -507,6 +564,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 del 12 del 2008 al 15 del 12 del 2008 
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipoCompuesto1(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -599,6 +662,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 14 del 11 al 15 del 12
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipoCompuesto2(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -673,6 +742,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 de abril del 2018 al 15 de mayor del 2018 
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipoCompuesto3(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -765,6 +840,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * 12 de diciembre al 15 de diciembre 
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipoCompuesto4(String f) {
 		
 		Calendar cAux = Calendar.getInstance();
@@ -839,6 +920,12 @@ public class ProcesadorFechas {
 
 //////////////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * Este metodo devuelve un par de Fechas cuando el tipo de etiqueta es del formato
+	 * febrero 2008 a marzo 2009 
+	 * @param f Texto de la fecha
+	 * @return Par de fechas que abarca el dia o el perdiodo de tiempo
+	 */
 	private static Pair<Date, Date> formatoTipoCompuesto7(String f) {
 		
 		Calendar cAux = Calendar.getInstance();

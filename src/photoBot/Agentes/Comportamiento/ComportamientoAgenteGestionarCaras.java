@@ -2,7 +2,6 @@ package photoBot.Agentes.Comportamiento;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,12 +15,20 @@ import jade.lang.acl.UnreadableException;
 import photoBot.OpenCV.CarasDetectadas;
 import photoBot.OpenCV.GestorDeCaras;
 
+/**
+ * Clase que implementa el comportamiento del agente Gestionar Caras
+ *
+ */
 public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 
 	private ComportamientoAgenteGestionarCaras self;
 	private GestorDeCaras gestorCaras;
 	private HashMap<Integer, CarasDetectadas> resultadosDeteccion;
 
+	/**
+	 * Constructor del comportamiento del agente Gestionar Caras
+	 * @param a Agente Gestionar Caras
+	 */
 	public ComportamientoAgenteGestionarCaras(Agent a) {
 		super(a);
 		this.self = this;
@@ -65,6 +72,10 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 
 	}
 
+	/**
+	 * Este metodo crea una lista con las etiquetas de las personas que aparecen en una imagen
+	 * @param msjContent Contenido del mensaje del agente
+	 */
 	private void generarListadoPersonasEtiqueta(HashMap<String, Object> msjContent) {
 		Integer idUsuario = (Integer) msjContent.get("ID");
 		
@@ -88,6 +99,11 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		}
 	}
 
+	/**
+	 * Este metodo procesa una imagen para reconocer las caras que aparecen en una imagen
+	 * y devuelve su resultado al agente conversacional via mensaje entre agentes
+	 * @param msjContent Contenido del mensaje de agente
+	 */
 	private void reconocerCarasYenviarResultadosClasificacionAgenteConversacional(HashMap<String, Object> msjContent){
 		ACLMessage msj = this.self.getAgent().receive();
 		msj = new ACLMessage(ACLMessage.INFORM);
@@ -124,6 +140,10 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		}
 	}
 	
+	/**
+	 * Este metodo modifica el valor de una persona contenido en el objeto CarasDetectadas
+	 * @param msjContent Contenido del mensaje de agente
+	 */
 	private void actualizarCampoCarasDetectadas(HashMap<String, Object> msjContent) {
 		int idUsuario = (int) msjContent.get("ID");
 		String color = (String) msjContent.get("COLOR");
@@ -136,6 +156,10 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		comprobarTotalidadDescripcionPersonasYactualizar(idUsuario);
 	}
 	
+	/**
+	 * Este metodo comprueba si existe alguna persona no reconocida no ha sido descrita
+	 * @param idUsuario id telegram del usuario
+	 */
 	private void comprobarTotalidadDescripcionPersonasYactualizar(int idUsuario) {
 		boolean carasNoReconocidas = this.resultadosDeteccion.get(idUsuario).carasReconocidas();
 		
@@ -158,6 +182,11 @@ public class ComportamientoAgenteGestionarCaras extends CyclicBehaviour{
 		}
 	}
 	
+	/**
+	 * Este metodo actualiza el clasificador de un usuario concreto con la informacion de 
+	 * una nueva imagen recibida
+	 * @param msjContent Contenido del mensaje de agente.
+	 */
 	private void actualizarClasificador(HashMap<String, Object> msjContent) {
 		int idUsuario = (int) msjContent.get("ID");
 		

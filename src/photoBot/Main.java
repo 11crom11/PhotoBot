@@ -12,7 +12,14 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
 import photoBot.Agentes.AgenteConversacionUsuario;
 import photoBot.Agentes.Comportamiento.ConstantesComportamiento;
+
+/**
+ * Clase principal de la aplicacion PhotoBot. Arranca los componentes del sistema
+ *
+ */
 public class Main {
+	
+	
 	
 	public static void main(String[] args) {
 

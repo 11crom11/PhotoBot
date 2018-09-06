@@ -68,7 +68,7 @@ RUN Write-Host ('Downloading {0} ...' -f $env:MONGO_DOWNLOAD_URL); \
 	Write-Host 'Complete.';
 
 #Descomentar si se desea persistencia en la BBDD
-#VOLUME C:\\data\\db C:\\data\\configdb
+VOLUME C:\\data\\db C:\\data\\configdb
 ##################################################
 
 EXPOSE 27017

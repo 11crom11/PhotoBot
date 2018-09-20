@@ -1,0 +1,16 @@
+## DASI 2017/2018 - PHOTOBOT ##
+
+Iván Aguilera Calle && Daniel García Moreno
+
+### ENLACES DE DESCARGA DE FUENTES Y EJECUTABLES ###
+Debido al gran tamaño de los archivos del proyecto (los archivos fuentes y librerías de terceros), 
+y de la imagen de Docker creada para el proyecto, para consultar dicha información se debe descargar
+de los siguientes enlaces ya que el Campus Virtual no admite entregas del tamaño que ocupa el proyecto
+en su totalidad:
+
+- Archivos fuentes, SW y Librerías de Terceros y algun archivo extra:
+https://github.com/11crom11/PhotoBot
+
+- Imagen de Docker Photobot:
+https://hub.docker.com/r/ivanag01/photobot20180905/
+ 
